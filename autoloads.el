@@ -1,6 +1,7 @@
 (provide 'autoloads)
 
 ;; C-u 3 M-x sort-fields
+(autoload 'ahg-status "ahg" nil t)
 (autoload 'bs-cycle-next "bs" "cycle to next buffer" t)
 (autoload 'bs-cycle-previous "bs" "cycle to previous buffer" t)
 (autoload 'bs-show "bs" "menu for selecting and displaying buffers" t)
@@ -33,7 +34,6 @@
 
 
 ;; C-u 4 M-x sort-fields
-;; (autoload 'ahg-status "ahg" nil t)
 ;; (autoload 'css-mode "css-mode" t)
 ;; (autoload 'diff-mode "diff-mode" nil t)
 ;; (autoload 'inf-ruby "inf-ruby" nil t)
