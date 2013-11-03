@@ -42,6 +42,7 @@
 (global-set-key (kbd "s-j") 'direx:jump-to-directory-other-window)
 
 (global-set-key (kbd "s-s") 'sort-lines)
+(global-set-key (kbd "s-S") 'sort-fields)
 
 (global-set-key (kbd "C-c %")    'match-paren)
 (global-set-key (kbd "C-c C-d")  'find-tag)
