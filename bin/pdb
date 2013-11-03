@@ -1,0 +1,20 @@
+#!/bin/bash
+
+_prg=$(basename $(readlink -f $0))
+die() {
+    exit_code=$1
+    shift
+    echo "${_prg}: $*" >&2
+    exit $exit_code
+}
+
+pydir=$(python -c 'import sys; import os.path; print [d for d in sys.path if os.path.isfile("%s/pdb.py" % d)][0]')
+pdb="$pydir/pdb.py"
+
+[[ -x "$pdb" ]] || die 1 "Not executable: $pdb"
+
+if [ -z "$*" ]; then
+    echo "$pdb"
+else
+    exec "$pdb" "$@"
+fi

@@ -1,0 +1,7 @@
+# -*- coding:utf-8 -*-
+import struct
+
+for s in u'åäöÅÄÖéÉèÈüÜ':
+    ok = s.encode('UTF-8')
+    bad = "".join([c.decode('latin-1').encode('utf-8') for c in ok])
+    print "(\"%s\" . \"%s\")" % (ok, bad)

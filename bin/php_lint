@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This does standard PHP syntax checking
+php -l -f "$1"
+
+# This does coding standard checking.
+#   http://pear.php.net/package/PHP_CodeSniffer/redirected
+phpcs --standard=PEAR --report=emacs "$1"
+
+# Always exit with status code 0 otherwise flymake complains
+exit 0

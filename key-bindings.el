@@ -1,0 +1,198 @@
+(when macosp
+  ;; mac-function-modifier
+  ;; mac-control-modifier
+  ;; mac-command-modifier
+  ;; mac-option-modifier
+  ;; mac-right-command-modifier
+  ;; mac-right-control-modifier
+  ;; mac-right-option-modifier
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil) ;; need it for typing $, accented characters etc.
+  (setq mac-right-command-modifier 'super))
+
+(global-unset-key (kbd "C-x m")) ; disable sendmail
+(when window-system
+  (global-set-key (kbd "M-z") 'shell-toggle))
+(global-set-key (kbd "M-Z") 'zap-to-char)
+
+
+(global-set-key (kbd "s-7") "|")
+(global-set-key (kbd "s-/") "\\")
+(global-set-key (kbd "s-8") "[")
+(global-set-key (kbd "s-9") "]")
+(global-set-key (kbd "s-(") "{")
+(global-set-key (kbd "s-)") "}")
+
+(global-set-key (kbd "M-s D") 'find-dired)
+(global-set-key (kbd "M-s d") 'find-grep-dired)
+(global-set-key (kbd "M-s f") 'find-grep)
+(global-set-key (kbd "M-s g") 'grep)
+(global-set-key (kbd "M-s n") 'find-name-dired)
+(global-set-key (kbd "M-s r") 'rgrep)
+
+(global-set-key [C-escape]       'bs-show)
+(global-set-key [C-tab]          'bs-show)
+(global-set-key (kbd "C-x C-b")  'ibuffer-show)
+
+(global-set-key (kbd "C-s-j") 'join-line-or-lines-in-region)
+(global-set-key (kbd "s-j")   (lambda () (interactive) (join-line -1)))
+
+(global-set-key (kbd "s-d") 'direx:find-directory)
+(global-set-key (kbd "s-J") 'direx:jump-to-directory)
+(global-set-key (kbd "s-j") 'direx:jump-to-directory-other-window)
+
+(global-set-key (kbd "s-s") 'sort-lines)
+
+(global-set-key (kbd "C-c %")    'match-paren)
+(global-set-key (kbd "C-c C-d")  'find-tag)
+(global-set-key (kbd "C-c C-k")  (lambda () (interactive) (kill-buffer nil)))
+(global-set-key (kbd "C-c l")    'org-store-link)
+(global-set-key (kbd "C-c |")    'align-regexp)
+(global-set-key (kbd "C-c y")    'browse-kill-ring)
+
+(global-set-key (kbd "C-c i -")  'insert-separator)
+(global-set-key (kbd "C-c i c")  'insert-date-and-time)
+(global-set-key (kbd "C-c i d")  'insert-date)
+(global-set-key (kbd "C-c i m")  'insert-kbd-macro)
+(global-set-key (kbd "C-c i o")  'insert-org-header)
+(global-set-key (kbd "C-c i p")  'insert-path)
+(global-set-key (kbd "C-c i s")  'insert-change-signature)
+(global-set-key (kbd "C-c i t")  'insert-time)
+(global-set-key (kbd "C-c i T")  'insert-timestamp)
+
+(global-unset-key (kbd "C-c o"))
+(global-set-key (kbd "C-c o o") 'find-file-at-point)
+(global-set-key (kbd "C-c o p") 'find-file-in-project)
+(global-set-key (kbd "C-c o el") (ffip-create-pattern-file-finder "*.el"))
+(global-set-key (kbd "C-c o ja") (ffip-create-pattern-file-finder "*.java"))
+(global-set-key (kbd "C-c o js") (ffip-create-pattern-file-finder "*.js"))
+
+(global-set-key (kbd "C-x M-w") 'copy-current-file-path)
+
+(global-set-key (kbd "C-x C-d") 'dired)
+(global-set-key (kbd "C-x C-j") 'dired-jump)
+(global-set-key (kbd "C-x C-q") 'toggle-read-only)
+(global-set-key (kbd "C-x C-r") 'revert-buffer)
+
+(global-set-key (kbd "C-'") 'er/expand-region)
+(global-set-key (kbd "C-*") 'er/contract-region)
+
+(global-set-key (kbd "M-$") 'ispell-word)
+(global-set-key (kbd "M-¼") 'ispell-buffer)
+
+(global-set-key (kbd "M-C")  'comment-region)
+(global-set-key (kbd "M-F")  'auto-fill-mode)
+(global-set-key (kbd "M-I")  'indent-region)
+(global-set-key (kbd "M-T")  'toggle-truncate-lines)
+(global-set-key (kbd "M-U")  'uncomment-region)
+(global-set-key (kbd "M-o")  'duplicate-line)
+
+(global-set-key (kbd "C-0")  'delete-window)
+(global-set-key (kbd "C-1")  'delete-other-windows)
+(global-set-key (kbd "C-2")  'split-window-vertically)
+(global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
+
+(global-set-key (kbd "s-SPC")  'set-rectangular-region-anchor)
+
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+(global-set-key (kbd "s-å")  'mc/mark-previous-like-this)
+(global-set-key (kbd "s-ä")  'mc/mark-next-like-this)
+(global-set-key (kbd "s-ö")  'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "s-Ä")  'mc/mark-more-like-this-extended)
+
+(global-set-key (kbd "M-N")  'winner-redo)
+(global-set-key (kbd "M-P")  'winner-undo)
+
+(global-set-key (kbd "<C-S-up>")   'move-text-up)
+(global-set-key (kbd "<C-S-down>") 'move-text-down)
+
+(global-set-key [C-M-up]    'backward-paragraph)
+(global-set-key [C-M-down]  'forward-paragraph)
+
+(global-set-key [C-return]  'newline-and-indent)
+
+(unless macosp
+  (global-set-key [M-delete]  'kill-word))
+
+;; (if (not macosp)
+;;     (progn
+;; (global-set-key [backspace]    'delete-backward-char)
+;; (global-set-key [C-backspace]  'backward-kill-word)
+;; (global-set-key [M-backspace]  'backward-kill-word)
+
+;; (global-set-key [delete]    'delete-char)
+;; (global-set-key [C-delete]  'kill-word)
+;; (global-set-key [M-delete]  'kill-word)
+;;))
+
+(global-set-key [insert]    'overwrite-mode)
+(global-set-key [S-insert]  'insert-separator)
+(global-set-key [C-insert]  'insert-separator-dashed)
+(global-set-key [M-insert]  'insert-separator-text)
+
+(global-set-key [home]    'beginning-of-line)
+(global-set-key [S-home]  'cursor-to-top-of-window)
+(global-set-key [C-home]  'beginning-of-buffer)
+(global-set-key [M-home]  'this-line-to-top-of-window)
+
+(global-set-key [end]      'end-of-line)
+(global-set-key [S-end]    'cursor-to-bottom-of-window)
+(global-set-key [C-end]    'end-of-buffer)
+(global-set-key [M-end]    'this-line-to-bottom-of-window)
+(global-set-key [C-M-end]  'goto-line)
+
+(global-set-key [S-next]   'scroll-up-in-place)
+(global-set-key [S-prior]  'scroll-down-in-place)
+
+(global-set-key [C-M-prior]  'shift-region-left)
+(global-set-key [C-M-next]   'shift-region-right)
+
+(global-set-key [f8]    'next-error)
+(global-set-key [M-f8]  'previous-error)
+
+(global-set-key [f9]    'compile)
+(global-set-key [M-f9]  'recompile)
+
+(global-set-key (kbd "<f10>") 'pabe-vc-examine)
+(global-set-key (kbd "C-<f10>") 'menu-bar-mode)
+
+(global-set-key [f11]    'call-last-kbd-macro)
+(global-set-key [M-f11]  'apply-macro-to-region-lines)
+(global-set-key [S-f11]  'name-last-kbd-macro)
+(global-set-key [C-f11]  'insert-kbd-macro)
+
+(global-set-key [kp-separator] [?.])
+
+(global-set-key [SunF36]    (key-binding [f11]))
+(global-set-key [M-SunF36]  (key-binding [M-f11]))
+(global-set-key [S-SunF36]  (key-binding [S-f11]))
+(global-set-key [C-SunF36]  (key-binding [C-f11]))
+
+(global-set-key [SunXK_F36]    (key-binding [f11]))
+(global-set-key [M-SunXK_F36]  (key-binding [M-f11]))
+(global-set-key [S-SunXK_F36]  (key-binding [S-f11]))
+(global-set-key [C-SunXK_F36]  (key-binding [C-f11]))
+
+(global-set-key [f12]    'buffer-switch)
+(global-set-key [M-f12]  (lambda () (interactive) (buffer-switch 3)))
+(global-set-key [S-f12]  (lambda () (interactive) (buffer-switch 4)))
+(global-set-key [C-f12]  'bury-buffer)
+(global-set-key [s-f12]  'rotate-windows)
+
+(global-set-key [SunF37]    (key-binding [f12]))
+(global-set-key [M-SunF37]  (key-binding [M-f12]))
+(global-set-key [S-SunF37]  (key-binding [S-f12]))
+(global-set-key [C-SunF37]  (key-binding [C-f12]))
+
+(global-set-key [SunXK_F37]    (key-binding [f12]))
+(global-set-key [M-SunXK_F37]  (key-binding [M-f12]))
+(global-set-key [S-SunXK_F37]  (key-binding [S-f12]))
+(global-set-key [C-SunXK_F37]  (key-binding [C-f12]))
+
+; Sun `undo' button
+(global-set-key [f14]  'undo)
+(global-set-key (kbd "C-z") 'undo)
+
+;;-----------------------------------------------------------------------------
+
+(provide 'key-bindings)
