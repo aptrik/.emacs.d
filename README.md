@@ -3,6 +3,7 @@
 This is where I store all my carefully crafted micro-optimizations for
 Emacs.
 
+
 ## Installation
 
 **Note:** The code is designed to be installed in the
@@ -14,6 +15,7 @@ Fetch the source.
     $ git clone  git://github.com/aptrik/.emacs.d.git  ~/.emacs.d
 
 Make sure you have Emacs version 24.3 or higher [installed](#install-emacs).
+
 
 ### Install all ELPA packages
 
@@ -38,7 +40,22 @@ Install `Jedi` and `python-epc` by:
     $ pip install -r ~/.emacs.d/python_requirements.txt
 
 
-## Install Emacs <a id="install-emacs"></a>
+### User customization
+
+If there is a file named `user.el` in the `~/.emacs.d`-directory then it
+will be loaded at the end of the set up phase.
+
+Example `~/.emacs.d/user.el`:
+
+```lisp
+(setq debug-on-error t)
+
+(setq user-full-name    "Ed Xample"
+      user-mail-address "ed.xample@eg.fake")
+```
+
+
+## Install Emacs
 
 ### GNU/Linux
 
@@ -53,6 +70,7 @@ Install `Jedi` and `python-epc` by:
 RHEL 6 dependencies(?):
 
     $ sudo yum install libtiff-devel giflib-devel libotf-devel m17n-lib-devel
+
 
 ### Mac OS
 
