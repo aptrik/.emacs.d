@@ -14,7 +14,16 @@
  org-odd-levels-only        nil
  org-src-fontify-natively   t
  org-log-done               'time
- org-clock-idle-time        nil)
+ org-clock-idle-time        nil
+ org-clock-persist          'history
+ org-clock-in-resume        t
+ org-clock-continuously     nil
+ org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
+(eval-after-load "org-mode"
+  '(progn
+     (org-clock-persistence-insinuate)))
+
 
 (when (require 'which-func)
   (add-to-list 'which-func-modes 'org-mode))
