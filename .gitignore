@@ -12,9 +12,12 @@
 /ac-comphist.dat
 /auto-save-list
 /custom.el
+/erc-log/
 /history
 /history-*.sql
+/org-clock-save.el
 /private.el
+/saveplace
 /tramp
 /url
 /user.el
