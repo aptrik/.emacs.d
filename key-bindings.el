@@ -16,12 +16,18 @@
 (global-set-key (kbd "M-Z") 'zap-to-char)
 
 
-(global-set-key (kbd "s-7") "|")
-(global-set-key (kbd "s-/") "\\")
-(global-set-key (kbd "s-8") "[")
-(global-set-key (kbd "s-9") "]")
 (global-set-key (kbd "s-(") "{")
 (global-set-key (kbd "s-)") "}")
+(global-set-key (kbd "s-/") "\\")
+(global-set-key (kbd "s-7") "|")
+(global-set-key (kbd "s-8") "[")
+(global-set-key (kbd "s-9") "]")
+
+(global-set-key (kbd "C-s-j") 'join-line-or-lines-in-region)
+(global-set-key (kbd "s-j")   (lambda () (interactive) (join-line -1)))
+
+(global-set-key (kbd "s-S") 'sort-fields)
+(global-set-key (kbd "s-s") 'sort-lines)
 
 (global-set-key (kbd "M-s D") 'find-dired)
 (global-set-key (kbd "M-s d") 'find-grep-dired)
@@ -34,22 +40,12 @@
 (global-set-key [C-tab]          'bs-show)
 (global-set-key (kbd "C-x C-b")  'ibuffer-show)
 
-(global-set-key (kbd "C-s-j") 'join-line-or-lines-in-region)
-(global-set-key (kbd "s-j")   (lambda () (interactive) (join-line -1)))
-
-(global-set-key (kbd "s-d") 'direx:find-directory)
-(global-set-key (kbd "s-J") 'direx:jump-to-directory)
-(global-set-key (kbd "s-j") 'direx:jump-to-directory-other-window)
-
-(global-set-key (kbd "s-s") 'sort-lines)
-(global-set-key (kbd "s-S") 'sort-fields)
-
 (global-set-key (kbd "C-c %")    'match-paren)
-(global-set-key (kbd "C-c C-d")  'find-tag)
 (global-set-key (kbd "C-c C-k")  (lambda () (interactive) (kill-buffer nil)))
+(global-set-key (kbd "C-c g")     'google)
 (global-set-key (kbd "C-c l")    'org-store-link)
-(global-set-key (kbd "C-c |")    'align-regexp)
 (global-set-key (kbd "C-c y")    'browse-kill-ring)
+(global-set-key (kbd "C-c |")    'align-regexp)
 
 (global-set-key (kbd "C-c i -")  'insert-separator)
 (global-set-key (kbd "C-c i c")  'insert-date-and-time)
@@ -90,8 +86,13 @@
 
 (global-set-key (kbd "C-0")  'delete-window)
 (global-set-key (kbd "C-1")  'delete-other-windows)
-(global-set-key (kbd "C-2")  'split-window-vertically)
+(global-set-key (kbd "C-2")  'split-window-below)
+(global-set-key (kbd "C-3")  'split-window-right)
 (global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
+(global-set-key (kbd "C-8")
+                (lambda ()
+                  (interactive)
+                  (find-file (expand-file-name "init.el" user-emacs-directory))))
 
 (global-set-key (kbd "s-SPC")  'set-rectangular-region-anchor)
 
@@ -117,14 +118,14 @@
 
 ;; (if (not macosp)
 ;;     (progn
-;; (global-set-key [backspace]    'delete-backward-char)
-;; (global-set-key [C-backspace]  'backward-kill-word)
-;; (global-set-key [M-backspace]  'backward-kill-word)
+;;       (global-set-key [backspace]    'delete-backward-char)
+;;       (global-set-key [C-backspace]  'backward-kill-word)
+;;       (global-set-key [M-backspace]  'backward-kill-word)
 
-;; (global-set-key [delete]    'delete-char)
-;; (global-set-key [C-delete]  'kill-word)
-;; (global-set-key [M-delete]  'kill-word)
-;;))
+;;       (global-set-key [delete]    'delete-char)
+;;       (global-set-key [C-delete]  'kill-word)
+;;       (global-set-key [M-delete]  'kill-word)
+;;       ))
 
 (global-set-key [insert]    'overwrite-mode)
 (global-set-key [S-insert]  'insert-separator)
@@ -164,34 +165,12 @@
 
 (global-set-key [kp-separator] [?.])
 
-(global-set-key [SunF36]    (key-binding [f11]))
-(global-set-key [M-SunF36]  (key-binding [M-f11]))
-(global-set-key [S-SunF36]  (key-binding [S-f11]))
-(global-set-key [C-SunF36]  (key-binding [C-f11]))
-
-(global-set-key [SunXK_F36]    (key-binding [f11]))
-(global-set-key [M-SunXK_F36]  (key-binding [M-f11]))
-(global-set-key [S-SunXK_F36]  (key-binding [S-f11]))
-(global-set-key [C-SunXK_F36]  (key-binding [C-f11]))
-
 (global-set-key [f12]    'buffer-switch)
 (global-set-key [M-f12]  (lambda () (interactive) (buffer-switch 3)))
 (global-set-key [S-f12]  (lambda () (interactive) (buffer-switch 4)))
 (global-set-key [C-f12]  'bury-buffer)
 (global-set-key [s-f12]  'rotate-windows)
 
-(global-set-key [SunF37]    (key-binding [f12]))
-(global-set-key [M-SunF37]  (key-binding [M-f12]))
-(global-set-key [S-SunF37]  (key-binding [S-f12]))
-(global-set-key [C-SunF37]  (key-binding [C-f12]))
-
-(global-set-key [SunXK_F37]    (key-binding [f12]))
-(global-set-key [M-SunXK_F37]  (key-binding [M-f12]))
-(global-set-key [S-SunXK_F37]  (key-binding [S-f12]))
-(global-set-key [C-SunXK_F37]  (key-binding [C-f12]))
-
-; Sun `undo' button
-(global-set-key [f14]  'undo)
 (global-set-key (kbd "C-z") 'undo)
 
 ;;-----------------------------------------------------------------------------
