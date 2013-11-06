@@ -93,9 +93,18 @@
 ;;-----------------------------------------------------------------------------
 ;;; git
 
-(setq magit-status-buffer-switch-function 'switch-to-buffer
-      magit-restore-window-configuration t
-      magit-diff-refine-hunk nil)
+(use-package magit
+  :init
+  (progn
+    (use-package magit-blame)
+    (bind-key "C-c C-a" 'magit-just-amend magit-mode-map)
+    (bind-key "$" 'magit-toggle-process-window magit-mode-map))
+  :config
+  (progn
+    (setq magit-status-buffer-switch-function 'switch-to-buffer
+          magit-restore-window-configuration t
+          magit-diff-refine-hunk nil))
+  :bind ("C-x g" . magit-status))
 
 ;; (ad-deactivate 'magit-diff-working-tree)
 (defadvice magit-diff-working-tree (after magit-diff-focus activate)
@@ -211,10 +220,11 @@
 ;;-----------------------------------------------------------------------------
 ;;; script
 
-(setq sh-shell-file     "/bin/sh"
-      sh-indentation    4
-      sh-basic-offset   4
-      sh-indent-comment t)
+(use-package sh-script
+  :config (setq sh-shell-file     "/bin/sh"
+                sh-indentation    4
+                sh-basic-offset   4
+                sh-indent-comment t))
 
 ;;-----------------------------------------------------------------------------
 ;;; sql
@@ -518,9 +528,11 @@ This is used to set `sql-alternate-buffer-name' within
  (mwheel-install)
  )
 
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+(use-package saveplace
+  :config
+  (progn
+    (setq-default save-place t)
+    (setq save-place-file (expand-file-name ".places" user-emacs-directory))))
 
 ;;; Misc. setup
 (setq flyspell-issue-welcome-flag nil)
@@ -533,8 +545,8 @@ This is used to set `sql-alternate-buffer-name' within
   (setq savehist-ignored-variables '(file-name-history))
   (savehist-mode 1))
 
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+(use-package uniquify
+  :config (setq uniquify-buffer-name-style 'forward))
 
 (which-func-mode 1) ; Enable mode in any major mode that supports it.
 
