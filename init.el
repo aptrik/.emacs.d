@@ -23,6 +23,7 @@
 (cask-initialize)
 (require 'pallet)
 
+(require 'use-package)
 (require 'defuns)
 (require 'autoloads)
 
