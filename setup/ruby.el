@@ -69,7 +69,6 @@
   (local-set-key (kbd "C-c c") 'compile)
   (local-set-key (kbd "C-c C-c") 'recompile)
 
-  (local-set-key (kbd "C-c g") 'rubydb)
   (local-set-key [f9]          'ruby-run)
   (local-set-key [C-f9]        'ruby-test)
   (local-set-key [M-f9]        'ri)
