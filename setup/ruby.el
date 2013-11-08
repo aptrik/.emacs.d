@@ -11,13 +11,9 @@
 (eval-after-load "ruby-mode"
   '(progn
      (require 'auto-complete)
-     (require 'ruby-electric)
      (require 'ruby-end)
      (require 'smartparens-ruby)
      (require 'snippet)
-
-     ;; HACK Workaround for bug in ruby-electric.
-     (fset 'ruby-insert-end 'ruby-end-insert-end)
 
      (define-abbrev-table 'ruby-mode-abbrev-table ())
 
@@ -35,7 +31,6 @@
   (push 'ac-source-robe ac-sources)
   (auto-complete-mode 1)
 
-  (ruby-electric-mode 1)
   (which-function-mode 1)
   (show-smartparens-mode 1)
 
@@ -52,12 +47,9 @@
 
   ;; Hide-show
   (add-to-list 'hs-special-modes-alist
-               (list 'ruby-mode
-                     (concat "\\(^\\s-*"
-                             ruby-electric-simple-keywords-re
-                             "\\|{\\|\\[\\)")
-                     "end\\|\\]\\|}" "#"
-                     'ruby-forward-sexp nil))
+               '(ruby-mode
+                 "\\(def \\|class\\|module\\|do\\)" "end" "#"
+                 (lambda (arg) (ruby-end-of-block)) nil))
 
   ;; Alignment
   (require 'align)

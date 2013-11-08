@@ -47,7 +47,6 @@
 (depends-on "request")
 (depends-on "robe")
 (depends-on "ruby-block")
-(depends-on "ruby-electric")
 (depends-on "ruby-end")
 (depends-on "ruby-mode")
 (depends-on "rvm")
