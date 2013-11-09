@@ -76,12 +76,8 @@
     (define-key map (kbd "<C-tab>") 'bs-show)
     (define-key map (kbd "<M-tab>") 'jedi:complete)
     (define-key map (kbd "M-.")     'jedi:goto-definition)
+    (define-key map (kbd "C-.")     'jedi:complete)
     (define-key map (kbd "M-,")     'jedi:goto-definition-pop-marker))
-
-  ;; (require 'auto-complete)
-  ;; (auto-complete-mode 1)
-  ;; (local-set-key [M-tab] 'ac-start)
-  ;; (local-set-key (kbd "C-.") 'ac-start)
 
   ;;(whitespace-mode 1)
   ;;(turn-on-eldoc-mode) ; doesn't work with python-mode from https://launchpad.net/python-mode

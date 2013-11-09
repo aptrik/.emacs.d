@@ -16,11 +16,6 @@
   (elisp-slime-nav-mode 1)
   (idle-highlight-mode 1)
 
-  (require 'auto-complete)
-  (auto-complete-mode 1)
-  (setq ac-sources (append ac-emacs-lisp-sources ac-sources))
-  (setq ac-omni-completion-sources '(("require\s+'" ac-source-emacs-lisp-features)))
-
   ;; (smartparens-mode 1)
   ;; ;;(sp-use-smartparens-bindings)
   ;; (local-set-key (kbd "M-<left>") 'sp-backward-sexp)
@@ -33,7 +28,6 @@
   (local-set-key (kbd "C-<backspace>") 'backward-kill-sexp)
   (local-set-key (kbd "C-<delete>") 'kill-sexp)
 
-  (local-set-key (kbd "C-.") 'auto-complete)
   (local-set-key [C-f9] (lambda () (interactive) (ert t)))
   )
 

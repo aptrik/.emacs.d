@@ -10,7 +10,6 @@
 
 (eval-after-load "ruby-mode"
   '(progn
-     (require 'auto-complete)
      (require 'ruby-end)
      (require 'smartparens-ruby)
      (require 'snippet)
@@ -27,10 +26,6 @@
 (defun setup--ruby-mode ()
   (rvm-activate-corresponding-ruby)
   (robe-mode 1)
-
-  (push 'ac-source-robe ac-sources)
-  (auto-complete-mode 1)
-
   (which-function-mode 1)
   (show-smartparens-mode 1)
 
@@ -64,15 +59,12 @@
                  (repeat . t)
                  (modes  . '(ruby-mode))))
 
-  (local-set-key (kbd "C-.") 'auto-complete)
-
   (local-set-key (kbd "C-c c") 'compile)
   (local-set-key (kbd "C-c C-c") 'recompile)
 
-  (local-set-key [f9]          'ruby-run)
-  (local-set-key [C-f9]        'ruby-test)
-  (local-set-key [M-f9]        'ri)
-  )
+  (local-set-key [f9]    'ruby-run)
+  (local-set-key [C-f9]  'ruby-test)
+  (local-set-key [M-f9]  'ri))
 
 (defun ruby-run ()
   "Run ruby on the file in the current buffer."
