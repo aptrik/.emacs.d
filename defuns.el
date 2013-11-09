@@ -20,6 +20,12 @@
   (list 'if (display-graphic-p)
         (cons 'progn x)))
 
+(defun buffer-file-name-body ()
+  "Buffer file name stripped of directory and extension."
+  (if (buffer-file-name)
+      (file-name-nondirectory (file-name-sans-extension (buffer-file-name)))
+    (cadr (reverse (split-string (dired-current-directory) "/")))))
+
 (defun comment-or-uncomment-current-line-or-region ()
   "Comments or uncomments current current line or whole lines in region."
   (interactive)
