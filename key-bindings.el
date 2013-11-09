@@ -64,15 +64,14 @@
 (global-set-key (kbd "C-c o ja") (ffip-create-pattern-file-finder "*.java"))
 (global-set-key (kbd "C-c o js") (ffip-create-pattern-file-finder "*.js"))
 
-(global-set-key (kbd "C-x M-w") 'copy-current-file-path)
-
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-x C-q") 'toggle-read-only)
 (global-set-key (kbd "C-x C-r") 'revert-buffer)
+(global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
-(global-set-key (kbd "C-'") 'er/expand-region)
-(global-set-key (kbd "C-*") 'er/contract-region)
+(global-set-key (kbd "C-+") 'er/expand-region)
+(global-set-key (kbd "C--") 'er/contract-region)
 
 (global-set-key (kbd "M-$") 'ispell-word)
 (global-set-key (kbd "M-¼") 'ispell-buffer)

@@ -391,8 +391,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 ;;-----------------------------------------------------------------------------
 
-
-
 (setq next-line-add-newlines nil) ;; Don't add newlines with 'down' key.
 
 (global-font-lock-mode 1)
