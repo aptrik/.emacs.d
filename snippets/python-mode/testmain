@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: class TestCase
+# --
+import unittest
+
+$0
+
+if __name__ == '__main__':
+    import sys
+    unittest.TestProgram(argv=[sys.argv[0],
+                         '-v',
+                         # 'TestClass.testMethod',
+                         ])

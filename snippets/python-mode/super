@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: super
+# --
+super(${class}, ${self}).${method}($0)

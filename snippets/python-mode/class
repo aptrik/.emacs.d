@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: class
+# --
+class ${1:ClassName}(${2:object}):
+    pass$0

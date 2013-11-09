@@ -384,10 +384,17 @@ This is used to set `sql-alternate-buffer-name' within
 ;;-----------------------------------------------------------------------------
 ;;; yasnippet
 
-;; (when (> emacs-major-version 21)
-;;   (require 'yasnippet)
-;;   (setq yas/snippet-dirs (expand-file-name "snippets" user-emacs-directory))
-;;   (yas/load-directory yas/snippet-dirs))
+(use-package yasnippet
+  :init
+  (progn
+    (setq yas-verbosity 1
+          yas-wrap-around-region t
+          yas-fallback-behavior 'return-nil)
+    (setq-default yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
+    (define-key yas-keymap (kbd "<return>") 'yas-exit-all-snippets)
+    (let ((snippets-dir (expand-file-name "snippets" user-emacs-directory)))
+      (yas-load-directory snippets-dir)
+      (setq yas-snippet-dirs snippets-dir))))
 
 ;;-----------------------------------------------------------------------------
 

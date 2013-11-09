@@ -50,6 +50,7 @@
 (depends-on "ruby-end")
 (depends-on "ruby-mode")
 (depends-on "rvm")
+(depends-on "s")
 (depends-on "scss-mode")
 (depends-on "smartparens")
 (depends-on "test-case-mode")
@@ -57,3 +58,4 @@
 (depends-on "use-package")
 (depends-on "web-mode")
 (depends-on "yaml-mode")
+(depends-on "yasnippet")

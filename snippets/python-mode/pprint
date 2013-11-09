@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pprint.pprint
+# --
+import pprint
+pprint.pprint($0)

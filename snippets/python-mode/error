@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Exception
+# --
+class ${1:name}(Exception):
+    pass$0

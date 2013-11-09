@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: os.path.basename(__file__)
+# --
+${1:prg} = os.path.basename(__file__)

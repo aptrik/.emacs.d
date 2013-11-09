@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: # pylint ignore
+# --
+# pylint: disable=${1:msg}

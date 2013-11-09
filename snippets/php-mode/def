@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: function
+# --
+public function ${1:name}($2) {
+  $0
+}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: if
+# --
+if ${var}:
+    pass$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: time.time
+# --
+import time
+${1:t0} = time.time()
+r = ${2:42}$0
+${3:t1} = time.time()
+print "+++", r, $3 - $1

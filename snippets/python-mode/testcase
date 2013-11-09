@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: class TestCase
+# --
+class Test${Name}(unittest.TestCase):
+    pass$0

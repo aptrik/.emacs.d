@@ -70,6 +70,8 @@
 (global-set-key (kbd "C-x C-r") 'revert-buffer)
 (global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
+(global-set-key (kbd "C-'") 'yas-expand-from-trigger-key)
+(global-set-key (kbd "C-*") 'yas-insert-snippet)
 (global-set-key (kbd "C-+") 'er/expand-region)
 (global-set-key (kbd "C--") 'er/contract-region)
 

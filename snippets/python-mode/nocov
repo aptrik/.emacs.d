@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: pragma: no cover
+# --
+# pragma: no cover
