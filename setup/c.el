@@ -97,32 +97,3 @@
 
 (add-hook 'c-mode-hook 'pabe-c-mode-hook)
 (add-hook 'c++-mode-hook 'pabe-c-mode-hook)
-
-(eval-after-load "cc-mode"
-  '(progn
-     (require 'smart-snippet)
-     (smart-snippet-with-abbrev-tables
-      (c-mode-abbrev-table c++-mode-abbrev-table)
-      ("namespace" (concat "namespace $${name} {\n"
-                           "$.\n"
-                           "} // namespace $${name}") 'bol?)
-      ("class" (concat "$>class $${name}\n"
-                       "$>{\n"
-                       "$>public:\n"
-                       "$>$${name}() {\n"
-                       "$>$.\n"
-                       "$>}\n"
-                       "$>};\n") '(not in-comment?))
-      ("if" (concat "$>if ($${condition}) {\n"
-                    "$>$.\n"
-                    "$>}") 'bol?)
-      ("elsif" (concat "$>else if ($${condition}) {\n"
-                       "$>$.\n"
-                       "$>}") 'bol?)
-      ("else" (concat "$>else {\n"
-                      "$>$.\n"
-                      "$>}") 'bol?)
-      ("for" (concat "$>for ($${init}; $${cond}; $${step}) {\n"
-                     "$>$.\n"
-                     "$>}") 'bol?)
-      )))

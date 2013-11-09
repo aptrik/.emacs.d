@@ -30,28 +30,6 @@
      (require 'python-pylint)
      (require 'python-pep8)
 
-     (require 'snippet)
-     (define-abbrev-table 'python-mode-abbrev-table ())
-     (snippet-with-abbrev-table
-      'python-mode-abbrev-table
-      ("class"    . "class $${name}(object):\n")
-      ("def"      . "def $${name}($${self}$.):\n$>pass\n")
-      ("error"    . "class $${name}(Exception): pass\n")
-      ("init"     . "def __init__(self$.):\n$>pass\n")
-      ("main"     . "if __name__ == '__main__':\n$>pass\n")
-      ("prg"      . "os.path.basename(__file__)")
-      ("super"    . "super($${class}, $${self}).$${method}()")
-      ("testcase" . "class Test$${name}(unittest.TestCase):\n$>")
-      ("testmain" . "if __name__ == '__main__':\n$>import unittest\n$>import sys\n$>unittest.TestProgram(argv=[sys.argv[0],\n$># '-v',\n$>#  'TestClass.testMethod',\n$>])\n")
-
-      ("pylint" . "# pylint: disable=$${msg}")
-      ("nocov" . "# pragma: no cover")
-      ("pdb" . "import pdb\n$>pdb.set_trace()\n")
-      ("pprint" . "$>import pprint\n$>pprint.pprint($.)\n")
-      ("timeit" . "$>import timeit\n$>$${t} = timeit.Timer(\"$${f()}$.\", \"from __main__ import $${f()}\")\n$>print $${t}.timeit($${10})\n")
-      ("time" . "$>import time\n$>$${t0} = time.time()\n$>r = $${42}$.\n$>$${t1} = time.time()\n$>print \"+++\", r, $${t1} - $${t0}\n")
-      )
-
      (defadvice pdb (before gud-query-cmdline activate)
        "Provide a better default command line when called interactively."
        (interactive

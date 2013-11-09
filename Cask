@@ -52,7 +52,6 @@
 (depends-on "rvm")
 (depends-on "scss-mode")
 (depends-on "smartparens")
-(depends-on "snippet")
 (depends-on "test-case-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")

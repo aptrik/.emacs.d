@@ -11,17 +11,7 @@
 (eval-after-load "ruby-mode"
   '(progn
      (require 'ruby-end)
-     (require 'smartparens-ruby)
-     (require 'snippet)
-
-     (define-abbrev-table 'ruby-mode-abbrev-table ())
-
-     (snippet-with-abbrev-table
-      'ruby-mode-abbrev-table
-      ("class" . (concat "class $${name}\n$>"
-                         "def initialize\n$>$.\n$>end$>\n$>end$>\n"))
-      ("def"   . "$>def $${name}\n$>$.\nend"))
-     ))
+     (require 'smartparens-ruby)))
 
 (defun setup--ruby-mode ()
   (rvm-activate-corresponding-ruby)
