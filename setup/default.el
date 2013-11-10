@@ -227,6 +227,31 @@
                 sh-indent-comment t))
 
 ;;-----------------------------------------------------------------------------
+;;; smartparens
+
+(use-package smartparens
+  :commands (smartparens-mode
+             smartparens-strict-mode
+             show-smartparens-mode)
+  :config
+  (progn
+    (use-package smartparens-ruby)
+    (use-package smartparens-html)
+    (setq sp-autoskip-closing-pair 'always
+          sp-hybrid-kill-entire-symbol nil)
+    (show-smartparens-global-mode 1)
+    (sp--populate-keymap
+     '(("C-<delete>" . sp-kill-sexp)
+       ("C-<backspace>" . sp-backward-kill-sexp)
+       ("C-M-w" . sp-copy-sexp)
+       ("C-)" . sp-forward-slurp-sexp)
+       ("C-}" . sp-forward-barf-sexp)
+       ("C-(" . sp-backward-slurp-sexp)
+       ("C-{" . sp-backward-barf-sexp)
+       ("C-M-t" . sp-transpose-sexp)
+       ("M-q" . sp-indent-defun)))))
+
+;;-----------------------------------------------------------------------------
 ;;; sql
 
 (setq plsql-indent 2)
@@ -412,10 +437,6 @@ This is used to set `sql-alternate-buffer-name' within
         framemove-hook-into-windmove t))
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(when (fboundp 'show-paren-mode)
-  (show-paren-mode t)
-  (setq show-paren-style 'parenthesis)) ; OR 'mixed OR 'expression
 
 (if (assoc "UTF-8" language-info-alist)
     (progn

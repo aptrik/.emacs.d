@@ -15,21 +15,9 @@
   (eldoc-mode 1)
   (elisp-slime-nav-mode 1)
   (idle-highlight-mode 1)
+  (smartparens-mode 1)
 
-  ;; (smartparens-mode 1)
-  ;; ;;(sp-use-smartparens-bindings)
-  ;; (local-set-key (kbd "M-<left>") 'sp-backward-sexp)
-  ;; (local-set-key (kbd "M-<right>") 'sp-forward-sexp)
-  ;; (local-set-key (kbd "M-<up>") 'sp-previous-sexp)
-  ;; (local-set-key (kbd "M-<down>") 'sp-next-sexp)
-  ;; (local-set-key (kbd "C-(") 'sp-forward-slurp-sexp)
-  ;; (local-set-key (kbd "C-)") 'sp-backward-slurp-sexp)
-
-  (local-set-key (kbd "C-<backspace>") 'backward-kill-sexp)
-  (local-set-key (kbd "C-<delete>") 'kill-sexp)
-
-  (local-set-key [C-f9] (lambda () (interactive) (ert t)))
-  )
+  (local-set-key [C-f9] (lambda () (interactive) (ert t))))
 
 (defun imenu-elisp-sections ()
   (setq imenu-prev-index-position-function nil)
