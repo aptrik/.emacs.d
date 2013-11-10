@@ -16,6 +16,7 @@
 (depends-on "epc")
 (depends-on "exec-path-from-shell")
 (depends-on "feature-mode")
+(depends-on "flycheck")
 (depends-on "framemove")
 (depends-on "git-blame")
 (depends-on "grep-a-lot")
