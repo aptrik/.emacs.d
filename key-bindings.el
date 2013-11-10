@@ -73,7 +73,7 @@
 (global-set-key (kbd "C-'") 'yas-expand-from-trigger-key)
 (global-set-key (kbd "C-*") 'yas-insert-snippet)
 (global-set-key (kbd "C-+") 'er/expand-region)
-(global-set-key (kbd "C--") 'er/contract-region)
+(global-set-key (kbd "C-?") 'er/contract-region)
 
 (global-set-key (kbd "M-$") 'ispell-word)
 (global-set-key (kbd "M-¼") 'ispell-buffer)
