@@ -48,6 +48,7 @@
 (global-set-key (kbd "C-c |")    'align-regexp)
 
 (global-set-key (kbd "C-c i -")  'insert-separator)
+(global-set-key (kbd "C-c i T")  'insert-timestamp)
 (global-set-key (kbd "C-c i c")  'insert-date-and-time)
 (global-set-key (kbd "C-c i d")  'insert-date)
 (global-set-key (kbd "C-c i m")  'insert-kbd-macro)
@@ -55,7 +56,7 @@
 (global-set-key (kbd "C-c i p")  'insert-path)
 (global-set-key (kbd "C-c i s")  'insert-change-signature)
 (global-set-key (kbd "C-c i t")  'insert-time)
-(global-set-key (kbd "C-c i T")  'insert-timestamp)
+(global-set-key (kbd "C-c i w")  'insert-week-number)
 
 (global-unset-key (kbd "C-c o"))
 (global-set-key (kbd "C-c o o") 'find-file-at-point)

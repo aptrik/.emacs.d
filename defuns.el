@@ -286,6 +286,11 @@ When zero, insert the time unmodified.")
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M" (current-time))))
 
+(defun insert-week-number ()
+  "Insert current ISO 8601 week number."
+  (interactive)
+  (insert (format-time-string "%Y-W%V" (current-time))))
+
 (defun insert-change-signature (&optional arg)
   "Insert a changelog entry \"ISO-DATE USER-LOGIN-NAME\"\".
 With a non-zero argument, insert \"ISO-DATE NAME  <E-MAIL>\".
