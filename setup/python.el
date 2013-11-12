@@ -20,7 +20,7 @@
 
 (eval-after-load "python-mode"
   '(progn
-     (modify-syntax-entry ?\_ "_" py-mode-syntax-table)
+     (modify-syntax-entry ?\_ "_" python-mode-syntax-table)
 
      (setenv "PYTHONPATH" (concat (if (getenv "PYTHONPATH") "$PYTHONPATH:" "")
                                   (expand-file-name "bin/lib/python" user-emacs-directory))
@@ -42,9 +42,7 @@
 
 (defun setup--python-mode ()
   (which-function-mode 1)
-
-  (ignore-errors (c-subword-mode 1))
-  (ignore-errors (subword-mode 1))
+  (subword-mode 1)
 
   ;;(setq py-python-command-args '( "-colors" "Linux"))
 
@@ -65,6 +63,13 @@
 
   (local-set-key (kbd "C-c c") 'compile)
   (local-set-key (kbd "C-c C-c") 'recompile)
+
+  (let ((map subword-mode-map))
+    (define-key map [M-left]       'subword-backward)
+    (define-key map [M-right]      'subword-forward)
+    (define-key map [C-left]       'subword-backward)
+    (define-key map [C-right]      'subword-forward)
+    (define-key map [C-backspace]  'subword-backward-kill))
 
   (local-set-key [C-M-up]   'py-beginning-of-block)
   (local-set-key [C-M-down] 'py-end-of-def-or-class)
