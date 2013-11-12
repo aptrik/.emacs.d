@@ -84,6 +84,12 @@
      (define-key diff-mode-map (kbd "p") 'diff-hunk-prev)))
 
 ;;-----------------------------------------------------------------------------
+;;; expand-region
+
+(use-package expand-region
+  :commands (er/expand-region er/contract-region))
+
+;;-----------------------------------------------------------------------------
 ;;; gdb
 
 (setq-default gdb-many-windows t           ; gdb many windows

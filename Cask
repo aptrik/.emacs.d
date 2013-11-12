@@ -15,6 +15,7 @@
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
 (depends-on "exec-path-from-shell")
+(depends-on "expand-region")
 (depends-on "feature-mode")
 (depends-on "flycheck")
 (depends-on "framemove")
