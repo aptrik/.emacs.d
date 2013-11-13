@@ -24,7 +24,7 @@ First install [Cask](http://cask.github.io/):
     $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
     ...
     Successfully installed Cask!  Now, add the cask binary to your $PATH:
-    export PATH="$HOME/.cask/bin:$PATH"'
+    export PATH="$HOME/.cask/bin:$PATH"
 
 Upgrade `cask` and then let `cask` install all dependencies.
 
