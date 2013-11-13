@@ -47,6 +47,7 @@
 (global-set-key (kbd "C-c y")    'browse-kill-ring)
 (global-set-key (kbd "C-c |")    'align-regexp)
 
+(global-unset-key (kbd "C-c i"))
 (global-set-key (kbd "C-c i -")  'insert-separator)
 (global-set-key (kbd "C-c i T")  'insert-timestamp)
 (global-set-key (kbd "C-c i c")  'insert-date-and-time)
@@ -57,6 +58,12 @@
 (global-set-key (kbd "C-c i s")  'insert-change-signature)
 (global-set-key (kbd "C-c i t")  'insert-time)
 (global-set-key (kbd "C-c i w")  'insert-week-number)
+
+(global-unset-key (kbd "C-c t"))
+(global-set-key (kbd "C-c t c")  'transform-region-to-lower-camel-case)
+(global-set-key (kbd "C-c t C")  'transform-region-to-upper-camel-case)
+(global-set-key (kbd "C-c t s")  'transform-region-to-snake-case)
+(global-set-key (kbd "C-c t -")  'transform-region-to-dashed)
 
 (global-unset-key (kbd "C-c o"))
 (global-set-key (kbd "C-c o o") 'find-file-at-point)

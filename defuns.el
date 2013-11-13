@@ -1,5 +1,7 @@
 (provide 'defuns)
 
+(require 's)
+
 ;;-----------------------------------------------------------------------------
 ;;; Constants for the current environment.
 
@@ -37,6 +39,29 @@
       (comment-or-uncomment-region
        (progn (goto-char min) (line-beginning-position))
        (progn (goto-char max) (line-end-position))))))
+
+(defun replace-region-with (fn)
+  (let* ((beg (region-beginning))
+         (end (region-end))
+         (contents (buffer-substring beg end)))
+    (delete-region beg end)
+    (insert (funcall fn contents))))
+
+(defun transform-region-to-lower-camel-case ()
+  (interactive)
+  (replace-region-with 's-lower-camel-case))
+
+(defun transform-region-to-upper-camel-case ()
+  (interactive)
+  (replace-region-with 's-upper-camel-case))
+
+(defun transform-region-to-snake-case ()
+  (interactive)
+  (replace-region-with 's-snake-case))
+
+(defun transform-region-to-dashed ()
+  (interactive)
+  (replace-region-with 's-dashed-words))
 
 (defun copy-current-file-path ()
   "Add current file path to kill ring."
