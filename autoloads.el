@@ -27,8 +27,6 @@
 (autoload 'shell-toggle-cd "shell-toggle" "Pops up a shell-buffer and insert a \"cd <file-dir>\" command." t)
 (autoload 'sc-cite-original "supercite" nil t)
 (autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)
-(autoload 'list-unix-processes "vkill" nil t)
-(autoload 'vkill "vkill" nil t)
 (autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
 (autoload 'whitespace-toggle-options "whitespace" "Toggle local `whitespace-mode' options." t)
 
