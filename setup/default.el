@@ -97,27 +97,6 @@
               gud-tooltip-mode t)          ; mouse hover variables
 
 ;;-----------------------------------------------------------------------------
-;;; git
-
-(use-package magit
-  :init
-  (progn
-    (use-package magit-blame)
-    (bind-key "C-c C-a" 'magit-just-amend magit-mode-map)
-    (bind-key "$" 'magit-toggle-process-window magit-mode-map))
-  :config
-  (progn
-    (setq magit-status-buffer-switch-function 'switch-to-buffer
-          magit-restore-window-configuration t
-          magit-diff-refine-hunk nil))
-  :bind ("C-x g" . magit-status))
-
-;; (ad-deactivate 'magit-diff-working-tree)
-(defadvice magit-diff-working-tree (after magit-diff-focus activate)
-  "After execution, select the magit-diff buffer in the current window."
-  (other-window 1))
-
-;;-----------------------------------------------------------------------------
 ;;; grep
 
 (require 'grep-a-lot)
@@ -180,6 +159,23 @@
 (defun setup--java-mode ()
   (setq tab-width 4)
   (idle-highlight-mode))
+
+;;-----------------------------------------------------------------------------
+;;; Magit
+
+(use-package magit
+  :init
+  (progn
+    (use-package magit-blame)
+    (defadvice magit-diff-working-tree (after magit-diff-focus activate)
+      "After execution, select the magit-diff buffer in the current window."
+      (other-window 1)))
+  :config
+  (progn
+    (setq magit-status-buffer-switch-function 'switch-to-buffer
+          magit-restore-window-configuration t
+          magit-diff-refine-hunk nil))
+  :bind ("C-x g" . magit-status))
 
 ;;-----------------------------------------------------------------------------
 ;;; Mercurial
