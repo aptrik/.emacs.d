@@ -40,7 +40,6 @@
                "calendar"
                "dired"
                "ediff"
-               "elisp"
                ;; "hippie"
                ;; "ido"
                "javascript"

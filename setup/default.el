@@ -84,6 +84,32 @@
      (define-key diff-mode-map (kbd "p") 'diff-hunk-prev)))
 
 ;;-----------------------------------------------------------------------------
+;;; emacs-lisp-mode
+
+(use-package emacs-lisp-mode
+  :init
+  (progn
+    (use-package eldoc
+      :init (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
+    (use-package elisp-slime-nav
+      :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
+    (use-package ert
+      :commands ert-run-tests-interactively
+      :bind ("C-<f9>" . ert-run-tests-interactively)
+      :config
+      (progn
+        (put 'ert-deftest 'lisp-indent-function 'defun)
+        (add-hook 'emacs-lisp-mode-hook
+                  (lambda ()
+                    (font-lock-add-keywords
+                     nil
+                     '(("(\\(\\<ert-deftest\\)\\>\\s *\\(\\sw+\\)?"
+                        (1 font-lock-keyword-face nil t)
+                        (2 font-lock-function-name-face nil t))))))))
+    (add-hook 'emacs-lisp-mode-hook 'turn-on-smartparens-mode))
+  :bind (("M-&" . lisp-complete-symbol)))
+
+;;-----------------------------------------------------------------------------
 ;;; expand-region
 
 (use-package expand-region
