@@ -37,7 +37,6 @@
 (let ((s-dir (file-name-as-directory "setup")))
   (dolist (x '("default"
                "c" ;; also for C++ and IDL
-               "calendar"
                "dired"
                "ediff"
                ;; "hippie"
