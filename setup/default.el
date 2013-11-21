@@ -282,25 +282,13 @@
 (setq hg-commit-allow-empty-message t
       vc-hg-diff-switches "--text")
 
-(defun setup--ahg ()
-  (setup--truncate-lines)
-  (local-set-key [tab] 'ahg-status-diff)
-  (local-set-key [M-delete] 'ahg-status-unmark-all))
-
-(eval-after-load "ahg-status"
-  '(progn
-     (add-hook 'ahg-status-mode-hook 'setup--ahg)
-     ;; (remove-hook 'ahg-status-mode-hook 'setup--ahg)
-
-     ;; ;; (ad-activate 'ahg-status)
-     ;; ;; (ad-deactivate 'ahg-status)
-     ;; ;; (ad-remove-advice 'ahg-status 'after 'ahg-status-fullscreen)
-     ;; (defadvice ahg-status (after ahg-status-fullscreen activate)
-     ;;   "After execution, show only the ahg-status buffer."
-     ;;   (window-configuration-to-register :ahg-status-fullscreen)
-     ;;   (switch-to-buffer "*aHg-status*" t t)
-     ;;   (delete-other-windows))
-     ))
+(use-package ahg
+  :commands (ahg-status)
+  :config
+  (progn
+    (add-hook 'ahg-status-mode-hook 'setup--truncate-lines)
+    (bind-key "<tab>" 'ahg-status-diff ahg-status-mode-map)
+    (bind-key "M-<delete>" 'ahg-status-unmark-all ahg-status-mode-map)))
 
 ;;-----------------------------------------------------------------------------
 ;;; minibuffer
@@ -414,6 +402,7 @@ This is used to set `sql-alternate-buffer-name' within
 ;;; truncate-lines
 
 (defun setup--truncate-lines ()
+  (interactive)
   (toggle-truncate-lines 1))
 
 ;;-----------------------------------------------------------------------------

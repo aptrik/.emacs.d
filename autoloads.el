@@ -1,7 +1,6 @@
 (provide 'autoloads)
 
 ;; C-u 3 M-x sort-fields
-(autoload 'ahg-status "ahg" nil t)
 (autoload 'bs-cycle-next "bs" "cycle to next buffer" t)
 (autoload 'bs-cycle-previous "bs" "cycle to previous buffer" t)
 (autoload 'bs-show "bs" "menu for selecting and displaying buffers" t)
