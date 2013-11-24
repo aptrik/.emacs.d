@@ -1,18 +1,18 @@
-(if (assoc "UTF-8" language-info-alist)
-    (progn
-      (set-language-environment "utf-8")
-      (prefer-coding-system 'utf-8))
-  (set-language-environment 'Latin-1)
-  (set-input-mode t nil 'iso)
-  (standard-display-8bit 160 255)
-  ;;(standard-display-european t)
-  (unify-8859-on-decoding-mode))
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-(fset 'yes-or-no-p 'y-or-n-p)
+(prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
 
-;;-----------------------------------------------------------------------------
-
-(setq default-major-mode 'indented-text-mode)
+(setq
+ interprogram-cut-function            'x-select-text
+ interprogram-paste-function          'x-selection-value)
+ save-interprogram-paste-before-kill  t
+ select-active-regions                t
+ x-select-enable-clipboard            t
+ x-select-enable-primary              t
 
 (setq-default
  auto-save-default             nil
@@ -36,7 +36,9 @@
  x-stretch-cursor              t)
 
 (setq
+ default-major-mode              'indented-text-mode
  delete-by-moving-to-trash       nil ; Disable trash can support.
+ eval-expression-print-level     nil
  garbage-collection-messages     nil
  line-move-visual                nil ; Make Emacs 23 move like old emacs
  make-pointer-invisible          t
@@ -47,7 +49,7 @@
  scroll-conservatively           0
  scroll-step                     0
  sentence-end                    "[.?!][]\"')]*\\($\\|\t\\| \\)[ \t\n]*"
- sentence-end-double-space       nil    ; make M-[ae] work
+ sentence-end-double-space       nil ; make M-[ae] work
  truncate-partial-width-windows  nil
  yank-excluded-properties        t) ; do not paste any properties
 
@@ -57,20 +59,14 @@
                     "%*"
                   ""))
          (:eval (or (buffer-name) "%b"))
-         " <" user-login-name "%@" (:eval (system-name)) ">"))
- (setq select-active-regions t
-       x-select-enable-clipboard t
-       x-select-enable-primary t
-       save-interprogram-paste-before-kill t
-       interprogram-cut-function 'x-select-text
-       interprogram-paste-function 'x-selection-value))
+         " <" user-login-name "%@" (:eval (system-name)) ">")))
 
-;;-----------------------------------------------------------------------------
+
 ;;; Turn on some minor modes.
-
 (auto-compression-mode 1)
 (blink-cursor-mode -1)
 (column-number-mode 1)
+(delete-selection-mode 1)
 (global-font-lock-mode 1)
 (line-number-mode 1)
 (transient-mark-mode 1)
@@ -81,17 +77,14 @@
       cua-delete-selection  nil)
 (cua-mode 1)
 
-;;-----------------------------------------------------------------------------
+
 ;;; File hooks.
-
 (add-hook 'find-file-hook 'find-file--follow-symlink)
-
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-;;-----------------------------------------------------------------------------
-;;; Modify `completion-ignored-extensions'.
 
+;;; Modify `completion-ignored-extensions'.
 (setq completion-ignored-extensions
       (remove ".pdf" completion-ignored-extensions))
 (setq completion-ignored-extensions
@@ -100,19 +93,15 @@
       (remove ".lib" completion-ignored-extensions))
 (setq completion-ignored-extensions
       (remove ".log" completion-ignored-extensions))
-
 (add-to-list 'completion-ignored-extensions ".ali")
 (add-to-list 'completion-ignored-extensions ".adt")
 (add-to-list 'completion-ignored-extensions ".class")
 (add-to-list 'completion-ignored-extensions ".rbc")
 
-;;-----------------------------------------------------------------------------
-;; Re-enable commands.
 
+;; Re-enable commands.
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
-
-;;-----------------------------------------------------------------------------
 
 (provide 'defaults)
