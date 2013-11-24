@@ -77,11 +77,12 @@
 (global-set-key (kbd "C-2")  'split-window-below)
 (global-set-key (kbd "C-3")  'split-window-right)
 (global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
-(global-set-key (kbd "C-8") (lambda ()
-                              (interactive)
-                              (find-file
-                               (expand-file-name "init.el"
-                                                 user-emacs-directory))))
+
+(global-set-key (kbd "C-c 1") (lambda ()
+                                (interactive)
+                                (find-file
+                                 (expand-file-name "init.el"
+                                                   user-emacs-directory))))
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 (global-set-key (kbd "s-å")  'mc/mark-previous-like-this)
