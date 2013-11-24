@@ -792,10 +792,16 @@ SCHEDULED: %^t
 
     (add-hook 'ruby-mode-hook 'setup--ruby-mode)
 
+    (defun ruby-run ()
+      "Run ruby on the file in the current buffer."
+      (interactive)
+      (compile (concat "ruby " (buffer-file-name))))
+
     (defun setup--ruby-mode ()
       (rvm-activate-corresponding-ruby)
       (robe-mode 1)
       (which-function-mode 1)
+      (subword-mode 1)
       ;;(show-smartparens-mode 1)
 
       (make-variable-buffer-local 'compilation-error-regexp-alist)
@@ -813,18 +819,8 @@ SCHEDULED: %^t
       (local-set-key (kbd "C-c C-c") 'recompile)
 
       (local-set-key [f9]    'ruby-run)
-      (local-set-key [C-f9]  'ruby-test)
-      (local-set-key [M-f9]  'ri))
-
-    (defun ruby-run ()
-      "Run ruby on the file in the current buffer."
-      (interactive)
-      (compile (concat "ruby " (buffer-file-name))))
-
-    (defun ruby-test ()
-      "Run testrb on the file in the current buffer."
-      (interactive)
-      (compile (concat "testrb " (file-name-directory (buffer-file-name))))))
+      (local-set-key [C-f9]  'test-case-run)
+      (local-set-key [M-f9]  'test-case-run-all)))
   :mode (("Gemfile$" . ruby-mode)
          ("Rakefile$" . ruby-mode)
          ("Guardfile" . ruby-mode)

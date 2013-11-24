@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
 # name: class
-# key: cla
+# key: class
 # --
-class $${name}
+class ${1:name}
   def initialize
-    $.
+    $0
   end
 end
