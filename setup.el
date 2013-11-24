@@ -925,7 +925,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package uniquify
-  :defer t
   :config
   (setq uniquify-buffer-name-style 'forward))
 
