@@ -485,10 +485,20 @@
                      '(("(\\(\\<ert-deftest\\)\\>\\s *\\(\\sw+\\)?"
                         (1 font-lock-keyword-face nil t)
                         (2 font-lock-function-name-face nil t))))))))
+    (use-package smartparens)
     ;;(add-hook 'emacs-lisp-mode-hook 'turn-on-smartparens-mode)
     (bind-keys emacs-lisp-mode-map
                '(("C-<f9>" . ert-run-tests-interactively)
-                 ("M-&" . lisp-complete-symbol)))
+                 ("M-&" . lisp-complete-symbol)
+                 ("C-<delete>" . sp-kill-sexp)
+                 ("C-<backspace>" . sp-backward-kill-sexp)
+                 ("C-M-w" . sp-copy-sexp)
+                 ("C-)" . sp-forward-slurp-sexp)
+                 ("C-}" . sp-forward-barf-sexp)
+                 ("C-(" . sp-backward-slurp-sexp)
+                 ("C-{" . sp-backward-barf-sexp)
+                 ("C-M-t" . sp-transpose-sexp)
+                 ("M-q" . sp-indent-defun)))
 
     (defun setup--emacs-lisp-mode ()
       (add-hook 'after-save-hook 'check-parens nil t))
@@ -880,8 +890,8 @@ SCHEDULED: %^t
              show-smartparens-mode)
   :config
   (progn
-    (use-package smartparens-ruby)
-    (use-package smartparens-html)
+    ;; (use-package smartparens-ruby)
+    ;; (use-package smartparens-html)
     (setq sp-autoskip-closing-pair 'always
           sp-hybrid-kill-entire-symbol nil)
     ;;(show-smartparens-global-mode 1)
