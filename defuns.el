@@ -16,9 +16,24 @@
   "Are we running on a Mac?")
 
 ;;-----------------------------------------------------------------------------
+;;; Turn simple modes on or off.
+
+(defun turn-off-hl-line-mode ()
+  (hl-line-mode 0))
+
+(defun turn-on-rainbow-mode ()
+  (rainbow-mode 1))
+
+(defun turn-on-truncate-lines ()
+  (toggle-truncate-lines 1))
+
+(defun turn-on-hl-tags-mode ()
+  (hl-tags-mode 1))
+
+;;-----------------------------------------------------------------------------
 ;;; Miscellaneous routines
 
-(defmacro Xlaunch (&rest x)
+(defmacro xlaunch (&rest x)
   (list 'if (display-graphic-p)
         (cons 'progn x)))
 
@@ -40,29 +55,6 @@
        (progn (goto-char min) (line-beginning-position))
        (progn (goto-char max) (line-end-position))))))
 
-(defun replace-region-with (fn)
-  (let* ((beg (region-beginning))
-         (end (region-end))
-         (contents (buffer-substring beg end)))
-    (delete-region beg end)
-    (insert (funcall fn contents))))
-
-(defun transform-region-to-lower-camel-case ()
-  (interactive)
-  (replace-region-with 's-lower-camel-case))
-
-(defun transform-region-to-upper-camel-case ()
-  (interactive)
-  (replace-region-with 's-upper-camel-case))
-
-(defun transform-region-to-snake-case ()
-  (interactive)
-  (replace-region-with 's-snake-case))
-
-(defun transform-region-to-dashed ()
-  (interactive)
-  (replace-region-with 's-dashed-words))
-
 (defun copy-current-file-path ()
   "Add current file path to kill ring."
   (interactive)
@@ -80,6 +72,19 @@
     (yank)
     (move-to-column cursor-column)))
 
+(defun ediff-revision-current-buffer ()
+  "Run ediff-revision on current buffer's file."
+  (interactive)
+  (let ((file (or (buffer-file-name)
+                  (error "Current buffer is not visiting a file."))))
+    (if (and (buffer-modified-p)
+             (y-or-n-p (message "Buffer %s is modified. Save buffer? " (buffer-name))))
+        (save-buffer (current-buffer)))
+    (require 'ediff-init)
+    (require 'ediff-vers)
+    (funcall (intern (format "ediff-%S-internal" ediff-version-control-package))
+             "" "" nil)))
+
 (defun give-me-a-scratch-buffer-now (want-new)
   "Bring up *scratch* or younger siblings if prefixed."
   (interactive "P")
@@ -91,32 +96,16 @@
 
 (fset 'scratch 'give-me-a-scratch-buffer-now)
 
-(defun web-search (prompt url-begin)
-  "Do a web search on the active region or prompt for a string."
-  (interactive)
-  (let ((text (if (region-active-p)
-                  (buffer-substring-no-properties (region-beginning) (region-end))
-                (read-string (concat prompt) (thing-at-point 'symbol) nil nil))))
-    (when (and (stringp text) (> (length text) 0))
-      (browse-url (concat url-begin (url-hexify-string text))))
-    (deactivate-mark)))
-
-(defun google ()
-  "Do a Google search on the active region or prompt for a string."
-  (interactive)
-  (web-search "Google search: "
-              "http://www.google.com/search?ie=utf-8&oe=utf-8&q="))
-
-(defun imdb ()
-  "Do an IMDB search on the active region or prompt for a string."
-  (interactive)
-  (web-search "IMDB search: "
-              "http://www.imdb.com/Tsearch?"))
-
 (defun insert-path (file)
   "Insert a file path (with completion) at the current position."
   (interactive "FPath: ")
   (insert (expand-file-name file)))
+
+(defun insert-org-header ()
+  "Insert an org header at top of file."
+  (interactive)
+  (goto-char (point-min))
+  (insert "-*- mode:org; coding:utf-8; mode:flyspell; ispell-local-dictionary:\"british\" -*-\n\n"))
 
 (defun join-line-or-lines-in-region ()
   "Join this line or the lines in the selected region."
@@ -127,6 +116,13 @@
            (while (> (line-number-at-pos) min)
              (join-line))))
         (t (call-interactively 'join-line))))
+
+(defun json-format ()
+  (interactive)
+  (save-excursion
+    (shell-command-on-region
+     (mark) (point)
+     "python -c 'import sys; import json; json.dump(json.load(sys.stdin), sys.stdout, indent=2)'" (buffer-name) t)))
 
 (defun lorem ()
   (interactive)
@@ -152,7 +148,32 @@ Bound to `\\[match-paren]'."
                        ""
                        buffer-file-name))))))
 
-(defun pabe-vc-examine (directory)
+(defun rotate-left (l)
+  (append (cdr l) (list (car l))))
+
+(defun rotate-windows ()
+  (interactive)
+  (let ((start-positions (rotate-left (mapcar 'window-start (window-list))))
+        (buffers (rotate-left (mapcar 'window-buffer (window-list)))))
+    (mapcar* (lambda (window buffer pos)
+               (set-window-buffer window buffer)
+               (set-window-start window pos))
+             (window-list)
+             buffers
+             start-positions)))
+
+(defun sudo-edit (&optional arg)
+  (interactive "p")
+  (if arg
+      (find-file (concat "/sudo:root@localhost:" (read-file-name "File: ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun sudo-edit-current-file ()
+  (interactive)
+  (find-alternate-file (concat "/sudo:root@localhost:"
+                               (buffer-file-name (current-buffer)))))
+
+(defun vc-examine (directory)
   (interactive
    (list
     (read-directory-name "VC examine (directory): "
@@ -169,26 +190,52 @@ Bound to `\\[match-paren]'."
         (locate-dominating-file directory ".git"))
     (magit-status directory))
    (t
-    (message "*** No version control system known for directory: %s" directory))
-   ))
+    (message "*** No version control system found for directory: %s" directory))))
 
-(defun pabe-find-file-follow-symlink ()
-  "Function for `find-file-hook' that follow a symlink.
+(defun xml-pretty-print-region (start end)
+  "Pretty format XML markup in region.
+You need to have nxml-mode installed to do this."
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (goto-char (point-min))
+      (while (search-forward-regexp "\>[ \\t]*\<" nil t)
+        (backward-char) (insert "\n"))
+      (indent-region (point-min) (point-max)))))
 
-Usage:
-  (add-hook 'find-file-hook 'pabe-find-file-follow-symlink)
-  (remove-hook 'find-file-hook 'pabe-find-file-follow-symlink)
-"
+(defun xml-where ()
+  "Display the hierarchy of XML elements the point is on as a path."
+  (interactive)
+  (let ((path nil))
+    (save-excursion
+      (save-restriction
+        (widen)
+        (while (condition-case nil
+                   (progn
+                     (nxml-backward-up-element) ; always returns nil
+                     t)
+                 (error nil))
+          (setq path (cons (xmltok-start-tag-local-name) path)))
+        (message "/%s" (mapconcat 'identity path "/"))))))
+
+;;-----------------------------------------------------------------------------
+;;; Follow symbolic links when opening files.
+
+;; Usage:
+;;  (add-hook 'find-file-hook 'find-file--follow-symlink)
+
+(defun find-file--follow-symlink ()
+  "Function for `find-file-hook' that follow a symlink."
   (when buffer-file-name
     (let ((link-to (and (file-symlink-p buffer-file-name)
                         (file-chase-links buffer-file-name))))
       (if link-to
           (progn
-            (pabe-follow-link)
-            (message "Followed symlink to: %s" buffer-file-name)
-            )))))
+            (buffer--follow-symlink)
+            (message "Followed symlink to: %s" buffer-file-name))))))
 
-(defun pabe-follow-link ()
+(defun buffer--follow-symlink ()
   "If current buffer visits a symbolic link, visit the real file.
 If the real file is already visited in another buffer, make that buffer
 current, and kill the buffer that visits the link."
@@ -205,20 +252,116 @@ current, and kill the buffer that visits the link."
       (set-buffer true-buffer)
       (kill-buffer this-buffer))))
 
-(defun rotate-left (l)
-  (append (cdr l) (list (car l))))
+;;-----------------------------------------------------------------------------
+;;; Web search helpers.
 
-(defun rotate-windows ()
+(defun web-search (prompt url-begin)
+  "Do a web search on the active region or prompt for a string."
   (interactive)
-  (let ((start-positions (rotate-left (mapcar 'window-start (window-list))))
-        (buffers (rotate-left (mapcar 'window-buffer (window-list)))))
-    (mapcar* (lambda (window buffer pos)
-               (set-window-buffer window buffer)
-               (set-window-start window pos))
-             (window-list)
-             buffers
-             start-positions)))
+  (let ((text (if (region-active-p)
+                  (buffer-substring-no-properties (region-beginning) (region-end))
+                (read-string (concat prompt) (thing-at-point 'symbol) nil nil))))
+    (when (and (stringp text) (> (length text) 0))
+      (browse-url (concat url-begin (url-hexify-string text))))
+    (deactivate-mark)))
 
+(defun google ()
+  "Do a Google search on the active region or prompt for a string."
+  (interactive)
+  (web-search "Google search: "
+              "http://www.google.com/search?ie=utf-8&oe=utf-8&q="))
+
+(defun imdb ()
+  "Do an IMDB search on the active region or prompt for a string."
+  (interactive)
+  (web-search "IMDB search: "
+              "http://www.imdb.com/Tsearch?"))
+
+;;-----------------------------------------------------------------------------
+;;; Helpers for camel and snake case transformations.
+
+(defun replace-region-with (fn)
+  (let* ((beg (region-beginning))
+         (end (region-end))
+         (contents (buffer-substring beg end)))
+    (delete-region beg end)
+    (insert (funcall fn contents))))
+
+(defun transform-region-to-lower-camel-case ()
+  (interactive)
+  (replace-region-with 's-lower-camel-case))
+
+(defun transform-region-to-upper-camel-case ()
+  (interactive)
+  (replace-region-with 's-upper-camel-case))
+
+(defun transform-region-to-snake-case ()
+  (interactive)
+  (replace-region-with 's-snake-case))
+
+(defun transform-region-to-dashed ()
+  (interactive)
+  (replace-region-with 's-dashed-words))
+
+;;-----------------------------------------------------------------------------
+;;; HTML helpers.
+
+(defun html-replace-string-pairs-region (start end mylist)
+  "Replace string pairs in region."
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (mapc
+       (lambda (arg)
+         (goto-char (point-min))
+         (let ((case-fold-search nil))
+           (while (search-forward (car arg) nil t)
+             (replace-match (cadr arg) t t))))
+       mylist))))
+
+(defun convert-to-html-entities (start end)
+  "Replace special characters with corresponding HTML entities."
+  (interactive "r")
+  (html-replace-string-pairs-region
+   start end
+   '(("å" "&aring;")
+     ("ä" "&auml;")
+     ("ö" "&ouml;")
+     ("Å" "&Aring;")
+     ("Ä" "&Auml;")
+     ("Ö" "&Ouml;")
+     ("é" "&eacute;")
+     ("É" "&Eacute;")
+     ("è" "&egrave;")
+     ("È" "&Egrave;")
+     ("ü" "&uuml;")
+     ("Ü" "&Uuml;")
+     )))
+
+(defun convert-bad-utf8 (start end)
+  "Convert badly encoded UTF-8 strings.
+Also see/use `recode-region'."
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (let ((case-replace nil)
+            (chars '(("é" . "Ã©")
+                     ("É" . "Ã")
+                     ("è" . "Ã¨")
+                     ("È" . "Ã")
+                     ("ü" . "Ã¼")
+                     ("Ü" . "Ã")
+                     ("å" . "Ã¥")
+                     ("ä" . "Ã¤")
+                     ("ö" . "Ã¶")
+                     ("Å" . "Ã…")
+                     ("Ä" . "Ã")
+                     ("Ö" . "Ã–")
+                     )))
+        (mapcar (lambda (p) (beginning-of-buffer)
+                  (replace-string (cdr p) (car p) nil))
+                chars)))))
 
 ;;-----------------------------------------------------------------------------
 ;;; Convenience functions to set up frame properties.
