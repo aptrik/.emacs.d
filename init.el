@@ -22,50 +22,22 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 (require 'pallet)
-
 (require 'use-package)
+
 (require 'defuns)
-(require 'autoloads)
+(require 'defaults)
+(require 'setup)
 
 (when (display-graphic-p)
   (exec-path-from-shell-initialize))
-
-(add-to-list 'custom-theme-load-path user-emacs-directory)
-(load-theme 'aptrik t)
-
-;; Set up modes.
-(let ((s-dir (file-name-as-directory "setup")))
-  (dolist (x '("default"
-               "c" ;; also for C++ and IDL
-               "dired"
-               "ediff"
-               ;; "hippie"
-               ;; "ido"
-               "javascript"
-               ;; "mail"
-               "moz"
-               "nxml"
-               "org"
-               ;; "perl"
-               "python"
-               "ruby"
-               "shell"
-               "web"
-               ;; "yasnippet"
-               ))
-    (load (concat s-dir x))))
-
-(require 'mode-mappings)
-
-;; Re-enable commands.
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
 
 (require 'key-bindings)
+
+(add-to-list 'custom-theme-load-path user-emacs-directory)
+(load-theme 'aptrik t)
 
 (load "user" 'noerror)

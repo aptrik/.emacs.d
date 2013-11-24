@@ -10,10 +10,11 @@
   (setq mac-option-modifier nil) ;; need it for typing $, accented characters etc.
   (setq mac-right-command-modifier 'super))
 
-(global-unset-key (kbd "C-x m")) ; disable sendmail
-(when window-system
-  (global-set-key (kbd "M-z") 'shell-toggle))
-(global-set-key (kbd "M-Z") 'zap-to-char)
+
+(define-key minibuffer-local-map [up]     'previous-history-element)
+(define-key minibuffer-local-map [down]   'next-history-element)
+(define-key minibuffer-local-map [C-up]   'previous-complete-history-element)
+(define-key minibuffer-local-map [C-down] 'next-complete-history-element)
 
 
 (global-set-key (kbd "s-(") "{")
@@ -29,23 +30,9 @@
 (global-set-key (kbd "s-S") 'sort-fields)
 (global-set-key (kbd "s-s") 'sort-lines)
 
-(global-set-key (kbd "M-s D") 'find-dired)
-(global-set-key (kbd "M-s d") 'find-grep-dired)
-(global-set-key (kbd "M-s f") 'find-grep)
-(global-set-key (kbd "M-s g") 'grep)
-(global-set-key (kbd "M-s n") 'find-name-dired)
-(global-set-key (kbd "M-s r") 'rgrep)
-
-(global-set-key [C-escape]       'bs-show)
-(global-set-key [C-tab]          'bs-show)
-(global-set-key (kbd "C-x C-b")  'ibuffer-show)
-
-(global-set-key (kbd "C-c %")    'match-paren)
-(global-set-key (kbd "C-c C-k")  (lambda () (interactive) (kill-buffer nil)))
-(global-set-key (kbd "C-c g")     'google)
-(global-set-key (kbd "C-c l")    'org-store-link)
-(global-set-key (kbd "C-c y")    'browse-kill-ring)
-(global-set-key (kbd "C-c |")    'align-regexp)
+(global-set-key (kbd "C-c g") 'google)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c |") 'align-regexp)
 
 (global-unset-key (kbd "C-c i"))
 (global-set-key (kbd "C-c i -")  'insert-separator)
@@ -78,14 +65,6 @@
 (global-set-key (kbd "C-x C-r") 'revert-buffer)
 (global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
-(global-set-key (kbd "C-'") 'yas-expand-from-trigger-key)
-(global-set-key (kbd "C-*") 'yas-insert-snippet)
-(global-set-key (kbd "C-+") 'er/expand-region)
-(global-set-key (kbd "C-?") 'er/contract-region)
-
-(global-set-key (kbd "M-$") 'ispell-word)
-(global-set-key (kbd "M-¼") 'ispell-buffer)
-
 (global-set-key (kbd "M-C")  'comment-region)
 (global-set-key (kbd "M-F")  'auto-fill-mode)
 (global-set-key (kbd "M-I")  'indent-region)
@@ -98,21 +77,17 @@
 (global-set-key (kbd "C-2")  'split-window-below)
 (global-set-key (kbd "C-3")  'split-window-right)
 (global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
-(global-set-key (kbd "C-8")
-                (lambda ()
-                  (interactive)
-                  (find-file (expand-file-name "init.el" user-emacs-directory))))
-
-(global-set-key (kbd "s-SPC")  'set-rectangular-region-anchor)
+(global-set-key (kbd "C-8") (lambda ()
+                              (interactive)
+                              (find-file
+                               (expand-file-name "init.el"
+                                                 user-emacs-directory))))
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 (global-set-key (kbd "s-å")  'mc/mark-previous-like-this)
 (global-set-key (kbd "s-ä")  'mc/mark-next-like-this)
 (global-set-key (kbd "s-ö")  'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "s-Ä")  'mc/mark-more-like-this-extended)
-
-(global-set-key (kbd "M-N")  'winner-redo)
-(global-set-key (kbd "M-P")  'winner-undo)
 
 (global-set-key (kbd "<C-S-up>")   'move-text-up)
 (global-set-key (kbd "<C-S-down>") 'move-text-down)
@@ -124,17 +99,6 @@
 
 (unless macosp
   (global-set-key [M-delete]  'kill-word))
-
-;; (if (not macosp)
-;;     (progn
-;;       (global-set-key [backspace]    'delete-backward-char)
-;;       (global-set-key [C-backspace]  'backward-kill-word)
-;;       (global-set-key [M-backspace]  'backward-kill-word)
-
-;;       (global-set-key [delete]    'delete-char)
-;;       (global-set-key [C-delete]  'kill-word)
-;;       (global-set-key [M-delete]  'kill-word)
-;;       ))
 
 (global-set-key [insert]    'overwrite-mode)
 (global-set-key [S-insert]  'insert-separator)
@@ -152,9 +116,6 @@
 (global-set-key [M-end]    'this-line-to-bottom-of-window)
 (global-set-key [C-M-end]  'goto-line)
 
-(global-set-key [S-next]   'scroll-up-in-place)
-(global-set-key [S-prior]  'scroll-down-in-place)
-
 (global-set-key [C-M-prior]  'shift-region-left)
 (global-set-key [C-M-next]   'shift-region-right)
 
@@ -164,7 +125,7 @@
 (global-set-key [f9]    'compile)
 (global-set-key [M-f9]  'recompile)
 
-(global-set-key (kbd "<f10>") 'pabe-vc-examine)
+(global-set-key (kbd "<f10>") 'vc-examine)
 (global-set-key (kbd "C-<f10>") 'menu-bar-mode)
 
 (global-set-key [f11]    'call-last-kbd-macro)
@@ -181,7 +142,5 @@
 (global-set-key [s-f12]  'rotate-windows)
 
 (global-set-key (kbd "C-z") 'undo)
-
-;;-----------------------------------------------------------------------------
 
 (provide 'key-bindings)
