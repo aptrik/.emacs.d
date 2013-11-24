@@ -4,8 +4,9 @@
   :config
   (progn
     (add-hook 'ahg-status-mode-hook 'turn-on-truncate-lines)
-    (bind-key "<tab>" 'ahg-status-diff ahg-status-mode-map)
-    (bind-key "M-<delete>" 'ahg-status-unmark-all ahg-status-mode-map)))
+    (bind-keys ahg-status-mode-map
+               '(("<tab>" . ahg-status-diff)
+                 ("M-<delete>" . ahg-status-unmark-all)))))
 
 
 (use-package arc-mode
@@ -414,11 +415,11 @@
        (lambda ()
          (skip-syntax-forward "w_")
          (point)))))
-
-  (bind-key "C-e" 'pabe/isearch-yank-current-word isearch-mode-map)
-  (bind-key "C-c" 'isearch-toggle-case-fold isearch-mode-map)
-  (bind-key "C-t" 'isearch-toggle-regexp isearch-mode-map)
-  (bind-key "C-^" 'isearch-edit-string isearch-mode-map))
+  (bind-keys isearch-mode-map
+             '(("C-e" . pabe/isearch-yank-current-word)
+               ("C-c" . isearch-toggle-case-fold)
+               ("C-t" . isearch-toggle-regexp)
+               ("C-^" . isearch-edit-string))))
 
 
 (use-package ispell
@@ -472,8 +473,8 @@
     (use-package elisp-slime-nav
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
     (use-package ert
+      :defer t
       :commands ert-run-tests-interactively
-      :bind ("C-<f9>" . ert-run-tests-interactively)
       :config
       (progn
         (put 'ert-deftest 'lisp-indent-function 'defun)
@@ -485,7 +486,9 @@
                         (1 font-lock-keyword-face nil t)
                         (2 font-lock-function-name-face nil t))))))))
     ;;(add-hook 'emacs-lisp-mode-hook 'turn-on-smartparens-mode)
-    (bind-key "M-&" 'lisp-complete-symbol emacs-lisp-mode-map)
+    (bind-keys emacs-lisp-mode-map
+               '(("C-<f9>" . ert-run-tests-interactively)
+                 ("M-&" . lisp-complete-symbol)))
 
     (defun setup--emacs-lisp-mode ()
       (add-hook 'after-save-hook 'check-parens nil t))

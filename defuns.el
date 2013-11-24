@@ -37,6 +37,12 @@
   (list 'if (display-graphic-p)
         (cons 'progn x)))
 
+(defun bind-keys (keymap keydefs)
+  (mapc (lambda (keydef) (bind-key (car keydef)
+                                   (cdr keydef)
+                                   keymap))
+        keydefs))
+
 (defun buffer-file-name-body ()
   "Buffer file name stripped of directory and extension."
   (if (buffer-file-name)
