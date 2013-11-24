@@ -907,6 +907,10 @@ SCHEDULED: %^t
        ("M-q" . sp-indent-defun)))))
 
 
+(use-package smooth-scrolling
+  :ensure t)
+
+
 (use-package sql
   :defer t
   :config
