@@ -38,10 +38,8 @@
         (cons 'progn x)))
 
 (defun bind-keys (keymap keydefs)
-  (mapc (lambda (keydef) (bind-key (car keydef)
-                                   (cdr keydef)
-                                   keymap))
-        keydefs))
+  (loop for (key-name . command) in keydefs
+        do (bind-key key-name command keymap)))
 
 (defun buffer-file-name-body ()
   "Buffer file name stripped of directory and extension."
