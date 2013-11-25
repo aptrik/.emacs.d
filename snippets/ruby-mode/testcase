@@ -3,6 +3,9 @@
 # key: tc
 # --
 require 'test/unit'
+
+$LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..')))
+
 require '$1'
 
 class ${1:$(s-upper-camel-case yas-text)}TestCase < Test::Unit::TestCase

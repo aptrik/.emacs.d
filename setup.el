@@ -469,8 +469,10 @@
   :config
   (progn
     (use-package eldoc
+      :diminish eldoc-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
     (use-package elisp-slime-nav
+      :diminish elisp-slime-nav-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
     (use-package ert
       :defer t
@@ -485,8 +487,6 @@
                      '(("(\\(\\<ert-deftest\\)\\>\\s *\\(\\sw+\\)?"
                         (1 font-lock-keyword-face nil t)
                         (2 font-lock-function-name-face nil t))))))))
-    (use-package smartparens)
-    ;;(add-hook 'emacs-lisp-mode-hook 'turn-on-smartparens-mode)
     (bind-keys emacs-lisp-mode-map
                '(("C-<f9>" . ert-run-tests-interactively)
                  ("M-&" . lisp-complete-symbol)
@@ -787,8 +787,11 @@ SCHEDULED: %^t
   :defer t
   :config
   (progn
-    (use-package ruby-end)
-    ;;(use-package smartparens-ruby)
+    (use-package ruby-end :diminish ruby-end-mode)
+    (use-package robe :diminish robe-mode)
+    (use-package test-case-mode :diminish test-case-mode)
+
+    (setq ruby-deep-indent-paren nil)
 
     (add-hook 'ruby-mode-hook 'setup--ruby-mode)
 
@@ -798,11 +801,12 @@ SCHEDULED: %^t
       (compile (concat "ruby " (buffer-file-name))))
 
     (defun setup--ruby-mode ()
-      (rvm-activate-corresponding-ruby)
-      (robe-mode 1)
       (which-function-mode 1)
       (subword-mode 1)
-      ;;(show-smartparens-mode 1)
+      (rvm-activate-corresponding-ruby)
+      (robe-mode 1)
+
+      (require 'tramp) ; Needed by test-case-run
 
       (make-variable-buffer-local 'compilation-error-regexp-alist)
       (setq compilation-error-regexp-alist
@@ -883,11 +887,17 @@ SCHEDULED: %^t
   :defer t
   :commands (smartparens-mode
              smartparens-strict-mode
-             show-smartparens-mode)
+             show-smartparens-mode
+             sp-kill-sexp sp-backward-kill-sexp
+             sp-copy-sexp
+             sp-forward-slurp-sexp
+             sp-forward-barf-sexp
+             sp-backward-slurp-sexp
+             sp-backward-barf-sexp
+             sp-transpose-sexp
+             sp-indent-defun)
   :config
   (progn
-    ;; (use-package smartparens-ruby)
-    ;; (use-package smartparens-html)
     (setq sp-autoskip-closing-pair 'always
           sp-hybrid-kill-entire-symbol nil)
     ;;(show-smartparens-global-mode 1)
