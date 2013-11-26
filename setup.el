@@ -579,23 +579,23 @@
 
 (use-package org
   :defer t
+  :init
+  (setq org-replace-disputed-keys t)
   :config
   (progn
     (setq
      ;;org-default-notes-file     "~/Dropbox/TODO"
      ;;org-directory              "~/org"
-     org-clock-continuously     nil
-     org-clock-idle-time        nil
      org-clock-in-resume        t
      org-clock-persist          'history
      org-hide-leading-stars     nil
      org-level-color-stars-only t
      org-log-done               'time
      org-odd-levels-only        nil
-     org-replace-disputed-keys  t
      org-reverse-note-order     t
      org-src-fontify-natively   t
      org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
     (org-clock-persistence-insinuate)
     (add-hook 'org-mode-hook 'setup--org-mode)
     (defun setup--org-mode ()
