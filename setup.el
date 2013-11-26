@@ -789,7 +789,6 @@ SCHEDULED: %^t
   (progn
     (use-package ruby-end :diminish ruby-end-mode)
     (use-package robe :diminish robe-mode)
-    (use-package test-case-mode :diminish test-case-mode)
 
     (setq ruby-deep-indent-paren nil)
 
@@ -945,6 +944,11 @@ This is used to set `sql-alternate-buffer-name' within
              user-emacs-directory))
       (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
       (sql-rename-buffer))))
+
+
+(use-package test-case-mode
+  :defer t
+  :diminish test-case-mode)
 
 
 (use-package uniquify
