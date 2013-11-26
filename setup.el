@@ -283,8 +283,8 @@
   :config
   (progn
     (setq-default diff-switches "-uwd")
-    (define-key diff-mode-map (kbd "n") 'diff-hunk-next)
-    (define-key diff-mode-map (kbd "p") 'diff-hunk-prev)))
+    (bind-keys diff-mode-map '(("n" . diff-hunk-next)
+                               ("p" . diff-hunk-prev)))))
 
 
 (use-package dired
@@ -469,11 +469,9 @@
   :config
   (progn
     (use-package eldoc
-      :defer t
       :diminish eldoc-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
     (use-package elisp-slime-nav
-      :defer t
       :diminish elisp-slime-nav-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
     (use-package ert
@@ -741,12 +739,12 @@ SCHEDULED: %^t
 
       (jedi:setup)
 
-      (let ((map jedi-mode-map))
-        (define-key map (kbd "<C-tab>") 'bs-show)
-        (define-key map (kbd "<M-tab>") 'jedi:complete)
-        (define-key map (kbd "M-.")     'jedi:goto-definition)
-        (define-key map (kbd "C-.")     'jedi:complete)
-        (define-key map (kbd "M-,")     'jedi:goto-definition-pop-marker))
+      (bind-keys jedi-mode-map
+                 ("<C-tab>" . bs-show)
+                 ("<M-tab>" . jedi:complete)
+                 ("M-."     . jedi:goto-definition)
+                 ("C-."     . jedi:complete)
+                 ("M-,"     . jedi:goto-definition-pop-marker))
 
       ;;(whitespace-mode 1)
       ;;(turn-on-eldoc-mode) ; doesn't work with python-mode from https://launchpad.net/python-mode
@@ -757,12 +755,12 @@ SCHEDULED: %^t
       (local-set-key (kbd "C-c c") 'compile)
       (local-set-key (kbd "C-c C-c") 'recompile)
 
-      (let ((map subword-mode-map))
-        (define-key map [M-left]       'subword-backward)
-        (define-key map [M-right]      'subword-forward)
-        (define-key map [C-left]       'subword-backward)
-        (define-key map [C-right]      'subword-forward)
-        (define-key map [C-backspace]  'subword-backward-kill))
+      (bind-keys subword-mode-map
+                 ("<M-left>"      . subword-backward)
+                 ("<M-right>"     . subword-forward)
+                 ("<C-left>"      . subword-backward)
+                 ("<C-right>"     . subword-forward)
+                 ("<C-backspace>" . subword-backward-kill))
 
       (local-set-key [C-M-up]   'py-beginning-of-block)
       (local-set-key [C-M-down] 'py-end-of-def-or-class)
@@ -806,6 +804,8 @@ SCHEDULED: %^t
       (subword-mode 1)
       (rvm-activate-corresponding-ruby)
       (robe-mode 1)
+      (inf-ruby-minor-mode 1)
+      (inf-ruby-switch-setup)
 
       (require 'tramp) ; Needed by test-case-run
 

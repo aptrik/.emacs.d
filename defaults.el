@@ -18,6 +18,7 @@
  auto-save-default             nil
  backup-inhibited              t
  buffers-menu-max-size         nil
+ completion-cycle-threshold    nil
  confirm-kill-emacs            'y-or-n-p
  delete-active-region          nil
  echo-keystrokes               0.1
@@ -29,6 +30,7 @@
  mark-even-if-inactive         t
  require-final-newline         nil
  standard-indent               4
+ tab-width                     4
  trim-versions-without-asking  t
  truncate-lines                nil
  version-control               nil
@@ -50,6 +52,7 @@
  scroll-step                     0
  sentence-end                    "[.?!][]\"')]*\\($\\|\t\\| \\)[ \t\n]*"
  sentence-end-double-space       nil ; make M-[ae] work
+ tab-always-indent               'complete
  truncate-partial-width-windows  nil
  yank-excluded-properties        t) ; do not paste any properties
 
@@ -101,7 +104,9 @@
 
 ;; Re-enable commands.
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (provide 'defaults)
