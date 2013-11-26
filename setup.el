@@ -469,9 +469,11 @@
   :config
   (progn
     (use-package eldoc
+      :defer t
       :diminish eldoc-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
     (use-package elisp-slime-nav
+      :defer t
       :diminish elisp-slime-nav-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
     (use-package ert
