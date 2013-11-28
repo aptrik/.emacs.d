@@ -402,7 +402,7 @@
 
 
 (use-package hl-tags-mode
-  :defer t)
+  :commands (hl-tags-mode))
 
 
 (when (fboundp 'isearch-mode)
