@@ -740,11 +740,11 @@ SCHEDULED: %^t
       (jedi:setup)
 
       (bind-keys jedi-mode-map
-                 ("<C-tab>" . bs-show)
-                 ("<M-tab>" . jedi:complete)
-                 ("M-."     . jedi:goto-definition)
-                 ("C-."     . jedi:complete)
-                 ("M-,"     . jedi:goto-definition-pop-marker))
+                 '(("<C-tab>" . bs-show)
+                   ("<M-tab>" . jedi:complete)
+                   ("M-."     . jedi:goto-definition)
+                   ("C-."     . jedi:complete)
+                   ("M-,"     . jedi:goto-definition-pop-marker)))
 
       ;;(whitespace-mode 1)
       ;;(turn-on-eldoc-mode) ; doesn't work with python-mode from https://launchpad.net/python-mode
@@ -756,11 +756,11 @@ SCHEDULED: %^t
       (local-set-key (kbd "C-c C-c") 'recompile)
 
       (bind-keys subword-mode-map
-                 ("<M-left>"      . subword-backward)
-                 ("<M-right>"     . subword-forward)
-                 ("<C-left>"      . subword-backward)
-                 ("<C-right>"     . subword-forward)
-                 ("<C-backspace>" . subword-backward-kill))
+                 '(("<M-left>"      . subword-backward)
+                   ("<M-right>"     . subword-forward)
+                   ("<C-left>"      . subword-backward)
+                   ("<C-right>"     . subword-forward)
+                   ("<C-backspace>" . subword-backward-kill)))
 
       (local-set-key [C-M-up]   'py-beginning-of-block)
       (local-set-key [C-M-down] 'py-end-of-def-or-class)
