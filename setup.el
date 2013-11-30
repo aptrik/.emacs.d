@@ -338,7 +338,7 @@
 
 
 (use-package edit-env
-  :defer t)
+  :commands (edit-env))
 
 
 (use-package expand-region
@@ -775,6 +775,13 @@ SCHEDULED: %^t
       (local-set-key [S-f9] 'pdb) ; defined in gud
       (local-set-key [C-f9] 'compile)
       (local-set-key [M-f9] 'recompile))))
+
+
+(use-package rbenv
+  :init
+  (setq rbenv-show-active-ruby-in-modeline nil)
+  :config
+  (global-rbenv-mode))
 
 
 (use-package re-builder
