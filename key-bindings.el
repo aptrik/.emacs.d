@@ -81,7 +81,7 @@
 (global-set-key (kbd "C-c 1") (lambda ()
                                 (interactive)
                                 (find-file
-                                 (expand-file-name "init.el"
+                                 (expand-file-name "setup.el"
                                                    user-emacs-directory))))
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
