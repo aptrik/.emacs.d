@@ -793,12 +793,8 @@ SCHEDULED: %^t
 
 
 (use-package ruby-mode
-  :defer t
-  :config
+  :init
   (progn
-    (use-package ruby-end :diminish ruby-end-mode)
-    (use-package robe :diminish robe-mode)
-
     (setq ruby-deep-indent-paren nil)
 
     (add-hook 'ruby-mode-hook 'setup--ruby-mode)
@@ -811,12 +807,17 @@ SCHEDULED: %^t
     (defun setup--ruby-mode ()
       (which-function-mode 1)
       (subword-mode 1)
-      (rvm-activate-corresponding-ruby)
       (robe-mode 1)
       (inf-ruby-minor-mode 1)
       (inf-ruby-switch-setup)
 
-      (require 'tramp) ; Needed by test-case-run
+      (require 'ruby-block)
+      (ruby-block-mode t)
+      (setq ruby-block-delay 0.1
+            ruby-block-highlight-toggle 'overlay
+            ruby-block-highlight-face 'isearch)
+
+      (require 'tramp)                  ; Needed by test-case-run
 
       (make-variable-buffer-local 'compilation-error-regexp-alist)
       (setq compilation-error-regexp-alist
@@ -835,6 +836,10 @@ SCHEDULED: %^t
       (local-set-key [f9]    'ruby-run)
       (local-set-key [C-f9]  'test-case-run)
       (local-set-key [M-f9]  'test-case-run-all)))
+  :config
+  (progn
+    (use-package ruby-end :diminish ruby-end-mode)
+    (use-package robe :diminish robe-mode))
   :mode (("Gemfile$" . ruby-mode)
          ("Rakefile$" . ruby-mode)
          ("Guardfile" . ruby-mode)
