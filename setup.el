@@ -148,7 +148,7 @@
   (progn
     (add-hook 'c-mode-hook 'setup--c-mode-hook)
     (add-hook 'c++-mode-hook 'setup--c-mode-hook)
-    
+
     (defconst setup--c-style
       `((c-recognize-knr-p . nil)
         (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
@@ -526,12 +526,12 @@
 
 
 (use-package nuke-whitespace
-  :defer t
   :config
   (progn
     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'ruby-mode)
-    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'python-mode)))
+    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'emacs-lisp-mode)
+    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'python-mode)
+    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'ruby-mode)))
 
 
 (use-package nxml-mode
@@ -843,8 +843,7 @@ SCHEDULED: %^t
 
 
 (use-package sh-script
-  :defer t
-  :config
+  :init
   (setq sh-shell-file     "/bin/sh"
         sh-indentation    4
         sh-basic-offset   4
@@ -858,8 +857,7 @@ SCHEDULED: %^t
 
 
 (use-package shell
-  :defer t
-  :config
+  :init
   (setq explicit-shell-file-name "bash"
         shell-file-name shell-file-name
         shell-command-switch "-c"))
