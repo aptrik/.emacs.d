@@ -703,28 +703,21 @@ SCHEDULED: %^t
 
 
 (use-package python-mode
-  :defer t
-  :config
+  :init
   (progn
     (setq jedi:complete-on-dot nil)
 
-    (modify-syntax-entry ?\_ "_" python-mode-syntax-table)
+    (add-hook 'python-mode-hook 'setup--python-mode)
 
-    (setenv "PYTHONPATH" (concat (if (getenv "PYTHONPATH") "$PYTHONPATH:" "")
-                                 (expand-file-name "bin/lib/python" user-emacs-directory))
-            t)
-
-    (require 'tramp) ;; needed by pep8 and pylint
-    (require 'python-pylint)
-    (require 'python-pep8)
+    ;; (setenv "PYTHONPATH" (concat (if (getenv "PYTHONPATH") "$PYTHONPATH:" "")
+    ;;                              (expand-file-name "bin/lib/python" user-emacs-directory))
+    ;;         t)
 
     (defadvice pdb (before gud-query-cmdline activate)
       "Provide a better default command line when called interactively."
       (interactive
        (list (gud-query-cmdline 'pdb
                                 (file-name-nondirectory buffer-file-name)))))
-
-    (add-hook 'python-mode-hook 'setup--python-mode)
 
     (defun py-run ()
       "Run python on the file in the current buffer."
@@ -736,6 +729,12 @@ SCHEDULED: %^t
       (subword-mode 1)
 
       ;;(setq py-python-command-args '( "-colors" "Linux"))
+
+      (modify-syntax-entry ?\_ "_" python-mode-syntax-table)
+
+      (require 'tramp) ;; needed by pep8 and pylint
+      (require 'python-pylint)
+      (require 'python-pep8)
 
       (jedi:setup)
 
@@ -772,9 +771,12 @@ SCHEDULED: %^t
       (local-set-key [C-f7] 'python-pep8)
 
       (local-set-key [f9]   'py-run)
-      (local-set-key [S-f9] 'pdb) ; defined in gud
+      (local-set-key [S-f9] 'pdb)       ; defined in gud
       (local-set-key [C-f9] 'compile)
-      (local-set-key [M-f9] 'recompile))))
+      (local-set-key [M-f9] 'recompile)))
+  :config
+  (setq ruby-indent-level 2            ; Set to nil in python-mode. Why?
+        nxml-child-indent 2))
 
 
 (use-package rbenv
