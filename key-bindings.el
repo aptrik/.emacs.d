@@ -83,6 +83,14 @@
                                 (find-file
                                  (expand-file-name "setup.el"
                                                    user-emacs-directory))))
+(global-set-key (kbd "C-c 2") (lambda ()
+                                (interactive)
+                                (find-file
+                                 (expand-file-name "~/Dropbox/TODO.txt"))))
+(global-set-key (kbd "C-c 3") (lambda ()
+                                (interactive)
+                                (find-file
+                                 (expand-file-name "~/Dropbox/emacs/TODO.txt"))))
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 (global-set-key (kbd "s-å")  'mc/mark-previous-like-this)
