@@ -8,11 +8,11 @@
 
 (setq
  interprogram-cut-function            'x-select-text
- interprogram-paste-function          'x-selection-value)
+ interprogram-paste-function          'x-selection-value
  save-interprogram-paste-before-kill  t
  select-active-regions                t
  x-select-enable-clipboard            t
- x-select-enable-primary              t
+ x-select-enable-primary              t)
 
 (setq-default
  auto-save-default             nil
