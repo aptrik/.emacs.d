@@ -781,9 +781,9 @@ SCHEDULED: %^t
 
 (use-package rbenv
   :init
-  (setq rbenv-show-active-ruby-in-modeline nil)
-  :config
-  (global-rbenv-mode))
+  (setq rbenv-show-active-ruby-in-modeline nil))
+  ;; :config
+  ;; (global-rbenv-mode))
 
 
 (use-package re-builder
