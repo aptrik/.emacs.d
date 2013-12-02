@@ -15,6 +15,7 @@
 /erc-log/
 /history
 /history-*.sql
+/image-dired/
 /org-clock-save.el
 /private.el
 /saveplace
