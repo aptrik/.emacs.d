@@ -1054,6 +1054,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package yasnippet
   :defer t
+  :commands (snippet-mode)
   :config
   (progn
     (setq yas-verbosity 1
