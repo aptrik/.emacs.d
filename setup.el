@@ -405,6 +405,19 @@
   :commands (hl-tags-mode))
 
 
+(use-package ido
+  :defer t
+  :config
+  (progn
+    (use-package flx-ido)
+    (use-package ido-vertical-mode)
+    (setq ido-use-faces nil)            ; I want to see the flx matches.
+    (ido-mode 1)
+    (flx-ido-mode 1)
+    (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+    (ido-vertical-mode 1)))
+
+
 (when (fboundp 'isearch-mode)
   (defun pabe/isearch-yank-current-word ()
     "Pull current word from buffer into search string."
