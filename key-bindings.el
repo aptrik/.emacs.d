@@ -78,16 +78,16 @@
 (global-set-key (kbd "C-3")  'split-window-right)
 (global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
 
-(global-set-key (kbd "C-c 1") (lambda ()
+(global-set-key (kbd "C-c 0") (lambda ()
                                 (interactive)
                                 (find-file
                                  (expand-file-name "setup.el"
                                                    user-emacs-directory))))
-(global-set-key (kbd "C-c 2") (lambda ()
+(global-set-key (kbd "C-c 1") (lambda ()
                                 (interactive)
                                 (find-file
                                  (expand-file-name "~/Dropbox/TODO.txt"))))
-(global-set-key (kbd "C-c 3") (lambda ()
+(global-set-key (kbd "C-c 2") (lambda ()
                                 (interactive)
                                 (find-file
                                  (expand-file-name "~/Dropbox/emacs/TODO.txt"))))
