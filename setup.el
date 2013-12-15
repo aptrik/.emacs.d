@@ -35,6 +35,12 @@
   :bind ("C-c y" . browse-kill-ring))
 
 
+;; (use-package browse-url
+;;   :config
+;;   (when (eq system-type 'darwin)
+;;     (setq browse-url-browser-function 'browse-url-default-macosx-browser)))
+
+
 (use-package bs
   :defer t
   :config
@@ -289,6 +295,7 @@
 
 (use-package dired
   :defer t
+  :commands (dired-jump)
   :config
   (progn
     (setq dired-details-hidden-string ""
