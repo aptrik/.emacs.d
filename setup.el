@@ -1051,7 +1051,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package woman
-  :defer t
   :config
   (progn
     (fset 'man 'woman)
