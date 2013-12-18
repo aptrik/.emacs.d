@@ -353,6 +353,12 @@
          ("C-?" . er/contract-region)))
 
 
+(use-package find-dired
+  :bind (("M-s D" . find-dired)
+         ("M-s d" . find-grep-dired)
+         ("M-s n" . find-name-dired)))
+
+
 (use-package framemove
   :init
   (progn
@@ -364,11 +370,8 @@
 
 (use-package grep
   :defer t
-  :bind (("M-s D" . find-dired)
-         ("M-s d" . find-grep-dired)
-         ("M-s f" . find-grep)
+  :bind (("M-s f" . find-grep)
          ("M-s g" . grep)
-         ("M-s n" . find-name-dired)
          ("M-s r" . rgrep))
   :config
   (progn
