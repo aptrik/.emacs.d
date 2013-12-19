@@ -10,6 +10,7 @@
   (setq mac-option-modifier nil) ;; need it for typing $, accented characters etc.
   (setq mac-right-command-modifier 'super))
 
+(global-unset-key (kbd "C-x m")) ; disable sendmail
 
 (define-key minibuffer-local-map [up]     'previous-history-element)
 (define-key minibuffer-local-map [down]   'next-history-element)
