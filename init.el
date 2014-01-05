@@ -37,7 +37,7 @@
 
 (require 'key-bindings)
 
-(add-to-list 'custom-theme-load-path user-emacs-directory)
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 (load-theme 'aptrik t)
 
 (load "user" 'noerror)
