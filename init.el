@@ -11,33 +11,29 @@
       inhibit-startup-message t
       initial-scratch-message nil)
 
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+(require 'pallet)
+(require 'use-package)
+
+(when (display-graphic-p)
+  (exec-path-from-shell-initialize))
+
 ;; Prepare load-path.
-(add-to-list 'load-path user-emacs-directory)
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path dir)
   (dolist (f (directory-files dir t "\\w+"))
     (when (file-directory-p f)
       (add-to-list 'load-path f))))
 
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
-(require 'pallet)
-(require 'use-package)
-
-(require 'defuns)
-(require 'defaults)
-(require 'setup)
-
-(when (display-graphic-p)
-  (exec-path-from-shell-initialize))
+(dolist (fn '("defuns" "defaults" "setup" "key-bindings"))
+  (load (expand-file-name fn user-emacs-directory)))
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
 
-(require 'key-bindings)
-
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 (load-theme 'aptrik t)
 
-(load "user" 'noerror)
+(load (expand-file-name "user" user-emacs-directory) 'noerror)
