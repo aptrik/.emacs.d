@@ -714,6 +714,17 @@
           ps-landscape-mode     t)))
 
 
+(use-package projectile
+  :defer t
+  :commands (projectile-mode helm-projectile)
+  :config
+  (progn
+    (setq projectile-completion-system 'default)
+    (use-package helm-projectile))
+  :bind
+  ("C-c p M" . projectile-mode))
+
+
 (use-package python-mode
   :init
   (progn
