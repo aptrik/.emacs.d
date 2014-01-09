@@ -30,7 +30,7 @@
  mark-even-if-inactive         t
  require-final-newline         nil
  standard-indent               4
- tab-width                     4
+ tab-width                     8
  trim-versions-without-asking  t
  truncate-lines                nil
  version-control               nil
@@ -42,6 +42,7 @@
  delete-by-moving-to-trash       nil ; Disable trash can support.
  eval-expression-print-level     nil
  garbage-collection-messages     nil
+ history-length                  200
  line-move-visual                nil ; Make Emacs 23 move like old emacs
  make-pointer-invisible          t
  mouse-yank-at-point             t
