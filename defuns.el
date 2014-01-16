@@ -170,9 +170,19 @@ Bound to `\\[match-paren]'."
   "Split the current window into `num' columns."
   (interactive "p")
   (setq num (if num (max 1 num) 2))
-  (while (> num 1)
-    (split-window-right)
-    (setq num (- num 1)))
+  (split-window-into-grid num 1))
+
+(defun split-window-into-grid (m n)
+  "Split the current window into a MxN grid."
+  (interactive "nColumns: \nnRows: ")
+  (delete-other-windows)
+  (dotimes (i (1- m))
+    (split-window-horizontally)
+    (dotimes (j (1- n))
+      (split-window-vertically))
+    (other-window n))
+  (dotimes (j (1- n))
+    (split-window-vertically))
   (balance-windows))
 
 (defun sudo-edit (&optional arg)
