@@ -166,6 +166,15 @@ Bound to `\\[match-paren]'."
              buffers
              start-positions)))
 
+(defun split-window-into-columns (&optional num)
+  "Split the current window into `num' columns."
+  (interactive "p")
+  (setq num (if num (max 1 num) 2))
+  (while (> num 1)
+    (split-window-right)
+    (setq num (- num 1)))
+  (balance-windows))
+
 (defun sudo-edit (&optional arg)
   (interactive "p")
   (if arg
