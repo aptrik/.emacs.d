@@ -725,6 +725,10 @@
   ("C-c p M" . projectile-mode))
 
 
+(use-package protobuf-mode
+  :mode ("\\.proto$" . protobuf-mode))
+
+
 (use-package python-mode
   :init
   (progn

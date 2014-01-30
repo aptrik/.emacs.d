@@ -47,6 +47,7 @@
 (depends-on "php-mode")
 (depends-on "prodigy")
 (depends-on "projectile")
+(depends-on "protobuf-mode")
 (depends-on "python-mode")
 (depends-on "python-pep8")
 (depends-on "python-pylint")
