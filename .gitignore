@@ -18,6 +18,7 @@
 /image-dired/
 /org-clock-save.el
 /private.el
+/request/*
 /saveplace
 /tramp
 /url
