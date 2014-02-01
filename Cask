@@ -45,7 +45,6 @@
 (depends-on "org-plus-contrib")
 (depends-on "pallet")
 (depends-on "php-mode")
-(depends-on "prodigy")
 (depends-on "projectile")
 (depends-on "protobuf-mode")
 (depends-on "python-mode")
