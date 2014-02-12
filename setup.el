@@ -173,8 +173,8 @@
                            list-close-comma
                            scope-operator))
 
-        (c-offsets-alist . ((arglist-intro         . c-lineup-arglist-intro-after-paren)
-                            (arglist-close         . c-lineup-arglist)
+        (c-offsets-alist . ((arglist-intro         . +)
+                            (arglist-close         . 0)
                             (brace-list-open       . +)
                             (case-label            . +)
                             (func-decl-cont        . c-lineup-java-throws)
@@ -204,7 +204,7 @@
       (make-local-variable 'c-tab-always-indent)
       (setq c-tab-always-indent t)
       (c-add-style "c-c++-style" setup--c-style t)
-      (setq c-basic-offset 2))
+      (setq c-basic-offset 4))
 
     (defun setup--c-mode-hook ()
       (which-function-mode 1)
