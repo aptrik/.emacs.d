@@ -726,7 +726,14 @@
 
 
 (use-package protobuf-mode
-  :mode ("\\.proto$" . protobuf-mode))
+  :mode ("\\.proto$" . protobuf-mode)
+  :init
+  (progn
+    (defconst my-protobuf-style
+      '((c-basic-offset . 4)
+        (indent-tabs-mode . nil)))
+    (add-hook 'protobuf-mode-hook
+              (lambda () (c-add-style "my-style" my-protobuf-style t)))))
 
 
 (use-package python-mode
