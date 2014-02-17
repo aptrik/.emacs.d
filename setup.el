@@ -609,18 +609,18 @@
     (setq
      org-clock-history-length 20
      org-clock-in-resume t
-     org-clock-persist t
-     org-clock-persist-query-resume nil
      org-hide-leading-stars nil
      org-level-color-stars-only t
      org-log-done 'time
      org-odd-levels-only nil
      org-reverse-note-order t
      org-src-fontify-natively t
-     org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-     org-time-stamp-rounding-minutes '(0 5)
+     org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
+     org-time-stamp-rounding-minutes '(0 5))
 
-    (org-clock-persistence-insinuate)
+    ;; (setq org-clock-persist t
+    ;;       org-clock-persist-query-resume nil)
+    ;; (org-clock-persistence-insinuate)
 
     (add-hook 'org-mode-hook 'setup--org-mode)
 
