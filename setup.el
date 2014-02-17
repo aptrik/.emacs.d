@@ -173,17 +173,20 @@
                            list-close-comma
                            scope-operator))
 
-        (c-offsets-alist . ((arglist-intro         . +)
+        (c-offsets-alist . ((access-label          . 0)
                             (arglist-close         . 0)
+                            (arglist-intro         . +)
                             (brace-list-open       . +)
                             (case-label            . +)
                             (func-decl-cont        . c-lineup-java-throws)
                             (inher-cont            . c-lineup-java-inher)
                             (inline-open           . 0)
+                            (innamespace           . +)
                             (knr-argdecl           . 0)
                             (knr-argdecl-intro     . 0)
-                            (stream-op             . c-lineup-streamop)
                             (label                 . *)
+                            (namespace-open        . [0])
+                            (namespace-close       . [0])
                             (statement-block-intro . +)
                             (statement-case-open   . +)
                             (statement-cont
@@ -193,8 +196,10 @@
                               ,(when (fboundp 'c-lineup-assignments)
                                  'c-lineup-assignments)
                               +))
+                            (stream-op             . c-lineup-streamop)
                             (substatement-label    . 0)
                             (substatement-open     . +)
+                            (topmost-intro         . 0)
                             )))
       "C/C++ programming style.")
 
