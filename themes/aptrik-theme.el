@@ -16,7 +16,7 @@
  `(highlight ((t (:background "DarkSeaGreen2"))))
  `(highlight-indent-face ((t (:background "honeydew2"))))
  `(lazy-highlight ((t (:foreground "black" :background "orange" :weight normal))))
- `(match ((t (:background "#FFFF96" :foreground "black" :weight bold))))
+ `(match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
  `(mouse ((t (:foreground "white" :background "red" :inverse-video t))))
  `(region ((t (:foreground "black" :background "#b5d5ff"))))
 
@@ -90,7 +90,7 @@
 
  ;; isearch
  `(isearch ((t (:foreground "black" :background "#FFCC99"))))
- `(isearch-lazy-highlight-face ((t (:foreground "black" :background "#FFFF96"))))
+ `(isearch-lazy-highlight-face ((t (:foreground "black" :background "#FFFF66"))))
  `(isearch-fail ((t (:foreground "yellow" :background "red" :bold t))))
 
  ;; js2

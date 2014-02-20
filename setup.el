@@ -66,6 +66,13 @@
          ("C-<tab>" . bs-show)))
 
 
+(use-package buffer-move
+  :bind (("<C-M-S-up>"    . buf-move-up)
+         ("<C-M-S-down>"  . buf-move-down)
+         ("<C-M-S-left>"  . buf-move-left)
+         ("<C-M-S-right>" . buf-move-right)))
+
+
 (use-package calc
   :defer t
   :config

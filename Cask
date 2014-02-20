@@ -8,6 +8,7 @@
 (depends-on "auto-complete")
 (depends-on "bookmark+")
 (depends-on "browse-kill-ring")
+(depends-on "buffer-move")
 (depends-on "compilation-recenter-end")
 (depends-on "dired+")
 (depends-on "dired-details")
