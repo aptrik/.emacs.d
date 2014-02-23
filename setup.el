@@ -748,7 +748,7 @@
               (lambda () (c-add-style "my-style" my-protobuf-style t)))))
 
 
-(use-package python-mode
+(use-package python
   :init
   (progn
     (setq jedi:complete-on-dot nil)
@@ -807,22 +807,12 @@
                    ("<C-right>"     . subword-forward)
                    ("<C-backspace>" . subword-backward-kill)))
 
-      (local-set-key [C-M-up]   'py-beginning-of-block)
-      (local-set-key [C-M-down] 'py-end-of-def-or-class)
-
-      (local-set-key [M-up]   'py-beginning-of-def-or-class)
-      (local-set-key [M-down] 'py-end-of-def-or-class)
-
-      (local-set-key [f7] 'python-pylint)
+      (local-set-key [f7]   'python-pylint)
       (local-set-key [C-f7] 'python-pep8)
-
       (local-set-key [f9]   'py-run)
       (local-set-key [S-f9] 'pdb)       ; defined in gud
       (local-set-key [C-f9] 'compile)
-      (local-set-key [M-f9] 'recompile)))
-  :config
-  (setq ruby-indent-level 2            ; Set to nil in python-mode. Why?
-        nxml-child-indent 2))
+      (local-set-key [M-f9] 'recompile))))
 
 
 (use-package rbenv
