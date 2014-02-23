@@ -27,6 +27,7 @@
 (depends-on "helm-projectile")
 (depends-on "hexrgb")
 (depends-on "highlight-indentation")
+(depends-on "highlight-symbol")
 (depends-on "hl-line+")
 (depends-on "idle-highlight-mode")
 (depends-on "ido-vertical-mode")
