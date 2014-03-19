@@ -1,3 +1,7 @@
+;; (setq debug-on-error t)
+;; (setq debug-on-signal t)
+;; (setq debug-on-quit t)
+
 (let ((min-version "24.3"))
   (when (version< emacs-version min-version)
     (error "Emacs %s is required!" min-version)))
