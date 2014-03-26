@@ -232,6 +232,22 @@
       ;; (c-toggle-hungry-state 1)
       (abbrev-mode 0)
 
+      (auto-complete-mode 1)
+
+      (require 'auto-complete-c-headers)
+      (add-to-list 'ac-sources 'ac-source-c-headers)
+      (when (boundp 'my-gcc-include-directories)
+        (add-to-list 'achead:include-directories my-gcc-include-directories))
+
+      (require 'cpputils-cmake)
+      (cppcm-reload-all)
+
+      (local-set-key
+       (kbd "C-c C-g")
+       '(lambda ()
+          (interactive)
+          (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
+
       (local-set-key (kbd "C-c o") 'ff-find-other-file)
       (local-set-key (kbd "C-c c") 'compile)
       (local-set-key (kbd "C-c C-c") 'recompile)))
