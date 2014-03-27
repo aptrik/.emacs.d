@@ -233,6 +233,7 @@
       (abbrev-mode 0)
 
       (auto-complete-mode 1)
+      (c-toggle-electric-state 0)
 
       (require 'auto-complete-c-headers)
       (add-to-list 'ac-sources 'ac-source-c-headers)
