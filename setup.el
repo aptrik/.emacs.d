@@ -227,13 +227,12 @@
       (set (make-local-variable 'compile-command)
            (concat "gmake -C " default-directory " all"))
 
-      (c-toggle-electric-state 1)
+      (c-toggle-electric-state 0)
       (c-toggle-auto-newline 1)
       ;; (c-toggle-hungry-state 1)
       (abbrev-mode 0)
 
       (auto-complete-mode 1)
-      (c-toggle-electric-state 0)
 
       (require 'auto-complete-c-headers)
       (add-to-list 'ac-sources 'ac-source-c-headers)
@@ -444,17 +443,20 @@
   :commands (hl-tags-mode))
 
 
-(use-package ido
-  :defer t
-  :config
-  (progn
-    (use-package flx-ido)
-    (use-package ido-vertical-mode)
-    (setq ido-use-faces nil)            ; I want to see the flx matches.
-    (ido-mode 1)
-    (flx-ido-mode 1)
-    (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
-    (ido-vertical-mode 1)))
+;; (use-package ido
+;;   :defer t
+;;   :config
+;;   (progn
+;;     (use-package flx-ido)
+;;     ;; (use-package ido-ubiquitous)
+;;     ;; (use-package ido-vertical-mode)
+;;     (setq ido-use-faces t            ; I want to see the flx matches.
+;;           ido-use-filename-at-point nil
+;;           ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+;;     (ido-mode 1)
+;;     (flx-ido-mode 1)))
+;;     ;; (ido-vertical-mode 1)
+;;     ;;(ido-ubiquitous)))
 
 
 (when (fboundp 'isearch-mode)
