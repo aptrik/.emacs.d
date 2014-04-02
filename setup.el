@@ -443,6 +443,10 @@
   :commands (hl-tags-mode))
 
 
+(use-package iedit
+  :bind (("M-RET" . iedit-mode)))
+
+
 ;; (use-package ido
 ;;   :defer t
 ;;   :config
