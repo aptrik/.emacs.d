@@ -575,8 +575,7 @@
     (use-package magit-blame)
     (defadvice magit-diff-working-tree (after magit-diff-focus activate)
       "After execution, select the magit-diff buffer in the current window."
-      (other-window 1)))
-  :bind ("C-x g" . magit-status))
+      (other-window 1))))
 
 
 (use-package markdown-mode
