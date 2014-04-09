@@ -638,7 +638,8 @@
 (use-package org
   :defer t
   :init
-  (setq org-replace-disputed-keys t)
+  (setq org-replace-disputed-keys t
+        org-export-backends '(ascii html md)) ; '(ascii html icalendar latex))
   :config
   (progn
     (setq
