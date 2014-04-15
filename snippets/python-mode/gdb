@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: gdb
+# --
+import os
+raw_input("+++ Blocked waiting for GDB to attach to pid=%d."
+          " [Press Enter to continue]" % (os.getpid(),))
