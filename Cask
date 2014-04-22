@@ -4,6 +4,7 @@
 (source melpa)
 (source org)
 
+(depends-on "ace-jump-mode")
 (depends-on "ahg")
 (depends-on "auto-complete")
 (depends-on "auto-complete-c-headers")

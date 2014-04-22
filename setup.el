@@ -1,3 +1,7 @@
+(use-package ace-jump-mode
+  :bind ("M-h" . ace-jump-mode))
+
+
 (use-package ahg
   :defer t
   :commands (ahg-status)
