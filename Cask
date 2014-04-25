@@ -34,6 +34,7 @@
 (depends-on "highlight-symbol")
 (depends-on "hl-line+")
 (depends-on "idle-highlight-mode")
+(depends-on "ido-hacks")
 (depends-on "ido-vertical-mode")
 (depends-on "iedit")
 (depends-on "inf-ruby")

@@ -455,6 +455,9 @@
 ;;   :defer t
 ;;   :config
 ;;   (progn
+;;     (use-package ido-hacks
+;;       :init
+;;       (ido-hacks-mode 1))
 ;;     (use-package flx-ido)
 ;;     ;; (use-package ido-ubiquitous)
 ;;     ;; (use-package ido-vertical-mode)
