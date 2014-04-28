@@ -42,7 +42,8 @@
  delete-by-moving-to-trash       nil ; Disable trash can support.
  eval-expression-print-level     nil
  garbage-collection-messages     nil
- history-length                  200
+ history-delete-duplicates       t
+ history-length                  t
  line-move-visual                nil ; Make Emacs 23 move like old emacs
  make-pointer-invisible          t
  mouse-yank-at-point             t
