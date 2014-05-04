@@ -931,9 +931,11 @@
 
 (use-package shell
   :init
-  (setq explicit-shell-file-name "bash"
-        shell-file-name shell-file-name
-        shell-command-switch "-c"))
+  (progn
+    (setq explicit-shell-file-name "bash"
+          shell-file-name shell-file-name
+          shell-command-switch "-c")
+    (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)))
 
 
 (use-package shell-toggle
