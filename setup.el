@@ -812,6 +812,9 @@
       (require 'python-pylint)
       (require 'python-pep8)
 
+      (require 'sphinx-doc)
+      (sphinx-doc-mode 1)
+
       (jedi:setup)
 
       (bind-keys jedi-mode-map
