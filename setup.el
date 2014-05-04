@@ -1,5 +1,5 @@
 (use-package ace-jump-mode
-  :bind ("M-h" . ace-jump-mode))
+  :bind ("s-SPC" . ace-jump-mode))
 
 
 (use-package ahg
