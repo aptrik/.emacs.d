@@ -996,6 +996,14 @@
   :ensure t)
 
 
+(use-package speedbar
+  :config
+  (progn
+    (setq speedbar-default-position 'left
+          speedbar-show-unknown-files t
+          speedbar-update-flag t)))
+
+
 (use-package sql
   :defer t
   :config
