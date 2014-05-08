@@ -52,6 +52,7 @@
 (depends-on "nxml-mode")
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
+(depends-on "org-present")
 (depends-on "pallet")
 (depends-on "php-mode")
 (depends-on "projectile")
