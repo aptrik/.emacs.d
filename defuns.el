@@ -414,6 +414,19 @@ Also see/use `recode-region'."
             (set-frame-size (selected-frame) 100 53)
             (set-frame-position (selected-frame) -1 0)))))))
 
+(defun toggle-maximize-window-vertically ()
+  "Toggle maximize window vertically."
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+
+(defun toggle-maximize-window ()
+  "Toggle maximize window."
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+  (toggle-maximize-window-vertically))
+
 (defun pabe-ui-demo ()
   "For full screen demos.
 The Inconsolata font is an open source monospace font specifically
