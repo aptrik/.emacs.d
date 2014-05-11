@@ -815,6 +815,7 @@
       (require 'sphinx-doc)
       (sphinx-doc-mode 1)
 
+      (auto-complete-mode 1)
       (jedi:setup)
 
       (bind-keys jedi-mode-map
