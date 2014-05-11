@@ -812,6 +812,9 @@
       (require 'python-pylint)
       (require 'python-pep8)
 
+      ;; (require 'py-autopep8)
+      ;; (add-hook 'before-save-hook 'py-autopep8-before-save)
+
       (require 'sphinx-doc)
       (sphinx-doc-mode 1)
 
