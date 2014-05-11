@@ -9,8 +9,10 @@
 (setq
  interprogram-cut-function            'x-select-text
  interprogram-paste-function          'x-selection-value
+ mouse-drag-copy-region               t
+ mouse-yank-at-point                  t
  save-interprogram-paste-before-kill  t
- select-active-regions                t
+ select-active-regions                nil
  x-select-enable-clipboard            t
  x-select-enable-primary              t)
 
