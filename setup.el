@@ -260,6 +260,15 @@
          ("\\.\\(i\\|swg\\)$" . c++-mode)))
 
 
+(use-package company
+  ;; :init (global-company-mode 1)
+  :diminish company-mode
+  :config
+  (setq company-idle-delay 0.5
+        company-begin-commands '(self-insert-command)
+        company-show-numbers t))
+
+
 (use-package cperl-mode
   :defer t
   :config
@@ -566,7 +575,9 @@
                  ("M-q" . sp-indent-defun)))
 
     (defun setup--emacs-lisp-mode ()
-      (add-hook 'after-save-hook 'check-parens nil t))
+      (add-hook 'after-save-hook 'check-parens nil t)
+      (company-mode 1)
+      (local-set-key (kbd "C-.") 'company-complete))
 
     (add-hook 'emacs-lisp-mode-hook 'setup--emacs-lisp-mode))
   :mode ("Cask" . emacs-lisp-mode))
@@ -880,6 +891,7 @@
     (defun setup--ruby-mode ()
       (which-function-mode 1)
       (subword-mode 1)
+      (company-mode 1)
       (robe-mode 1)
       (inf-ruby-minor-mode 1)
       (inf-ruby-switch-setup)
@@ -903,6 +915,7 @@
       (make-variable-buffer-local 'compile-command)
       (setq compile-command (concat "ruby " (buffer-file-name) " "))
 
+      (local-set-key (kbd "C-.") 'company-complete)
       (local-set-key (kbd "C-c c") 'compile)
       (local-set-key (kbd "C-c C-c") 'recompile)
 
