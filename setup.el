@@ -480,7 +480,7 @@
 
 
 (when (fboundp 'isearch-mode)
-  (defun pabe/isearch-yank-current-word ()
+  (defun isearch--yank-current-word ()
     "Pull current word from buffer into search string."
     (interactive)
     (save-excursion
@@ -490,7 +490,7 @@
          (skip-syntax-forward "w_")
          (point)))))
   (bind-keys isearch-mode-map
-             '(("C-e" . pabe/isearch-yank-current-word)
+             '(("C-e" . isearch--yank-current-word)
                ("C-c" . isearch-toggle-case-fold)
                ("C-t" . isearch-toggle-regexp)
                ("C-^" . isearch-edit-string))))
