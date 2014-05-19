@@ -46,6 +46,7 @@
  garbage-collection-messages     nil
  history-delete-duplicates       t
  history-length                  t
+ large-file-warning-threshold    100000000
  line-move-visual                nil ; Make Emacs 23 move like old emacs
  make-pointer-invisible          t
  mouse-yank-at-point             t
