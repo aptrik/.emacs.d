@@ -343,6 +343,7 @@
           dired-details-hide-link-targets nil
           dired-details-initially-hide nil
           dired-dwim-target t
+          dired-listing-switches "-alh"
           dired-omit-files "^\\.[^.]"
           dired-recursive-copies 'always
           dired-recursive-deletes 'top
