@@ -6,6 +6,7 @@
 
 (depends-on "ace-jump-mode")
 (depends-on "ahg")
+(depends-on "alert")
 (depends-on "auto-complete")
 (depends-on "auto-complete-c-headers")
 (depends-on "bookmark+")
