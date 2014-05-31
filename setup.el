@@ -246,11 +246,10 @@
       (require 'cpputils-cmake)
       (cppcm-reload-all)
 
-      (local-set-key
-       (kbd "C-c C-g")
-       '(lambda ()
-          (interactive)
-          (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
+      (local-set-key (kbd "C-c C-g")
+                     (lambda ()
+                       (interactive)
+                       (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
 
       (local-set-key (kbd "C-c o") 'ff-find-other-file)
       (local-set-key (kbd "C-c c") 'compile)
