@@ -437,6 +437,10 @@
               (concat find-command " | xargs -0 -e " grep-command))))))
 
 
+(use-package groovy-mode
+  :mode ("\\.grovvy$" . groovy-mode))
+
+
 (use-package gud
   :defer t
   :config

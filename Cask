@@ -29,6 +29,7 @@
 (depends-on "git-blame")
 (depends-on "google-c-style")
 (depends-on "grep-a-lot")
+(depends-on "groovy-mode")
 (depends-on "helm")
 (depends-on "helm-projectile")
 (depends-on "hexrgb")
