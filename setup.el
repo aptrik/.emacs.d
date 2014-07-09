@@ -409,6 +409,10 @@
           framemove-hook-into-windmove t)))
 
 
+(use-package gradle-mode
+  :mode ("\\.gradle$" . gradle-mode))
+
+
 (use-package grep
   :defer t
   :bind (("M-s f" . find-grep)
@@ -438,7 +442,8 @@
 
 
 (use-package groovy-mode
-  :mode ("\\.grovvy$" . groovy-mode))
+  :mode (("\\.grovvy$" . groovy-mode)
+         ("\\.gradle$" . groovy-mode)))
 
 
 (use-package gud
