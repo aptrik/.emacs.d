@@ -678,7 +678,8 @@
      org-reverse-note-order t
      org-src-fontify-natively t
      org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
-     org-time-stamp-rounding-minutes '(0 5))
+     org-time-stamp-rounding-minutes '(0 5)
+     org-use-speed-commands t)
 
     ;; (setq org-clock-persist t
     ;;       org-clock-persist-query-resume nil)
