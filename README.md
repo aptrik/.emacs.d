@@ -74,11 +74,13 @@ RHEL 6 dependencies(?):
 
 ### Mac OS
 
-    $ brew install emacs --cocoa
+    $ brew install emacs --cocoa --srgb
+    $ brew linkapps
 
 Or the bleeding edge version.
 
-    $ brew install emacs --cocoa --use-git-head --HEAD
+    $ brew install emacs --cocoa --use-git-head --HEAD --srgb
+    $ brew linkapps
 
 
 ## Emacs Help
