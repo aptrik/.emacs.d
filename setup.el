@@ -329,7 +329,15 @@
   :config
   (progn
     (setq-default diff-switches "-uwd")
-    (bind-keys diff-mode-map '(("n" . diff-hunk-next)
+
+    (add-hook 'diff-mode-hook 'setup--diff-mode)
+
+    (defun setup--diff-mode ()
+      "diff-mode setup."
+      (whitespace-mode 1))
+
+    (bind-keys diff-mode-map '(("w" . diff-ignore-whitespace-hunk)
+                               ("n" . diff-hunk-next)
                                ("p" . diff-hunk-prev)))))
 
 
@@ -718,7 +726,7 @@
     (setq php-extra-constants '())
     (add-hook 'php-mode-hook 'setup--php-mode)
 
-    (defun setup--php-mode()
+    (defun setup--php-mode ()
       "PEAR/PHP setup."
       (setq case-fold-search t)
       (setq indent-tabs-mode nil)
