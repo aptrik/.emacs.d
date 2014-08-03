@@ -704,6 +704,13 @@
           (add-to-list 'org-file-apps '("\\.pdf\\'" . "open %s"))
         (add-to-list 'org-file-apps '("\\.pdf\\'" . "evince %s")))
 
+      ;; Enable languages for in-buffer evaluation.
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((emacs-lisp . t)
+         (python . t)
+         (ruby . t)))
+
       (local-set-key [M-up]          'outline-previous-visible-heading)
       (local-set-key [M-down]        'outline-next-visible-heading)
       (local-set-key [(control tab)] 'bs-show)))
