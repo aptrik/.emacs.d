@@ -50,6 +50,7 @@
 (depends-on "macrostep")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "matlab-mode")
 (depends-on "move-text")
 (depends-on "multiple-cursors")
 (depends-on "notmuch")
