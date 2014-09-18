@@ -74,12 +74,12 @@ RHEL 6 dependencies(?):
 
 ### Mac OS
 
-    $ brew install emacs --cocoa --srgb
+    $ brew install emacs --cocoa --srgb --with-gnutls
     $ brew linkapps
 
 Or the bleeding edge version.
 
-    $ brew install emacs --cocoa --use-git-head --HEAD --srgb
+    $ brew install emacs --cocoa --use-git-head --HEAD --srgb --with-gnutls
     $ brew linkapps
 
 
