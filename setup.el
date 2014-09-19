@@ -1108,6 +1108,7 @@ This is used to set `sql-alternate-buffer-name' within
             vc-hg-diff-switches "--text"))
 
     (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
+    (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
     (defun setup--cvs-mode ()
       (local-set-key [M-delete] 'cvs-mode-unmark-all-files)
