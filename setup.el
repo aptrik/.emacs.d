@@ -435,6 +435,7 @@
 
     (add-hook 'grep-mode-hook 'turn-on-truncate-lines)
 
+    (add-to-list 'grep-find-ignored-directories "elpa")
     (add-to-list 'grep-find-ignored-directories "target")
     (add-to-list 'grep-find-ignored-directories "vendor")
 
