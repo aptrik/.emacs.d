@@ -59,18 +59,36 @@ Example `~/.emacs.d/user.el`:
 
 ### GNU/Linux
 
-    $ wget http://ftpmirror.gnu.org/emacs/emacs-24.3.tar.gz
-    $ tar xfz emacs-24.3.tar.gz
-    $ cd emacs-24.3
-    $ ./configure --prefix=$HOME/tools/emacs-24.3 --without-toolkit-scroll-bars
+    $ wget http://ftpmirror.gnu.org/emacs/emacs-24.4.tar.gz
+    $ tar xfz emacs-24.4.tar.gz
+    $ cd emacs-24.4
+    $ ./configure --prefix=$HOME/tools/emacs-24.4 --without-toolkit-scroll-bars
     $ make
     $ ./src/emacs -q
     $ make install
 
-RHEL 6 dependencies(?):
+#### RHEL 6 dependencies
 
+    $ sudo yum-builddep emacs
     $ sudo yum install libtiff-devel giflib-devel libotf-devel m17n-lib-devel
 
+#### Ubuntu/LinuxMint dependencies
+
+    $ sudo apt-get build-dep emacs24
+    $ sudo apt-get install \
+        libacl1-dev \
+        libgconf2-dev \
+        libgif-dev \
+        libgpm-dev \
+        libjpeg-dev \
+        libm17n-dev \
+        libmagickcore-dev libmagickwand-dev \
+        libotf-dev \
+        libpng-dev \
+        librsvg2-dev \
+        libtiff-dev \
+        libxml2-dev \
+        libxpm-dev
 
 ### Mac OS
 
