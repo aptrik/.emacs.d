@@ -54,7 +54,6 @@
 (depends-on "move-text")
 (depends-on "multiple-cursors")
 (depends-on "notmuch")
-(depends-on "nxml-mode")
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
 (depends-on "org-present")
