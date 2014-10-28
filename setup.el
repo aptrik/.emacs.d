@@ -871,9 +871,6 @@
       (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
       (set (make-variable-buffer-local 'indent-tabs-mode) nil)
 
-      (local-set-key (kbd "C-c c") 'compile)
-      (local-set-key (kbd "C-c C-c") 'recompile)
-
       (bind-keys subword-mode-map
                  '(("<M-left>"      . subword-backward)
                    ("<M-right>"     . subword-forward)
@@ -881,8 +878,12 @@
                    ("<C-right>"     . subword-forward)
                    ("<C-backspace>" . subword-backward-kill)))
 
+      (local-set-key (kbd "C-c c") 'compile)
+      (local-set-key (kbd "C-c C-c") 'recompile)
+
       (local-set-key [f7]   'python-pylint)
       (local-set-key [C-f7] 'python-pep8)
+
       (local-set-key [f9]   'py-run)
       (local-set-key [S-f9] 'pdb)       ; defined in gud
       (local-set-key [C-f9] 'compile)
@@ -922,13 +923,13 @@
       (inf-ruby-minor-mode 1)
       (inf-ruby-switch-setup)
 
+      (minitest-mode 1)
+
       (require 'ruby-block)
       (ruby-block-mode t)
       (setq ruby-block-delay 0.1
             ruby-block-highlight-toggle 'overlay
             ruby-block-highlight-face 'isearch)
-
-      (require 'tramp)                  ; Needed by test-case-run
 
       (make-variable-buffer-local 'compilation-error-regexp-alist)
       (setq compilation-error-regexp-alist
@@ -942,12 +943,13 @@
       (setq compile-command (concat "ruby " (buffer-file-name) " "))
 
       (local-set-key (kbd "C-.") 'company-complete)
+
       (local-set-key (kbd "C-c c") 'compile)
       (local-set-key (kbd "C-c C-c") 'recompile)
 
       (local-set-key [f9]    'ruby-run)
-      (local-set-key [C-f9]  'test-case-run)
-      (local-set-key [M-f9]  'test-case-run-all)))
+      (local-set-key [C-f9]  'minitest-verify)
+      (local-set-key [M-f9]  'minitest-verify-single)))
   :config
   (progn
     (use-package ruby-end :diminish ruby-end-mode)
@@ -1080,11 +1082,6 @@ This is used to set `sql-alternate-buffer-name' within
              user-emacs-directory))
       (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
       (sql-rename-buffer))))
-
-
-(use-package test-case-mode
-  :defer t
-  :diminish test-case-mode)
 
 
 (use-package uniquify
