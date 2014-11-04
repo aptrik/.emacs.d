@@ -547,13 +547,29 @@
   :defer t
   :config
   (progn
-    (setq js2-basic-offset 4
-          ;;js2-skip-preprocessor-directives t
-          js2-use-font-lock-faces t)
-    (setq-default js2-additional-externs
-                  '("$" "unsafeWindow" "localStorage" "jQuery"
-                    "setTimeout" "setInterval" "location" "console")))
-  :mode ("\\.js$" . js2-mode))
+    (setq-default
+     js2-global-externs
+     '("module" "require" "buster" "sinon" "assert" "refute"
+       "setTimeout" "clearTimeout" "setInterval" "clearInterval"
+       "location" "__dirname" "console" "JSON")
+     js2-additional-externs
+     '("$" "unsafeWindow" "localStorage" "jQuery"
+       "setTimeout" "setInterval" "location" "console")
+     js2-strict-missing-semi-warning nil
+     js2-strict-trailing-comma-warning t)
+    (setq
+     js2-basic-offset 4
+     js2-skip-preprocessor-directives t
+     js2-use-font-lock-faces t)
+
+    (defun setup--js2-mode ()
+      (subword-mode 1)
+      (flycheck-mode 1)
+      (company-mode 1)
+      (local-set-key (kbd "C-.") 'company-complete))
+
+    (add-hook 'js2-mode-hook 'setup--js2-mode))
+  :mode (("\\.js$" . js2-mode)))
 
 
 (use-package lisp-mode
