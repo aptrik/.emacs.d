@@ -78,6 +78,7 @@
 (depends-on "smartparens")
 (depends-on "smooth-scrolling")
 (depends-on "sphinx-doc")
+(depends-on "syslog-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "web-mode")
