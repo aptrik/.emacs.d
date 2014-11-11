@@ -13,6 +13,7 @@
 (depends-on "browse-kill-ring")
 (depends-on "buffer-move")
 (depends-on "company")
+(depends-on "company-tern")
 (depends-on "compilation-recenter-end")
 (depends-on "cpputils-cmake")
 (depends-on "dired+")

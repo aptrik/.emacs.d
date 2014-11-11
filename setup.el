@@ -265,7 +265,8 @@
   :config
   (setq company-idle-delay 0.5
         company-begin-commands '(self-insert-command)
-        company-show-numbers t))
+        company-show-numbers t)
+  (add-to-list 'company-backends 'company-tern))
 
 
 (use-package cperl-mode
@@ -559,6 +560,7 @@
      js2-strict-trailing-comma-warning t)
     (setq
      js2-basic-offset 4
+     js2-highlight-level 3
      js2-skip-preprocessor-directives t
      js2-use-font-lock-faces t)
 
