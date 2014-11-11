@@ -1199,6 +1199,7 @@ This is used to set `sql-alternate-buffer-name' within
           yas-fallback-behavior 'return-nil)
     (setq-default yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
     (bind-key "<return>" 'yas-exit-all-snippets yas-keymap)
+    (load "snippet-helpers")
     (let ((snippets-dir (expand-file-name "snippets" user-emacs-directory)))
       (yas-load-directory snippets-dir)
       (setq yas-snippet-dirs snippets-dir)))
