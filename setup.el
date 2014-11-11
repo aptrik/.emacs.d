@@ -546,6 +546,9 @@
 
 (use-package js2-mode
   :defer t
+  :init
+  (progn
+    (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode)))
   :config
   (progn
     (setq-default
@@ -571,7 +574,8 @@
       (local-set-key (kbd "C-.") 'company-complete))
 
     (add-hook 'js2-mode-hook 'setup--js2-mode))
-  :mode (("\\.js$" . js2-mode)))
+  :mode (("\\.js$" . js2-mode)
+         ("\\.json$" . javascript-mode)))
 
 
 (use-package lisp-mode
