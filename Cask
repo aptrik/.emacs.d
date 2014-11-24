@@ -19,6 +19,7 @@
 (depends-on "dired+")
 (depends-on "dired-details")
 (depends-on "dired-sort-menu+")
+(depends-on "dockerfile-mode")
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
 (depends-on "exec-path-from-shell")
