@@ -17,7 +17,10 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+
 (require 'pallet)
+(pallet-mode t)
+
 (require 'use-package)
 
 (when (display-graphic-p)
