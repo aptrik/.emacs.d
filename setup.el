@@ -872,6 +872,8 @@
       (require 'python-pylint)
       (require 'python-pep8)
 
+      (flycheck-mode 1)
+
       ;; (require 'py-autopep8)
       ;; (add-hook 'before-save-hook 'py-autopep8-before-save)
 
