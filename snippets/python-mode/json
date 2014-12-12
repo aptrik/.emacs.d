@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: json.dumps
+# --
+import json
+print json.dumps($0, sort_keys=True, indent=4)
