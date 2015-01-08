@@ -12,6 +12,7 @@
 (depends-on "bookmark+")
 (depends-on "browse-kill-ring")
 (depends-on "buffer-move")
+(depends-on "cmake-mode")
 (depends-on "company")
 (depends-on "company-tern")
 (depends-on "compilation-recenter-end")
