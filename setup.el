@@ -2,6 +2,10 @@
   :bind ("s-SPC" . ace-jump-mode))
 
 
+(use-package ace-window
+  :bind ("s-o" . ace-window))
+
+
 (use-package ahg
   :defer t
   :commands (ahg-status)

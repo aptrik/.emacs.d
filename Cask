@@ -5,6 +5,7 @@
 (source org)
 
 (depends-on "ace-jump-mode")
+(depends-on "ace-window")
 (depends-on "ahg")
 (depends-on "alert")
 (depends-on "auto-complete")
