@@ -1119,7 +1119,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package vc
-  :defer t
   :config
   (progn
     (setq vc-command-messages    t
