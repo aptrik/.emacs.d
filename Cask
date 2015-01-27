@@ -31,6 +31,7 @@
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "framemove")
+(depends-on "fullframe")
 (depends-on "git-blame")
 (depends-on "google-c-style")
 (depends-on "gradle-mode")
