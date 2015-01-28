@@ -4,7 +4,6 @@
 (source melpa)
 (source org)
 
-(depends-on "2048-game")
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
 (depends-on "ahg")
