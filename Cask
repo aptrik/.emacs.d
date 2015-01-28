@@ -18,6 +18,7 @@
 (depends-on "company-tern")
 (depends-on "compilation-recenter-end")
 (depends-on "cpputils-cmake")
+(depends-on "diff-hl")
 (depends-on "dired+")
 (depends-on "dired-details")
 (depends-on "dired-sort-menu+")

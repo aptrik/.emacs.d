@@ -328,6 +328,12 @@
     (add-hook 'compilation-mode-hook 'compilation-recenter-end-enable)))
 
 
+;; (use-package diff-hl
+;;   :init
+;;   (progn
+;;     (global-diff-hl-mode)))
+
+
 (use-package diff-mode
   :defer t
   :commands diff-mode
