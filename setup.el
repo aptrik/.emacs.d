@@ -370,12 +370,15 @@
     (use-package dired-sort-menu+)
     (use-package dired-details
       :config (dired-details-install))
+
     (defun setup--dired-mode ()
       (dired-omit-mode 1)
       (turn-on-truncate-lines)
       (local-set-key (kbd "M-o") 'dired-omit-mode)
       (local-set-key (kbd "T")   'dired-do-touch))
+
     (add-hook 'dired-mode-hook 'setup--dired-mode)
+    (add-hook 'dired-mode-hook 'auto-revert-mode)
 
     (unless (boundp 'dired-guess-shell-alist-user)
       (setq dired-guess-shell-alist-user '()))
