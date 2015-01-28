@@ -1137,9 +1137,12 @@ This is used to set `sql-alternate-buffer-name' within
     (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
     (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
+    (fullframe vc-dir quit-window)
+
     (defun setup--cvs-mode ()
       (local-set-key [M-delete] 'cvs-mode-unmark-all-files)
       (local-set-key [return]   'cvs-mode-find-file))
+
     (add-hook 'cvs-mode-hook 'setup--cvs-mode)))
 
 
