@@ -32,6 +32,25 @@
   (hl-tags-mode 1))
 
 ;;-----------------------------------------------------------------------------
+;;; Change built-ins behaviours .
+
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single line instead."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+;;-----------------------------------------------------------------------------
 ;;; Miscellaneous routines
 
 (defmacro xlaunch (&rest x)
@@ -440,7 +459,6 @@ $ sudo apt-get install ttf-inconsolata
   (set-default-font "Inconsolata")
   (set-face-attribute 'default nil :height 120))
 
-
 ;;-----------------------------------------------------------------------------
 ;;; Insert time and date stamps
 
@@ -509,7 +527,6 @@ Example:
                         today user-full-name user-mail-address)
               (format "%s %s"
                       today user-login-name)))))
-
 
 ;;-----------------------------------------------------------------------------
 ;;; Insert separator
@@ -595,7 +612,6 @@ Default end-column is equal to value of variable separator-length."
         (setq l (cdr l) i (1+ i))))
     val))
 
-
 ;;-----------------------------------------------------------------------------
 ;;; Cursor movement
 
@@ -664,7 +680,6 @@ Bound to `\\[cursor-to-bottom-of-buffer]'."
     (end-of-line)
     (point)))
 
-
 ;;-----------------------------------------------------------------------------
 ;;; Buffer movement
 
@@ -710,7 +725,6 @@ This function is the opposite of `bury-buffer'."
   (interactive)
   (or buf (setq buf (car (reverse (buffer-list)))))
   (switch-to-buffer buf))
-
 
 ;;-----------------------------------------------------------------------------
 ;;; Shift region left and right
@@ -775,7 +789,6 @@ many columns.  With no active region, indent only the current line."
   (shift-region start end (prefix-numeric-value
                            (or count shift-offset))))
 
-
 ;;-----------------------------------------------------------------------------
 ;;; Cleanup functions.
 
@@ -803,7 +816,6 @@ Including indent-buffer, which should not be called automatically on save."
   (interactive)
   (cleanup-buffer)
   (indent-buffer))
-
 
 ;;-----------------------------------------------------------------------------
 ;;; Modifications to find-file-at-point.
