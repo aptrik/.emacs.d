@@ -43,6 +43,7 @@
 (depends-on "highlight-indentation")
 (depends-on "highlight-symbol")
 (depends-on "hl-line+")
+(depends-on "ibuffer-vc")
 (depends-on "idle-highlight-mode")
 (depends-on "ido-hacks")
 (depends-on "ido-vertical-mode")
