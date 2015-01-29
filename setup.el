@@ -263,6 +263,10 @@
          ("\\.\\(i\\|swg\\)$" . c++-mode)))
 
 
+(use-package cmake-mode
+  :defer t)
+
+
 (use-package company
   ;; :init (global-company-mode 1)
   :diminish company-mode
