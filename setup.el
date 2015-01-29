@@ -1136,6 +1136,16 @@ This is used to set `sql-alternate-buffer-name' within
       (sql-rename-buffer))))
 
 
+(use-package time
+  :config
+  (setq display-time-world-time-format "%Y-%m-%d %H:%M %Z"
+        display-time-world-list '(("America/Los_Angeles" "San Fransisco")
+                                  ("America/New_York" "New York")
+                                  ("Europe/London" "London")
+                                  ("Europe/Stockholm" "Stockholm")
+                                  ("Asia/Tokyo" "Tokyo"))))
+
+
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward))
