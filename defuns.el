@@ -7,13 +7,11 @@
 ;;; Constants for the current environment.
 
 (defconst linuxp
-  (or (eq system-type 'gnu/linux)
-      (eq system-type 'linux))
+  (memq system-type '(gnu gnu/linux))
   "Are we running on a GNU/Linux system?")
 
 (defconst macosp
-  (or (eq system-type 'darwin)
-      (eq system-type 'macos))
+  (eq system-type 'darwin)
   "Are we running on a Mac?")
 
 ;;-----------------------------------------------------------------------------
@@ -165,7 +163,7 @@ Bound to `\\[match-paren]'."
   (interactive)
   (when buffer-file-name
     (shell-command (concat
-                    (if (eq system-type 'darwin)
+                    (if macosp
                         "open"
                       (read-shell-command
                        (format "Open current file (%s) with: " buffer-file-name)

@@ -45,7 +45,7 @@
 
 ;; (use-package browse-url
 ;;   :config
-;;   (when (eq system-type 'darwin)
+;;   (when macosp
 ;;     (setq browse-url-browser-function 'browse-url-default-macosx-browser)))
 
 
