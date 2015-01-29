@@ -255,9 +255,7 @@
                        (interactive)
                        (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
 
-      (local-set-key (kbd "C-c o") 'ff-find-other-file)
-      (local-set-key (kbd "C-c c") 'compile)
-      (local-set-key (kbd "C-c C-c") 'recompile)))
+      (local-set-key (kbd "C-c o") 'ff-find-other-file)))
   :mode (("\\.[ch]$" . c-mode)
          ("\\.\\(cc\\|hh\\)$" . c++-mode)
          ("\\.\\(i\\|swg\\)$" . c++-mode)))
@@ -321,10 +319,13 @@
 
 
 (use-package compile
-  :defer t
+  :bind (("C-c c" . compile)
+         ("C-c C" . recompile))
   :config
   (progn
-    (setq-default compilation-scroll-output t
+    (setq-default compilation-always-kill nil
+                  compilation-ask-about-save t
+                  compilation-scroll-output 'first-error
                   compilation-window-height 20
                   compile-command (concat "gmake -C " default-directory " all"))
 
@@ -934,9 +935,6 @@
                    ("<C-right>"     . subword-forward)
                    ("<C-backspace>" . subword-backward-kill)))
 
-      (local-set-key (kbd "C-c c") 'compile)
-      (local-set-key (kbd "C-c C-c") 'recompile)
-
       (local-set-key [f7]   'python-pylint)
       (local-set-key [C-f7] 'python-pep8)
 
@@ -999,9 +997,6 @@
       (setq compile-command (concat "ruby " (buffer-file-name) " "))
 
       (local-set-key (kbd "C-.") 'company-complete)
-
-      (local-set-key (kbd "C-c c") 'compile)
-      (local-set-key (kbd "C-c C-c") 'recompile)
 
       (local-set-key [f9]    'ruby-run)
       (local-set-key [C-f9]  'minitest-verify)
