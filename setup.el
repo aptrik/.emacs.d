@@ -357,7 +357,8 @@
   :commands (dired-jump)
   :config
   (progn
-    (setq dired-details-hidden-string ""
+    (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
+          dired-details-hidden-string ""
           dired-details-hide-link-targets nil
           dired-details-initially-hide nil
           dired-dwim-target t
@@ -367,6 +368,7 @@
           dired-recursive-copies 'always
           dired-recursive-deletes 'top
           wdired-allow-to-change-permissions t)
+
     (use-package dired-x)
     (use-package dired-sort-menu+)
     (use-package dired-details
@@ -379,7 +381,6 @@
       (local-set-key (kbd "T")   'dired-do-touch))
 
     (add-hook 'dired-mode-hook 'setup--dired-mode)
-    (add-hook 'dired-mode-hook 'auto-revert-mode)
 
     (unless (boundp 'dired-guess-shell-alist-user)
       (setq dired-guess-shell-alist-user '()))
