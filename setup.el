@@ -17,6 +17,16 @@
                  ("M-<delete>" . ahg-status-unmark-all)))))
 
 
+(use-package anaconda-mode
+  :defer t
+  :config
+  (progn
+    (bind-keys anaconda-mode-map
+               '(("M-?" . anaconda-mode-view-doc)
+                 ("M-." . anaconda-mode-goto)
+                 ("M-," . anaconda-nav-pop-marker)))))
+
+
 (use-package arc-mode
   :defer t
   :mode (("\\.egg$" . archive-mode)
@@ -266,13 +276,23 @@
 
 
 (use-package company
-  ;; :init (global-company-mode 1)
-  :diminish company-mode
+  :ensure t
+  :defer t
+  :idle (global-company-mode)
   :config
-  (setq company-idle-delay 0.5
-        company-begin-commands '(self-insert-command)
-        company-show-numbers t)
-  (add-to-list 'company-backends 'company-tern))
+  (progn
+    (bind-key [remap completion-at-point] #'company-complete company-mode-map)
+    (setq company-tooltip-align-annotations t
+          company-show-numbers t)
+    (add-to-list 'company-backends 'company-tern))
+  :diminish company-mode)
+
+
+(use-package company-anaconda
+  :defer t
+  :init
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-anaconda)))
 
 
 (use-package cperl-mode
@@ -896,8 +916,6 @@
 (use-package python
   :init
   (progn
-    (setq jedi:complete-on-dot nil)
-
     (add-hook 'python-mode-hook 'setup--python-mode)
 
     ;; (setenv "PYTHONPATH" (concat (if (getenv "PYTHONPATH") "$PYTHONPATH:" "")
@@ -923,30 +941,18 @@
 
       (modify-syntax-entry ?\_ "_" python-mode-syntax-table)
 
-      (require 'tramp) ;; needed by pep8 and pylint
-      (require 'python-pylint)
-      (require 'python-pep8)
-
-      (flycheck-mode 1)
-
-      ;; (require 'py-autopep8)
-      ;; (add-hook 'before-save-hook 'py-autopep8-before-save)
-
       (require 'sphinx-doc)
       (sphinx-doc-mode 1)
 
-      (auto-complete-mode 1)
-      (jedi:setup)
+      (eldoc-mode 1)
 
-      (bind-keys jedi-mode-map
-                 '(("<C-tab>" . bs-show)
-                   ("<M-tab>" . jedi:complete)
-                   ("M-."     . jedi:goto-definition)
-                   ("C-."     . jedi:complete)
-                   ("M-,"     . jedi:goto-definition-pop-marker)))
+      (anaconda-mode 1)
+      (company-mode 1)
+      (flycheck-mode 1)
 
-      ;;(whitespace-mode 1)
-      ;;(turn-on-eldoc-mode) ; doesn't work with python-mode from https://launchpad.net/python-mode
+      (require 'tramp) ;; needed by pep8 and pylint
+      (require 'python-pylint)
+      (require 'python-pep8)
 
       (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
       (set (make-variable-buffer-local 'indent-tabs-mode) nil)
@@ -957,6 +963,8 @@
                    ("<C-left>"      . subword-backward)
                    ("<C-right>"     . subword-forward)
                    ("<C-backspace>" . subword-backward-kill)))
+
+      (local-set-key (kbd "C-.") 'company-complete)
 
       (local-set-key [f7]   'python-pylint)
       (local-set-key [C-f7] 'python-pep8)
