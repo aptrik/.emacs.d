@@ -105,7 +105,7 @@
   :defer t
   :config
   (progn
-    (european-calendar)
+    (calendar-set-date-style 'iso)
 
     (add-hook 'diary-display-hook          'fancy-diary-display)
     (add-hook 'today-visible-calendar-hook 'calendar-mark-today)
