@@ -467,6 +467,15 @@
   :bind (("M-s f" . find-grep)
          ("M-s g" . grep)
          ("M-s r" . rgrep))
+  :init
+  (progn
+    (setq grep-files-aliases
+      '(("el" .    "*.el")
+        ("c" .     "*.c")
+        ("h" .     "*.h")
+        ("cc" .    "*.hh *.hpp *.cc *.cpp")
+        ("hh" .    "*.hh *.hpp *.cc *.cpp")))
+    )
   :config
   (progn
     (grep-apply-setting 'grep-command "egrep -nH -e ")
