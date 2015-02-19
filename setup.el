@@ -250,21 +250,23 @@
       ;; (c-toggle-hungry-state 1)
       (abbrev-mode 0)
 
-      (auto-complete-mode 1)
-
-      (require 'auto-complete-c-headers)
-      (add-to-list 'ac-sources 'ac-source-c-headers)
-      (when (boundp 'my-gcc-include-directories)
-        (add-to-list 'achead:include-directories my-gcc-include-directories))
+      (setq cppcm-debug t
+            cppcm-build-dirname "target/build-x86_64-linux-6-optimize")
 
       (require 'cpputils-cmake)
       (cppcm-reload-all)
+
+      (require ggtags)
+      (setq-local eldoc-documentation-function #'ggtags-eldoc-function)
+
+      (eldoc-mode 1)
 
       (local-set-key (kbd "C-c C-g")
                      (lambda ()
                        (interactive)
                        (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
 
+      (local-set-key (kbd "C-.") 'company-complete)
       (local-set-key (kbd "C-c o") 'ff-find-other-file)))
   :mode (("\\.[ch]$" . c-mode)
          ("\\.\\(cc\\|hh\\)$" . c++-mode)
@@ -293,6 +295,16 @@
   :init
   (with-eval-after-load 'company
     (add-to-list 'company-backends 'company-anaconda)))
+
+
+(use-package company-c-headers
+  :defer t
+  :init
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-c-headers)))
+;; (add-to-list 'company-c-headers-path-system "/usr/include/boost1.42")
+;; (add-to-list 'company-c-headers-path-system "")
+;; (add-to-list 'company-c-headers-path-system "")
 
 
 (use-package cperl-mode
