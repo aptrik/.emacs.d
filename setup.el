@@ -198,11 +198,11 @@
                            list-close-comma
                            scope-operator))
 
-        (c-offsets-alist . ((access-label          . 0)
+        (c-offsets-alist . ((access-label          . -)
                             (arglist-close         . 0)
                             (arglist-intro         . +)
                             (brace-list-open       . +)
-                            (case-label            . +)
+                            (case-label            . 0)
                             (func-decl-cont        . c-lineup-java-throws)
                             (inher-cont            . c-lineup-java-inher)
                             (inline-open           . 0)
@@ -241,6 +241,7 @@
       (subword-mode 1)
 
       (setup--set-c-style)
+      ;; (google-set-c-style)
 
       (set (make-local-variable 'compile-command)
            (concat "gmake -C " default-directory " all"))
@@ -250,14 +251,15 @@
       ;; (c-toggle-hungry-state 1)
       (abbrev-mode 0)
 
-      (setq cppcm-debug t
-            cppcm-build-dirname "target/build-x86_64-linux-6-optimize")
+      ;; (setq cppcm-debug nil
+      ;;       cppcm-build-dirname "target/build-x86_64-linux-6-optimize")
 
       (require 'cpputils-cmake)
       (cppcm-reload-all)
 
-      (require ggtags)
+      (require 'ggtags)
       (setq-local eldoc-documentation-function #'ggtags-eldoc-function)
+      (ggtags-mode 1)
 
       (eldoc-mode 1)
 
