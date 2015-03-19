@@ -281,10 +281,10 @@
 
 (use-package company
   :ensure t
-  :defer t
-  :idle (global-company-mode)
+  :defer 5
   :config
   (progn
+    (global-company-mode)
     (bind-key [remap completion-at-point] #'company-complete company-mode-map)
     (setq company-tooltip-align-annotations t
           company-show-numbers t)
