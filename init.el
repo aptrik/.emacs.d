@@ -21,7 +21,11 @@
 (require 'pallet)
 (pallet-mode t)
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+
+(require 'bind-key)
+(require 'diminish)
 
 (when (display-graphic-p)
   (exec-path-from-shell-initialize))

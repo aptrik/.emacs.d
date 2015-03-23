@@ -12,19 +12,21 @@
   :config
   (progn
     (add-hook 'ahg-status-mode-hook 'turn-on-truncate-lines)
-    (bind-keys ahg-status-mode-map
-               '(("<tab>" . ahg-status-diff)
-                 ("M-<delete>" . ahg-status-unmark-all)))))
+    (bind-keys
+     :map ahg-status-mode-map
+     ("<tab>" . ahg-status-diff)
+     ("M-<delete>" . ahg-status-unmark-all))))
 
 
 (use-package anaconda-mode
   :defer t
   :config
   (progn
-    (bind-keys anaconda-mode-map
-               '(("M-?" . anaconda-mode-view-doc)
-                 ("M-." . anaconda-mode-goto)
-                 ("M-," . anaconda-nav-pop-marker)))))
+    (bind-keys
+     :map anaconda-mode-map
+     ("M-?" . anaconda-mode-view-doc)
+     ("M-." . anaconda-mode-goto)
+     ("M-," . anaconda-nav-pop-marker))))
 
 
 (use-package arc-mode
@@ -280,7 +282,6 @@
 
 
 (use-package company
-  :ensure t
   :defer 5
   :config
   (progn
@@ -386,9 +387,11 @@
       "diff-mode setup."
       (whitespace-mode 1))
 
-    (bind-keys diff-mode-map '(("w" . diff-ignore-whitespace-hunk)
-                               ("n" . diff-hunk-next)
-                               ("p" . diff-hunk-prev)))))
+    (bind-keys
+     :map diff-mode-map
+     ("w" . diff-ignore-whitespace-hunk)
+     ("n" . diff-hunk-next)
+     ("p" . diff-hunk-prev))))
 
 
 (use-package dired
@@ -573,7 +576,7 @@
 
 
 (use-package iedit
-  :bind (("M-RET" . iedit-mode)))
+  :bind ("M-RET" . iedit-mode))
 
 
 ;; (use-package ido
@@ -605,11 +608,12 @@
        (lambda ()
          (skip-syntax-forward "w_")
          (point)))))
-  (bind-keys isearch-mode-map
-             '(("C-e" . isearch--yank-current-word)
-               ("C-c" . isearch-toggle-case-fold)
-               ("C-t" . isearch-toggle-regexp)
-               ("C-^" . isearch-edit-string))))
+  (bind-keys
+   :map isearch-mode-map
+   ("C-e" . isearch--yank-current-word)
+   ("C-c" . isearch-toggle-case-fold)
+   ("C-t" . isearch-toggle-regexp)
+   ("C-^" . isearch-edit-string)))
 
 
 (use-package ispell
@@ -698,19 +702,20 @@
                      '(("(\\(\\<ert-deftest\\)\\>\\s *\\(\\sw+\\)?"
                         (1 font-lock-keyword-face nil t)
                         (2 font-lock-function-name-face nil t))))))))
-    (bind-keys emacs-lisp-mode-map
-               '(("C-<f9>" . ert-run-tests-interactively)
-                 ("M-&" . lisp-complete-symbol)
-                 ("C-<delete>" . sp-kill-sexp)
-                 ("C-<backspace>" . sp-backward-kill-sexp)
-                 ("C-M-w" . sp-copy-sexp)
-                 ("C-)" . sp-forward-slurp-sexp)
-                 ("C-}" . sp-forward-barf-sexp)
-                 ("C-(" . sp-backward-slurp-sexp)
-                 ("C-{" . sp-backward-barf-sexp)
-                 ("C-M-t" . sp-transpose-sexp)
-                 ("M-q" . sp-indent-defun)))
-
+    (bind-keys
+     :map emacs-lisp-mode-map
+     ("C-<f9>" . ert-run-tests-interactively)
+     ("M-&" . lisp-complete-symbol)
+     ("C-<delete>" . sp-kill-sexp)
+     ("C-<backspace>" . sp-backward-kill-sexp)
+     ("C-M-w" . sp-copy-sexp)
+     ("C-)" . sp-forward-slurp-sexp)
+     ("C-}" . sp-forward-barf-sexp)
+     ("C-(" . sp-backward-slurp-sexp)
+     ("C-{" . sp-backward-barf-sexp)
+     ("C-M-t" . sp-transpose-sexp)
+     ("M-q" . sp-indent-defun))
+    
     (defun setup--emacs-lisp-mode ()
       (add-hook 'after-save-hook 'check-parens nil t)
       (company-mode 1)
@@ -921,8 +926,7 @@
   (progn
     (setq projectile-completion-system 'default)
     (use-package helm-projectile))
-  :bind
-  ("C-c p M" . projectile-mode))
+  :bind ("C-c p M" . projectile-mode))
 
 
 (use-package protobuf-mode
@@ -980,12 +984,13 @@
       (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
       (set (make-variable-buffer-local 'indent-tabs-mode) nil)
 
-      (bind-keys subword-mode-map
-                 '(("<M-left>"      . subword-backward)
-                   ("<M-right>"     . subword-forward)
-                   ("<C-left>"      . subword-backward)
-                   ("<C-right>"     . subword-forward)
-                   ("<C-backspace>" . subword-backward-kill)))
+      (bind-keys
+       :map subword-mode-map
+       ("<M-left>"      . subword-backward)
+       ("<M-right>"     . subword-forward)
+       ("<C-left>"      . subword-backward)
+       ("<C-right>"     . subword-forward)
+       ("<C-backspace>" . subword-backward-kill))
 
       (local-set-key (kbd "C-.") 'company-complete)
 
@@ -1148,7 +1153,7 @@
 
 
 (use-package smooth-scrolling
-  :ensure t)
+  )
 
 
 (use-package speedbar

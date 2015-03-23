@@ -55,10 +55,6 @@
   (list 'if (display-graphic-p)
         (cons 'progn x)))
 
-(defun bind-keys (keymap keydefs)
-  (loop for (key-name . command) in keydefs
-        do (bind-key key-name command keymap)))
-
 (defun buffer-file-name-body ()
   "Buffer file name stripped of directory and extension."
   (if (buffer-file-name)
