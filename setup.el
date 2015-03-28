@@ -715,7 +715,7 @@
      ("C-{" . sp-backward-barf-sexp)
      ("C-M-t" . sp-transpose-sexp)
      ("M-q" . sp-indent-defun))
-    
+
     (defun setup--emacs-lisp-mode ()
       (add-hook 'after-save-hook 'check-parens nil t)
       (company-mode 1)
@@ -1294,21 +1294,21 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package yasnippet
-  :defer t
-  :commands (snippet-mode)
+  :diminish yas-minor-mode
+  :commands (snippet-mode yas-expand yas-minor-mode)
+  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :init
+  (progn
+    (setq yas-verbosity 0)
+    (yas-global-mode 1)
+    (setq-default yas-prompt-functions
+                  '(yas/ido-prompt yas/completing-prompt)))
   :config
   (progn
-    (setq yas-verbosity 1
-          yas-wrap-around-region t
-          yas-fallback-behavior 'return-nil)
-    (setq-default yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-    (bind-key "<return>" 'yas-exit-all-snippets yas-keymap)
     (load "snippet-helpers")
     (let ((snippets-dir (expand-file-name "snippets" user-emacs-directory)))
       (yas-load-directory snippets-dir)
-      (setq yas-snippet-dirs snippets-dir)))
-  :bind (("C-'" . yas-expand-from-trigger-key)
-         ("C-*" . yas-insert-snippet)))
+      (setq yas-snippet-dirs snippets-dir))))
 
 
 (provide 'setup)
