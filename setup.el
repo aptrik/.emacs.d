@@ -259,7 +259,6 @@
       (require 'cpputils-cmake)
       (cppcm-reload-all)
 
-      (require 'ggtags)
       (setq-local eldoc-documentation-function #'ggtags-eldoc-function)
       (ggtags-mode 1)
 
@@ -473,6 +472,11 @@
     ;; Cannot wrap and have framemove do its thing at the same time.
     (setq windmove-wrap-around nil
           framemove-hook-into-windmove t)))
+
+
+(use-package ggtags
+  :commands ggtags-mode
+  :diminish ggtags-mode)
 
 
 (use-package gradle-mode
