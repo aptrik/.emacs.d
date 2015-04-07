@@ -693,9 +693,24 @@
     (use-package elisp-slime-nav
       :diminish elisp-slime-nav-mode
       :init (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
+    (use-package elint
+      :commands 'elint-initialize
+      :preface
+      (defun elint-current-buffer ()
+        (interactive)
+        (elint-initialize)
+        (elint-current-buffer))
+      :bind ("C-c e E" . elint-current-buffer)
+      :config
+      (add-to-list 'elint-standard-variables 'current-prefix-arg)
+      (add-to-list 'elint-standard-variables 'command-line-args-left)
+      (add-to-list 'elint-standard-variables 'buffer-file-coding-system)
+      (add-to-list 'elint-standard-variables 'emacs-major-version)
+      (add-to-list 'elint-standard-variables 'window-system))
     (use-package ert
       :defer t
       :commands ert-run-tests-interactively
+      :bind ("C-c e t" . ert-run-tests-interactively)
       :config
       (progn
         (put 'ert-deftest 'lisp-indent-function 'defun)
@@ -727,6 +742,10 @@
 
     (add-hook 'emacs-lisp-mode-hook 'setup--emacs-lisp-mode))
   :mode ("Cask" . emacs-lisp-mode))
+
+
+(use-package macrostep
+  :bind ("C-c e m" . macrostep-expand))
 
 
 (use-package magit
