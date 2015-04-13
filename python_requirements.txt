@@ -2,3 +2,6 @@ argparse
 epc
 jedi>=0.5b4
 json-rpc
+pep8-naming
+pyflake
+pylint
