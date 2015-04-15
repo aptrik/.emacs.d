@@ -57,12 +57,16 @@ Example `~/.emacs.d/user.el`:
 
 ## Install Emacs
 
+<aside class="notice">
+Do not forget to run `cask install` after changing Emacs version.
+</aside>
+
 ### GNU/Linux
 
-    $ wget http://ftpmirror.gnu.org/emacs/emacs-24.4.tar.gz
-    $ tar xfz emacs-24.4.tar.gz
-    $ cd emacs-24.4
-    $ ./configure --prefix=$HOME/tools/emacs-24.4 --without-toolkit-scroll-bars
+    $ wget http://ftpmirror.gnu.org/emacs/emacs-24.5.tar.gz
+    $ tar xfz emacs-24.5.tar.gz
+    $ cd emacs-24.5
+    $ ./configure --prefix=$HOME/tools/emacs-24.5 --without-toolkit-scroll-bars
     $ make
     $ ./src/emacs -q
     $ make install
