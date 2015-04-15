@@ -57,9 +57,7 @@ Example `~/.emacs.d/user.el`:
 
 ## Install Emacs
 
-<aside class="notice">
-Do not forget to run `cask install` after changing Emacs version.
-</aside>
+NOTE: Do not forget to run `cask install` after changing Emacs version.
 
 ### GNU/Linux
 
