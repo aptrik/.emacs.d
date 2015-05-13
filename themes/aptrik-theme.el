@@ -21,8 +21,8 @@
  `(region ((t (:foreground "black" :background "#b5d5ff"))))
 
  `(success ((t (:foreground "green"))))
- `(warning ((t (:foreground "yellow"))))
- `(error ((t (:foreground "orange"))))
+ `(warning ((t (:foreground "orange"))))
+ `(error ((t (:foreground "red"))))
 
  ;; comint
  `(comint-highlight-input ((t (:bold t))))
