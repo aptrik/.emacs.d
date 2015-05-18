@@ -752,9 +752,10 @@
   :defer t
   :config
   (progn
-    (setq magit-status-buffer-switch-function 'switch-to-buffer
+    (setq magit-auto-revert-mode nil
+          magit-diff-refine-hunk t
           magit-restore-window-configuration t
-          magit-diff-refine-hunk nil)
+          magit-status-buffer-switch-function 'switch-to-buffer)
     (use-package magit-blame)
     (defadvice magit-diff-working-tree (after magit-diff-focus activate)
       "After execution, select the magit-diff buffer in the current window."
