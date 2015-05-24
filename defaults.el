@@ -57,6 +57,7 @@
  print-escape-newlines           t
  save-abbrevs                    nil
  scroll-conservatively           0
+ scroll-preserve-screen-position 'always
  scroll-step                     0
  sentence-end                    "[.?!][]\"')]*\\($\\|\t\\| \\)[ \t\n]*"
  sentence-end-double-space       nil ; make M-[ae] work
