@@ -217,15 +217,15 @@ Bound to `\\[match-paren]'."
                          nil default-directory nil)))
   (setq directory (file-name-as-directory (file-truename directory)))
   (cond
-   ((file-readable-p (concat directory "CVS"))
-    (cvs-examine directory nil))
+   ((or (file-readable-p (concat directory ".git"))
+        (locate-dominating-file directory ".git"))
+    (magit-status directory))
    ((or (file-readable-p (concat directory ".hg"))
         (locate-dominating-file directory ".hg"))
     (let ((default-directory directory))
       (ahg-status)))
-   ((or (file-readable-p (concat directory ".git"))
-        (locate-dominating-file directory ".git"))
-    (magit-status directory))
+   ((file-readable-p (concat directory "CVS"))
+    (cvs-examine directory nil))
    (t
     (message "*** No version control system found for directory: %s" directory))))
 
