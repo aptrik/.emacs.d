@@ -94,13 +94,11 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
 
 ### Mac OS
 
-    $ brew install emacs --cocoa --srgb --with-gnutls
-    $ brew linkapps
+    $ brew install emacs --srgb --with-cocoa --with-gnutls && brew linkapps
 
 Or the bleeding edge version.
 
-    $ brew install emacs --cocoa --use-git-head --HEAD --srgb --with-gnutls
-    $ brew linkapps
+    $ brew install emacs --srgb --with-cocoa --with-gnuls --use-git-head --HEAD && brew linkapps
 
 
 ## Emacs Help
