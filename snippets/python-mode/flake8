@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: flake8 ignore
+# --
+# flake8: ${1:noqa}
