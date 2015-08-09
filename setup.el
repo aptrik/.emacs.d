@@ -754,9 +754,10 @@
   (progn
     (setq magit-auto-revert-mode nil
           magit-diff-refine-hunk t
+          magit-last-seen-setup-instructions "2.1.0"
+          magit-push-always-verify nil
           magit-restore-window-configuration t
           magit-status-buffer-switch-function 'switch-to-buffer)
-    (setq magit-last-seen-setup-instructions "1.4.0")
     (use-package magit-blame)
     (defadvice magit-diff-working-tree (after magit-diff-focus activate)
       "After execution, select the magit-diff buffer in the current window."
