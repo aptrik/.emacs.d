@@ -1305,6 +1305,10 @@ This is used to set `sql-alternate-buffer-name' within
                        "&words=") ""])))))
 
 
+(use-package wgrep
+  )
+
+
 (use-package woman
   :config
   (progn
