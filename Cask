@@ -77,6 +77,7 @@
 (depends-on "rainbow-mode")
 (depends-on "rbenv")
 (depends-on "request")
+(depends-on "restclient")
 (depends-on "robe")
 (depends-on "ruby-block")
 (depends-on "ruby-end")
