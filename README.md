@@ -74,6 +74,10 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
     $ sudo yum-builddep emacs
     $ sudo yum install libtiff-devel giflib-devel libotf-devel m17n-lib-devel
 
+#### Fedora
+
+    $ sudo dnf builddep emacs
+
 #### Ubuntu/LinuxMint dependencies
 
     $ sudo apt-get build-dep emacs24
