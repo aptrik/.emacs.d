@@ -769,6 +769,17 @@
   :mode (("README\\.md$" . gfm-mode)))
 
 
+(use-package neotree
+  :config
+  (setq neo-auto-indent-point t
+        neo-show-hidden-files nil
+        neo-modern-sidebar t
+        neo-smart-open t
+        neo-theme 'nerd
+        neo-window-width 35)
+  :bind ("s-q" . neotree-toggle))
+
+
 (use-package nuke-whitespace
   :config
   (progn
