@@ -479,6 +479,12 @@
   :diminish ggtags-mode)
 
 
+(use-package gitconfig-mode
+  :mode (("/gitconfig$" . gitconfig-mode)))
+
+(use-package gitignore-mode
+  :mode (("/gitignore$" . gitignore-mode)))
+
 (use-package gradle-mode
   :mode ("\\.gradle$" . gradle-mode))
 
