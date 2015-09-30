@@ -19,14 +19,7 @@
 
 
 (use-package anaconda-mode
-  :defer t
-  :config
-  (progn
-    (bind-keys
-     :map anaconda-mode-map
-     ("M-?" . anaconda-mode-view-doc)
-     ("M-." . anaconda-mode-goto)
-     ("M-," . anaconda-nav-pop-marker))))
+  )
 
 
 (use-package arc-mode
@@ -1004,21 +997,20 @@
       (compile (format "python \"%s\"" (buffer-file-name))))
 
     (defun setup--python-mode ()
-      (which-function-mode 1)
-      (subword-mode 1)
-
       ;;(setq py-python-command-args '( "-colors" "Linux"))
 
       (modify-syntax-entry ?\_ "_" python-mode-syntax-table)
 
-      (require 'sphinx-doc)
-      (sphinx-doc-mode 1)
-
-      (eldoc-mode 1)
-
+      (subword-mode 1)
+      (which-function-mode 1)
       (anaconda-mode 1)
+      (eldoc-mode 1)
       (company-mode 1)
       (flycheck-mode 1)
+      (idle-highlight-mode 1)
+
+      (require 'sphinx-doc)
+      (sphinx-doc-mode 1)
 
       (require 'tramp) ;; needed by pep8 and pylint
       (require 'python-pylint)
