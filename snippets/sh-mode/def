@@ -1,5 +1,5 @@
-# -*- mode: snippet -*-
-#name : function
+# -*- mode: snippet; require-final-newline: nil -*-
+# name : function
 # --
 function ${1:name}() {
   $0
