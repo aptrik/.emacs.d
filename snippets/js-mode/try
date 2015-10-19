@@ -3,6 +3,7 @@
 # key: try
 # --
 try {
-    $0
-} catch (e) {
+  $0
+}
+catch (e) {
 }

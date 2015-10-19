@@ -1,4 +1,5 @@
 # -*- mode: snippet -*-
 # name: super
 # --
-super(${class}, ${self}).${method}($0)
+super(`(replace-regexp-in-string "\\([.]\\)[^.]+$" ", self)." (python-info-current-defun) nil nil 1)`($1)
+$0
