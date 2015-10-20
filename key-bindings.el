@@ -68,7 +68,7 @@
 
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
-(global-set-key (kbd "C-x C-q") 'toggle-read-only)
+(global-set-key (kbd "C-x C-q") 'read-only-mode)
 (global-set-key (kbd "C-x C-r") 'revert-buffer)
 (global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
