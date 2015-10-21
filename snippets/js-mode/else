@@ -1,9 +1,6 @@
 # -*- mode: snippet -*-
-# name: try
+# name: else
 # --
-try {
+else {
   $0
-}
-catch (e) {
-  
 }

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: function
 # --
-function ${1:`(snippet--function-name)`}($2) {
+function ${1:`(snippet--function-name)`}($2:args) {
   $0
 }`(snippet--function-punctuation)`
