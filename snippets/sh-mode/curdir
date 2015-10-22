@@ -1,4 +1,4 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: scriptdir
+# name: curdir
 # --
-cd "$( dirname "\${BASH_SOURCE[0]}" )"
+curdir=\$(dirname "\$(readlink -f "\${BASH_SOURCE[0]}")")
