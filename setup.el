@@ -536,8 +536,8 @@
 (use-package hl-line
   :init
   (progn
-    (use-package hl-line+)
-    (global-hl-line-mode t)))
+    (use-package hl-line+)))
+    ;;(global-hl-line-mode t)))
 
 
 (use-package hl-tags-mode
