@@ -9,6 +9,7 @@
 (depends-on "ahg")
 (depends-on "alert")
 (depends-on "anaconda-mode")
+(depends-on "beacon")
 (depends-on "bookmark+")
 (depends-on "browse-kill-ring")
 (depends-on "buffer-move")
