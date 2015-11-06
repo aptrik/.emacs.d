@@ -45,6 +45,5 @@
 (load custom-file 'noerror)
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-(load-theme 'aptrik t)
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
