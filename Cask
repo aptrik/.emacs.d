@@ -94,6 +94,7 @@
 (depends-on "scss-mode")
 (depends-on "smartparens")
 (depends-on "smooth-scrolling")
+(depends-on "solarized-theme")
 (depends-on "sphinx-doc")
 (depends-on "sx")
 (depends-on "syslog-mode")
