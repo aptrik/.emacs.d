@@ -24,7 +24,7 @@
 (depends-on "cpputils-cmake")
 (depends-on "diff-hl")
 (depends-on "dired+")
-(depends-on "dired-details")
+(depends-on "dired-details+")
 (depends-on "dired-sort-menu+")
 (depends-on "dockerfile-mode")
 (depends-on "elisp-slime-nav")
