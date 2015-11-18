@@ -9,7 +9,7 @@
 (dolist (mode '(tool-bar-mode tooltip-mode))
   (when (fboundp mode) (funcall mode -1)))
 (when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode 'right))
+  (set-scroll-bar-mode nil))
 
 (setq inhibit-splash-screen t
       inhibit-startup-message t
