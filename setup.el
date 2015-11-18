@@ -76,7 +76,8 @@
                                "\\|Completions"
                                "\\)\\*")))
   :bind (("C-<escape>" . bs-show)
-         ("C-<tab>" . bs-show)))
+         ("C-<tab>" . bs-show)
+         ("C-x C-b" . bs-show)))
 
 
 (use-package buffer-move
