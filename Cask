@@ -25,6 +25,7 @@
 (depends-on "dired-details+")
 (depends-on "dired-sort-menu")
 (depends-on "dired-sort-menu+")
+(depends-on "dired-subtree")
 (depends-on "docker")
 (depends-on "dockerfile-mode")
 (depends-on "elisp-slime-nav")
