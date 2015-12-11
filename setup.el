@@ -456,6 +456,11 @@
          ("C-?" . er/contract-region)))
 
 
+(use-package flycheck
+  :config
+  (setq flycheck-pylint-use-symbolic-id nil))
+
+
 (use-package find-dired
   :bind (("M-s D" . find-dired)
          ("M-s d" . find-grep-dired)
