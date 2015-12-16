@@ -79,6 +79,7 @@
 (depends-on "projectile")
 (depends-on "protobuf-mode")
 (depends-on "py-autopep8")
+(depends-on "py-yapf")
 (depends-on "python")
 (depends-on "python-pep8")
 (depends-on "python-pylint")
