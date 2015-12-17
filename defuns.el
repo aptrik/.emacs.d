@@ -876,3 +876,11 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 
 
 ;;-----------------------------------------------------------------------------
+
+(defun set-transparency (onfocus notfocus)
+  "Set the transparency for emacs. Values are from 0 - 100"
+  (interactive "nOn Focus: \nnOn Unfocus: ")
+  (set-frame-parameter (selected-frame)
+                       'alpha (list onfocus notfocus)))
+
+;;-----------------------------------------------------------------------------
