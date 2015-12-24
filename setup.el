@@ -639,7 +639,9 @@
   (setq ispell-program-name "aspell"
         ispell-local-dictionary "english"
         ispell-silently-savep t
-        ispell-help-in-bufferp 'electric))
+        ispell-help-in-bufferp 'electric)
+  (when macosp
+    (setq ispell-program-name "/usr/local/bin/aspell")))
 
 
 ;; (use-package java-mode

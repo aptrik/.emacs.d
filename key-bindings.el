@@ -1,17 +1,11 @@
 (when macosp
-  ;; mac-function-modifier
-  ;; mac-control-modifier
-  ;; mac-command-modifier
-  ;; mac-option-modifier
-  ;; mac-right-command-modifier
-  ;; mac-right-control-modifier
-  ;; mac-right-option-modifier
+  (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier nil) ;; need it for typing $, accented characters etc.
-  (setq mac-right-command-modifier 'super))
+  (setq ns-function-modifier 'hyper))
 
 (global-unset-key (kbd "C-x C-c"))
-(global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-terminal)
+(global-set-key (kbd "C-x C-c") 'delete-frame)
+(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 (global-unset-key (kbd "C-x m")) ; disable sendmail
 
