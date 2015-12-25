@@ -23,7 +23,8 @@
 (global-set-key (kbd "s-9") "]")
 
 (global-set-key (kbd "C-s-j") 'join-line-or-lines-in-region)
-(global-set-key (kbd "s-j")   (lambda () (interactive) (join-line -1)))
+(global-set-key (kbd "s-J")   (lambda () (interactive) (join-line 1)))
+(global-set-key (kbd "s-j")   'delete-indentation)
 
 (global-set-key (kbd "s-S") 'sort-fields)
 (global-set-key (kbd "s-s") 'sort-lines)
