@@ -282,25 +282,16 @@
     (bind-key [remap completion-at-point] #'company-complete company-mode-map)
     (setq company-tooltip-align-annotations t
           company-show-numbers t)
+
+    (use-package ac-js2)
+    (use-package company-anaconda)
+    (use-package company-c-headers)
+
+    (add-to-list 'company-backends 'ac-js2-company)
+    (add-to-list 'company-backends 'company-anaconda)
+    (add-to-list 'company-backends 'company-c-headers)
     (add-to-list 'company-backends 'company-tern))
   :diminish company-mode)
-
-
-(use-package company-anaconda
-  :defer t
-  :init
-  (with-eval-after-load 'company
-    (add-to-list 'company-backends 'company-anaconda)))
-
-
-(use-package company-c-headers
-  :defer t
-  :init
-  (with-eval-after-load 'company
-    (add-to-list 'company-backends 'company-c-headers)))
-;; (add-to-list 'company-c-headers-path-system "/usr/include/boost1.42")
-;; (add-to-list 'company-c-headers-path-system "")
-;; (add-to-list 'company-c-headers-path-system "")
 
 
 (use-package cperl-mode
@@ -682,10 +673,17 @@
      js2-skip-preprocessor-directives t
      js2-use-font-lock-faces t)
 
+    (use-package angular-mode)
+    (use-package js2-refactor
+      :config
+      (js2r-add-keybindings-with-prefix "C-c C-m")
+      :diminish js2-refactor-mode)
+
     (defun setup--js2-mode ()
       (subword-mode 1)
       (flycheck-mode 1)
       (company-mode 1)
+      (js2-refactor-mode 1)
       (local-set-key (kbd "C-.") 'company-complete))
 
     (add-hook 'js2-mode-hook 'setup--js2-mode))
