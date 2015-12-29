@@ -36,6 +36,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "feature-mode")
+(depends-on "find-file-in-project")
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "framemove")

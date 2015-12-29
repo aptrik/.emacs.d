@@ -20,6 +20,8 @@
 /image-dired/
 /org-clock-save.el
 /private.el
+/projectile-bookmarks.eld
+/projectile.cache
 /request/*
 /saveplace
 /session.*

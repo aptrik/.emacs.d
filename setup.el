@@ -447,15 +447,21 @@
          ("C-?" . er/contract-region)))
 
 
-(use-package flycheck
-  :config
-  (setq flycheck-pylint-use-symbolic-id nil))
-
-
 (use-package find-dired
   :bind (("M-s D" . find-dired)
          ("M-s d" . find-grep-dired)
          ("M-s n" . find-name-dired)))
+
+
+(use-package find-file-in-project
+  :init
+  (setq ffip-prefer-ido-mode nil)
+  :bind (("C-x f" . find-file-in-project)))
+
+
+(use-package flycheck
+  :config
+  (setq flycheck-pylint-use-symbolic-id nil))
 
 
 (use-package framemove
@@ -965,13 +971,17 @@
 
 
 (use-package projectile
-  :defer t
+  :init (projectile-global-mode 1)
   :commands (projectile-mode helm-projectile)
   :config
   (progn
-    (setq projectile-completion-system 'default)
+    (setq projectile-completion-system 'ivy
+          projectile-enable-caching t
+          projectile-require-project-root t)
+    (add-to-list 'projectile-globally-ignored-files ".DS_Store")
     (use-package helm-projectile))
-  :bind ("C-c p M" . projectile-mode))
+  :bind ("C-c p M" . projectile-mode)
+  :diminish projectile-mode)
 
 
 (use-package protobuf-mode
