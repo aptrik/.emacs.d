@@ -850,7 +850,7 @@
   :defer t
   :init
   (setq org-replace-disputed-keys t
-        org-export-backends '(ascii html md latex)) ; '(ascii html icalendar latex))
+        org-export-backends '(ascii html md))
   :config
   (progn
     (setq
