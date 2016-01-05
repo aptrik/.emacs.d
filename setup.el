@@ -31,6 +31,13 @@
     (add-hook 'archive-mode-hook 'turn-on-truncate-lines)))
 
 
+(use-package avoid
+  :commands mouse-avoidance-mode
+  :defer 2
+  :config
+  (mouse-avoidance-mode 'exile))
+
+
 (use-package bookmark
   :defer t
   :config
