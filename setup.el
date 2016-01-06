@@ -687,6 +687,8 @@
      js2-use-font-lock-faces t)
 
     (use-package angular-mode)
+    (use-package js2-highlight-vars
+      :diminish js2-highlight-vars-mode)
     (use-package js2-refactor
       :config
       (js2r-add-keybindings-with-prefix "C-c C-m")

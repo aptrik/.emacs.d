@@ -63,6 +63,7 @@
 (depends-on "iedit")
 (depends-on "inf-ruby")
 (depends-on "js-comint")
+(depends-on "js2-highlight-vars")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "json-mode")
