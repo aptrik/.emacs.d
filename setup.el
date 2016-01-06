@@ -756,7 +756,11 @@
      ("C-(" . sp-backward-slurp-sexp)
      ("C-{" . sp-backward-barf-sexp)
      ("C-M-t" . sp-transpose-sexp)
-     ("M-q" . sp-indent-defun))
+     ("M-q" . sp-indent-defun)
+     ("C-c e E" . toggle-debug-on-error)
+     ("C-c e e" . eval-last-sexp)
+     ("C-c e m" . macrostep-expand)
+     ("C-c e r" . eval-region))
 
     (defun setup--emacs-lisp-mode ()
       (add-hook 'after-save-hook 'check-parens nil t)

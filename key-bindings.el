@@ -34,9 +34,6 @@
 (global-set-key (kbd "C-c |") 'align-regexp)
 
 (global-unset-key (kbd "C-c e"))
-(global-set-key (kbd "C-c e e") 'toggle-debug-on-error)
-(global-set-key (kbd "C-c e m") 'macrostep-expand)
-(global-set-key (kbd "C-c e r") 'eval-region)
 (global-set-key (kbd "C-c e s") 'give-me-a-scratch-buffer-now)
 
 (global-unset-key (kbd "C-c i"))
