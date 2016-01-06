@@ -76,6 +76,7 @@
 (depends-on "move-text")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
+(depends-on "nodejs-repl")
 (depends-on "notmuch")
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
