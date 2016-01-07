@@ -705,12 +705,12 @@
       (local-set-key (kbd "C-.") 'company-complete)
       (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp)
 
+      (local-unset-key (kbd "C-c e"))
       (local-set-key (kbd "C-c e e") 'nodejs-repl-send-last-sexp)
       (local-set-key (kbd "C-c e n") 'nodejs-repl)
       (local-set-key (kbd "C-c e q") 'nodejs-repl-quit-or-cancel)
       (local-set-key (kbd "C-c e r") 'nodejs-repl-send-region)
       (local-set-key (kbd "C-c e v") 'nodejs-repl-switch-to-repl))
-      (local-unset-key (kbd "C-c e"))
 
     (add-hook 'js2-mode-hook 'setup--js2-mode))
   :mode (("\\.js$" . js2-mode)
