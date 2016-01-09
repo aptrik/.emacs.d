@@ -419,12 +419,17 @@
     (use-package dired-sort-menu+)
     (use-package dired-details
       :config (dired-details-install))
+    (use-package dired+
+      :init
+      (setq diredp-hide-details-initially-flag nil))
+    (use-package dired-details+)
     (use-package dired-subtree
       :config (setq dired-subtree-line-prefix "  "))
 
     (defun setup--dired-mode ()
       (dired-omit-mode 1)
       (turn-on-truncate-lines)
+      (set (make-variable-buffer-local 'font-lock-maximum-decoration) nil)
       (local-set-key (kbd "M-o") 'dired-omit-mode)
       (local-set-key (kbd "T") 'dired-do-touch)
       (local-set-key (kbd "I") 'dired-subtree-toggle))
