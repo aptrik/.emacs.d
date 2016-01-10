@@ -666,6 +666,12 @@
     (setq ispell-program-name "/usr/local/bin/aspell")))
 
 
+(use-package ivy
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1))
+
+
 ;; (use-package java-mode
 ;;   :config
 ;;   (progn
@@ -809,6 +815,7 @@
   :config
   (progn
     (setq magit-auto-revert-mode nil
+          magit-completing-read-function 'ivy-completing-read
           magit-diff-refine-hunk t
           magit-last-seen-setup-instructions "2.1.0"
           magit-push-always-verify nil
