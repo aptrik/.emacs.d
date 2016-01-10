@@ -35,7 +35,7 @@
   :commands mouse-avoidance-mode
   :defer 2
   :config
-  (mouse-avoidance-mode 'exile))
+  (mouse-avoidance-mode 'none))
 
 
 (use-package bookmark
