@@ -306,6 +306,7 @@
     (use-package ac-js2)
     (use-package company-anaconda)
     (use-package company-c-headers)
+    (use-package company-tern)
 
     (add-to-list 'company-backends 'ac-js2-company)
     (add-to-list 'company-backends 'company-anaconda)
@@ -717,6 +718,11 @@
       (js2r-add-keybindings-with-prefix "C-c C-m")
       :diminish js2-refactor-mode)
     (use-package nodejs-repl)
+    (use-package tern)
+
+    (defun delete-tern-process ()
+      (interactive)
+      (delete-process "Tern"))
 
     (defun setup--js2-mode ()
       (subword-mode 1)
