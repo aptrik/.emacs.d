@@ -711,8 +711,7 @@
      js2-use-font-lock-faces t)
 
     (use-package angular-mode)
-    (use-package js2-highlight-vars
-      :diminish js2-highlight-vars-mode)
+    (use-package js2-highlight-vars)
     (use-package js2-refactor
       :config
       (js2r-add-keybindings-with-prefix "C-c C-m")
@@ -724,7 +723,7 @@
       (flycheck-mode 1)
       (company-mode 1)
       (js2-refactor-mode 1)
-      (js2-highlight-vars-mode 1)
+      ;;(js2-highlight-vars-mode 1)
 
       (local-set-key (kbd "C-.") 'company-complete)
       (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp)
