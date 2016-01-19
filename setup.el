@@ -819,8 +819,7 @@
   :defer t
   :config
   (progn
-    (setq magit-auto-revert-mode nil
-          ;; magit-completing-read-function 'ivy-completing-read
+    (setq ;; magit-completing-read-function 'ivy-completing-read
           magit-diff-refine-hunk t
           magit-last-seen-setup-instructions "2.1.0"
           magit-push-always-verify nil
