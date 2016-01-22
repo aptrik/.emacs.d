@@ -698,13 +698,13 @@
   (progn
     (setq-default
      js2-global-externs
-     '("module" "require" "buster" "sinon" "assert" "refute"
+     '("module" "require" "assert" "refute"
        "setTimeout" "clearTimeout" "setInterval" "clearInterval"
        "location" "__dirname" "console" "JSON")
      js2-additional-externs
      '("$" "unsafeWindow" "localStorage" "jQuery"
        "setTimeout" "setInterval" "location" "console")
-     js2-strict-missing-semi-warning nil
+     js2-strict-missing-semi-warning t
      js2-strict-trailing-comma-warning t)
     (setq
      js2-basic-offset 4
