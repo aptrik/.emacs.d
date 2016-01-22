@@ -690,6 +690,7 @@
 
 (use-package js2-mode
   :defer t
+  :mode "\\.js$"
   :init
   (progn
     (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode)))
@@ -741,9 +742,21 @@
       (local-set-key (kbd "C-c e r") 'nodejs-repl-send-region)
       (local-set-key (kbd "C-c e v") 'nodejs-repl-switch-to-repl))
 
-    (add-hook 'js2-mode-hook 'setup--js2-mode))
-  :mode (("\\.js$" . js2-mode)
-         ("\\.json$" . javascript-mode)))
+    (add-hook 'js2-mode-hook 'setup--js2-mode)))
+
+
+(use-package json-mode
+  :defer t
+  :config
+  (progn
+    (setf json-reformat:pretty-string? t
+          json-reformat:indent-width 2)
+    (define-key json-mode-map (kbd "M-q")
+      (lambda ()
+        (interactive)
+        (if (region-active-p)
+            (call-interactively #'json-reformat-region)
+          (json-reformat-region (point-min) (point-max)))))))
 
 
 (use-package lisp-mode
