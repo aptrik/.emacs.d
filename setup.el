@@ -720,6 +720,8 @@
       :diminish js2-refactor-mode)
     (use-package nodejs-repl)
     (use-package tern)
+    (use-package web-beautify
+      :commands (web-beautify-js web-beautify-js-buffer))
 
     (defun delete-tern-process ()
       (interactive)
@@ -734,6 +736,7 @@
 
       (local-set-key (kbd "C-.") 'company-complete)
       (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp)
+      (local-set-key (kbd "M-q") 'web-beautify-js)
 
       (local-unset-key (kbd "C-c e"))
       (local-set-key (kbd "C-c e e") 'nodejs-repl-send-last-sexp)
