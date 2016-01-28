@@ -718,6 +718,7 @@
       :config
       (js2r-add-keybindings-with-prefix "C-c C-m")
       :diminish js2-refactor-mode)
+    (use-package karma)
     (use-package nodejs-repl)
     (use-package tern)
     (use-package web-beautify
@@ -732,6 +733,7 @@
       (flycheck-mode 1)
       (company-mode 1)
       (js2-refactor-mode 1)
+      (karma-mode 1)
       ;;(js2-highlight-vars-mode 1)
 
       (local-set-key (kbd "C-.") 'company-complete)
