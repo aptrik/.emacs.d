@@ -101,7 +101,8 @@
     (setq calc-display-trail nil)
     (add-hook 'calc-mode-hook
               (lambda ()
-                (local-set-key [kp-separator] 'calcDigit-start)))))
+                (local-set-key [kp-separator] 'calcDigit-start))))
+  :bind (("C-=" . calc)))
 
 
 (use-package calendar
