@@ -1414,7 +1414,8 @@ This is used to set `sql-alternate-buffer-name' within
           web-mode-enable-part-face t
           web-mode-disable-css-colorization nil
           web-mode-disable-auto-pairing nil))
-  :mode (("\\.rhtml$" . web-mode)
+  :mode (("\\.html$" . web-mode)
+         ("\\.rhtml$" . web-mode)
          ("\\.\\(php\\|inc\\)$" . web-mode)))
 
 
