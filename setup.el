@@ -709,6 +709,7 @@
     (setq
      js2-basic-offset 4
      js2-highlight-level 3
+     js2-indent-switch-body t
      js2-skip-preprocessor-directives t
      js2-use-font-lock-faces t)
 
