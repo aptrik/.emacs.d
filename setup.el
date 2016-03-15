@@ -1109,6 +1109,7 @@
       (which-function-mode 1)
       (anaconda-mode 1)
       (eldoc-mode 1)
+      (turn-on-anaconda-eldoc-mode)
       (company-mode 1)
       (flycheck-mode 1)
       (idle-highlight-mode 1)
