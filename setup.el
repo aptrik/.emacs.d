@@ -1378,6 +1378,32 @@ This is used to set `sql-alternate-buffer-name' within
       (sql-rename-buffer))))
 
 
+(use-package term
+  :config
+  (progn
+    (defadvice ansi-term (before force-bash)
+      (interactive (list "/bin/bash")))
+    (defadvice term (before force-bash)
+      (interactive (list "/bin/bash")))
+    (ad-activate 'ansi-term)
+    (ad-activate 'term)
+
+    (defun setup--term-paste (&optional string)
+      (interactive)
+      (process-send-string
+       (get-buffer-process (current-buffer))
+       (if string string (current-kill 0))))
+
+    (defun setup--term ()
+      (goto-address-mode))
+      ;; (define-key term-raw-map (kbd "M-o") 'other-window)
+      ;; (define-key term-raw-map (kbd "M-p") 'term-send-up)
+      ;; (define-key term-raw-map (kbd "M-n") 'term-send-down)
+      ;; (define-key term-raw-map (kbd "C-y") 'setup--term-paste))
+
+    (add-hook 'term-mode-hook 'setup--term)))
+
+
 (use-package time
   :config
   (setq display-time-world-time-format "%Y-%m-%d %H:%M %Z"
