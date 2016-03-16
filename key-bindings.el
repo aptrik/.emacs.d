@@ -1,7 +1,7 @@
 (when macosp
-  (setq mac-option-modifier 'super)
-  (setq mac-command-modifier 'meta)
-  (setq ns-function-modifier 'hyper))
+  (setq mac-option-modifier 'super
+        mac-command-modifier 'meta
+        ns-function-modifier 'hyper))
 
 (global-unset-key (kbd "C-x C-c"))
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)

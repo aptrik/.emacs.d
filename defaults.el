@@ -96,6 +96,9 @@
 (cua-mode 1)
 
 
+(add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
+
+
 ;;; File hooks.
 (add-hook 'find-file-hook 'find-file--follow-symlink)
 (add-hook 'after-save-hook
