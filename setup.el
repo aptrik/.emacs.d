@@ -868,6 +868,10 @@
   :mode (("README\\.md$" . gfm-mode)))
 
 
+(use-package multi-line
+  :bind ("s-," . multi-line))
+
+
 (use-package neotree
   :config
   (setq neo-auto-indent-point t

@@ -75,6 +75,7 @@
 (depends-on "matlab-mode")
 (depends-on "minitest")
 (depends-on "move-text")
+(depends-on "multi-line")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
 (depends-on "nodejs-repl")
