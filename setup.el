@@ -778,6 +778,15 @@
           (json-reformat-region (point-min) (point-max)))))))
 
 
+(use-package keyfreq
+  :config
+  (progn
+    (setq keyfreq-excluded-commands
+          '(backward-char beginning-of-line end-of-line forward-char newline next-line previous-line self-insert-command left-char right-char))
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1)))
+
+
 (use-package lisp-mode
   :defer t
   :config

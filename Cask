@@ -68,6 +68,7 @@
 (depends-on "js2-refactor")
 (depends-on "json-mode")
 (depends-on "karma")
+(depends-on "keyfreq")
 (depends-on "less-css-mode")
 (depends-on "macrostep")
 (depends-on "magit")
