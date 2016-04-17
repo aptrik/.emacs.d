@@ -848,6 +848,10 @@
   :bind ("s-q" . neotree-toggle))
 
 
+(use-package nlinum
+  :bind (("C-c t l" . nlinum-mode)))
+
+
 (use-package nuke-whitespace
   :config
   (progn

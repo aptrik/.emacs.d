@@ -37,7 +37,7 @@
     (when (file-directory-p f)
       (add-to-list 'load-path f))))
 
-(dolist (fn '("defuns" "defaults" "setup" "key-bindings"))
+(dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
   (load (expand-file-name fn user-emacs-directory)))
 
 ;; Set customization file.
