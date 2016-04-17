@@ -491,6 +491,11 @@
     (add-to-list 'flycheck-checkers 'proselint)))
 
 
+(use-package focus-autosave-mode
+  :init (focus-autosave-mode)
+  :diminish focus-autosave-mode)
+
+
 (use-package framemove
   :init
   (progn

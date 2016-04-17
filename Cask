@@ -39,6 +39,7 @@
 (depends-on "find-file-in-project")
 (depends-on "flx-ido")
 (depends-on "flycheck")
+(depends-on "focus-autosave-mode")
 (depends-on "framemove")
 (depends-on "fullframe")
 (depends-on "ggtags")
