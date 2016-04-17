@@ -589,6 +589,11 @@
   :commands (hl-tags-mode))
 
 
+(use-package hl-todo
+  :defer t
+  :init (global-hl-todo-mode))
+
+
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer))
   :config (setq ibuffer-formats
