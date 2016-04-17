@@ -55,12 +55,6 @@
   :bind ("C-c y" . browse-kill-ring))
 
 
-;; (use-package browse-url
-;;   :config
-;;   (when macosp
-;;     (setq browse-url-browser-function 'browse-url-default-macosx-browser)))
-
-
 (use-package bs
   :defer t
   :config
@@ -374,12 +368,6 @@
     (add-hook 'compilation-mode-hook 'compilation-recenter-end-enable)))
 
 
-;; (use-package diff-hl
-;;   :init
-;;   (progn
-;;     (global-diff-hl-mode)))
-
-
 (use-package diff-mode
   :defer t
   :commands diff-mode
@@ -632,25 +620,6 @@
   :bind ("M-RET" . iedit-mode))
 
 
-;; (use-package ido
-;;   :defer t
-;;   :config
-;;   (progn
-;;     (use-package ido-hacks
-;;       :init
-;;       (ido-hacks-mode 1))
-;;     (use-package flx-ido)
-;;     ;; (use-package ido-ubiquitous)
-;;     ;; (use-package ido-vertical-mode)
-;;     (setq ido-use-faces t            ; I want to see the flx matches.
-;;           ido-use-filename-at-point nil
-;;           ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
-;;     (ido-mode 1)
-;;     (flx-ido-mode 1)))
-;;     ;; (ido-vertical-mode 1)
-;;     ;;(ido-ubiquitous)))
-
-
 (when (fboundp 'isearch-mode)
   (defun isearch--yank-current-word ()
     "Pull current word from buffer into search string."
@@ -683,27 +652,6 @@
         ispell-help-in-bufferp 'electric)
   (when macosp
     (setq ispell-program-name "/usr/local/bin/aspell")))
-
-
-;; (use-package ivy
-;;   :diminish ivy-mode
-;;   :config
-;;   (ivy-mode 1))
-
-
-;; (use-package java-mode
-;;   :config
-;;   (progn
-;;     (defun setup--java-mode ()
-;;       (setq tab-width 4)
-;;       (idle-highlight-mode))
-;;     (add-hook 'java-mode-hook #'setup--java-mode)
-
-;;     (use-package generic-x
-;;       :commands (java-manifest-generic-mode
-;;                  java-properties-generic-mode)
-;;       :mode (("MANIFEST.MF\\'" . java-manifest-generic-mode)
-;;              ("\\.prop\\'" . java-properties-generic-mode)))))
 
 
 (use-package js2-mode
@@ -1164,8 +1112,6 @@
 (use-package rbenv
   :init
   (setq rbenv-show-active-ruby-in-modeline nil))
-  ;; :config
-  ;; (global-rbenv-mode))
 
 
 (use-package re-builder
