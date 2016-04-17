@@ -834,6 +834,20 @@
   :bind ("s-," . multi-line))
 
 
+(use-package multiple-cursors
+  :bind (("C-c o <SPC>" . mc/vertical-align-with-space)
+         ("C-c o a"     . mc/vertical-align)
+         ("C-c o e"     . mc/mark-more-like-this-extended)
+         ("C-c o h"     . mc/mark-all-like-this-dwim)
+         ("C-c o l"     . mc/edit-lines)
+         ("C-c o n"     . mc/mark-next-like-this)
+         ("C-c o p"     . mc/mark-previous-like-this)
+         ("C-c o r"     . vr/mc-mark)
+         ("C-c o C-a"   . mc/edit-beginnings-of-lines)
+         ("C-c o C-e"   . mc/edit-ends-of-lines)
+         ("C-c o C-s"   . mc/mark-all-in-region)))
+
+
 (use-package neotree
   :config
   (setq neo-auto-indent-point t

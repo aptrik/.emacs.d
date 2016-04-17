@@ -86,12 +86,6 @@
                                  (expand-file-name "setup.el"
                                                    user-emacs-directory))))
 
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-(global-set-key (kbd "s-å")  'mc/mark-previous-like-this)
-(global-set-key (kbd "s-ä")  'mc/mark-next-like-this)
-(global-set-key (kbd "s-ö")  'mc/mark-all-like-this-dwim)
-(global-set-key (kbd "s-Ä")  'mc/mark-more-like-this-extended)
-
 (global-set-key (kbd "<C-S-up>")   'move-text-up)
 (global-set-key (kbd "<C-S-down>") 'move-text-down)
 
