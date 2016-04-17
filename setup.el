@@ -620,22 +620,11 @@
   :bind ("M-RET" . iedit-mode))
 
 
-(when (fboundp 'isearch-mode)
-  (defun isearch--yank-current-word ()
-    "Pull current word from buffer into search string."
-    (interactive)
-    (save-excursion
-      (skip-syntax-backward "w_")
-      (isearch-yank-internal
-       (lambda ()
-         (skip-syntax-forward "w_")
-         (point)))))
-  (bind-keys
-   :map isearch-mode-map
-   ("C-e" . isearch--yank-current-word)
-   ("C-c" . isearch-toggle-case-fold)
-   ("C-t" . isearch-toggle-regexp)
-   ("C-^" . isearch-edit-string)))
+(use-package isearch
+  :defer t
+  :init
+  (progn
+    (setq isearch-allow-scroll t)))
 
 
 (use-package ispell
