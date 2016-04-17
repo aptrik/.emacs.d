@@ -31,6 +31,17 @@
     (add-hook 'archive-mode-hook 'turn-on-truncate-lines)))
 
 
+(use-package autorevert
+  :config
+  (progn
+    (setq auto-revert-verbose nil)
+    (when (eq system-type 'darwin)
+      ;; File notifications aren't supported on OS X
+      (setq auto-revert-use-notify nil)))
+  :diminish (auto-revert-mode . " Ⓐ")
+  :bind (("C-c t A" . auto-revert-mode)))
+
+
 (use-package avoid
   :commands mouse-avoidance-mode
   :defer 2
