@@ -219,7 +219,7 @@ Bound to `\\[match-paren]'."
   (cond
    ((or (file-readable-p (concat directory ".git"))
         (locate-dominating-file directory ".git"))
-    (magit-status directory))
+    (magit-status (locate-dominating-file directory ".git")))
    ((or (file-readable-p (concat directory ".hg"))
         (locate-dominating-file directory ".hg"))
     (let ((default-directory directory))
