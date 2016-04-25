@@ -1,6 +1,7 @@
 (when macosp
-  (setq mac-option-modifier 'super
-        mac-command-modifier 'meta
+  (setq mac-command-modifier 'meta
+        mac-control-modifier 'control
+        mac-option-modifier 'super
         ns-function-modifier 'hyper))
 
 (global-unset-key (kbd "C-x C-c"))
