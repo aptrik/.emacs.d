@@ -499,7 +499,8 @@
                 (message) line-end))
       :modes (text-mode markdown-mode gfm-mode))
 
-    (add-to-list 'flycheck-checkers 'proselint)))
+    (add-to-list 'flycheck-checkers 'proselint))
+  :bind (("C-c t f" . flycheck-mode)))
 
 
 (use-package focus-autosave-mode
