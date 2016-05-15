@@ -1370,6 +1370,10 @@ This is used to set `sql-alternate-buffer-name' within
       (sql-rename-buffer))))
 
 
+(use-package stripe-buffer
+  :init (add-hook 'dired-mode-hook #'stripe-buffer-mode))
+
+
 (use-package term
   :config
   (progn
