@@ -599,6 +599,10 @@
   :init (global-hl-todo-mode))
 
 
+(use-package html5-schema
+  :defer t)
+
+
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer))
   :config (setq ibuffer-formats

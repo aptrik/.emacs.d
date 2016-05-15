@@ -58,6 +58,7 @@
 (depends-on "highlight-symbol")
 (depends-on "hl-line+")
 (depends-on "hl-todo")
+(depends-on "html5-schema")
 (depends-on "ibuffer-vc")
 (depends-on "idle-highlight-mode")
 (depends-on "ido-hacks")
