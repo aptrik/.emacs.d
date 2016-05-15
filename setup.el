@@ -586,8 +586,8 @@
 (use-package hl-line
   :init
   (progn
-    (use-package hl-line+)
-    (global-hl-line-mode t)))
+    (use-package hl-line+)))
+    ;;(global-hl-line-mode t)))
 
 
 (use-package hl-tags-mode
@@ -1370,8 +1370,8 @@ This is used to set `sql-alternate-buffer-name' within
       (sql-rename-buffer))))
 
 
-(use-package stripe-buffer
-  :init (add-hook 'dired-mode-hook #'stripe-buffer-mode))
+;; (use-package stripe-buffer
+;;   :init (add-hook 'dired-mode-hook #'stripe-buffer-mode))
 
 
 (use-package term
