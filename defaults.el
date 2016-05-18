@@ -85,7 +85,7 @@
 (auto-compression-mode 1)
 (blink-cursor-mode -1)
 (column-number-mode 1)
-(delete-selection-mode 1)
+(delete-selection-mode -1)
 (electric-indent-mode -1)
 (global-font-lock-mode 1)
 (line-number-mode 1)
