@@ -48,6 +48,7 @@
 (depends-on "gitattributes-mode")
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
+(depends-on "go-mode")
 (depends-on "google-c-style")
 (depends-on "gradle-mode")
 (depends-on "grep-a-lot")
