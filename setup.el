@@ -650,18 +650,16 @@
 
 (use-package ispell
   :defer t
+  :init
+  (setq ispell-dictionary "en_GB"
+        ispell-help-in-bufferp 'electric
+        ispell-program-name (executable-find "hunspell")
+        ispell-silently-savep t)
   :bind (("C-c s b" . ispell-buffer)
          ("C-c s c" . ispell-comments-and-strings)
          ("C-c s d" . ispell-change-dictionary)
          ("C-c s r" . ispell-region)
-         ("C-c s w" . ispell-word))
-  :config
-  (setq ispell-program-name "aspell"
-        ispell-local-dictionary "english"
-        ispell-silently-savep t
-        ispell-help-in-bufferp 'electric)
-  (when macosp
-    (setq ispell-program-name "/usr/local/bin/aspell")))
+         ("C-c s w" . ispell-word)))
 
 
 (use-package js2-mode
