@@ -93,6 +93,11 @@
 (global-set-key [C-M-up]    'backward-paragraph)
 (global-set-key [C-M-down]  'forward-paragraph)
 
+(global-set-key "\M-[1;5A" 'backward-paragraph)
+(global-set-key "\M-[1;5B" 'forward-paragraph)
+(global-set-key "\M-[1;5C" 'forward-word)
+(global-set-key "\M-[1;5D" 'backward-word)
+
 (global-set-key [C-return]  'newline-and-indent)
 
 (unless macosp
