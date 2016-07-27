@@ -125,4 +125,5 @@
 (depends-on "web-mode")
 (depends-on "wgrep")
 (depends-on "yaml-mode")
+(depends-on "yapfify")
 (depends-on "yasnippet")
