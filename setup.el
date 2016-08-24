@@ -874,12 +874,14 @@
 
 
 (use-package nuke-whitespace
-  :config
-  (progn
-    (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'emacs-lisp-mode)
-    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'python-mode)
-    (add-to-list 'nuke-trailing-whitespace-always-major-modes 'ruby-mode)))
+  ;; :config
+  ;; (progn
+  ;;   (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
+  ;;   ;; (remove-hook 'write-file-hooks 'nuke-trailing-whitespace)
+  ;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'emacs-lisp-mode)
+  ;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'python-mode)
+  ;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'ruby-mode))
+  )
 
 
 (use-package nxml-mode
@@ -1510,6 +1512,14 @@ This is used to set `sql-alternate-buffer-name' within
           woman-fontify       t
           woman-imenu         t
           Man-notify-method   'pushy)))
+
+
+(use-package ws-butler
+  :config
+  (progn
+    (setq ws-butler-keep-whitespace-before-point nil)
+    (add-hook 'prog-mode-hook 'ws-butler-mode))
+  :diminish ws-butler-mode)
 
 
 (use-package yaml-mode
