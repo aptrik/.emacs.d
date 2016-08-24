@@ -50,10 +50,11 @@
 (global-set-key (kbd "C-c i w")  'insert-week-number)
 
 (global-unset-key (kbd "C-c t"))
-(global-set-key (kbd "C-c t c")  'transform-region-to-lower-camel-case)
-(global-set-key (kbd "C-c t C")  'transform-region-to-upper-camel-case)
-(global-set-key (kbd "C-c t s")  'transform-region-to-snake-case)
 (global-set-key (kbd "C-c t -")  'transform-region-to-dashed)
+(global-set-key (kbd "C-c t C")  'transform-region-to-upper-camel-case)
+(global-set-key (kbd "C-c t c")  'transform-region-to-lower-camel-case)
+(global-set-key (kbd "C-c t s")  'transform-region-to-snake-case)
+(global-set-key (kbd "C-c t w")  'whitespace-mode)
 
 (global-unset-key (kbd "C-c o"))
 (global-set-key (kbd "C-c o o") 'find-file-at-point)
