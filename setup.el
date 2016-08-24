@@ -19,7 +19,8 @@
 
 
 (use-package anaconda-mode
-  )
+  :defer t
+  :diminish anaconda-mode)
 
 
 (use-package arc-mode
@@ -1341,6 +1342,11 @@
           speedbar-update-flag t)))
 
 
+(use-package sphinx-doc
+  :defer t
+  :diminish sphinx-doc-mode)
+
+
 (use-package sql
   :defer t
   :config
@@ -1373,6 +1379,11 @@ This is used to set `sql-alternate-buffer-name' within
 
 ;; (use-package stripe-buffer
 ;;   :init (add-hook 'dired-mode-hook #'stripe-buffer-mode))
+
+
+(use-package subword
+  :defer t
+  :diminish subword-mode)
 
 
 (use-package term
