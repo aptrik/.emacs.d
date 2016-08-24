@@ -453,6 +453,14 @@
                    '("\\.epub\\'" "FBReader * &" "evince * &"))))))
 
 
+(use-package dtrt-indent
+  :init
+  (setq dtrt-indent-verbosity 0)
+  :config
+  (add-hook 'prog-mode-hook 'dtrt-indent-mode)
+  :diminish dtrt-indent-mode)
+
+
 (use-package ediff
   :defer t
   :config
