@@ -863,7 +863,8 @@
          ("C-c o r"     . vr/mc-mark)
          ("C-c o C-a"   . mc/edit-beginnings-of-lines)
          ("C-c o C-e"   . mc/edit-ends-of-lines)
-         ("C-c o C-s"   . mc/mark-all-in-region)))
+         ("C-c o C-s"   . mc/mark-all-in-region)
+         ("s-<mouse-1>" . mc/add-cursor-on-click)))
 
 
 (use-package neotree
