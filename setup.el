@@ -848,6 +848,12 @@
   :mode (("README\\.md$" . gfm-mode)))
 
 
+(use-package minimap
+  :init
+  (setq minimap-active-region-background nil
+        minimap-window-location 'right))
+
+
 (use-package multi-line
   :bind ("s-," . multi-line))
 
