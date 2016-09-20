@@ -150,7 +150,8 @@
           oriental-holidays               nil
           hebrew-holidays                 nil
           islamic-holidays                nil
-          swedish-holidays
+
+          holiday-swedish-holidays
           ;; Se: http://www.kalender.se
           ;; och: http://hem.passagen.se/farila/holiday.htm
           '((holiday-fixed  1  1    "Nyårsdagen")
@@ -173,14 +174,15 @@
             (holiday-easter-etc 39 "Kristi himmelsfärds dag")
             (holiday-easter-etc 49 "Pingstdagen")
             (holiday-easter-etc 50 "Annandag pingst"))
+
           calendar-holidays
           (append
-           general-holidays
-           local-holidays
-           other-holidays
-           christian-holidays
-           solar-holidays
-           swedish-holidays))))
+           holiday-general-holidays
+           holiday-local-holidays
+           holiday-other-holidays
+           holiday-christian-holidays
+           holiday-solar-holidays
+           holiday-swedish-holidays))))
 
 
 (use-package cc-mode
