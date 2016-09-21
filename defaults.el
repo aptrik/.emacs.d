@@ -13,8 +13,8 @@
 
 (setq
  focus-follows-mouse                  t
- interprogram-cut-function            'x-select-text
- interprogram-paste-function          'x-selection-value
+ interprogram-cut-function            'gui-select-text
+ interprogram-paste-function          'gui-selection-value
  mouse-autoselect-window              t
  mouse-drag-copy-region               t
  mouse-yank-at-point                  t
@@ -23,10 +23,7 @@
 
 (setq
  select-enable-clipboard t
- select-enable-primary t
- ;; For emacs prior to 25.1.
- x-select-enable-clipboard t
- x-select-enable-primary t)
+ select-enable-primary t)
 
 (setq-default
  auto-save-default             nil
