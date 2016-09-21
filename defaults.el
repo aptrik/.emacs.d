@@ -19,9 +19,14 @@
  mouse-drag-copy-region               t
  mouse-yank-at-point                  t
  save-interprogram-paste-before-kill  t
- select-active-regions                nil
- x-select-enable-clipboard            t
- x-select-enable-primary              t)
+ select-active-regions                nil)
+
+(setq
+ select-enable-clipboard t
+ select-enable-primary t
+ ;; For emacs prior to 25.1.
+ x-select-enable-clipboard t
+ x-select-enable-primary t)
 
 (setq-default
  auto-save-default             nil
