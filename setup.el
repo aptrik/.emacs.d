@@ -1266,9 +1266,9 @@
 
 (use-package saveplace
   :init
-  (progn
-    (setq-default save-place t)
-    (setq save-place-file (expand-file-name ".places" user-emacs-directory))))
+  (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+  :config
+  (save-place-mode t))
 
 
 (use-package scss-mode
