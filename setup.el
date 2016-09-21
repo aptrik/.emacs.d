@@ -484,6 +484,12 @@
          ("C-?" . er/contract-region)))
 
 
+(use-package eww
+  :config
+  (setq eww-search-prefix "https://www.google.com/search?q="
+        eww-download-directory "~/dl/"))
+
+
 (use-package find-dired
   :bind (("M-s D" . find-dired)
          ("M-s d" . find-grep-dired)
