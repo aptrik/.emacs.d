@@ -61,10 +61,11 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
 
 ### GNU/Linux
 
-    $ wget http://ftpmirror.gnu.org/emacs/emacs-24.5.tar.gz
-    $ tar xfz emacs-24.5.tar.gz
-    $ cd emacs-24.5
-    $ ./configure --prefix=$HOME/tools/emacs-24.5 --without-toolkit-scroll-bars
+    $ wget http://ftpmirror.gnu.org/emacs/emacs-25.1.tar.xz
+    $ tar xfJ emacs-25.1.tar.xz
+    $ cd emacs-25.1
+    $ ./configure --prefix=$HOME/tools/emacs-25.1 --without-toolkit-scroll-bars --with-modules --with-cairo --with-xwidgets
+
     $ make
     $ ./src/emacs -q
     $ make install
