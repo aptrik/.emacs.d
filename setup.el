@@ -1136,10 +1136,6 @@
       (require 'sphinx-doc)
       (sphinx-doc-mode 1)
 
-      (require 'tramp) ;; needed by pep8 and pylint
-      (require 'python-pylint)
-      (require 'python-pep8)
-
       (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
       (set (make-variable-buffer-local 'indent-tabs-mode) nil)
 
@@ -1152,9 +1148,6 @@
        ("<C-backspace>" . subword-backward-kill))
 
       (local-set-key (kbd "C-.") 'company-complete)
-
-      (local-set-key [f7]   'python-pylint)
-      (local-set-key [C-f7] 'python-pep8)
 
       (local-set-key [f9]   'py-run)
       (local-set-key [S-f9] 'pdb)       ; defined in gud

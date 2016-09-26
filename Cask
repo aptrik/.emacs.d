@@ -102,8 +102,6 @@
 (depends-on "py-autopep8")
 (depends-on "py-yapf")
 (depends-on "python")
-(depends-on "python-pep8")
-(depends-on "python-pylint")
 (depends-on "rainbow-mode")
 (depends-on "rbenv")
 (depends-on "request")
