@@ -1166,6 +1166,15 @@
   (setq reb-re-syntax 'string))
 
 
+(use-package rst
+  :config
+  (progn
+    (add-hook 'rst-mode-hook 'setup--rst-mode)
+
+    (defun setup--rst-mode ()
+      (sphinx-mode 1))))
+
+
 (use-package ruby-mode
   :init
   (progn

@@ -116,6 +116,7 @@
 (depends-on "smooth-scrolling")
 (depends-on "solarized-theme")
 (depends-on "sphinx-doc")
+(depends-on "sphinx-mode")
 (depends-on "stripe-buffer")
 (depends-on "sx")
 (depends-on "syslog-mode")
