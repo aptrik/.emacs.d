@@ -819,7 +819,9 @@ Including indent-buffer, which should not be called automatically on save."
   (let ((line (and (looking-at ".*:\\([0-9]+\\)")
                    (string-to-number (match-string 1)))))
     ad-do-it
-    (and line (goto-line line))))
+    (and line (progn
+                (goto-char (point-min))
+                (forward-line (1- line))))))
 
 (defun ffip-create-pattern-file-finder (&rest patterns)
   "Function to create new functions that look for a specific pattern."
