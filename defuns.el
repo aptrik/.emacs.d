@@ -871,6 +871,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 ;;-----------------------------------------------------------------------------
 
 (defun what-face (pos)
+  "Determine the face at point."
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
