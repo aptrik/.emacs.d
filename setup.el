@@ -280,7 +280,7 @@
                        (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
 
       (local-set-key (kbd "C-.") 'company-complete)
-      (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+      (local-set-key (kbd "C-c o o") 'ff-find-other-file)))
   :mode (("\\.[ch]$" . c-mode)
          ("\\.\\(cc\\|hh\\)$" . c++-mode)
          ("\\.\\(i\\|swg\\)$" . c++-mode)))
@@ -301,6 +301,11 @@
     (define-key comint-mode-map (kbd "C-r") #'comint-history-isearch-backward)
     (setf comint-prompt-read-only t
           comint-history-isearch t)))
+
+
+(use-package command-log-mode
+  :init
+  (setq command-log-mode-key-binding-open-log "C-c t o"))
 
 
 (use-package company

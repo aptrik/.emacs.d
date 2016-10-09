@@ -1,4 +1,4 @@
-(source "ELPA" "http://tromey.com/elpa/")
+(source "ELPA" "https://tromey.com/elpa/")
 (source gnu)
 (source marmalade)
 (source melpa)
@@ -17,6 +17,7 @@
 (depends-on "buffer-move")
 (depends-on "clang-format")
 (depends-on "cmake-mode")
+(depends-on "command-log-mode")
 (depends-on "company")
 (depends-on "company-anaconda")
 (depends-on "company-c-headers")
