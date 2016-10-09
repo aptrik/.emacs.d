@@ -125,6 +125,7 @@
 (depends-on "web-beautify")
 (depends-on "web-mode")
 (depends-on "wgrep")
+(depends-on "which-key")
 (depends-on "ws-butler")
 (depends-on "yaml-mode")
 (depends-on "yapfify")

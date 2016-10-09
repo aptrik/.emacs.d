@@ -1529,6 +1529,11 @@ This is used to set `sql-alternate-buffer-name' within
   )
 
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
+
 (use-package woman
   :config
   (progn
