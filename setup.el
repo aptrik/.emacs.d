@@ -310,6 +310,7 @@
 
 (use-package company
   :defer 5
+  :bind (("C-c /". company-complete))
   :config
   (progn
     (global-company-mode)
