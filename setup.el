@@ -898,6 +898,10 @@
   :bind ("s-q" . neotree-toggle))
 
 
+(use-package newcomment
+  :bind (("C-;" . comment-line)))
+
+
 (use-package nlinum
   :bind (("C-c t l" . nlinum-mode)))
 
