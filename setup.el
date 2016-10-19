@@ -442,7 +442,10 @@
       (set (make-variable-buffer-local 'font-lock-maximum-decoration) nil)
       (local-set-key (kbd "M-o") 'dired-omit-mode)
       (local-set-key (kbd "T") 'dired-do-touch)
-      (local-set-key (kbd "I") 'dired-subtree-toggle))
+      (local-set-key (kbd "I") 'dired-subtree-toggle)
+      (local-set-key (kbd "j") 'diredp-next-line)
+      (local-set-key (kbd "k") 'diredp-previous-line)
+      (local-set-key (kbd "F") 'find-name-dired))
 
     (add-hook 'dired-mode-hook 'setup--dired-mode)
 
