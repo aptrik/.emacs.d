@@ -871,6 +871,12 @@
         minimap-window-location 'right))
 
 
+(use-package misc
+  :commands (zap-up-to-char)
+  :bind (("M-z" . zap-up-to-char)
+         ("M-Z" . zap-to-char)))
+
+
 (use-package multi-line
   :bind ("s-," . multi-line))
 
