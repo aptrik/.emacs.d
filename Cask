@@ -98,6 +98,7 @@
 (depends-on "ox-twbs")
 (depends-on "pallet")
 (depends-on "php-mode")
+(depends-on "plantuml-mode")
 (depends-on "projectile")
 (depends-on "protobuf-mode")
 (depends-on "py-autopep8")

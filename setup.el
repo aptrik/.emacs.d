@@ -1074,6 +1074,14 @@
                          " \"" (buffer-file-name) "\""))))))
 
 
+(lexical-let
+    ((jar-file (expand-file-name "/usr/share/java/plantuml.jar")))
+  (if (file-exists-p jar-file)
+      (use-package plantuml-mode
+        :config
+        (setq plantuml-jar-path jar-file))))
+
+
 (use-package printing
   :defer t
   :config
