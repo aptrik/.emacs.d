@@ -1277,7 +1277,7 @@
 
 
 (use-package shell-toggle
-  :bind ("M-z" . shell-toggle))
+  :bind ("s-z" . shell-toggle))
 
 
 (use-package savehist
