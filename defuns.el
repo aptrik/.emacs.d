@@ -831,7 +831,6 @@ Including indent-buffer, which should not be called automatically on save."
       (let ((ffip-patterns patterns))
         (find-file-in-project)))))
 
-
 ;;-----------------------------------------------------------------------------
 
 (defun uuid-create ()
@@ -867,7 +866,6 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
   (interactive)
   (insert (uuid-create)))
 
-
 ;;-----------------------------------------------------------------------------
 
 (defun what-face (pos)
@@ -877,7 +875,6 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
-
 ;;-----------------------------------------------------------------------------
 
 (defun set-transparency (onfocus notfocus)
@@ -885,5 +882,36 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
   (interactive "nOn Focus: \nnOn Unfocus: ")
   (set-frame-parameter (selected-frame)
                        'alpha (list onfocus notfocus)))
+
+;;-----------------------------------------------------------------------------
+
+(defvar hotspot-directories
+  (list (expand-file-name "~")
+        (expand-file-name "~/work"))
+  "Directories to search for hotspots.")
+
+(defun hotspot--generate-directories ()
+  (let ((result ()))
+    (dolist (dir hotspot-directories)
+      (ignore-errors
+        (dolist (found (-select
+                        (lambda (d) (not (or (string-match "/m2" d)
+                                             (string-match "JUNK" d)
+                                             (string-match "\.[0-9]$" d)
+                                             (string-match "\.old$" d)
+                                             (string-match "/workspace" d))))
+                        (f-directories dir)))
+          (add-to-list 'result found t))))
+    result))
+
+(defun hotspots ()
+  "Show hotspots using the helm interface."
+  (interactive)
+  (helm
+   :sources
+   `(((name . "Hotspots")
+      (candidates . ,(hotspot--generate-directories))
+      (action . (("Open" . (lambda (x) (find-file x))))))
+     helm-source-bookmarks)))
 
 ;;-----------------------------------------------------------------------------
