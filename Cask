@@ -8,7 +8,6 @@
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
 (depends-on "ahg")
-(depends-on "alert")
 (depends-on "anaconda-mode")
 (depends-on "angular-mode")
 (depends-on "angular-snippets")
