@@ -973,7 +973,7 @@
   :defer t
   :init
   (setq org-replace-disputed-keys t
-        org-export-backends '(ascii html md))
+        org-export-backends '(ascii html md reveal twbs))
   :config
   (progn
     (setq
@@ -989,6 +989,8 @@
      org-time-stamp-rounding-minutes '(0 5)
      org-use-speed-commands t)
 
+    (setq org-agenda-files '())
+
     ;; (setq org-clock-persist t
     ;;       org-clock-persist-query-resume nil)
     ;; (org-clock-persistence-insinuate)
@@ -998,6 +1000,9 @@
     (defun setup--org-mode ()
       (setq org-blank-before-new-entry '((heading . t)
                                          (plain-list-item . nil)))
+
+      (require 'ox-reveal)
+      (require 'ox-twbs)
 
       ;; Set program to use when opening PDF files.
       (if macosp
