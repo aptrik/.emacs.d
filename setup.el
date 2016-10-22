@@ -675,17 +675,29 @@
 
 
 (use-package ispell
-  :defer t
   :init
   (setq ispell-dictionary "en_GB"
         ispell-help-in-bufferp 'electric
         ispell-program-name (executable-find "hunspell")
         ispell-silently-savep t)
+  :config
+  (progn
+    (let ((langs '("english" "svenska")))
+      (setq lang-ring (make-ring (length langs)))
+      (dolist (elem langs)
+        (ring-insert lang-ring elem)))
+
+    (defun cycle-ispell-languages ()
+      (interactive)
+      (let ((lang (ring-ref lang-ring -1)))
+        (ring-insert lang-ring lang)
+        (ispell-change-dictionary lang))))
   :bind (("C-c s b" . ispell-buffer)
          ("C-c s c" . ispell-comments-and-strings)
          ("C-c s d" . ispell-change-dictionary)
          ("C-c s r" . ispell-region)
-         ("C-c s w" . ispell-word)))
+         ("C-c s w" . ispell-word)
+         ("C-c <f11>" . cycle-ispell-languages)))
 
 
 (use-package js2-mode
