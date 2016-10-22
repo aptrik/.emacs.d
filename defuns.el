@@ -14,6 +14,22 @@
   (eq system-type 'darwin)
   "Are we running on a Mac?")
 
+(defvar unix-system-type
+  (if (eq system-type 'darwin)
+      'macos
+    (lexical-let
+        ((lsb-release (shell-command-to-string "lsb_release -ds")))
+      (cond
+       ((string-match "Red Hat Enterprise Linux Server release 6" lsb-release)
+        'rhel6)
+       ((string-match "Red Hat Enterprise Linux Server release 7" lsb-release)
+        'rhel7)
+       ((string-match "Fedora release" lsb-release)
+        'fedora)
+       (t
+        nil))))
+    "Which unix flavour are we running on?")
+
 ;;-----------------------------------------------------------------------------
 ;;; Turn simple modes on or off.
 
