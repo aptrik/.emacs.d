@@ -222,9 +222,12 @@ Bound to `\\[match-paren]'."
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (defun sudo-edit-current-file ()
+  "Reopen current file as root, preserving position."
   (interactive)
-  (find-alternate-file (concat "/sudo:root@localhost:"
-                               (buffer-file-name (current-buffer)))))
+  (let ((p (point)))
+    (find-alternate-file (concat "/sudo:root@localhost:"
+                                 (buffer-file-name (current-buffer))))
+    (goto-char p)))
 
 (defun vc-examine (directory)
   (interactive
