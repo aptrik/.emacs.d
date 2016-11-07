@@ -1593,11 +1593,13 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package ws-butler
+  :diminish ws-butler-mode
   :config
   (progn
     (setq ws-butler-keep-whitespace-before-point nil)
-    (add-hook 'prog-mode-hook 'ws-butler-mode))
-  :diminish ws-butler-mode)
+    (add-hook 'org-mode-hook #'ws-butler-mode)
+    (add-hook 'prog-mode-hook #'ws-butler-mode)
+    (add-hook 'text-mode-hook #'ws-butler-mode)))
 
 
 (use-package yaml-mode
