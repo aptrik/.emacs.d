@@ -1324,6 +1324,10 @@
   :mode (("\\.scss$" . scss-mode)))
 
 
+(use-package shrink-whitespace
+  :bind ("M-SPC" . shrink-whitespace))
+
+
 (use-package smartparens
   :defer t
   :commands (smartparens-mode

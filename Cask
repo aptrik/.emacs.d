@@ -110,6 +110,7 @@
 (depends-on "ruby-mode")
 (depends-on "s")
 (depends-on "scss-mode")
+(depends-on "shrink-whitespace")
 (depends-on "smartparens")
 (depends-on "smooth-scrolling")
 (depends-on "solarized-theme")
