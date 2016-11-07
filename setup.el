@@ -7,7 +7,6 @@
 
 
 (use-package ahg
-  :defer t
   :commands (ahg-status)
   :config
   (progn
@@ -19,12 +18,10 @@
 
 
 (use-package anaconda-mode
-  :defer t
   :diminish anaconda-mode)
 
 
 (use-package arc-mode
-  :defer t
   :mode (("\\.egg$" . archive-mode)
          ("\\.\\(war\\|jar\\)$" . archive-mode))
   :config
@@ -45,22 +42,20 @@
 
 (use-package avoid
   :commands mouse-avoidance-mode
-  :defer 2
   :config
   (mouse-avoidance-mode 'none))
 
 
 (use-package bookmark
-  :defer t
+  :init
+  (setq bmkp-last-as-first-bookmark-file nil
+        bookmark-save-flag 1
+        bookmark-version-control t)
   :config
-  (progn
-    (setq bookmark-save-flag 1
-          bmkp-last-as-first-bookmark-file nil)
-    (use-package bookmark+)))
+  (use-package bookmark+))
 
 
 (use-package browse-kill-ring
-  :defer t
   :commands (browse-kill-ring)
   :config
   (setq browse-kill-ring-quit-action 'save-and-restore)
@@ -68,7 +63,6 @@
 
 
 (use-package bs
-  :defer t
   :config
   (progn
     (setq bs-default-configuration       "all"
@@ -101,7 +95,6 @@
 
 
 (use-package calc
-  :defer t
   :config
   (progn
     (setq calc-display-trail nil)
@@ -112,7 +105,6 @@
 
 
 (use-package calendar
-  :defer t
   :config
   (progn
     (calendar-set-date-style 'iso)
@@ -186,7 +178,6 @@
 
 
 (use-package cc-mode
-  :defer t
   :config
   (progn
     (add-hook 'c-mode-hook 'setup--c-mode-hook)
@@ -287,11 +278,10 @@
 
 
 (use-package cmake-mode
-  :defer t)
+  )
 
 
 (use-package comint
-  :defer t
   :config
   (progn
     (define-key comint-mode-map (kbd "<down>") #'comint-next-input)
@@ -309,7 +299,6 @@
 
 
 (use-package company
-  :defer 5
   :bind (("C-c /". company-complete))
   :config
   (progn
@@ -331,7 +320,6 @@
 
 
 (use-package cperl-mode
-  :defer t
   :config
   (progn
     (defalias 'perl-mode 'cperl-mode)
@@ -363,7 +351,6 @@
 
 
 (use-package css-mode
-  :defer t
   :config
   (progn
     (setq cssm-indent-function 'cssm-c-style-indenter
@@ -389,7 +376,6 @@
 
 
 (use-package diff-mode
-  :defer t
   :commands diff-mode
   :config
   (progn
@@ -409,7 +395,6 @@
 
 
 (use-package dired
-  :defer t
   :commands (dired-jump)
   :config
   (progn
@@ -473,7 +458,6 @@
 
 
 (use-package ediff
-  :defer t
   :config
   (progn
     (setq-default ediff-ignore-similar-regions t)
@@ -559,7 +543,6 @@
 
 
 (use-package grep
-  :defer t
   :bind (("M-s f" . find-grep)
          ("M-s g" . grep)
          ("M-s r" . rgrep))
@@ -602,7 +585,6 @@
 
 
 (use-package gud
-  :defer t
   :config
   (setq-default gdb-many-windows t
                 gdb-use-separate-io-buffer t
@@ -621,12 +603,11 @@
 
 
 (use-package hl-todo
-  :defer t
   :init (global-hl-todo-mode))
 
 
 (use-package html5-schema
-  :defer t)
+  )
 
 
 (use-package ibuffer
@@ -655,7 +636,6 @@
 
 
 (use-package ibuffer-vc
-  :defer t
   :init (add-hook 'ibuffer-hook
                   (lambda ()
                     (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -694,7 +674,6 @@
 
 
 (use-package js2-mode
-  :defer t
   :mode "\\.js$"
   :init
   (progn
@@ -756,7 +735,6 @@
 
 
 (use-package json-mode
-  :defer t
   :config
   (progn
     (setf json-reformat:pretty-string? t
@@ -779,7 +757,6 @@
 
 
 (use-package lisp-mode
-  :defer t
   :config
   (progn
     (use-package eldoc
@@ -803,7 +780,6 @@
       (add-to-list 'elint-standard-variables 'emacs-major-version)
       (add-to-list 'elint-standard-variables 'window-system))
     (use-package ert
-      :defer t
       :commands ert-run-tests-interactively
       :bind ("C-c e t" . ert-run-tests-interactively)
       :config
@@ -848,7 +824,6 @@
 
 
 (use-package magit
-  :defer t
   :config
   (progn
     (setq ;; magit-completing-read-function 'ivy-completing-read
@@ -931,7 +906,6 @@
 
 
 (use-package nxml-mode
-  :defer t
   :config
   (progn
     (setq nxml-auto-insert-xml-declaration-flag nil
@@ -946,7 +920,6 @@
 
 
 (use-package openwith
-  :defer t
   :config
   (progn
     (setq openwith-associations
@@ -974,7 +947,6 @@
 
 
 (use-package org
-  :defer t
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md reveal twbs))
@@ -1037,7 +1009,6 @@
 
 
 (use-package php-mode
-  :defer t
   :config
   (progn
     (setq php-extra-constants '())
@@ -1098,7 +1069,6 @@
 
 
 (use-package printing
-  :defer t
   :config
   (progn
     (pr-update-menus t)
@@ -1197,7 +1167,6 @@
 
 
 (use-package re-builder
-  :defer t
   :config
   (setq reb-re-syntax 'string))
 
@@ -1310,7 +1279,6 @@
 
 
 (use-package scss-mode
-  :defer t
   :config
   (progn
     (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
@@ -1322,7 +1290,6 @@
 
 
 (use-package smartparens
-  :defer t
   :commands (smartparens-mode
              smartparens-strict-mode
              show-smartparens-mode
@@ -1410,12 +1377,10 @@
 
 
 (use-package sphinx-doc
-  :defer t
   :diminish sphinx-doc-mode)
 
 
 (use-package sql
-  :defer t
   :config
   (progn
     (setq plsql-indent 2)
@@ -1449,7 +1414,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package subword
-  :defer t
   :diminish subword-mode)
 
 
@@ -1522,7 +1486,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package web-mode
-  :defer t
   :config
   (progn
     (setq web-mode-enable-block-face t
@@ -1535,7 +1498,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package webjump
-  :defer t
   :config
   (progn
     (setq webjump-sites
