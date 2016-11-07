@@ -89,9 +89,6 @@
                                                    user-emacs-directory))))
 (global-set-key (kbd "C-c <f12>") 'hotspots)
 
-(global-set-key (kbd "<C-S-up>")   'move-text-up)
-(global-set-key (kbd "<C-S-down>") 'move-text-down)
-
 (global-set-key [C-M-up]    'backward-paragraph)
 (global-set-key [C-M-down]  'forward-paragraph)
 

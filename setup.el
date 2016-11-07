@@ -856,6 +856,11 @@
          ("M-Z" . zap-to-char)))
 
 
+(use-package move-text
+  :bind (("<C-S-up>" . move-text-up)
+         ("<C-S-down>" . move-text-down)))
+
+
 (use-package multi-line
   :bind ("s-," . multi-line))
 
