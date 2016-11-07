@@ -667,13 +667,6 @@
   :bind ("M-RET" . iedit-mode))
 
 
-(use-package isearch
-  :defer t
-  :init
-  (progn
-    (setq isearch-allow-scroll t)))
-
-
 (use-package ispell
   :init
   (setq ispell-dictionary "en_GB"
