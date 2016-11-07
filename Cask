@@ -121,6 +121,7 @@
 (depends-on "syslog-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")
+(depends-on "vlf")
 (depends-on "web-beautify")
 (depends-on "web-mode")
 (depends-on "wgrep")
