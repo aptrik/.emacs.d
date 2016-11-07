@@ -725,7 +725,6 @@
      js2-skip-preprocessor-directives t
      js2-use-font-lock-faces t)
 
-    (use-package angular-mode)
     (use-package js2-highlight-vars)
     (use-package js2-refactor
       :config
