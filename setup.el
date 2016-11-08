@@ -495,6 +495,10 @@
   :bind (("C-x f" . find-file-in-project)))
 
 
+(use-package fixme
+  )
+
+
 (use-package flycheck
   :config
   (progn
