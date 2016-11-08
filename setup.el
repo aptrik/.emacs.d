@@ -451,7 +451,7 @@
 
 (use-package dtrt-indent
   :init
-  (setq dtrt-indent-verbosity 0)
+  (setq dtrt-indent-verbosity 1)
   :config
   (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   :diminish dtrt-indent-mode)
