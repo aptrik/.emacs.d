@@ -539,8 +539,21 @@
 (use-package gitconfig-mode
   :mode (("/gitconfig$" . gitconfig-mode)))
 
+
 (use-package gitignore-mode
   :mode (("/gitignore$" . gitignore-mode)))
+
+
+(use-package go-mode
+  :config
+  (progn
+    (use-package golint)
+    (use-package go-eldoc
+      :config
+      (go-eldoc-setup)))
+  :bind (:map go-mode-map
+              ("M-." . godef-jump)))
+
 
 (use-package gradle-mode
   :mode ("\\.gradle$" . gradle-mode))
