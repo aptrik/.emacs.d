@@ -547,10 +547,23 @@
 (use-package go-mode
   :config
   (progn
+    ;;(setq gofmt-command "goimports")
     (use-package golint)
-    (use-package go-eldoc
-      :config
-      (go-eldoc-setup)))
+    (use-package go-eldoc)
+
+    (defun setup--go-mode ()
+      (company-mode 1)
+      (flycheck-mode 1)
+      (go-eldoc-setup)
+      (idle-highlight-mode 1)
+      (subword-mode 1)
+      (which-function-mode 1)
+
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet"))
+
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook 'setup--go-mode))
   :bind (:map go-mode-map
               ("M-." . godef-jump)))
 
