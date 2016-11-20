@@ -552,6 +552,7 @@
     (use-package go-eldoc)
 
     (defun setup--go-mode ()
+      (setq tab-width 4)
       (company-mode 1)
       (flycheck-mode 1)
       (go-eldoc-setup)
