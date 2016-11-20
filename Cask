@@ -47,6 +47,7 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "go-eldoc")
+(depends-on "go-guru")
 (depends-on "go-mode")
 (depends-on "golint")
 (depends-on "google-c-style")

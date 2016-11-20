@@ -550,15 +550,18 @@
     ;;(setq gofmt-command "goimports")
     (use-package golint)
     (use-package go-eldoc)
+    (use-package go-guru)
 
     (defun setup--go-mode ()
       (setq tab-width 4)
       (company-mode 1)
       (flycheck-mode 1)
       (go-eldoc-setup)
-      (idle-highlight-mode 1)
       (subword-mode 1)
       (which-function-mode 1)
+
+      ;;(idle-highlight-mode 1)
+      (go-guru-hl-identifier-mode 1)
 
       (set (make-local-variable 'compile-command)
            "go build -v && go test -v && go vet"))
