@@ -59,7 +59,22 @@ Example `~/.emacs.d/user.el`:
 
 NOTE: Do not forget to run `cask install` after changing Emacs version.
 
-### GNU/Linux
+### Ubuntu
+
+    sudo apt-add-repository -y ppa:adrozdoff/emacs
+    sudo apt update && sudo apt install emacs25
+    sudo update-alternatives --config emacs
+
+### MacOS
+
+    brew install emacs --srgb --with-cocoa --with-gnutls && brew linkapps
+
+Or the bleeding edge version.
+
+    brew install emacs --srgb --with-cocoa --with-gnuls --use-git-head --HEAD && brew linkapps
+
+
+### Build from source
 
     wget http://ftpmirror.gnu.org/emacs/emacs-25.1.tar.xz
     tar xfJ emacs-25.1.tar.xz
@@ -75,7 +90,7 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
     sudo yum-builddep emacs
     sudo yum install libtiff-devel giflib-devel libotf-devel m17n-lib-devel
 
-#### Fedora
+#### Fedora dependencies
 
     sudo dnf builddep emacs
 
@@ -96,14 +111,6 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
         libtiff-dev \
         libxml2-dev \
         libxpm-dev
-
-### Mac OS
-
-    brew install emacs --srgb --with-cocoa --with-gnutls && brew linkapps
-
-Or the bleeding edge version.
-
-    brew install emacs --srgb --with-cocoa --with-gnuls --use-git-head --HEAD && brew linkapps
 
 
 ## Emacs Help
