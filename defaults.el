@@ -19,7 +19,8 @@
  mouse-drag-copy-region               t
  mouse-yank-at-point                  t
  save-interprogram-paste-before-kill  t
- select-active-regions                nil)
+ select-active-regions                nil
+ suggest-key-bindings                 nil)
 
 (setq
  select-enable-clipboard t
