@@ -1373,8 +1373,9 @@
 
 
 (use-package solarized-theme
-  ;; (load-theme 'solarized-dark t)
-  ;; (load-theme 'solarized-light t)
+  :defer t
+  :init
+  (load-theme 'solarized-dark t)
   :config
   (progn
     (setf frame-background-mode 'dark)
