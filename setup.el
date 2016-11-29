@@ -1051,6 +1051,13 @@
   :mode ("\\.org$" . org-mode))
 
 
+(use-package org-bullets
+  :config
+  (setq org-hide-leading-stars t)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-bullets-mode t))))
+
 (use-package paren
   :init
   (progn
