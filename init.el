@@ -33,9 +33,6 @@
 (require 'bind-key)
 (require 'diminish)
 
-(when (display-graphic-p)
-  (exec-path-from-shell-initialize))
-
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path dir)

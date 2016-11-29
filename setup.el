@@ -472,6 +472,15 @@
   :commands (edit-env))
 
 
+(use-package exec-path-from-shell
+  :config
+  ;;(when (memq window-system '(mac ns))
+  (when (display-graphic-p)
+    (exec-path-from-shell-copy-env "GOPATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-initialize)))
+
+
 (use-package expand-region
   :bind (("C-+" . er/expand-region)
          ("C-?" . er/contract-region)))
