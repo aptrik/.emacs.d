@@ -578,7 +578,9 @@
     (add-hook 'before-save-hook 'gofmt-before-save)
     (add-hook 'go-mode-hook 'setup--go-mode))
   :bind (:map go-mode-map
-              ("M-." . godef-jump)))
+              ("M-." . godef-jump)
+              ("C-c C-r" . go-remove-unused-imports)
+              ("C-c C-g" . go-goto-imports)))
 
 
 (use-package gradle-mode
