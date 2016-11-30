@@ -76,6 +76,7 @@
 (depends-on "karma")
 (depends-on "keyfreq")
 (depends-on "less-css-mode")
+(depends-on "litable")
 (depends-on "logstash-conf")
 (depends-on "macrostep")
 (depends-on "magit")
