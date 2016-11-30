@@ -101,6 +101,7 @@
 (depends-on "projectile")
 (depends-on "protobuf-mode")
 (depends-on "py-autopep8")
+(depends-on "py-isort")
 (depends-on "py-yapf")
 (depends-on "python")
 (depends-on "rainbow-mode")

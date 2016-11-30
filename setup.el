@@ -1208,14 +1208,17 @@
        ("<M-right>"     . subword-forward)
        ("<C-left>"      . subword-backward)
        ("<C-right>"     . subword-forward)
-       ("<C-backspace>" . subword-backward-kill))
-
-      (local-set-key (kbd "C-.") 'company-complete)
-
-      (local-set-key [f9]   'py-run)
-      (local-set-key [S-f9] 'pdb)       ; defined in gud
-      (local-set-key [C-f9] 'compile)
-      (local-set-key [M-f9] 'recompile))))
+       ("<C-backspace>" . subword-backward-kill))))
+  :config
+  (use-package py-isort
+    :commands (py-isort-buffer))
+  :bind (:map python-mode-map
+              ("C-." . company-complete)
+              ("C-c I" . py-isort-buffer)
+              ("<f9>" . py-run)
+              ("<S-f9>" . pdb)
+              ("<C-f9>" . compile)
+              ("<M-f9>" . recompile)))
 
 
 (use-package rbenv
