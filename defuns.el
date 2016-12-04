@@ -248,17 +248,24 @@ Bound to `\\[match-paren]'."
    (t
     (message "*** No version control system found for directory: %s" directory))))
 
-(defun xml-pretty-print-region (start end)
-  "Pretty format XML markup in region.
-You need to have nxml-mode installed to do this."
-  (interactive "r")
+(defun xml-pretty-print-region (&optional start end)
+  "Pretty format XML in region.
+You need to have xmllint installed."
+  (interactive)
   (save-excursion
     (save-restriction
-      (narrow-to-region start end)
-      (goto-char (point-min))
-      (while (search-forward-regexp "\>[ \\t]*\<" nil t)
-        (backward-char) (insert "\n"))
-      (indent-region (point-min) (point-max)))))
+      (lexical-let (start end)
+        (if (use-region-p)
+            (setq start (region-beginning)
+                  end (region-end))
+          (setq start (point-min)
+                end (point-max)))
+        (narrow-to-region start end)
+        (shell-command-on-region
+         start end
+         "xmllint -format -"
+         (current-buffer)
+         t "*Xmllint Error Buffer*" t)))))
 
 (defun xml-where ()
   "Display the hierarchy of XML elements the point is on as a path."
