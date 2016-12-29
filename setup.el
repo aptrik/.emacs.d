@@ -358,6 +358,10 @@
   :mode (("\\.css$" . css-mode)))
 
 
+(use-package compilation-recenter-end
+  :functions (compilation-recenter-end-enable))
+
+
 (use-package compile
   :bind (("C-c c" . compile)
          ("C-c C" . recompile))

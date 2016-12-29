@@ -19,7 +19,6 @@
 (depends-on "company-anaconda")
 (depends-on "company-c-headers")
 (depends-on "company-tern")
-(depends-on "compilation-recenter-end")
 (depends-on "cpputils-cmake")
 (depends-on "diff-hl")
 (depends-on "dired+")
