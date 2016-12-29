@@ -82,9 +82,7 @@
                                "\\|python-pylint\\|Pymacs"
                                "\\|Completions"
                                "\\)\\*")))
-  :bind (("C-<escape>" . bs-show)
-         ("C-<tab>" . bs-show)
-         ("C-x C-b" . bs-show)))
+  :bind (("M-<f10>" . bs-show)))
 
 
 (use-package buffer-move
@@ -877,7 +875,6 @@
           magit-push-always-verify nil
           magit-restore-window-configuration t
           magit-status-buffer-switch-function 'switch-to-buffer)
-    (bind-keys :map magit-mode-map ("<C-tab>" . bs-show))
     (use-package magit-blame)
     (defadvice magit-diff-working-tree (after magit-diff-focus activate)
       "After execution, select the magit-diff buffer in the current window."
@@ -1043,9 +1040,8 @@
          (ruby . t)
          (sh . t)))
 
-      (local-set-key [M-up]          'outline-previous-visible-heading)
-      (local-set-key [M-down]        'outline-next-visible-heading)
-      (local-set-key [(control tab)] 'bs-show)))
+      (local-set-key [M-up]   'outline-previous-visible-heading)
+      (local-set-key [M-down] 'outline-next-visible-heading)))
   :bind (("M-m" . org-capture)
          ("C-c a" . org-agenda))
   :mode ("\\.org$" . org-mode))

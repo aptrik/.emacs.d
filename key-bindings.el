@@ -129,7 +129,6 @@
 
 (global-set-key (kbd "<f10>") 'vc-examine)
 (global-set-key (kbd "C-<f10>") 'menu-bar-open)
-(global-set-key (kbd "M-<f10>") 'bs-show)
 
 (global-set-key [f11]    'call-last-kbd-macro)
 (global-set-key [M-f11]  'apply-macro-to-region-lines)
