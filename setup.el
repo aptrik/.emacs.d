@@ -48,11 +48,8 @@
 
 (use-package bookmark
   :init
-  (setq bmkp-last-as-first-bookmark-file nil
-        bookmark-save-flag 1
-        bookmark-version-control t)
-  :config
-  (use-package bookmark+))
+  (setq bookmark-save-flag 1
+        bookmark-version-control t))
 
 
 (use-package browse-kill-ring

@@ -9,7 +9,6 @@
 (depends-on "ace-window")
 (depends-on "ahg")
 (depends-on "anaconda-mode")
-(depends-on "bookmark+")
 (depends-on "browse-kill-ring")
 (depends-on "buffer-move")
 (depends-on "clang-format")
