@@ -11,7 +11,8 @@
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
 
-(setq inhibit-splash-screen t
+(setq inhibit-default-init t
+      inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message nil)
 
