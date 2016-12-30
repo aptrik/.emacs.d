@@ -438,6 +438,14 @@
                  '("\\.epub\\'" "FBReader * &" "evince * &")))))
 
 
+(use-package docker-images
+  :commands docker-images)
+
+
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+
+
 (use-package dtrt-indent
   :diminish dtrt-indent-mode
   :init
