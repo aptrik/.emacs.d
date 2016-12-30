@@ -85,7 +85,6 @@
 (depends-on "move-text")
 (depends-on "multi-line")
 (depends-on "multiple-cursors")
-(depends-on "neotree")
 (depends-on "nlinum")
 (depends-on "nodejs-repl")
 (depends-on "notmuch")

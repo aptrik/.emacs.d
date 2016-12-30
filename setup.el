@@ -898,17 +898,6 @@
          ("s-<mouse-1>" . mc/add-cursor-on-click)))
 
 
-(use-package neotree
-  :bind ("s-q" . neotree-toggle)
-  :config
-  (setq neo-auto-indent-point t
-        neo-show-hidden-files nil
-        neo-modern-sidebar t
-        neo-smart-open t
-        neo-theme 'nerd
-        neo-window-width 35))
-
-
 (use-package newcomment
   :bind ("C-;" . comment-line))
 
