@@ -378,6 +378,9 @@
 
 
 (use-package dired
+  :bind (:map dired-mode-map
+              ("M-<up>" . dired-up-directory)
+              ("M-<down>" . dired-find-file))
   :commands dired-jump
   :config
   (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
@@ -404,6 +407,8 @@
   (use-package dired-subtree
     :config
     (setq dired-subtree-line-prefix "  "))
+
+  (unbind-key "M-g" dired-mode-map)
 
   (defun setup--dired-mode ()
     (dired-omit-mode 1)
