@@ -677,6 +677,10 @@
                 (ibuffer-do-sort-by-alphabetic)))))
 
 
+(use-package idle-highlight-mode
+  :bind ("C-c t i" . idle-highlight-mode))
+
+
 (use-package iedit
   :bind ("M-RET" . iedit-mode))
 
