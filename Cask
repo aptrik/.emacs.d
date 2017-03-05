@@ -132,3 +132,4 @@
 (depends-on "yaml-mode")
 (depends-on "yapfify")
 (depends-on "yasnippet")
+(depends-on "zeal-at-point")

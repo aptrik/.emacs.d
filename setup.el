@@ -1581,4 +1581,15 @@ This is used to set `sql-alternate-buffer-name' within
     (setq yas-snippet-dirs snippets-dir)))
 
 
+(use-package zeal-at-point
+  :bind ("C-c t z" . zeal-at-point)
+  :init
+  (setq zeal-at-point-mode-alist
+        (delete
+         (assoc 'python-mode zeal-at-point-mode-alist)
+         zeal-at-point-mode-alist))
+  (add-to-list 'zeal-at-point-mode-alist
+               '(python-mode . "python")))
+
+
 (provide 'setup)
