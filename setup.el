@@ -870,6 +870,11 @@
   (fullframe magit-status magit-mode-quite-window))
 
 
+(use-package man
+  :config
+  (setq Man-notify-method 'pushy))
+
+
 (use-package markdown-mode
   :mode (("README\\.md$" . gfm-mode)))
 
@@ -1541,15 +1546,6 @@ This is used to set `sql-alternate-buffer-name' within
   :diminish which-key-mode
   :config
   (which-key-mode 1))
-
-
-(use-package woman
-  :config
-  (fset 'man 'woman)
-  (setq woman-use-own-frame nil
-        woman-fontify       t
-        woman-imenu         t
-        Man-notify-method   'pushy))
 
 
 (use-package ws-butler
