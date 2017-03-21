@@ -1579,7 +1579,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package zeal-at-point
   :bind ("C-c t z" . zeal-at-point)
-  :init
+  :config
   (setq zeal-at-point-mode-alist
         (delete
          (assoc 'python-mode zeal-at-point-mode-alist)
