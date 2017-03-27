@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (provide 'defuns)
 
 (require 'cl)
@@ -105,6 +107,25 @@
     (next-line 1)
     (yank)
     (move-to-column cursor-column)))
+
+(defun ediff-dired-marked-files ()
+  "Run ediff on files in a dired buffer."
+  (interactive)
+  (let ((files (dired-get-marked-files))
+        (wnd (current-window-configuration)))
+    (if (<= (length files) 2)
+        (let ((file1 (car files))
+              (file2 (if (cdr files)
+                         (cadr files)
+                       (read-file-name
+                        "file B: "
+                        (dired-dwim-target-directory)))))
+          (ediff-files file1 file2)
+          (add-hook 'ediff-after-quit-hook-internal
+                    (lambda ()
+                      (setq ediff-after-quit-hook-internal nil)
+                      (set-window-configuration wnd))))
+      (error "No more than 2 files can be marked."))))
 
 (defun ediff-revision-current-buffer ()
   "Run ediff-revision on current buffer's file."

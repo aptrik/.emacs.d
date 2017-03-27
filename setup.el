@@ -379,6 +379,7 @@
 
 (use-package dired
   :bind (:map dired-mode-map
+              ("e" . ediff-dired-marked-files)
               ("M-<up>" . dired-up-directory)
               ("M-<down>" . dired-find-file))
   :commands dired-jump
