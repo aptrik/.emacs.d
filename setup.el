@@ -877,7 +877,9 @@
 
 
 (use-package markdown-mode
-  :mode (("README\\.md$" . gfm-mode)))
+  :mode (("README\\.md$" . gfm-mode))
+  :config
+  (setq markdown-command "pandoc"))
 
 
 (use-package minimap
