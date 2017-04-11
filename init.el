@@ -28,6 +28,7 @@
 (require 'pallet)
 (pallet-mode t)
 
+(setq use-package-enable-imenu-support t)
 (eval-when-compile
   (require 'use-package))
 
