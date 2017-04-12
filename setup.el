@@ -173,6 +173,23 @@
   (add-hook 'c-mode-hook 'setup--c-mode-hook)
   (add-hook 'c++-mode-hook 'setup--c-mode-hook)
 
+  (defun gcc:get-include-directories ()
+    (let ((found '())
+          (inside nil))
+      (dolist (s (s-lines (shell-command-to-string "gcc -xc++ -E -v -")))
+        (if (s-starts-with? "End of search list." s)
+            (setq inside nil))
+        (if inside
+            (add-to-list 'found (file-truename (s-trim s)) t))
+        (if (s-starts-with? "#include <...> search starts here:" s)
+            (setq inside t)))
+      found))
+
+  (use-package company-c-headers
+    :config
+    (setq company-c-headers-path-system (gcc:get-include-directories)))
+  (add-to-list 'company-backends 'company-c-headers)
+
   (defconst setup--c-style
     `((c-recognize-knr-p . nil)
       (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
@@ -293,28 +310,12 @@
   (setq company-tooltip-align-annotations t
         company-show-numbers t)
 
-  (defun gcc:get-include-directories ()
-    (let ((found '())
-          (inside nil))
-      (dolist (s (s-lines (shell-command-to-string "gcc -xc++ -E -v -")))
-        (if (s-starts-with? "End of search list." s)
-            (setq inside nil))
-        (if inside
-            (add-to-list 'found (file-truename (s-trim s)) t))
-        (if (s-starts-with? "#include <...> search starts here:" s)
-            (setq inside t)))
-      found))
-
   (use-package ac-js2)
   (use-package company-anaconda)
-  (use-package company-c-headers
-    :config
-    (setq company-c-headers-path-system (gcc:get-include-directories)))
   (use-package company-tern)
 
   (add-to-list 'company-backends 'ac-js2-company)
   (add-to-list 'company-backends 'company-anaconda)
-  (add-to-list 'company-backends 'company-c-headers)
   (add-to-list 'company-backends 'company-tern))
 
 
