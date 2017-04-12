@@ -293,9 +293,23 @@
   (setq company-tooltip-align-annotations t
         company-show-numbers t)
 
+  (defun gcc:get-include-directories ()
+    (let ((found '())
+          (inside nil))
+      (dolist (s (s-lines (shell-command-to-string "gcc -xc++ -E -v -")))
+        (if (s-starts-with? "End of search list." s)
+            (setq inside nil))
+        (if inside
+            (add-to-list 'found (file-truename (s-trim s)) t))
+        (if (s-starts-with? "#include <...> search starts here:" s)
+            (setq inside t)))
+      found))
+
   (use-package ac-js2)
   (use-package company-anaconda)
-  (use-package company-c-headers)
+  (use-package company-c-headers
+    :config
+    (setq company-c-headers-path-system (gcc:get-include-directories)))
   (use-package company-tern)
 
   (add-to-list 'company-backends 'ac-js2-company)
