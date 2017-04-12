@@ -310,11 +310,9 @@
   (setq company-tooltip-align-annotations t
         company-show-numbers t)
 
-  (use-package ac-js2)
   (use-package company-anaconda)
   (use-package company-tern)
 
-  (add-to-list 'company-backends 'ac-js2-company)
   (add-to-list 'company-backends 'company-anaconda)
   (add-to-list 'company-backends 'company-tern))
 
@@ -758,6 +756,9 @@
   (use-package tern)
   (use-package web-beautify
     :commands (web-beautify-js web-beautify-js-buffer))
+
+  (use-package ac-js2)
+  (add-to-list 'company-backends 'ac-js2-company)
 
   (defun delete-tern-process ()
     (interactive)
