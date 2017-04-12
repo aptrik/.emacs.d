@@ -310,10 +310,8 @@
   (setq company-tooltip-align-annotations t
         company-show-numbers t)
 
-  (use-package company-anaconda)
   (use-package company-tern)
 
-  (add-to-list 'company-backends 'company-anaconda)
   (add-to-list 'company-backends 'company-tern))
 
 
@@ -1169,6 +1167,9 @@
     "Run python on the file in the current buffer."
     (interactive)
     (compile (format "python \"%s\"" (buffer-file-name))))
+
+  (use-package company-anaconda)
+  (add-to-list 'company-backends 'company-anaconda)
 
   (defun setup--python-mode ()
     ;;(setq py-python-command-args '( "-colors" "Linux"))
