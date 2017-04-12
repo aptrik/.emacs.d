@@ -312,6 +312,10 @@
         company-show-numbers t
         company-tooltip-align-annotations t)
 
+  (setq company-backends (delete 'company-clang company-backends))
+  (setq company-backends (delete 'company-xcode company-backends))
+  (add-to-list 'company-backends 'company-keywords))
+
 
 (use-package cperl-mode
   :config
