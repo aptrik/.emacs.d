@@ -310,9 +310,7 @@
   (setq company-tooltip-align-annotations t
         company-show-numbers t)
 
-  (use-package company-tern)
 
-  (add-to-list 'company-backends 'company-tern))
 
 
 (use-package cperl-mode
@@ -751,7 +749,11 @@
     (js2r-add-keybindings-with-prefix "C-c C-m"))
   (use-package karma)
   (use-package nodejs-repl)
+
   (use-package tern)
+  (use-package company-tern)
+  (add-to-list 'company-backends 'company-tern)
+
   (use-package web-beautify
     :commands (web-beautify-js web-beautify-js-buffer))
 
