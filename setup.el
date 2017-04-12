@@ -307,10 +307,10 @@
   :config
   (global-company-mode)
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
-  (setq company-tooltip-align-annotations t
-        company-show-numbers t)
-
-
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 2
+        company-show-numbers t
+        company-tooltip-align-annotations t)
 
 
 (use-package cperl-mode
