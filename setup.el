@@ -483,11 +483,20 @@
 
 
 (use-package exec-path-from-shell
+  :init
+  ;;(setq exec-path-from-shell-debug t)
+  (setq exec-path-from-shell-arguments '("-l" "-i")
+        exec-path-from-shell-check-startup-files nil)
+  (setq exec-path-from-shell-variables
+        '("GOPATH"
+          "MANPATH"
+          "PATH"
+          "PGPPATH"
+          "PYTHONPATH"
+          "SSH_AGENT_PID" "SSH_AUTH_SOCK"))
   :config
   ;;(when (memq window-system '(mac ns))
   (when (display-graphic-p)
-    (exec-path-from-shell-copy-env "GOPATH")
-    (exec-path-from-shell-copy-env "PYTHONPATH")
     (exec-path-from-shell-initialize)))
 
 
