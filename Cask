@@ -53,6 +53,7 @@
 (depends-on "grep-a-lot")
 (depends-on "groovy-mode")
 (depends-on "helm")
+(depends-on "helm-gtags")
 (depends-on "helm-projectile")
 (depends-on "hexrgb")
 (depends-on "highlight-indentation")

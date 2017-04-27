@@ -251,31 +251,18 @@
     (subword-mode 1)
 
     (setup--set-c-style)
-    ;; (google-set-c-style)
-
-    (set (make-local-variable 'compile-command)
-         (concat "gmake -C " default-directory " all"))
 
     (c-toggle-electric-state -1)
     (c-toggle-auto-newline -1)
     ;; (c-toggle-hungry-state 1)
     (abbrev-mode 0)
 
-    ;; (setq cppcm-debug nil
-    ;;       cppcm-build-dirname "target/build-x86_64-linux-6-optimize")
-
-    (require 'cpputils-cmake)
-    (cppcm-reload-all)
-
     (setq-local eldoc-documentation-function #'ggtags-eldoc-function)
     (ggtags-mode 1)
 
     (eldoc-mode 1)
 
-    (local-set-key (kbd "C-c C-g")
-                   (lambda ()
-                     (interactive)
-                     (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
+    (use-package helm-gtags)
 
     (local-set-key (kbd "C-.") 'company-complete)
     (local-set-key (kbd "C-c o o") 'ff-find-other-file)))
