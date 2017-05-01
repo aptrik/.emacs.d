@@ -1129,7 +1129,9 @@
   :config
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t
-        projectile-require-project-root t)
+        projectile-ignored-project-function #'file-remote-p
+        projectile-require-project-root t
+        projectile-track-known-projects-automatically t)
   (add-to-list 'projectile-globally-ignored-files ".DS_Store")
   (use-package helm-projectile))
 
