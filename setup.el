@@ -636,8 +636,9 @@
 
 
 (use-package hl-line
-  :init
-  (use-package hl-line+))
+  :config
+  (use-package hl-line+)
+  (global-hl-line-mode 1))
 
 
 (use-package hl-tags-mode
