@@ -8,6 +8,8 @@
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
 (global-unset-key (kbd "C-x m")) ; disable sendmail
 
 (define-key minibuffer-local-map [up]     'previous-history-element)
