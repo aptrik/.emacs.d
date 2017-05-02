@@ -290,14 +290,19 @@
 
 (use-package company
   :bind (("C-c /". company-complete))
+  :bind (:map company-active-map
+              ([tab] . company-complete-common-or-cycle)
+              ("TAB" . company-complete-common-or-cycle))
   :diminish company-mode
   :config
   (global-company-mode)
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
+        company-selection-wrap-around t
         company-show-numbers t
-        company-tooltip-align-annotations t)
+        company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t)
 
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-xcode company-backends))
