@@ -12,6 +12,7 @@
   (setq ns-pop-up-frames nil))
 
 (setq
+ blink-cursor-blinks                  0
  focus-follows-mouse                  t
  interprogram-cut-function            'gui-select-text
  interprogram-paste-function          'gui-selection-value
@@ -87,7 +88,7 @@
 
 ;;; Turn on some minor modes.
 (auto-compression-mode 1)
-(blink-cursor-mode -1)
+(blink-cursor-mode 1)
 (column-number-mode 1)
 (delete-selection-mode -1)
 (electric-indent-mode -1)
