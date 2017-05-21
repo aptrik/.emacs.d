@@ -28,6 +28,7 @@
 (depends-on "docker")
 (depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
+(depends-on "dumb-jump")
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
 (depends-on "exec-path-from-shell")
