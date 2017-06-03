@@ -540,7 +540,12 @@
                                      (id (one-or-more (not (any " "))))
                                      (message) line-end))
                            :modes (text-mode markdown-mode gfm-mode))
-  (add-to-list 'flycheck-checkers 'proselint))
+  (add-to-list 'flycheck-checkers 'proselint)
+
+  (use-package flycheck-color-mode-line
+    :config
+    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
 
 (use-package focus-autosave-mode
