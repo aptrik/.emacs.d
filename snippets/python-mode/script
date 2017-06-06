@@ -15,17 +15,17 @@ def main(argv=None):
 
     parser = argparse.ArgumentParser(
         prog=os.path.basename(sys.argv[0]),
-        description='$0',
+        description="$0",
         add_help=True)
-    parser.add_argument('file',
-                        help='File to read.')
-    parser.add_argument('name',
-                        nargs='*',
+    parser.add_argument("file",
+                        help="File to read.")
+    parser.add_argument("name",
+                        nargs="*",
                         default=[],
-                        help='Names to operate on.')
+                        help="Names to operate on.")
     parser.add_argument("-q", "--quiet",
                         action="store_true",
-                        help='Be quiet; no unnecessary output.')
+                        help="Be quiet; no unnecessary output.")
     args = parser.parse_args(argv)
 
     print args.file
@@ -35,5 +35,5 @@ def main(argv=None):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())
