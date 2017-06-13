@@ -2,7 +2,8 @@
   (setq mac-command-modifier 'meta
         mac-control-modifier 'control
         mac-function-modifier 'super
-        mac-option-modifier nil))
+        mac-option-modifier nil
+        mouse-wheel-progressive-speed nil))
 
 (global-unset-key (kbd "C-x C-c"))
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
