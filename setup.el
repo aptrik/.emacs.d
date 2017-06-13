@@ -15,6 +15,10 @@
   (add-hook 'ahg-status-mode-hook 'turn-on-truncate-lines))
 
 
+(use-package all-the-icons
+  )
+
+
 (use-package anaconda-mode
   :diminish anaconda-mode)
 
@@ -953,6 +957,17 @@
          ("C-c o C-e"   . mc/edit-ends-of-lines)
          ("C-c o C-s"   . mc/mark-all-in-region)
          ("s-<mouse-1>" . mc/add-cursor-on-click)))
+
+
+(use-package neotree
+  :bind ("s-q" . neotree-toggle)
+  :config
+  (setq neo-auto-indent-point t
+        neo-show-hidden-files nil
+        neo-modern-sidebar t
+        neo-smart-open t
+        neo-theme 'icons
+        neo-window-width 35))
 
 
 (use-package newcomment
