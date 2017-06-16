@@ -749,6 +749,7 @@
   :mode "\\.js$"
   :init
   (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
+  :commands (js2-print-json-path)
   :config
   (setq-default
    js2-global-externs
@@ -804,6 +805,7 @@
     (local-unset-key (kbd "C-c e"))
     (local-set-key (kbd "C-c e e") 'nodejs-repl-send-last-sexp)
     (local-set-key (kbd "C-c e n") 'nodejs-repl)
+    (local-set-key (kbd "C-c e p") 'js2-print-json-path)
     (local-set-key (kbd "C-c e q") 'nodejs-repl-quit-or-cancel)
     (local-set-key (kbd "C-c e r") 'nodejs-repl-send-region)
     (local-set-key (kbd "C-c e v") 'nodejs-repl-switch-to-repl))
