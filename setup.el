@@ -814,15 +814,16 @@
 
 
 (use-package json-mode
+  :preface
+  (defun json-mode--reformat-region ()
+    (interactive)
+    (if (region-active-p)
+        (call-interactively #'json-reformat-region)
+      (json-reformat-region (point-min) (point-max))))
+  :bind ("M-q" . json-mode--reformat-region)
   :config
   (setf json-reformat:pretty-string? t
-        json-reformat:indent-width 2)
-  (define-key json-mode-map (kbd "M-q")
-    (lambda ()
-      (interactive)
-      (if (region-active-p)
-          (call-interactively #'json-reformat-region)
-        (json-reformat-region (point-min) (point-max))))))
+        json-reformat:indent-width 2))
 
 
 (use-package keyfreq
