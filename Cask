@@ -99,6 +99,7 @@
 (depends-on "ox-reveal")
 (depends-on "ox-twbs")
 (depends-on "pallet")
+(depends-on "pdf-tools")
 (depends-on "php-mode")
 (depends-on "plantuml-mode")
 (depends-on "projectile")

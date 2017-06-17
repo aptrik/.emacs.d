@@ -1019,10 +1019,10 @@
                   "png" "gif" "bmp" "tif" "jpeg" "jpg"))
                (if macosp "open" "eog")
                '(file))
-         (list (openwith-make-extension-regexp
-                '("pdf")) ; "ps" "ps.gz" "dvi"))
-               (if macosp "open" "evince")
-               '(file))
+         ;; (list (openwith-make-extension-regexp
+         ;;        '("pdf")) ; "ps" "ps.gz" "dvi"))
+         ;;       (if macosp "open" "evince")
+         ;;       '(file))
          (list (openwith-make-extension-regexp
                 '("epub"))
                (if macosp "open" "FBReader")
@@ -1087,6 +1087,15 @@
   :init
   (show-paren-mode t)
   (setq show-paren-style 'parenthesis))
+
+
+(use-package pdf-tools
+  :mode (("\\.pdf\\'" . pdf-view-mode))
+  :config
+  (progn
+    (setq-default pdf-view-display-size 'fit-width)
+    (setq pdf-view-resize-factor 1.10)
+    (pdf-tools-install)))
 
 
 (use-package php-mode
