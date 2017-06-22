@@ -1158,7 +1158,9 @@
 
 
 (use-package popup-imenu
-  :bind ("s-i" . popup-imenu)
+  :bind (("s-i" . popup-imenu)
+         :map popup-isearch-keymap
+         ("s-i" . popup-isearch-cancel))
   :config
   (setq popup-imenu-position 'point
         popup-imenu-style 'indent))
