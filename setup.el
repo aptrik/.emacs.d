@@ -1157,6 +1157,13 @@
         (setq plantuml-jar-path jar-file))))
 
 
+(use-package popup-imenu
+  :bind ("s-i" . popup-imenu)
+  :config
+  (setq popup-imenu-position 'point
+        popup-imenu-style 'indent))
+
+
 (use-package printing
   :config
   (pr-update-menus t)
