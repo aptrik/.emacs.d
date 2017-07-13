@@ -820,7 +820,8 @@
     (if (region-active-p)
         (call-interactively #'json-reformat-region)
       (json-reformat-region (point-min) (point-max))))
-  :bind ("M-q" . json-mode--reformat-region)
+  :bind (:map json-mode-map
+              ("M-q" . json-mode--reformat-region))
   :config
   (setf json-reformat:pretty-string? t
         json-reformat:indent-width 2))
