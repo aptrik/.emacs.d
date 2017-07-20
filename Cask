@@ -69,6 +69,7 @@
 (depends-on "ido-hacks")
 (depends-on "ido-vertical-mode")
 (depends-on "iedit")
+(depends-on "importmagic")
 (depends-on "inf-ruby")
 (depends-on "js-comint")
 (depends-on "js2-highlight-vars")
