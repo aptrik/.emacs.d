@@ -659,6 +659,11 @@
                 gud-tooltip-mode t))
 
 
+(use-package highlight-symbol
+  :config
+  (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
+
+
 (use-package hl-line
   :config
   (use-package hl-line+)
