@@ -16,7 +16,7 @@
  focus-follows-mouse                  t
  interprogram-cut-function            'gui-select-text
  interprogram-paste-function          'gui-selection-value
- mouse-autoselect-window              t
+ mouse-autoselect-window              nil
  mouse-drag-copy-region               t
  mouse-yank-at-point                  t
  save-interprogram-paste-before-kill  t
