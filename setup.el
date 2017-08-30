@@ -913,7 +913,8 @@
    magit-last-seen-setup-instructions "2.1.0"
    magit-push-always-verify nil
    magit-restore-window-configuration t
-   magit-status-buffer-switch-function 'switch-to-buffer)
+   magit-status-buffer-switch-function 'switch-to-buffer
+   magit-repository-directories '("~/.emacs.d"))
   (use-package magit-blame)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
