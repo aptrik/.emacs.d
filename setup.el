@@ -1557,6 +1557,11 @@ This is used to set `sql-alternate-buffer-name' within
                                   ("Asia/Tokyo" "Tokyo"))))
 
 
+(use-package tramp
+  :init
+  (setq tramp-default-method 'ssh))
+
+
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward))
