@@ -833,30 +833,16 @@ many columns.  With no active region, indent only the current line."
 ;;-----------------------------------------------------------------------------
 ;;; Cleanup functions.
 
-(defun untabify-buffer ()
-  "Untabify current buffer."
-  (interactive)
-  (untabify (point-min) (point-max)))
-
-(defun indent-buffer ()
-  "Indent current buffer."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
 (defun cleanup-buffer ()
   "Cleanup current buffer with regard to whitespace."
   (interactive)
-  (untabify-buffer)
-  ;;(set-buffer-file-coding-system 'utf-8-unix t)
-  ;;(set-buffer-file-coding-system 'utf-8)
-  (delete-trailing-whitespace))
+   (save-excursion
+     (undo-boundary)
+     (untabify (point-min) (point-max))
+     ;;(set-buffer-file-coding-system 'utf-8-unix t)
+     ;;(set-buffer-file-coding-system 'utf-8)
+     (delete-trailing-whitespace)))
 
-(defun cleanup-and-indent-buffer ()
-  "Perform a bunch of operations on the whitespace content of a buffer.
-Including indent-buffer, which should not be called automatically on save."
-  (interactive)
-  (cleanup-buffer)
-  (indent-buffer))
 
 ;;-----------------------------------------------------------------------------
 ;;; Modifications to find-file-at-point.
