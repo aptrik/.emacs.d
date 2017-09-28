@@ -1468,6 +1468,22 @@
    ))
 
 
+(use-package spacemacs-theme
+  :init
+  (load-theme 'spacemacs-dark t)
+  (setq spacemacs-theme-org-agenda-height nil)
+  (setq spacemacs-theme-org-height nil))
+
+
+(use-package spaceline
+  :demand t
+  :init
+  (setq powerline-default-separator 'arrow-fade)
+  :config
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme))
+
+
 (use-package speedbar
   :config
   (setq speedbar-default-position 'left
