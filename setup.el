@@ -412,7 +412,8 @@
     (dired-details-install))
   (use-package dired+
     :init
-    (setq diredp-hide-details-initially-flag nil))
+    (setq diredp-bind-problematic-terminal-keys nil
+          diredp-hide-details-initially-flag nil))
   (use-package dired-details+)
   (use-package dired-subtree
     :config
