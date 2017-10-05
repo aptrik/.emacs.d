@@ -31,7 +31,7 @@
 
 
 (use-package autorevert
-  :bind ("C-c t A" . auto-revert-mode)
+  :bind ("C-c t A" . auto-revert-tail-mode)
   :diminish (auto-revert-mode . " Ⓐ")
   :config
   (setq auto-revert-verbose nil)
