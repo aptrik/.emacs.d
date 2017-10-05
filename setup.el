@@ -1186,13 +1186,13 @@
 
 
 (use-package projectile
-  :bind ("C-c p M" . projectile-mode)
   :commands (projectile-mode helm-projectile)
   :diminish projectile-mode
   :init
-  (projectile-global-mode 1)
+  (projectile-mode 1)
   :config
   (setq projectile-completion-system 'ivy
+        projectile-create-missing-test-files t
         projectile-enable-caching t
         projectile-ignored-project-function #'file-remote-p
         projectile-require-project-root t
