@@ -941,6 +941,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 (defun hotspots ()
   "Show hotspots using the helm interface."
   (interactive)
+  (require 'helm-bookmark)
   (helm
    :sources
    `(((name . "Hotspots")
