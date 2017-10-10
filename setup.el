@@ -429,12 +429,12 @@
     (local-set-key (kbd "T") 'dired-do-touch)
     (local-set-key (kbd "j") 'diredp-next-line)
     (local-set-key (kbd "k") 'diredp-previous-line)
-    (local-set-key (kbd "s-<up>") 'dired-up-directory)
-    (local-set-key (kbd "s-<down>") 'dired-find-file)
+    (local-set-key (kbd "M-<right>") 'dired-find-file)
+    (local-set-key (kbd "M-<left>") 'dired-up-directory)
     (local-set-key (kbd "M-<up>") 'dired-prev-dirline)
     (local-set-key (kbd "M-<down>") 'dired-next-dirline)
-    (local-set-key (kbd "M-<left>") 'dired-subtree-remove)
-    (local-set-key (kbd "M-<right>") 'dired-subtree-insert))
+    (local-set-key (kbd "M-S-<right>") 'dired-subtree-insert)
+    (local-set-key (kbd "M-S-<left>") 'dired-subtree-remove))
 
   (add-hook 'dired-mode-hook 'setup--dired-mode)
 
