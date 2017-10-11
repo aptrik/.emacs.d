@@ -1,6 +1,4 @@
-(source "ELPA" "https://tromey.com/elpa/")
 (source gnu)
-(source marmalade)
 (source melpa)
 (source org)
 
@@ -130,7 +128,6 @@
 (depends-on "sphinx-mode")
 (depends-on "stripe-buffer")
 (depends-on "sx")
-(depends-on "syslog-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "vlf")
