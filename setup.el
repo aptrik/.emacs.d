@@ -1477,7 +1477,19 @@
   :init
   (load-theme 'spacemacs-dark t)
   (setq spacemacs-theme-org-agenda-height nil)
-  (setq spacemacs-theme-org-height nil))
+  (setq spacemacs-theme-org-height nil)
+  :config
+  (custom-set-faces
+   ;; idle-highlight
+   '(idle-highlight ((t (:foreground "yellow" :background "black"))))
+
+   ;; isearch
+   '(isearch
+     ((t (:foreground "black" :background "yellow" :bold t))))
+   '(isearch-lazy-highlight-face
+     ((t (:foreground "black" :background "gold"))))
+   '(isearch-fail
+     ((t (:foreground "red" :background "yellow" :bold t))))))
 
 
 (use-package spaceline
