@@ -1487,7 +1487,7 @@
    '(isearch
      ((t (:foreground "black" :background "yellow" :bold t))))
    '(isearch-lazy-highlight-face
-     ((t (:foreground "black" :background "gold"))))
+     ((t (:foreground "black" :background "#ffff99")))) ; Canary Yellow
    '(isearch-fail
      ((t (:foreground "red" :background "yellow" :bold t))))))
 
