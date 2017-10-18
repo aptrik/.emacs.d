@@ -1428,7 +1428,7 @@
 
 
 (use-package solarized-theme
-  :defer t
+  :disabled
   :init
   (load-theme 'solarized-dark t)
   :config
