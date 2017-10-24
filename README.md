@@ -14,12 +14,12 @@ Fetch the source.
 
     git clone  git://github.com/aptrik/.emacs.d.git  ~/.emacs.d
 
-Make sure you have Emacs version 24.3 or higher [installed](#install-emacs).
+Make sure you have Emacs version 25.1 or higher [installed](#install-emacs).
 
 
-### Install all ELPA packages
+### Install Emacs Lisp packages
 
-First install [Cask](http://cask.github.io/):
+First install [Cask](http://cask.readthedocs.org/):
 
     $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
     ...
@@ -29,7 +29,7 @@ First install [Cask](http://cask.github.io/):
 Upgrade `cask` and then let `cask` install all dependencies.
 
     cd ~/.emacs.d
-    cask upgrade
+    cask upgrade-cask
     cask install
 
 
@@ -76,9 +76,9 @@ Or the bleeding edge version.
 
 ### Build from source
 
-    wget http://ftpmirror.gnu.org/emacs/emacs-25.2.tar.xz
-    tar xfJ emacs-25.2.tar.xz
-    cd emacs-25.2
+    wget http://ftpmirror.gnu.org/emacs/emacs-25.3.tar.xz
+    tar xfJ emacs-25.3.tar.xz
+    cd emacs-25.3
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
 
     make
