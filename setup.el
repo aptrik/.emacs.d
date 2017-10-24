@@ -7,7 +7,7 @@
 
 
 (use-package adoc-mode
-  :mode (("\\.txt\\'" . adoc-mode)))
+  :mode (("\\.adoc\\'" . adoc-mode)))
 
 
 (use-package ahg
