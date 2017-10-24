@@ -28,8 +28,8 @@
 
 
 (use-package arc-mode
-  :mode (("\\.egg$" . archive-mode)
-         ("\\.\\(war\\|jar\\)$" . archive-mode))
+  :mode (("\\.egg\\'" . archive-mode)
+         ("\\.\\(war\\|jar\\)\\'" . archive-mode))
   :config
   (add-hook 'archive-mode-hook 'turn-on-truncate-lines))
 
@@ -174,9 +174,9 @@
 
 
 (use-package cc-mode
-  :mode (("\\.[ch]$" . c-mode)
-         ("\\.\\(cc\\|hh\\)$" . c++-mode)
-         ("\\.\\(i\\|swg\\)$" . c++-mode))
+  :mode (("\\.[ch]\\'" . c-mode)
+         ("\\.\\(cc\\|hh\\)\\'" . c++-mode)
+         ("\\.\\(i\\|swg\\)\\'" . c++-mode))
   :config
   (add-hook 'c-mode-hook 'setup--c-mode-hook)
   (add-hook 'c++-mode-hook 'setup--c-mode-hook)
@@ -348,7 +348,7 @@
 
 
 (use-package css-mode
-  :mode (("\\.css$" . css-mode))
+  :mode (("\\.css\\'" . css-mode))
   :config
   (setq cssm-indent-function 'cssm-c-style-indenter
         css-indent-level 2
@@ -581,11 +581,11 @@
 
 
 (use-package gitconfig-mode
-  :mode ("/gitconfig$" . gitconfig-mode))
+  :mode ("/gitconfig\\'" . gitconfig-mode))
 
 
 (use-package gitignore-mode
-  :mode ("/gitignore$" . gitignore-mode))
+  :mode ("/gitignore\\'" . gitignore-mode))
 
 
 (use-package go-mode
@@ -618,7 +618,7 @@
 
 
 (use-package gradle-mode
-  :mode ("\\.gradle$" . gradle-mode))
+  :mode ("\\.gradle\\'" . gradle-mode))
 
 
 (use-package grep
@@ -657,8 +657,8 @@
 
 
 (use-package groovy-mode
-  :mode (("\\.grovvy$" . groovy-mode)
-         ("\\.gradle$" . groovy-mode)))
+  :mode (("\\.grovvy\\'" . groovy-mode)
+         ("\\.gradle\\'" . groovy-mode)))
 
 
 (use-package gud
@@ -760,7 +760,7 @@
 
 
 (use-package js2-mode
-  :mode "\\.js$"
+  :mode "\\.js\\'"
   :init
   (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
   :commands (js2-print-json-path)
@@ -937,7 +937,7 @@
 
 
 (use-package markdown-mode
-  :mode (("README\\.md$" . gfm-mode))
+  :mode (("README\\.md\\'" . gfm-mode))
   :config
   (setq markdown-command "pandoc"))
 
@@ -1049,7 +1049,7 @@
 (use-package org
   :bind (("M-m" . org-capture)
          ("C-c a" . org-agenda))
-  :mode ("\\.org$" . org-mode)
+  :mode ("\\.org\\'" . org-mode)
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md reveal twbs))
@@ -1210,7 +1210,7 @@
 
 
 (use-package protobuf-mode
-  :mode ("\\.proto$" . protobuf-mode)
+  :mode ("\\.proto\\'" . protobuf-mode)
   :init
   (defconst my-protobuf-style
     '((c-basic-offset . 4)
@@ -1295,13 +1295,13 @@
 
 
 (use-package ruby-mode
-  :mode (("Gemfile$" . ruby-mode)
-         ("Rakefile$" . ruby-mode)
+  :mode (("Gemfile\\'" . ruby-mode)
+         ("Rakefile\\'" . ruby-mode)
          ("Guardfile" . ruby-mode)
-         ("Vagrantfile$" . ruby-mode)
-         ("\\.watchr$" . ruby-mode)
-         ("\\.rake$" . ruby-mode)
-         ("\\.rb$" . ruby-mode))
+         ("Vagrantfile\\'" . ruby-mode)
+         ("\\.watchr\\'" . ruby-mode)
+         ("\\.rake\\'" . ruby-mode)
+         ("\\.rb\\'" . ruby-mode))
   :init
   (setq ruby-deep-indent-paren nil)
 
@@ -1352,12 +1352,12 @@
 
 
 (use-package sh-script
-  :mode (("/\\.\\(my\\)?login$" . sh-mode)
-         ("/\\.\\(my\\)?logout$" . sh-mode)
-         ("/\\.\\(my\\)?t?cshrc$" . sh-mode)
-         ("/\\.profile$" . sh-mode)
-         ("/\\.xinitrc$" . sh-mode)
-         ("\\.t?c?sh$" . sh-mode))
+  :mode (("/\\.\\(my\\)?login\\'" . sh-mode)
+         ("/\\.\\(my\\)?logout\\'" . sh-mode)
+         ("/\\.\\(my\\)?t?cshrc\\'" . sh-mode)
+         ("/\\.profile\\'" . sh-mode)
+         ("/\\.xinitrc\\'" . sh-mode)
+         ("\\.t?c?sh\\'" . sh-mode))
   :init
   (setq sh-shell-file     "/bin/sh"
         sh-indentation    4
@@ -1391,7 +1391,7 @@
 
 
 (use-package scss-mode
-  :mode ("\\.scss$" . scss-mode)
+  :mode ("\\.scss\\'" . scss-mode)
   :config
   (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
 
@@ -1634,9 +1634,9 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package web-mode
-  :mode (("\\.html$" . web-mode)
-         ("\\.rhtml$" . web-mode)
-         ("\\.\\(php\\|inc\\)$" . web-mode))
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.rhtml\\'" . web-mode)
+         ("\\.\\(php\\|inc\\)\\'" . web-mode))
   :config
   (setq web-mode-enable-block-face t
         web-mode-enable-part-face t
@@ -1692,7 +1692,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package yaml-mode
-  :mode ("\\.ya?ml$" . yaml-mode))
+  :mode ("\\.ya?ml\\'" . yaml-mode))
 
 
 (use-package yasnippet
