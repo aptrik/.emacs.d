@@ -5,6 +5,7 @@
 (depends-on "ac-js2")
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
+(depends-on "adoc-mode")
 (depends-on "ahg")
 (depends-on "all-the-icons")
 (depends-on "anaconda-mode")

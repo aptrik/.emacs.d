@@ -6,6 +6,10 @@
   :bind ("s-o" . ace-window))
 
 
+(use-package adoc-mode
+  :mode (("\\.txt\\'" . adoc-mode)))
+
+
 (use-package ahg
   :bind (:map ahg-status-mode-map
               ("<tab>" . ahg-status-diff)
