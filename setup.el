@@ -1110,7 +1110,8 @@
   :config
   (progn
     (setq-default pdf-view-display-size 'fit-width)
-    (setq pdf-view-resize-factor 1.10)
+    (setq pdf-annot-activate-created-annotations t
+          pdf-view-resize-factor 1.10)
     (pdf-tools-install)))
 
 
