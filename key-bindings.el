@@ -3,6 +3,8 @@
         mac-control-modifier 'control
         mac-function-modifier 'super
         mac-option-modifier nil
+        mac-right-command-modifier 'hyper
+        mac-right-option-modifier 'alt
         mouse-wheel-progressive-speed nil))
 
 (global-unset-key (kbd "C-x C-c"))
