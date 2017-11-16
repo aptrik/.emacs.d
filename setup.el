@@ -1249,9 +1249,9 @@
   (use-package company-anaconda)
   (add-to-list 'company-backends 'company-anaconda)
 
-  (use-package importmagic
-    :config
-    (add-hook 'python-mode-hook 'importmagic-mode))
+  ;; (use-package importmagic
+  ;;   :config
+  ;;   (add-hook 'python-mode-hook 'importmagic-mode))
 
   (defun setup--python-mode ()
     ;;(setq py-python-command-args '( "-colors" "Linux"))
