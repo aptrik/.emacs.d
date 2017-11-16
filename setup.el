@@ -545,6 +545,9 @@
   :bind ("C-c t f" . flycheck-mode)
   :config
   (setq flycheck-pylint-use-symbolic-id nil)
+
+  (flycheck-add-next-checker 'python-flake8 '(info . python-pylint))
+
   (flycheck-define-checker proselint
                            "A linter for prose."
                            :command ("proselint" source-inplace)
