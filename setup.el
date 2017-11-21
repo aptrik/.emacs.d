@@ -317,6 +317,11 @@
   (add-to-list 'company-backends 'company-keywords))
 
 
+(use-package copy-as-format
+  :bind (("C-c t w s" . copy-as-format-slack)
+         ("C-c t w j" . copy-as-format-jira)))
+
+
 (use-package cperl-mode
   :config
   (defalias 'perl-mode 'cperl-mode)
@@ -1001,14 +1006,8 @@
   :bind ("C-c t l" . nlinum-mode))
 
 
-(use-package nuke-whitespace)
-;; (use-package nuke-whitespace
-;;   :config
-;;   (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-;;   ;; (remove-hook 'write-file-hooks 'nuke-trailing-whitespace)
-;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'emacs-lisp-mode)
-;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'python-mode)
-;;   (add-to-list 'nuke-trailing-whitespace-always-major-modes 'ruby-mode))
+(use-package nuke-whitespace
+  :bind ("C-c t n" . nuke-trailing-whitespace))
 
 
 (use-package nxml-mode
