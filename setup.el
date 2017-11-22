@@ -302,8 +302,8 @@
               ([tab] . company-complete-common-or-cycle)
               ("TAB" . company-complete-common-or-cycle))
   :diminish company-mode
+  :defer 5
   :config
-  (global-company-mode)
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
@@ -314,7 +314,8 @@
 
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-xcode company-backends))
-  (add-to-list 'company-backends 'company-keywords))
+  (add-to-list 'company-backends 'company-keywords)
+  (global-company-mode))
 
 
 (use-package copy-as-format
