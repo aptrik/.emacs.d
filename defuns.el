@@ -919,10 +919,8 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 ;;-----------------------------------------------------------------------------
 
 (defvar hotspot-directories
-  (list (expand-file-name "~")
-        (expand-file-name "~/lib")
-        (expand-file-name "~/work"))
-  "Directories to search for hotspots.")
+  (list "~" "~/lib" "~/work")
+  "List of hotspot directories.")
 
 (defun hotspot--generate-directories ()
   (let ((result ()))
@@ -937,7 +935,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
                                    ;; (string-match "\\.old$" d)
                                    ;; (string-match "/workspace" d)
                                    )))
-                        (f-directories dir)))
+                        (f-directories (substitute-in-file-name dir))))
           (add-to-list 'result found t))))
     result))
 
