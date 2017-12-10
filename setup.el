@@ -1458,7 +1458,6 @@
 
 
 (use-package solarized-theme
-  :disabled
   :init
   (load-theme 'solarized-dark t)
   :config
@@ -1504,6 +1503,7 @@
 
 
 (use-package spacemacs-theme
+  :disabled
   :init
   (load-theme 'spacemacs-dark t)
   (setq spacemacs-theme-org-agenda-height nil)
@@ -1523,6 +1523,7 @@
 
 
 (use-package spaceline
+  :disabled
   :demand t
   :init
   (setq powerline-default-separator 'arrow-fade)
