@@ -552,7 +552,7 @@
   :config
   (setq flycheck-pylint-use-symbolic-id nil)
 
-  (flycheck-add-next-checker 'python-flake8 '(info . python-pylint))
+  (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
 
   (flycheck-define-checker proselint
                            "A linter for prose."
