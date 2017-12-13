@@ -951,3 +951,26 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
      helm-source-bookmarks)))
 
 ;;-----------------------------------------------------------------------------
+;;; Helpers to access remote systems.
+
+(defvar remote-edit-user (user-login-name))
+(defvar remote-edit-host "devbox")
+(defvar remote-edit-path "/tmp")
+(defvar remote-edit-user-history nil)
+(defvar remote-edit-host-history nil)
+(defvar remote-edit-path-history nil)
+
+(defun remote-edit (&optional sudo)
+  "Connect to remote host using ssh.
+
+If sudo is non-nil, invoke sudo on remote host."
+  (interactive "p")
+  (let ((user (read-string "Remote user: " remote-edit-user 'remote-edit-user-history remote-edit-user))
+        (host (read-string "Host: " remote-edit-host 'remote-edit-host-history remote-edit-host))
+        (path (read-string "Path: " remote-edit-path 'remote-edit-path-history remote-edit-path)))
+    (find-file
+     (if sudo
+         (format "/ssh:%s@%s|sudo:%s:%s" user host host path)
+       (format "/ssh:%s@%s:%s" user host path)))))
+
+;;-----------------------------------------------------------------------------
