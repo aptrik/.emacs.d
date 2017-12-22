@@ -974,6 +974,7 @@
 
 
 (use-package multiple-cursors
+  :defer 5
   :bind (("C-c o <SPC>" . mc/vertical-align-with-space)
          ("C-c o a"     . mc/vertical-align)
          ("C-c o e"     . mc/mark-more-like-this-extended)
@@ -985,7 +986,21 @@
          ("C-c o C-a"   . mc/edit-beginnings-of-lines)
          ("C-c o C-e"   . mc/edit-ends-of-lines)
          ("C-c o C-s"   . mc/mark-all-in-region)
-         ("s-<mouse-1>" . mc/add-cursor-on-click)))
+         ("s-<mouse-1>" . mc/add-cursor-on-click))
+  :bind (:map selected-keymap
+              ("'"        . mc/edit-lines)
+              ("."        . mc/mark-next-like-this)
+              (":"        . mc/unmark-next-like-this)
+              ("C-:"      . mc/skip-to-previous-like-this)
+              (","        . mc/mark-previous-like-this)
+              (";"        . mc/unmark-previous-like-this)
+              ("C-;"      . mc/skip-to-next-like-this)
+              ("w"        . mc/mark-next-word-like-this)
+              ("W"        . mc/mark-previous-word-like-this)
+              ("y"        . mc/mark-next-symbol-like-this)
+              ("Y"        . mc/mark-previous-symbol-like-this)
+              ("C-<up>"   . move-text-up)
+              ("C-<down>" . move-text-down)))
 
 
 (use-package neotree
@@ -1354,6 +1369,22 @@
     :diminish ruby-end-mode)
   (use-package robe
     :diminish robe-mode))
+
+
+(use-package selected
+  :defer 5
+  :diminish selected-minor-mode
+  :bind (:map selected-keymap
+              ("+" . er/expand-region)
+              ("-" . er/contract-region)
+              ("c" . comment-region)
+              ("C" . uncomment-region)
+              ("f" . fill-region)
+              ("m" . apply-macro-to-region-lines)
+              ("q" . selected-off)
+              ("s" . sort-lines))
+  :config
+  (selected-global-mode 1))
 
 
 (use-package sh-script
