@@ -1642,6 +1642,17 @@ This is used to set `sql-alternate-buffer-name' within
   (add-hook 'term-mode-hook 'setup--term))
 
 
+(use-package terraform-mode
+  :mode "\\.tf\\'"
+  :config
+  (use-package company-terraform
+    :config
+    (add-to-list 'company-backends 'company-terrform))
+  ;; (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . json-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.json.tftemplate\\'" . json-mode))
+  (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+
+
 (use-package time
   :config
   (setq display-time-world-time-format "%Y-%m-%d %H:%M %Z"
