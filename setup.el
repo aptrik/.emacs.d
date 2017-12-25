@@ -1645,9 +1645,8 @@ This is used to set `sql-alternate-buffer-name' within
 (use-package terraform-mode
   :mode "\\.tf\\'"
   :config
-  (use-package company-terraform
-    :config
-    (add-to-list 'company-backends 'company-terrform))
+  (use-package company-terraform)
+  (company-terraform-init)
   ;; (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . json-mode))
   ;; (add-to-list 'auto-mode-alist '("\\.json.tftemplate\\'" . json-mode))
   (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
