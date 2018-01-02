@@ -999,8 +999,7 @@
               ("W"        . mc/mark-previous-word-like-this)
               ("y"        . mc/mark-next-symbol-like-this)
               ("Y"        . mc/mark-previous-symbol-like-this)
-              ("C-<up>"   . move-text-up)
-              ("C-<down>" . move-text-down)))
+              ))
 
 
 (use-package neotree
@@ -1377,12 +1376,8 @@
   :bind (:map selected-keymap
               ("+" . er/expand-region)
               ("-" . er/contract-region)
-              ("c" . comment-region)
-              ("C" . uncomment-region)
-              ("f" . fill-region)
               ("m" . apply-macro-to-region-lines)
-              ("q" . selected-off)
-              ("s" . sort-lines))
+              ("q" . selected-off))
   :config
   (selected-global-mode 1))
 
