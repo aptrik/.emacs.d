@@ -1097,6 +1097,8 @@
     (setq org-blank-before-new-entry '((heading . t)
                                        (plain-list-item . nil)))
 
+    (require 'ox-latex)
+    (require 'ox-pandoc)
     (require 'ox-reveal)
     (require 'ox-twbs)
 

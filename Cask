@@ -98,6 +98,7 @@
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
 (depends-on "org-present")
+(depends-on "ox-pandoc")
 (depends-on "ox-reveal")
 (depends-on "ox-twbs")
 (depends-on "pallet")
