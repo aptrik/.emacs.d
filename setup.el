@@ -1098,7 +1098,6 @@
                                        (plain-list-item . nil)))
 
     (require 'ox-latex)
-    (require 'ox-pandoc)
     (require 'ox-reveal)
     (require 'ox-twbs)
 
