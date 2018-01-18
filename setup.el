@@ -1377,7 +1377,7 @@
   :bind (:map selected-keymap
               ("+" . er/expand-region)
               ("-" . er/contract-region)
-              ("m" . apply-macro-to-region-lines)
+              ;;("m" . apply-macro-to-region-lines)
               ("q" . selected-off))
   :config
   (selected-global-mode 1))
