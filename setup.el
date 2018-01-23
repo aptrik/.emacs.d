@@ -1381,7 +1381,7 @@
               ;;("m" . apply-macro-to-region-lines)
               ("q" . selected-off))
   :config
-  (selected-global-mode 1))
+  (selected-global-mode -1))
 
 
 (use-package sh-script
