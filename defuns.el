@@ -940,15 +940,27 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
     result))
 
 (defun hotspots ()
-  "Show hotspots using the helm interface."
+  "Show directory hotspots using the helm interface."
   (interactive)
   (require 'helm-bookmark)
   (helm
    :sources
-   `(((name . "Hotspots")
+   `(((name . "Directory Hotspots")
       (candidates . ,(hotspot--generate-directories))
-      (action . (("Open" . (lambda (x) (find-file x))))))
+      (action . (("Open" . (lambda (d) (find-file d))))))
      helm-source-bookmarks)))
+
+(defun hotspots-vc ()
+  "Show version control hotspots using the helm interface."
+  (interactive)
+  (require 'helm-bookmark)
+  (helm
+   :sources
+   `(((name . "Version Control Hotspots")
+      (candidates . ,(hotspot--generate-directories))
+      (action . (("Version control examine" . (lambda (d) (vc-examine d))))))
+     helm-source-bookmarks)))
+
 
 ;;-----------------------------------------------------------------------------
 ;;; Helpers to access remote systems.

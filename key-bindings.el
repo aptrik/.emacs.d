@@ -92,6 +92,7 @@
                                 (find-file
                                  (expand-file-name "setup.el"
                                                    user-emacs-directory))))
+(global-set-key (kbd "C-c <f10>") 'hotspots-vc)
 (global-set-key (kbd "C-c <f12>") 'hotspots)
 
 (global-set-key [C-M-up]    'backward-paragraph)
