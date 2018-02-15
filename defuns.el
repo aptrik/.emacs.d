@@ -928,37 +928,22 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
       (ignore-errors
         (dolist (found (-select
                         (lambda (d)
-                          (not (or (string-match "/\\." d)
-                                   ;; (string-match "JUNK" d)
-                                   ;; (string-match "/m2" d)
-                                   ;; (string-match "\\.[0-9]$" d)
-                                   ;; (string-match "\\.old$" d)
-                                   ;; (string-match "/workspace" d)
-                                   )))
+                          (or (string-match "/\\.emacs.d$" d)
+                              (not (string-match "/\\." d))))
                         (f-directories (substitute-in-file-name dir))))
           (add-to-list 'result found t))))
     result))
 
 (defun hotspots ()
-  "Show directory hotspots using the helm interface."
+  "Open a hotspot."
   (interactive)
   (require 'helm-bookmark)
   (helm
    :sources
    `(((name . "Directory Hotspots")
       (candidates . ,(hotspot--generate-directories))
-      (action . (("Open" . (lambda (d) (find-file d))))))
-     helm-source-bookmarks)))
-
-(defun hotspots-vc ()
-  "Show version control hotspots using the helm interface."
-  (interactive)
-  (require 'helm-bookmark)
-  (helm
-   :sources
-   `(((name . "Version Control Hotspots")
-      (candidates . ,(hotspot--generate-directories))
-      (action . (("Version control examine" . (lambda (d) (vc-examine d))))))
+      (action . (("Open" . (lambda (d) (find-file d)))
+                 ("Version control" . (lambda (d) (vc-examine d))))))
      helm-source-bookmarks)))
 
 
