@@ -305,7 +305,7 @@
   :defer 5
   :config
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0.5
         company-minimum-prefix-length 2
         company-selection-wrap-around t
         company-show-numbers t
