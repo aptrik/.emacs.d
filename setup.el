@@ -1429,7 +1429,7 @@
 
 
 (use-package shell-toggle
-  :bind ("s-z" . shell-toggle))
+  :bind ("s-t" . shell-toggle))
 
 
 (use-package savehist
