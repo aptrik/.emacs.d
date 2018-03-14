@@ -297,7 +297,7 @@
 
 
 (use-package company
-  :bind (("C-c /". company-complete))
+  :bind (("C-c .". company-complete))
   :bind (:map company-active-map
               ([tab] . company-complete-common-or-cycle)
               ("TAB" . company-complete-common-or-cycle))
