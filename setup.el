@@ -512,6 +512,7 @@
         exec-path-from-shell-check-startup-files nil)
   (setq exec-path-from-shell-variables
         '("GOPATH"
+          "LANG"
           "MANPATH"
           "PATH"
           "PGPPATH"
