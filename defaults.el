@@ -56,7 +56,7 @@
  eval-expression-print-level     nil
  frame-resize-pixelwise          t
  garbage-collection-messages     nil
- gc-cons-threshold               20000000
+ gc-cons-threshold               (* 20 1000 1000)
  history-delete-duplicates       t
  history-length                  t
  isearch-allow-scroll            t

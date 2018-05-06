@@ -16,6 +16,17 @@
       inhibit-startup-message t
       initial-scratch-message nil)
 
+;;
+;; Compare with:
+;; emacs -q --eval='(message "%s" (emacs-init-time))'
+;;
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "+++ Emacs ready in %.1f seconds (%d garbage collections)"
+                     (float-time
+                      (time-subtract after-init-time before-init-time))
+                     gcs-done)))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
