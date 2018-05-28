@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Python 2 to 3 future import
+# --
+# -*- coding: utf-8; -*-
+from __future__ import print_function, unicode_literals
