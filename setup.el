@@ -405,9 +405,6 @@
   :commands dired-jump
   :config
   (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
-        dired-details-hidden-string ""
-        dired-details-hide-link-targets nil
-        dired-details-initially-hide nil
         dired-dwim-target t
         dired-listing-switches "-alhF"
         dired-ls-F-marks-symlinks t
@@ -417,16 +414,6 @@
         wdired-allow-to-change-permissions t)
 
   (use-package dired-x)
-  (use-package dired-sort-menu+)
-  (use-package dired-details
-    :config
-    (dired-details-install))
-  (use-package dired+
-    :init
-    (setq diredp-bind-problematic-terminal-keys nil
-          diredp-hide-details-initially-flag nil
-          diredp-wrap-around-flag nil))
-  (use-package dired-details+)
   (use-package dired-subtree
     :config
     (setq dired-subtree-line-prefix "  "))
@@ -687,7 +674,6 @@
 
 (use-package hl-line
   :config
-  (use-package hl-line+)
   (global-hl-line-mode 1))
 
 
@@ -1344,12 +1330,6 @@
     (inf-ruby-switch-setup)
 
     (minitest-mode 1)
-
-    (require 'ruby-block)
-    (ruby-block-mode t)
-    (setq ruby-block-delay 0.1
-          ruby-block-highlight-toggle 'overlay
-          ruby-block-highlight-face 'isearch)
 
     (make-variable-buffer-local 'compilation-error-regexp-alist)
     (setq compilation-error-regexp-alist

@@ -10,11 +10,13 @@
 /.litable-lists.el
 /.mc-lists.el
 /.places
+/README.html
 /\.sx
 /ac-comphist.dat
 /anaconda-mode/
 /auto-save-list
 /custom.el
+/elpa
 /erc-log/
 /history
 /history-*.sql
@@ -30,4 +32,3 @@
 /tramp
 /url
 /user.el
-/README.html
