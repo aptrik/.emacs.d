@@ -1101,7 +1101,7 @@
      '((emacs-lisp . t)
        (python . t)
        (ruby . t)
-       (sh . t)))
+       (shell . t)))
 
     (local-set-key [M-up]   'outline-previous-visible-heading)
     (local-set-key [M-down] 'outline-next-visible-heading)))
