@@ -563,7 +563,7 @@
 (use-package focus-autosave-mode
   :diminish focus-autosave-mode
   :init
-  (focus-autosave-mode))
+  (focus-autosave-mode 0))
 
 
 (use-package framemove
