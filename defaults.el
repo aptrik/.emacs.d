@@ -78,13 +78,7 @@
  yank-excluded-properties        t) ; do not paste any properties
 
 (xlaunch
- (setq frame-title-format
-       '((:eval (if (and (buffer-file-name) (file-regular-p (buffer-file-name)))
-                    "%*"
-                  ""))
-         (:eval (or (buffer-name) "%b"))
-         " <" user-login-name "%@" (:eval (system-name)) ">")))
-
+ (setq frame-title-format '("" user-login-name "@" system-name)))
 
 ;;; Turn on some minor modes.
 (auto-compression-mode 1)
