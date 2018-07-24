@@ -1751,6 +1751,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package yasnippet
+  :bind (("C-c t y" . company-yasnippet))
   :commands (snippet-mode yas-expand yas-minor-mode)
   :diminish yas-minor-mode
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
@@ -1760,10 +1761,13 @@ This is used to set `sql-alternate-buffer-name' within
   (setq-default yas-prompt-functions
                 '(yas/ido-prompt yas/completing-prompt))
   :config
-  (load "snippet-helpers")
-  (let ((snippets-dir (expand-file-name "snippets" user-emacs-directory)))
-    (yas-load-directory snippets-dir)
-    (setq yas-snippet-dirs snippets-dir)))
+  (load "snippet-helpers"))
+
+
+(use-package yasnippet-snippets
+  :ensure
+  :after yasnippet
+  :config (yasnippet-snippets-initialize))
 
 
 (use-package zeal-at-point
