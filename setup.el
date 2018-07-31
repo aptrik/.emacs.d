@@ -410,7 +410,7 @@
         dired-ls-F-marks-symlinks t
         dired-omit-files "^\\.[^.]"
         dired-recursive-copies 'always
-        dired-recursive-deletes 'top
+        dired-recursive-deletes 'always
         wdired-allow-to-change-permissions t)
 
   (use-package dired-x)
