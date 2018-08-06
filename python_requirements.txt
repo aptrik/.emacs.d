@@ -1,6 +1,8 @@
 argparse
 epc
 flake8
+# flake8-bugbear
+flake8-comprehensions
 importmagic
 isort
 jedi>=0.5b4
