@@ -106,6 +106,7 @@
 (depends-on "py-autopep8")
 (depends-on "py-isort")
 (depends-on "py-yapf")
+(depends-on "pyenv-mode")
 (depends-on "python")
 (depends-on "rainbow-mode")
 (depends-on "rbenv")
