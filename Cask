@@ -66,6 +66,7 @@
 (depends-on "iedit")
 (depends-on "importmagic")
 (depends-on "inf-ruby")
+(depends-on "jinja2-mode")
 (depends-on "js-comint")
 (depends-on "js2-highlight-vars")
 (depends-on "js2-mode")
