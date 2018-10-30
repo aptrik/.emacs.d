@@ -1,4 +1,4 @@
 # -*- mode: snippet -*-
 # name: pylint disable
 # --
-# pylint: disable=${1:msg}
+# pylint: disable=${1:code}
