@@ -511,6 +511,11 @@
     (exec-path-from-shell-initialize)))
 
 
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t))
+
+
 (use-package expand-region
   :bind (("C-+" . er/expand-region)
          ("C-?" . er/contract-region)))

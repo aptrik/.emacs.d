@@ -32,6 +32,7 @@
 (depends-on "epc")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
+(depends-on "eyebrowse")
 (depends-on "feature-mode")
 (depends-on "find-file-in-project")
 (depends-on "flx-ido")
