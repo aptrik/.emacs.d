@@ -492,6 +492,11 @@
   :commands edit-env)
 
 
+;; (use-package evil
+;;   :config
+;;   (evil-mode)
+
+
 (use-package exec-path-from-shell
   :init
   ;;(setq exec-path-from-shell-debug t)

@@ -30,6 +30,7 @@
 (depends-on "dumb-jump")
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
+(depends-on "evil")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "eyebrowse")
