@@ -135,6 +135,7 @@
 (depends-on "terraform-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")
+(depends-on "vimrc-mode")
 (depends-on "vlf")
 (depends-on "web-beautify")
 (depends-on "web-mode")

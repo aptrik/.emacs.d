@@ -1695,6 +1695,10 @@ This is used to set `sql-alternate-buffer-name' within
   (add-hook 'cvs-mode-hook 'setup--cvs-mode))
 
 
+(use-package vimrc-mode
+  :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+
+
 (use-package vlf-setup)
 
 
