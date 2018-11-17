@@ -1,5 +1,10 @@
 # -*- mode: snippet -*-
-# name: Python 2 to 3 future import
+# name: future imports for Python 2
 # --
+#!/usr/bin/env python
 # -*- coding: utf-8; -*-
-from __future__ import print_function, unicode_literals
+
+from __future__ import absolute_imports
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
