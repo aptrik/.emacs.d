@@ -50,6 +50,12 @@
   (mouse-avoidance-mode 'none))
 
 
+(use-package blacken
+  :init
+  (setq blacken-executable
+        (expand-file-name "~/.pyenv/versions/3.7.1/bin/black")))
+
+
 (use-package bookmark
   :init
   (setq bookmark-save-flag 1
