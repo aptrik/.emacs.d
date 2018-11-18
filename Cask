@@ -9,6 +9,7 @@
 (depends-on "ahg")
 (depends-on "all-the-icons")
 (depends-on "anaconda-mode")
+(depends-on "blacken")
 (depends-on "browse-kill-ring")
 (depends-on "buffer-move")
 (depends-on "clang-format")
