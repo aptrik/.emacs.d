@@ -53,7 +53,7 @@
 (use-package blacken
   :init
   (setq blacken-executable
-        (expand-file-name "~/.pyenv/versions/3.7.1/bin/black")))
+        (expand-file-name "~/bin/black")))
 
 
 (use-package bookmark
