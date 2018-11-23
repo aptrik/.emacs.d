@@ -203,6 +203,25 @@ Bound to `\\[match-paren]'."
                        ""
                        buffer-file-name))))))
 
+(defun python-2to3-current-buffer ()
+  "Convert current buffer from python 2 to python 3."
+  (interactive)
+  (save-excursion
+    (when (buffer-modified-p)
+      (save-buffer))
+    (let* ((orig-buffer (current-buffer))
+           (orig-point (point))
+           (orig-window-pos (window-start))
+           (tmp-buffer (get-buffer-create "*2to3*"))
+           (err-buffer (get-buffer-create "*2to3-error*")))
+      (dolist (buf (list tmp-buffer err-buffer))
+        (with-current-buffer buf
+          (erase-buffer)))
+      (shell-command (format "2to3 --no-diffs --nofix=future -w %s" (buffer-file-name orig-buffer))
+                     tmp-buffer err-buffer)
+      (mapc 'kill-buffer (list tmp-buffer err-buffer))
+      (revert-buffer t t t))))
+
 (defun rotate-left (l)
   (append (cdr l) (list (car l))))
 

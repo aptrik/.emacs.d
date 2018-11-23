@@ -1256,6 +1256,7 @@
   :bind (:map python-mode-map
               ("C-." . company-complete)
               ("C-c I" . py-isort-buffer)
+              ("C-c 2 3" . python-2to3-current-buffer)
               ("<f9>" . py-run)
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
