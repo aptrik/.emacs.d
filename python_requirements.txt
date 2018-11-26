@@ -4,6 +4,8 @@ epc
 flake8
 flake8-bugbear; python_version >= '3.0'
 flake8-comprehensions
+flake8-import-order
+flake8-rst-docstrings
 importmagic
 isort
 jedi>=0.5b4
