@@ -51,10 +51,7 @@
 
 
 (use-package blacken
-  :init
-  (setq blacken-executable
-        (expand-file-name "~/bin/black")))
-
+  )
 
 (use-package bookmark
   :init
