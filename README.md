@@ -76,21 +76,20 @@ Or the bleeding edge version.
 
 ### Build from source
 
-    wget http://ftpmirror.gnu.org/emacs/emacs-25.3.tar.xz
-    tar xfJ emacs-25.3.tar.xz
-    cd emacs-25.3
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.1.tar.xz
+    tar xfJ emacs-26.1.tar.xz
+    cd emacs-26.1
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
-
     make
     ./src/emacs -q
-    make install
+    sudo make install
 
-#### RHEL 6 dependencies
+#### RHEL 7 dependencies
 
-    sudo yum-builddep emacs
-    sudo yum install libX11-devel gtk2-devel gtk+-devel
-    sudo yum install ncurses-devel dbus-devel gpm-devel librsvg2-devel GConf2-devel
-    sudo yum install libtiff-devel giflib-devel libotf-devel m17n-lib-devel libXpm-devel libjpeg-devel ImageMagick-devel
+    sudo yum-builddep -y emacs
+    sudo yum install -y libX11-devel gtk2-devel gtk+-devel
+    sudo yum install -y ncurses-devel dbus-devel gpm-devel librsvg2-devel GConf2-devel
+    sudo yum install -y libtiff-devel giflib-devel libotf-devel m17n-lib-devel libXpm-devel libjpeg-devel ImageMagick-devel
 
 
 #### Fedora dependencies
