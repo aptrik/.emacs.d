@@ -1035,6 +1035,7 @@
         nxml-slash-auto-complete-flag t
         nxml-syntax-highlight-flag t
         rng-nxml-auto-validate-flag nil)
+  ;; (setq nxml-child-indent 4 nxml-attribute-indent 4)
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (add-hook 'sgml-mode-hook 'turn-on-hl-tags-mode)
   (add-hook 'nxml-mode-hook 'turn-on-hl-tags-mode))
