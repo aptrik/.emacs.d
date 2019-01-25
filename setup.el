@@ -930,12 +930,12 @@
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t
-   magit-last-seen-setup-instructions "2.1.0"
    magit-push-always-verify nil
    magit-repository-directories '("~/.emacs.d")
    magit-restore-window-configuration t
    magit-status-buffer-switch-function 'switch-to-buffer)
   (global-magit-file-mode 1)
+  (magit-auto-revert-mode 1)
   (use-package magit-blame)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
