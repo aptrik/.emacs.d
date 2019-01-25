@@ -1291,6 +1291,7 @@
 
     (subword-mode 1)
     (which-function-mode 1)
+
     (anaconda-mode 1)
     (eldoc-mode 1)
     (turn-on-anaconda-eldoc-mode)
@@ -1305,7 +1306,8 @@
     (set (make-variable-buffer-local 'indent-tabs-mode) nil))
   :config
   (use-package py-isort
-    :commands (py-isort-buffer)))
+    :commands (py-isort-buffer))
+  )
 
 
 (use-package rbenv
