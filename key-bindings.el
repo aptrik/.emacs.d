@@ -63,10 +63,6 @@
 
 (global-unset-key (kbd "C-c o"))
 (global-set-key (kbd "C-c o o") 'find-file-at-point)
-(global-set-key (kbd "C-c o p") 'find-file-in-project)
-;; (global-set-key (kbd "C-c o el") (ffip-create-pattern-file-finder "*.el"))
-;; (global-set-key (kbd "C-c o ja") (ffip-create-pattern-file-finder "*.java"))
-;; (global-set-key (kbd "C-c o js") (ffip-create-pattern-file-finder "*.js"))
 
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-j") 'dired-jump)

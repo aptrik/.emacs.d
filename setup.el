@@ -319,7 +319,7 @@
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-xcode company-backends))
   (add-to-list 'company-backends 'company-keywords)
-  (global-company-mode))
+  (global-company-mode 1))
 
 
 (use-package copy-as-format
@@ -478,7 +478,7 @@
          ("M-g q" . dumb-jump-quick-look)
          ("M-g x" . dumb-jump-go-prefer-external)
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'ivy))
+  :config (setq dumb-jump-selector 'helm))
 
 
 (use-package ediff
@@ -539,12 +539,6 @@
   :bind (("M-s D" . find-dired)
          ("M-s d" . find-grep-dired)
          ("M-s n" . find-name-dired)))
-
-
-(use-package find-file-in-project
-  :init
-  (setq ffip-prefer-ido-mode nil)
-  :bind (("C-x f" . find-file-in-project)))
 
 
 (use-package fixme)
@@ -678,6 +672,18 @@
   (setq-default gdb-many-windows t
                 gdb-use-separate-io-buffer t
                 gud-tooltip-mode t))
+
+
+(use-package helm
+  :config
+  (helm-autoresize-mode 1))
+
+
+(use-package helm-projectile
+  :bind (("C-x f" . helm-projectile-find-file)
+         ("C-c o p" . helm-projectile-find-file))
+  :config
+  (helm-projectile-on))
 
 
 (use-package highlight-symbol
@@ -1225,19 +1231,19 @@
 
 
 (use-package projectile
-  :commands (projectile-mode helm-projectile)
+  :commands (projectile-mode projectile-global-mode)
   :diminish projectile-mode
   :init
-  (projectile-mode 1)
-  :config
-  (setq projectile-completion-system 'ivy
+  (setq projectile-completion-system 'helm
         projectile-create-missing-test-files t
         projectile-enable-caching t
         projectile-ignored-project-function #'file-remote-p
         projectile-require-project-root t
         projectile-track-known-projects-automatically t)
+  :config
+  (add-to-list 'projectile-globally-ignored-directories "target")
   (add-to-list 'projectile-globally-ignored-files ".DS_Store")
-  (use-package helm-projectile))
+  (projectile-global-mode 1))
 
 
 (use-package protobuf-mode
