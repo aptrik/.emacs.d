@@ -1214,9 +1214,7 @@
 (use-package pipenv
   :hook (python-mode . pipenv-mode)
   :init
-  (setq
-   pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-extended))
+  (setq pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 
 
 (use-package printing
@@ -1238,6 +1236,7 @@
         projectile-create-missing-test-files t
         projectile-enable-caching t
         projectile-ignored-project-function #'file-remote-p
+        projectile-indexing-method 'native
         projectile-require-project-root t
         projectile-track-known-projects-automatically t)
   :config
