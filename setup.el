@@ -994,7 +994,11 @@
          ("C-c o C-a"   . mc/edit-beginnings-of-lines)
          ("C-c o C-e"   . mc/edit-ends-of-lines)
          ("C-c o C-s"   . mc/mark-all-in-region)
-         ("s-<mouse-1>" . mc/add-cursor-on-click)))
+         ("s-<mouse-1>" . mc/add-cursor-on-click)
+         ("C-|"         . mc/edit-lines)
+         ("C->"         . mc/mark-next-like-this)
+         ("C-<"         . mc/mark-previous-like-this)
+         ("C-c C-<"     . mc/mark-all-like-this)))
 
 
 (use-package neotree
