@@ -1107,8 +1107,6 @@
                                        (plain-list-item . nil)))
 
     (require 'ox-latex)
-    (require 'ox-reveal)
-    (require 'ox-twbs)
 
     ;; Set program to use when opening PDF files.
     (if macosp
