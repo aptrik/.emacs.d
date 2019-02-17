@@ -933,6 +933,8 @@
 
 
 (use-package magit
+  :init
+  (autoload 'if-let "subr-x")
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t

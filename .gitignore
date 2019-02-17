@@ -30,5 +30,6 @@
 /saveplace
 /session.*
 /tramp
+/transient/
 /url
 /user.el
