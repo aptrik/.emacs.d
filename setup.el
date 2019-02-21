@@ -27,6 +27,11 @@
   :diminish anaconda-mode)
 
 
+(use-package ansible-doc
+  :config
+  (add-hook 'yaml-mode-hook #'ansible-doc-mode))
+
+
 (use-package arc-mode
   :mode (("\\.egg\\'" . archive-mode)
          ("\\.\\(war\\|jar\\)\\'" . archive-mode))
