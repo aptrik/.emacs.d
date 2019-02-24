@@ -96,7 +96,6 @@
 (depends-on "notmuch")
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
-(depends-on "org-present")
 (depends-on "ox-pandoc")
 (depends-on "pallet")
 (depends-on "pdf-tools")
