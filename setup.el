@@ -1072,10 +1072,7 @@
 
 
 (use-package org
-  :ensure org-plus-contrib)
-
-
-(use-package org-plus-contrib
+  :ensure org-plus-contrib
   :bind (("M-m" . org-capture)
          ("C-c a" . org-agenda))
   :mode ("\\.org\\'" . org-mode)
