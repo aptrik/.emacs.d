@@ -77,6 +77,7 @@
 (depends-on "js2-refactor")
 (depends-on "json-mode")
 (depends-on "karma")
+(depends-on "keychain-environment")
 (depends-on "keyfreq")
 (depends-on "less-css-mode")
 (depends-on "litable")
