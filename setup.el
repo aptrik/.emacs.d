@@ -24,7 +24,10 @@
 
 
 (use-package anaconda-mode
-  :diminish anaconda-mode)
+  :diminish anaconda-mode
+  :init
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
 
 
 (use-package ansible-doc
@@ -1295,9 +1298,6 @@
     (subword-mode 1)
     (which-function-mode 1)
 
-    (anaconda-mode 1)
-    (eldoc-mode 1)
-    (turn-on-anaconda-eldoc-mode)
     (company-mode 1)
     (flycheck-mode 1)
     (idle-highlight-mode 1)
