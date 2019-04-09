@@ -57,6 +57,12 @@
   (mouse-avoidance-mode 'none))
 
 
+(use-package beacon
+  :config
+  (beacon-mode 1)
+  (setq beacon-color "#666600"))
+
+
 (use-package blacken
   )
 
