@@ -1,11 +1,11 @@
 (when macosp
-  (setq mac-command-modifier 'meta
-        mac-control-modifier 'control
-        mac-function-modifier 'super
-        mac-option-modifier nil
-        mac-right-command-modifier 'hyper
-        mac-right-option-modifier 'alt
-        mouse-wheel-progressive-speed nil))
+  (setq ns-alternate-modifier 'none
+        ns-command-modifier 'meta
+        ns-control-modifier 'control
+        ns-function-modifier 'none
+        ns-right-alternate-modifier 'super
+        ns-right-command-modifier 'meta))
+
 
 (global-unset-key (kbd "C-x C-c"))
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
