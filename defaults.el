@@ -12,16 +12,17 @@
   (setq ns-pop-up-frames nil))
 
 (setq
- blink-cursor-blinks                  0
- focus-follows-mouse                  t
- interprogram-cut-function            'gui-select-text
- interprogram-paste-function          'gui-selection-value
- mouse-autoselect-window              nil
- mouse-drag-copy-region               t
- mouse-yank-at-point                  t
- save-interprogram-paste-before-kill  t
- select-active-regions                nil
- suggest-key-bindings                 nil)
+ blink-cursor-blinks                    0
+ focus-follows-mouse                    t
+ interprogram-cut-function              'gui-select-text
+ interprogram-paste-function            'gui-selection-value
+ mouse-autoselect-window                nil
+ mouse-drag-copy-region                 t
+ mouse-yank-at-point                    t
+ read-file-name-completion-ignore-case  nil
+ save-interprogram-paste-before-kill    t
+ select-active-regions                  nil
+ suggest-key-bindings                   nil)
 
 (setq
  select-enable-clipboard t
