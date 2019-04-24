@@ -65,9 +65,10 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
     sudo apt update && sudo apt install emacs25
     sudo update-alternatives --config emacs
 
+
 ### MacOS
 
-    brew install emacs --srgb --with-cocoa --with-gnutls && brew linkapps
+    brew cask install emacs
 
 Or the bleeding edge version.
 
@@ -76,9 +77,9 @@ Or the bleeding edge version.
 
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.1.tar.xz
-    tar xfJ emacs-26.1.tar.xz
-    cd emacs-26.1
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.2.tar.xz
+    tar xfJ emacs-26.2.tar.xz
+    cd emacs-26.2
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
@@ -95,6 +96,7 @@ Or the bleeding edge version.
 #### Fedora dependencies
 
     sudo dnf builddep emacs
+
 
 #### Ubuntu/LinuxMint dependencies
 
