@@ -422,7 +422,7 @@
   :config
   (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
         dired-dwim-target t
-        dired-listing-switches "-alhF"
+        dired-listing-switches "-alhFG"
         dired-ls-F-marks-symlinks t
         dired-omit-files "^\\.[^.]"
         dired-recursive-copies 'always
