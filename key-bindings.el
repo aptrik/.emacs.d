@@ -6,6 +6,12 @@
         ns-right-alternate-modifier 'none
         ns-right-command-modifier 'meta))
 
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t))
+
 
 (global-unset-key (kbd "C-x C-c"))
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
