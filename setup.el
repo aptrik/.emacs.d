@@ -772,9 +772,9 @@
          ("C-c s w" . ispell-word)
          ("C-c <f11>" . cycle-ispell-languages))
   :init
-  (setq ispell-dictionary "en_GB"
+  (setq ispell-dictionary "english"
         ispell-help-in-bufferp 'electric
-        ispell-program-name (executable-find "hunspell")
+        ispell-program-name (if (executable-find "aspell") "aspell" "hunspell")
         ispell-silently-savep t)
   :config
   (let ((langs '("english" "svenska")))
