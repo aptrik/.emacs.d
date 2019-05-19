@@ -539,7 +539,10 @@
 
 (use-package expand-region
   :bind (("C-+" . er/expand-region)
-         ("C-?" . er/contract-region)))
+         ("C-?" . er/contract-region)
+         ("<M-S-left>" . er/contract-region)
+         ("<M-S-right>" . er/expand-region)
+         ))
 
 
 (use-package eww
@@ -1013,7 +1016,9 @@
          ("C-|"         . mc/edit-lines)
          ("C->"         . mc/mark-next-like-this)
          ("C-<"         . mc/mark-previous-like-this)
-         ("C-c C-<"     . mc/mark-all-like-this)))
+         ("C-c C-<"     . mc/mark-all-like-this))
+         ("<M-S-up>"    . mc/mark-previous-like-this)
+         ("<M-S-down>"  . mc/mark-next-like-this))
 
 
 (use-package neotree
