@@ -1538,36 +1538,6 @@
    ))
 
 
-(use-package spacemacs-theme
-  :disabled
-  :init
-  (load-theme 'spacemacs-dark t)
-  (setq spacemacs-theme-org-agenda-height nil)
-  (setq spacemacs-theme-org-height nil)
-  :config
-  (custom-set-faces
-   ;; idle-highlight
-   '(idle-highlight ((t (:foreground "yellow" :background "black"))))
-
-   ;; isearch
-   '(isearch
-     ((t (:foreground "black" :background "yellow" :bold t))))
-   '(isearch-lazy-highlight-face
-     ((t (:foreground "black" :background "#ffff99")))) ; Canary Yellow
-   '(isearch-fail
-     ((t (:foreground "red" :background "yellow" :bold t))))))
-
-
-(use-package spaceline
-  :disabled
-  :demand t
-  :init
-  (setq powerline-default-separator 'arrow-fade)
-  :config
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme))
-
-
 (use-package speedbar
   :config
   (setq speedbar-default-position 'left
