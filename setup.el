@@ -1046,13 +1046,24 @@
 
 (use-package nxml-mode
   :config
+  (defun nxml-set-indentation (level)
+    "Set indentation LEVEL in nxml-mode. Default LEVEL is 2."
+    (interactive "p")
+    (if (derived-mode-p 'nxml-mode)
+        (let ((default-level 2))
+          (progn
+            (setq level (if (= level 1) default-level level))
+            (message "NXML indentation is %s." level)
+            (setq nxml-child-indent level
+                  nxml-attribute-indent level)))))
+
+  (nxml-set-indentation 2)
+
   (setq nxml-auto-insert-xml-declaration-flag nil
         nxml-bind-meta-tab-to-complete-flag t
-        nxml-child-indent 2
         nxml-slash-auto-complete-flag t
         nxml-syntax-highlight-flag t
         rng-nxml-auto-validate-flag nil)
-  ;; (setq nxml-child-indent 4 nxml-attribute-indent 4)
   (push '("<\\?xml" . nxml-mode) magic-mode-alist)
   (add-hook 'sgml-mode-hook 'turn-on-hl-tags-mode)
   (add-hook 'nxml-mode-hook 'turn-on-hl-tags-mode))
