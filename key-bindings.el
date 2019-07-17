@@ -4,7 +4,8 @@
         ns-control-modifier 'control
         ns-function-modifier 'none
         ns-right-alternate-modifier 'none
-        ns-right-command-modifier 'meta))
+        ns-right-command-modifier 'meta)
+  (global-set-key [help] 'overwrite-mode))
 
 (unless window-system
   (require 'mouse)
