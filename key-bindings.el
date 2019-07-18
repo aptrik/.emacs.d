@@ -4,8 +4,7 @@
         ns-control-modifier 'control
         ns-function-modifier 'none
         ns-right-alternate-modifier 'none
-        ns-right-command-modifier 'meta)
-  (global-set-key [help] 'overwrite-mode))
+        ns-right-command-modifier 'meta))
 
 (unless window-system
   (require 'mouse)
@@ -114,6 +113,11 @@
 (global-set-key [S-insert]  'insert-separator)
 (global-set-key [C-insert]  'insert-separator-dashed)
 (global-set-key [M-insert]  'insert-separator-text)
+(when macosp
+  (global-set-key [help]    'overwrite-mode)
+  (global-set-key [S-help]  'insert-separator)
+  (global-set-key [C-help]  'insert-separator-dashed)
+  (global-set-key [M-help]  'insert-separator-text))
 
 (global-set-key [home]    'beginning-of-line)
 (global-set-key [S-home]  'cursor-to-top-of-window)
