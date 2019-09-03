@@ -33,6 +33,12 @@ Upgrade `cask` and then let `cask` install all dependencies.
     cask install
 
 
+### Compile pdf-tools
+
+    (setenv "PKG_CONFIG_PATH" (concat (shell-command-to-string "printf %s \"$(brew --prefix libffi)\"") "/lib/pkgconfig/"))
+    (pdf-tools-install)
+
+
 ### Install python-mode dependencies
 
 Install `Jedi` and `python-epc` by:
