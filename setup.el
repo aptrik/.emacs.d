@@ -1549,6 +1549,20 @@
    ))
 
 
+(use-package spaceline
+  )
+
+
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-helm-mode 1)
+  (spaceline-emacs-theme)
+  (spaceline-toggle-org-clock-on)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-version-control-off))
+
+
 (use-package speedbar
   :config
   (setq speedbar-default-position 'left
