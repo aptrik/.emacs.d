@@ -513,6 +513,12 @@
 ;;   (evil-mode)
 
 
+(use-package eww
+  :config
+  (setq eww-search-prefix "https://www.google.com/search?q="
+        eww-download-directory "~/dl/"))
+
+
 (use-package exec-path-from-shell
   :init
   ;;(setq exec-path-from-shell-debug t)
@@ -532,11 +538,6 @@
     (exec-path-from-shell-initialize)))
 
 
-(use-package eyebrowse
-  :config
-  (eyebrowse-mode t))
-
-
 (use-package expand-region
   :bind (("C-+" . er/expand-region)
          ("C-?" . er/contract-region)
@@ -545,10 +546,9 @@
          ))
 
 
-(use-package eww
+(use-package eyebrowse
   :config
-  (setq eww-search-prefix "https://www.google.com/search?q="
-        eww-download-directory "~/dl/"))
+  (eyebrowse-mode t))
 
 
 (use-package find-dired
@@ -1403,6 +1403,25 @@
     :diminish robe-mode))
 
 
+(use-package savehist
+  :init
+  (setq savehist-ignored-variables '(file-name-history))
+  (savehist-mode 1))
+
+
+(use-package saveplace
+  :init
+  (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+  :config
+  (save-place-mode t))
+
+
+(use-package scss-mode
+  :mode ("\\.scss\\'" . scss-mode)
+  :config
+  (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
+
+
 (use-package sh-script
   :mode (("/\\.\\(my\\)?login\\'" . sh-mode)
          ("/\\.\\(my\\)?logout\\'" . sh-mode)
@@ -1448,25 +1467,6 @@
 
 (use-package shell-toggle
   :bind ("s-t" . shell-toggle))
-
-
-(use-package savehist
-  :init
-  (setq savehist-ignored-variables '(file-name-history))
-  (savehist-mode 1))
-
-
-(use-package saveplace
-  :init
-  (setq save-place-file (expand-file-name ".places" user-emacs-directory))
-  :config
-  (save-place-mode t))
-
-
-(use-package scss-mode
-  :mode ("\\.scss\\'" . scss-mode)
-  :config
-  (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
 
 
 (use-package shrink-whitespace
