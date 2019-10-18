@@ -155,6 +155,7 @@
 (global-set-key [C-f12]  'bury-buffer)
 (global-set-key [s-f12]  'rotate-windows)
 
-(global-set-key (kbd "C-z") 'undo)
+;; (global-set-key (kbd "C-z") 'undo)
+;; (global-unset-key (kbd "C-z"))
 
 (provide 'key-bindings)
