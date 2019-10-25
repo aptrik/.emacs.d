@@ -1,9 +1,9 @@
 (when macosp
-  (setq ns-alternate-modifier 'super
+  (setq ns-alternate-modifier 'none
         ns-command-modifier 'meta
         ns-control-modifier 'control
         ns-function-modifier 'none
-        ns-right-alternate-modifier 'none
+        ns-right-alternate-modifier 'super
         ns-right-command-modifier 'meta))
 
 (unless window-system
