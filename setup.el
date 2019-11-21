@@ -1215,12 +1215,14 @@
                        " \"" (buffer-file-name) "\"")))))
 
 
-(lexical-let
-    ((jar-file (expand-file-name "/usr/share/java/plantuml.jar")))
-  (if (file-exists-p jar-file)
-      (use-package plantuml-mode
-        :config
-        (setq plantuml-jar-path jar-file))))
+(catch 'loop
+  (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
+                            (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
+    (message "Found plantuml: %s" jar-file)
+    (use-package plantuml-mode
+      :config
+      (setq plantuml-jar-path jar-file))
+    (throw 'loop nil)))
 
 
 (use-package popup-imenu
