@@ -1666,7 +1666,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package tramp
   :init
-  (setq tramp-default-method 'ssh))
+  (setq tramp-default-method 'scp))
 
 
 (use-package uniquify
