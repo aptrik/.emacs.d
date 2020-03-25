@@ -1107,19 +1107,29 @@
         org-export-backends '(ascii html md reveal twbs))
   :config
   (setq
+   org-agenda-files '("~/Dropbox/org/")
    org-clock-history-length 20
    org-clock-in-resume t
+   org-habit-show-all-today t
    org-hide-leading-stars nil
    org-level-color-stars-only t
    org-log-done 'time
+   org-log-into-drawer t
    org-odd-levels-only nil
    org-reverse-note-order t
    org-src-fontify-natively t
    org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
    org-time-stamp-rounding-minutes '(0 5)
+   org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
+   org-treat-insert-todo-heading-as-state-change t
    org-use-speed-commands t)
+  (setq org-agenda-prefix-format
+    '((agenda  . " %i %-15:c%?-12t% s")
+      (todo  . " %i %-15:c")
+      (tags  . " %i %-15:c")
+      (search . " %i %-15:c")))
 
-  (setq org-agenda-files '())
+  (add-to-list 'org-modules 'org-habit t)
 
   ;; (setq org-clock-persist t
   ;;       org-clock-persist-query-resume nil)
