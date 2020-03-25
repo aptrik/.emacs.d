@@ -1110,7 +1110,7 @@
    org-agenda-files '("~/Dropbox/org/")
    org-clock-history-length 20
    org-clock-in-resume t
-   org-habit-show-all-today t
+   org-habit-show-all-today nil
    org-hide-leading-stars nil
    org-level-color-stars-only t
    org-log-done 'time
@@ -1122,7 +1122,7 @@
    org-time-stamp-rounding-minutes '(0 5)
    org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
    org-treat-insert-todo-heading-as-state-change t
-   org-use-speed-commands t)
+   org-use-speed-commands nil)
   (setq org-agenda-prefix-format
     '((agenda  . " %i %-15:c%?-12t% s")
       (todo  . " %i %-15:c")
