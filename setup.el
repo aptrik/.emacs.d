@@ -1131,6 +1131,15 @@
 
   (add-to-list 'org-modules 'org-habit t)
 
+  (setq org-agenda-custom-commands
+        '(("h" "Daily habits"
+           ((agenda ""))
+           ((org-agenda-show-log t)
+            (org-agenda-ndays 7)
+            (org-agenda-log-mode-items '(state))
+            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
+          ))
+
   ;; (setq org-clock-persist t
   ;;       org-clock-persist-query-resume nil)
   ;; (org-clock-persistence-insinuate)
