@@ -1140,6 +1140,8 @@
             (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
           ))
 
+  (fullframe org-agenda quit-window)
+
   ;; (setq org-clock-persist t
   ;;       org-clock-persist-query-resume nil)
   ;; (org-clock-persistence-insinuate)
