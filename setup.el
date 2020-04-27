@@ -1118,6 +1118,7 @@
    org-odd-levels-only nil
    org-reverse-note-order t
    org-src-fontify-natively t
+   org-src-window-setup 'current-window
    org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
    org-time-stamp-rounding-minutes '(0 5)
    org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
