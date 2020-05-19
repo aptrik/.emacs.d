@@ -20,7 +20,6 @@
 (depends-on "company")
 (depends-on "company-anaconda")
 (depends-on "company-c-headers")
-(depends-on "company-tern")
 (depends-on "company-terraform")
 (depends-on "copy-as-format")
 (depends-on "cpputils-cmake")
