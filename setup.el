@@ -953,6 +953,7 @@
    magit-push-always-verify nil
    magit-repository-directories '("~/.emacs.d")
    magit-restore-window-configuration t
+   magit-section-initial-visibility-alist '((stashes . show) (unpushed . show) (upstream . show) (untracked . show))
    magit-status-buffer-switch-function 'switch-to-buffer)
   (global-magit-file-mode 1)
   (magit-auto-revert-mode 1)
