@@ -1105,9 +1105,12 @@
   :config
   (setq
    org-agenda-files '("~/Dropbox/org/")
+   org-agenda-span 14
+   org-agenda-start-on-weekday nil
    org-clock-history-length 20
    org-clock-in-resume t
    org-habit-show-all-today nil
+   org-habit-show-habits-only-for-today t
    org-hide-leading-stars nil
    org-level-color-stars-only t
    org-log-done 'time
@@ -1121,11 +1124,12 @@
    org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
    org-treat-insert-todo-heading-as-state-change t
    org-use-speed-commands nil)
+
   (setq org-agenda-prefix-format
-    '((agenda  . " %i %-15:c%?-12t% s")
-      (todo  . " %i %-15:c")
-      (tags  . " %i %-15:c")
-      (search . " %i %-15:c")))
+        '((agenda  . " %i %-12:c%?-12t% s")
+          (todo  . " %i %-12:c")
+          (tags  . " %i %-12:c")
+          (search . " %i %-12:c")))
 
   (add-to-list 'org-modules 'org-habit t)
 
