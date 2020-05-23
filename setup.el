@@ -1169,6 +1169,11 @@
        (ruby . t)
        (shell . t)))
 
+    (define-key org-read-date-minibuffer-local-map (kbd "S-<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
+    (define-key org-read-date-minibuffer-local-map (kbd "S-<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
+    (define-key org-read-date-minibuffer-local-map (kbd "S-<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
+    (define-key org-read-date-minibuffer-local-map (kbd "S-<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
+
     (local-set-key [M-up]   'outline-previous-visible-heading)
     (local-set-key [M-down] 'outline-next-visible-heading)))
 
