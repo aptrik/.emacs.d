@@ -98,6 +98,8 @@
 (depends-on "openwith")
 (depends-on "org-plus-contrib")
 (depends-on "ox-pandoc")
+(depends-on "ox-reveal")
+(depends-on "ox-twbs")
 (depends-on "pallet")
 (depends-on "pdf-tools")
 (depends-on "php-mode")
