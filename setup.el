@@ -25,9 +25,7 @@
 
 (use-package anaconda-mode
   :diminish anaconda-mode
-  :hook ((python-mode . anaconda-mode)
-         (python-mode . anaconda-eldoc-mode)))
-
+  )
 
 (use-package ansible-doc
   :config
@@ -1351,8 +1349,12 @@
     (subword-mode 1)
     (which-function-mode 1)
 
-    (company-mode 1)
-    (flycheck-mode 1)
+    (let ((activate (if (file-remote-p default-directory) -1 1)))
+      (flycheck-mode activate)
+      (anaconda-mode activate)
+      (anaconda-eldoc-mode activate)
+      (company-mode activate))
+
     (idle-highlight-mode 1)
 
     (require 'sphinx-doc)
