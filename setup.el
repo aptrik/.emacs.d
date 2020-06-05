@@ -27,9 +27,11 @@
   :diminish anaconda-mode
   )
 
+
 (use-package ansible-doc
   :config
   (add-hook 'yaml-mode-hook #'ansible-doc-mode))
+
 
 
 (use-package arc-mode
@@ -63,6 +65,7 @@
 
 (use-package blacken
   )
+
 
 (use-package bookmark
   :init
