@@ -563,6 +563,7 @@
 
 (use-package flycheck
   :bind ("C-c t f" . flycheck-mode)
+  :bind (:map flycheck-mode-map ("C-c h l" . hydra-flycheck/body))
   :config
   (setq flycheck-pylint-use-symbolic-id nil)
 
@@ -581,7 +582,33 @@
   (use-package flycheck-color-mode-line
     :config
     (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+
+  (defhydra hydra-flycheck
+    (:pre (flycheck-list-errors)
+          :post (quit-windows-on "*Flycheck errors*")
+          :hint nil)
+    "
+^Actions^             ^Helpers^
+---^^--------------------^^-----------------
+_j_: Next error       _d_: Display error
+_k_: Previous error   _e_: Explain error
+^^                    _c_: Check buffer
+^^                    _f_: Filter
+_h_: First error      _x_: Disable checker
+_l_: Last error       _q_: Cancel
+"
+    ("c" flycheck-buffer)
+    ("d" flycheck-display-error-at-point)
+    ("e" flycheck-explain-error-at-point)
+    ("f" flycheck-error-list-set-filter)
+    ("h" flycheck-first-error)
+    ("j" flycheck-next-error)
+    ("k" flycheck-previous-error)
+    ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
+    ("q" nil)
+    ("x" flycheck-disable-checker)
+    ))
 
 
 (use-package focus-autosave-mode
@@ -723,6 +750,10 @@
 
 
 (use-package html5-schema)
+
+
+(use-package hydra
+  :ensure)
 
 
 (use-package ibuffer
@@ -1536,6 +1567,29 @@
      ("C-{" . sp-backward-barf-sexp)
      ("C-M-t" . sp-transpose-sexp)
      ("M-q" . sp-indent-defun))))
+
+
+(use-package smerge-mode
+  :bind (:map smerge-mode-map
+              ("C-c h d" . hydra-smerge-mode/body))
+  :config
+  (defhydra hydra-smerge-mode
+    (:color pink :hint nil :post (smerge-auto-leave))
+    "
+   ^Motions^      ^Actions^
+---^^-------------^^-------
+_n_: Next      _b_: Keep base
+_p_: Prev      _u_: Keep upper
+^^             _l_: Keep lower
+^^             _a_: Keep all
+"
+    ("n" smerge-next)
+    ("p" smerge-prev)
+    ("b" smerge-keep-base)
+    ("u" smerge-keep-upper)
+    ("l" smerge-keep-lower)
+    ("a" smerge-keep-all)
+    ("q" nil "cancel" :color blue)))
 
 
 (use-package smooth-scrolling)
