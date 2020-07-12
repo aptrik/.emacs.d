@@ -496,6 +496,17 @@
 
 
 (use-package ediff
+  :bind (("C-c = b" . ediff-buffers)
+         ("C-c = B" . ediff-buffers3)
+         ("C-c = c" . compare-windows)
+         ("C-c = =" . ediff-files)
+         ("C-c = f" . ediff-files)
+         ("C-c = F" . ediff-files3)
+         ("C-c = r" . ediff-revision)
+         ("C-c = p" . ediff-patch-file)
+         ("C-c = P" . ediff-patch-buffer)
+         ("C-c = l" . ediff-regions-linewise)
+         ("C-c = w" . ediff-regions-wordwise))
   :config
   (setq-default ediff-ignore-similar-regions t)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
