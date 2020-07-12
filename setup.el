@@ -1355,6 +1355,8 @@ _l_: Last error       _q_: Cancel
 
 (use-package python
   :bind (:map python-mode-map
+              ("C-c C-z" . python-shell-switch-to-shell)
+              ("C-c z" . run-python)
               ("C-." . company-complete)
               ("C-c I" . py-isort-buffer)
               ("C-c 2 3" . python-2to3-current-buffer)
