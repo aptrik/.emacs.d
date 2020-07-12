@@ -469,6 +469,11 @@
                  '("\\.epub\\'" "FBReader * &" "evince * &")))))
 
 
+(use-package direnv
+  :config
+  (direnv-mode))
+
+
 (use-package docker-images
   :commands docker-images)
 

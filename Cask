@@ -26,6 +26,7 @@
 (depends-on "diff-hl")
 (depends-on "diminish")
 (depends-on "dired-subtree")
+(depends-on "direnv")
 (depends-on "docker")
 (depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
