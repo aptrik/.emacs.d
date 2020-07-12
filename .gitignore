@@ -6,21 +6,21 @@
 .\#*
 \#*
 
-/.cask/
+/.cask
 /.litable-lists.el
 /.mc-lists.el
 /.places
 /README.html
 /\.sx
 /ac-comphist.dat
-/anaconda-mode/
+/anaconda-mode
 /auto-save-list
 /custom.el
 /elpa
-/erc-log/
+/erc-log
 /history
 /history-*.sql
-/image-dired/
+/image-dired
 /network-security.data
 /org-clock-save.el
 /private.el
@@ -30,7 +30,8 @@
 /request/*
 /saveplace
 /session.*
+/speed-type
 /tramp
-/transient/
+/transient
 /url
 /user.el

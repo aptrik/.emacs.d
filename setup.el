@@ -1679,6 +1679,10 @@ _p_: Prev      _u_: Keep upper
   (spaceline-toggle-version-control-off))
 
 
+(use-package speed-type
+  )
+
+
 (use-package speedbar
   :config
   (setq speedbar-default-position 'left
