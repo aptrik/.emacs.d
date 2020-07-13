@@ -1392,6 +1392,17 @@ _l_: Last error       _q_: Cancel
   ;;   :config
   ;;   (add-hook 'python-mode-hook 'importmagic-mode))
 
+  (defun flycheck-use-python-version (version)
+    (interactive
+     (list
+      (completing-read
+       "Which Python version should flycheck use: "
+       '("python" "python2" "python3") nil t)))
+    (setq
+     flycheck-python-flake8-executable version
+     flycheck-python-pycompile-executable version
+     flycheck-python-pylint-executable version))
+
   (defun setup--python-mode ()
     ;;(setq py-python-command-args '( "-colors" "Linux"))
 
