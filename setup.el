@@ -623,20 +623,7 @@ _l_: Last error       _q_: Cancel
     ("k" flycheck-previous-error)
     ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
     ("q" nil)
-    ("x" flycheck-disable-checker)
-    )
-
-  (defun flycheck-use-python-version (version)
-    (interactive
-     (list
-      (completing-read
-       "Which Python version should flycheck use: "
-       '("python2" "python3") nil t)))
-    (setq
-     flycheck-python-flake8-executable version
-     flycheck-python-pycompile-executable version
-     flycheck-python-pylint-executable version))
-  )
+    ("x" flycheck-disable-checker)))
 
 
 (use-package focus-autosave-mode
