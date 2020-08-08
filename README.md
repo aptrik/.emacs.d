@@ -3,7 +3,6 @@
 This is where I store all my carefully crafted micro-optimizations for
 Emacs.
 
-
 ## Installation
 
 **Note:** The code is designed to be installed in the
@@ -15,7 +14,6 @@ Fetch the source.
     git clone  git://github.com/aptrik/.emacs.d.git  ~/.emacs.d
 
 Make sure you have Emacs version 25.1 or higher [installed](#install-emacs).
-
 
 ### Install Emacs Lisp packages
 
@@ -32,19 +30,16 @@ Upgrade `cask` and then let `cask` install all dependencies.
     cask upgrade-cask
     cask install
 
-
 ### Compile pdf-tools
 
     (setenv "PKG_CONFIG_PATH" (concat (shell-command-to-string "printf %s \"$(brew --prefix libffi)\"") "/lib/pkgconfig/"))
     (pdf-tools-install)
-
 
 ### Install python-mode dependencies
 
 Install `Jedi` and `python-epc` by:
 
     pip install -r ~/.emacs.d/python_requirements.txt
-
 
 ### User customization
 
@@ -60,7 +55,6 @@ Example `~/.emacs.d/user.el`:
       user-mail-address "ed.xample@eg.fake")
 ```
 
-
 ## Install Emacs
 
 NOTE: Do not forget to run `cask install` after changing Emacs version.
@@ -71,7 +65,6 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
     sudo apt update && sudo apt install emacs25
     sudo update-alternatives --config emacs
 
-
 ### MacOS
 
     brew cask install emacs
@@ -80,12 +73,11 @@ Or the bleeding edge version.
 
     brew install emacs --srgb --with-cocoa --with-gnuls --use-git-head --HEAD && brew linkapps
 
-
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.2.tar.xz
-    tar xfJ emacs-26.2.tar.xz
-    cd emacs-26.2
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.3.tar.xz
+    tar xfJ emacs-26.3.tar.xz
+    cd emacs-26.3
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
@@ -98,11 +90,9 @@ Or the bleeding edge version.
     sudo yum install -y ncurses-devel dbus-devel gpm-devel librsvg2-devel GConf2-devel
     sudo yum install -y libtiff-devel giflib-devel libotf-devel m17n-lib-devel libXpm-devel libjpeg-devel ImageMagick-devel
 
-
 #### Fedora dependencies
 
     sudo dnf builddep emacs
-
 
 #### Ubuntu/LinuxMint dependencies
 
@@ -121,7 +111,6 @@ Or the bleeding edge version.
         libtiff-dev \
         libxml2-dev \
         libxpm-dev
-
 
 ## Emacs Help
 
