@@ -654,31 +654,37 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package go-mode
-  :bind (:map go-mode-map
-              ("M-." . godef-jump)
-              ("C-c C-r" . go-remove-unused-imports)
-              ("C-c C-g" . go-goto-imports))
+  :hook ((go-mode . lsp-deferred)
+         (go-mode . setup--go-save-hook))
   :config
-  ;;(setq gofmt-command "goimports")
-  (use-package golint)
-  (use-package go-eldoc)
   (use-package go-guru)
 
+  (defun setup--go-save-hook ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
   (defun setup--go-mode ()
-    (setq tab-width 4)
+    (setq indent-tabs-mode t
+          tab-width 4)
+    (setq lsp-eldoc-render-all t
+          lsp-gopls-complete-unimported t
+          lsp-gopls-staticcheck t
+          lsp-ui-doc-enable nil
+          lsp-ui-flycheck-enable t
+          lsp-ui-imenu-enable t
+          lsp-ui-peek-enable t
+          lsp-ui-sideline-enable t)
+    (setq company-tooltip-limit 20
+          company-idle-delay .3
+          company-echo-delay 0
+          company-begin-commands '(self-insert-command))
+    (set (make-local-variable 'company-backends) '(company-go))
     (company-mode 1)
     (flycheck-mode 1)
-    (go-eldoc-setup)
-    (subword-mode 1)
-    (which-function-mode 1)
-
-    ;;(idle-highlight-mode 1)
     (go-guru-hl-identifier-mode 1)
+    (subword-mode 1)
+    (which-function-mode 1))
 
-    (set (make-local-variable 'compile-command)
-         "go build -v && go test -v && go vet"))
-
-  (add-hook 'before-save-hook 'gofmt-before-save)
   (add-hook 'go-mode-hook 'setup--go-mode))
 
 
@@ -985,6 +991,14 @@ _l_: Last error       _q_: Cancel
     (local-set-key (kbd "C-.") 'company-complete))
 
   (add-hook 'emacs-lisp-mode-hook 'setup--emacs-lisp-mode))
+
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred))
+
+
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
 
 (use-package macrostep
