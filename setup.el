@@ -655,9 +655,13 @@ _l_: Last error       _q_: Cancel
 
 (use-package go-mode
   :hook ((go-mode . lsp-deferred)
-         (go-mode . setup--go-save-hook))
+         (go-mode . setup--go-save-hook)
+         (go-mode . flycheck-golangci-lint-setup))
   :config
   (use-package go-guru)
+  (use-package flycheck-golangci-lint
+    :config
+    (setq flycheck-golangci-lint-enable-all t))
 
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)

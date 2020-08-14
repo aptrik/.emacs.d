@@ -41,6 +41,16 @@ Install `Jedi` and `python-epc` by:
 
     pip install -r ~/.emacs.d/python_requirements.txt
 
+### Install Go development tools
+
+    export GO111MODULE=on
+    go get -v golang.org/x/tools/gopls@latest
+    go get -v golang.org/x/tools/cmd/guru@latest
+    go get -v github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    go get -v golang.org/x/lint/golint@latest
+    go get -v github.com/kisielk/errcheck@latest
+    go get -v honnef.co/go/tools/cmd/staticcheck@latest
+
 ### User customization
 
 If there is a file named `user.el` in the `~/.emacs.d`-directory then it
