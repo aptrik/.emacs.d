@@ -85,9 +85,9 @@ Or the bleeding edge version.
 
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-26.3.tar.xz
-    tar xfJ emacs-26.3.tar.xz
-    cd emacs-26.3
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-27.1.tar.xz
+    tar xfJ emacs-27.1.tar.xz
+    cd emacs-27.1
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
@@ -100,9 +100,10 @@ Or the bleeding edge version.
     sudo yum install -y ncurses-devel dbus-devel gpm-devel librsvg2-devel GConf2-devel
     sudo yum install -y libtiff-devel giflib-devel libotf-devel m17n-lib-devel libXpm-devel libjpeg-devel ImageMagick-devel
 
-#### Fedora dependencies
+#### Fedora & RHEL8 dependencies
 
-    sudo dnf builddep emacs
+    sudo dnf builddep -y emacs
+    sudo dnf install -y giflib-devel gnutls-devel gpm-devel gtk2-devel gtk3-devel jansson-devel lcms2-devel libX11-devel libXpm-devel libjpeg-devel librsvg2-devel libtiff-devel libxml2-devel ncurses-devel systemd-devel
 
 #### Ubuntu/LinuxMint dependencies
 
