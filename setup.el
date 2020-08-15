@@ -333,6 +333,10 @@
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-xcode company-backends))
   (add-to-list 'company-backends 'company-keywords)
+
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
+
   (global-company-mode 1))
 
 

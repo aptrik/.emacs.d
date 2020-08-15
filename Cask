@@ -19,6 +19,7 @@
 (depends-on "command-log-mode")
 (depends-on "company")
 (depends-on "company-anaconda")
+(depends-on "company-box")
 (depends-on "company-c-headers")
 (depends-on "company-go")
 (depends-on "company-terraform")
