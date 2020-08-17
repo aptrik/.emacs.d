@@ -27,7 +27,7 @@
                       (time-subtract after-init-time before-init-time))
                      gcs-done)))
 
-(when (version< emacs-version "27.1")
+(when (eval-when-compile (version< emacs-version "27"))
   (package-initialize))
 
 (require 'cask "~/.cask/cask.el")
