@@ -2,6 +2,8 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
+;; (debug-on-entry 'package-initialize)
+
 (let ((min-version "25.1"))
   (when (version< emacs-version min-version)
     (error "Emacs %s is required!" min-version)))
