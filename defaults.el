@@ -46,7 +46,7 @@
  standard-indent               4
  tab-width                     8
  trim-versions-without-asking  t
- truncate-lines                nil
+ truncate-lines                t
  version-control               nil
  visible-bell                  t
  x-stretch-cursor              t)
