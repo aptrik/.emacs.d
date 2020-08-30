@@ -1082,11 +1082,11 @@ _l_: Last error       _q_: Cancel
          ("C-|"         . mc/edit-lines)
          ("C->"         . mc/mark-next-like-this)
          ("C-<"         . mc/mark-previous-like-this)
-         ("C-c C-<"     . mc/mark-all-like-this))
+         ("C-c C-<"     . mc/mark-all-like-this)
          ("<M-S-up>"    . mc/mark-previous-like-this)
          ("<M-S-down>"  . mc/mark-next-like-this)
          ("<s-S-up>"    . mc/mark-previous-like-this)
-         ("<s-S-down>"  . mc/mark-next-like-this))
+         ("<s-S-down>"  . mc/mark-next-like-this)))
 
 
 (use-package neotree
