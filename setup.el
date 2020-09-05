@@ -1812,6 +1812,12 @@ This is used to set `sql-alternate-buffer-name' within
   (setq tramp-default-method 'scp))
 
 
+(when (eval-when-compile (version< emacs-version "27"))
+  (use-package unicode-fonts
+    :config
+    (unicode-fonts-setup)))
+
+
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward))
