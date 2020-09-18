@@ -1,11 +1,10 @@
 *.elc
+*.log
 *.orig
 *.pyc
 *~
 .DS_Store
 .\#*
-\#*
-
 /.cask
 /.litable-lists.el
 /.lsp-session-v1
@@ -36,3 +35,5 @@
 /transient
 /url
 /user.el
+/var/
+\#*
