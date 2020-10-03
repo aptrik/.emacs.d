@@ -938,20 +938,14 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 ;;-----------------------------------------------------------------------------
 
 (defvar hotspot-directories
-  (list "~" "~/lib" "~/work")
+  (list "~" "~/lib" "~/work" "~/projects" "~/doc")
   "List of hotspot directories.")
 
-(defun hotspot--generate-directories ()
-  (let ((result ()))
-    (dolist (dir hotspot-directories)
-      (ignore-errors
-        (dolist (found (-select
-                        (lambda (d)
-                          (or (string-match "/\\.emacs.d$" d)
-                              (not (string-match "/\\." d))))
-                        (f-directories (substitute-in-file-name dir))))
-          (add-to-list 'result found t))))
-    result))
+(defun hotspot-add-directories (directories)
+  "Add directories to hotspots."
+  (dolist (dir directories)
+    (if (file-directory-p dir)
+        (add-to-list 'hotspot-directories dir t))))
 
 (defun hotspots ()
   "Open a hotspot."
@@ -964,6 +958,18 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
       (action . (("Open" . (lambda (d) (find-file d)))
                  ("Version control" . (lambda (d) (vc-examine d))))))
      helm-source-bookmarks)))
+
+(defun hotspot--generate-directories ()
+  (let ((result ()))
+    (dolist (dir hotspot-directories)
+      (ignore-errors
+        (dolist (found (-select
+                        (lambda (d)
+                          (or (string-match "/\\.emacs.d$" d)
+                              (not (string-match "/\\." d))))
+                        (f-directories (substitute-in-file-name dir))))
+          (add-to-list 'result found t))))
+    result))
 
 
 ;;-----------------------------------------------------------------------------
