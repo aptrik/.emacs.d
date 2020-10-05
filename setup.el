@@ -1622,6 +1622,8 @@ _l_: Last error       _q_: Cancel
 (use-package smerge-mode
   :bind (:map smerge-mode-map
               ("C-c h d" . hydra-smerge-mode/body))
+  :init
+  (setq smerge-command-prefix "\C-cv")
   :config
   (defhydra hydra-smerge-mode
     (:color pink :hint nil :post (smerge-auto-leave))
