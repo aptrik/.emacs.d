@@ -597,7 +597,6 @@
               (id (one-or-more (not (any " "))))
               (message) line-end))
     :modes (text-mode markdown-mode gfm-mode))
-  (add-to-list 'flycheck-checkers 'proselint)
 
   (use-package flycheck-color-mode-line
     :config
@@ -1917,7 +1916,15 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package yaml-mode
-  :mode ("\\.ya?ml\\'" . yaml-mode))
+  :mode ("\\.ya?ml\\'" . yaml-mode)
+  :config
+  (use-package flycheck-yamllint)
+
+  (defun setup--yaml-mode ()
+    (add-to-list 'flycheck-disabled-checkers 'yaml-ruby t)
+    (flycheck-mode 1))
+
+  (add-hook 'yaml-mode-hook 'setup--yaml-mode))
 
 
 (use-package yasnippet

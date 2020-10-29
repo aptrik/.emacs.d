@@ -45,6 +45,7 @@
 (depends-on "flycheck")
 (depends-on "flycheck-color-mode-line")
 (depends-on "flycheck-golangci-lint")
+(depends-on "flycheck-yamllint")
 (depends-on "flymd")
 (depends-on "focus-autosave-mode")
 (depends-on "fullframe")
