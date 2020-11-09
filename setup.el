@@ -1024,7 +1024,6 @@ _l_: Last error       _q_: Cancel
    magit-restore-window-configuration t
    magit-section-initial-visibility-alist '((stashes . show) (unpushed . show) (upstream . show) (untracked . show))
    magit-status-buffer-switch-function 'switch-to-buffer)
-  (global-magit-file-mode 1)
   (magit-auto-revert-mode 1)
   (use-package magit-blame)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
