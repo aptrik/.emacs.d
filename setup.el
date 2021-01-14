@@ -1005,7 +1005,14 @@ _l_: Last error       _q_: Cancel
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
+  (lsp-enable-which-key-integration t)
+  (lsp-register-custom-settings
+   ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
+   '(("pyls.plugins.pydocstyle.enabled" t t)
+     ("pyls.plugins.pyls_mypy.enabled" t t)
+     ("pyls.plugins.pyls_mypy.live_mode" nil t)
+     ("pyls.plugins.pyls_black.enabled" t t)
+     ("pyls.plugins.pyls_isort.enabled" t t))))
 
 
 (use-package lsp-ui

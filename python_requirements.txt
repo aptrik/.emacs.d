@@ -15,5 +15,6 @@ pep8-naming    # Check PEP-8 naming conventions, plugin for flake8
 pylint
 pylint-common  # pylint-common is a Pylint plugin to improve Pylint error analysis of
 pylint-mccabe  # McCabe complexity checker as a PyLint plugin
+python-language-server[all]
 yamllint
 yapf
