@@ -334,6 +334,10 @@
   (setq company-backends (delete 'company-xcode company-backends))
   (add-to-list 'company-backends 'company-keywords)
 
+  (use-package company-lsp
+    :config
+    (push 'company-lsp company-backends))
+
   (use-package company-box
     :hook (company-mode . company-box-mode))
 
@@ -676,12 +680,7 @@ _l_: Last error       _q_: Cancel
           tab-width 4)
     (setq lsp-eldoc-render-all t
           lsp-gopls-complete-unimported t
-          lsp-gopls-staticcheck t
-          lsp-ui-doc-enable nil
-          lsp-ui-flycheck-enable t
-          lsp-ui-imenu-enable t
-          lsp-ui-peek-enable t
-          lsp-ui-sideline-enable t)
+          lsp-gopls-staticcheck t)
     (setq company-tooltip-limit 20
           company-idle-delay .3
           company-echo-delay 0
@@ -1002,11 +1001,22 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package lsp-mode
-  :commands (lsp lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
 
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-flycheck-enable t)
+  (lsp-ui-imenu-enable t)
+  (lsp-ui-peek-enable t)
+  (lsp-ui-sideline-enable t))
 
 
 (use-package macrostep
