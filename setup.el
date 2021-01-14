@@ -1444,8 +1444,8 @@ _l_: Last error       _q_: Cancel
 
     (let ((activate (if (file-remote-p default-directory) -1 1)))
       (flycheck-mode activate)
-      (anaconda-mode activate)
-      (anaconda-eldoc-mode activate)
+      ;; (anaconda-mode activate)
+      ;; (anaconda-eldoc-mode activate)
       (company-mode activate))
 
     (idle-highlight-mode 1)
