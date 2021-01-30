@@ -334,10 +334,6 @@
   (setq company-backends (delete 'company-xcode company-backends))
   (add-to-list 'company-backends 'company-keywords)
 
-  (use-package company-lsp
-    :config
-    (push 'company-lsp company-backends))
-
   (use-package company-box
     :hook (company-mode . company-box-mode))
 
