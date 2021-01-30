@@ -90,6 +90,7 @@
 (depends-on "litable")
 (depends-on "logstash-conf")
 (depends-on "lsp-mode")
+(depends-on "lsp-treemacs")
 (depends-on "lsp-ui")
 (depends-on "macrostep")
 (depends-on "magit")

@@ -1011,6 +1011,12 @@ _l_: Last error       _q_: Cancel
      ("pyls.plugins.pyls_isort.enabled" t t))))
 
 
+(use-package lsp-treemacs
+  :after lsp-mode
+  :commands lsp-treemacs-errors-list
+  )
+
+
 (use-package lsp-ui
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
