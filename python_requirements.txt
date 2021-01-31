@@ -17,4 +17,3 @@ pylint-common  # pylint-common is a Pylint plugin to improve Pylint error analys
 pylint-mccabe  # McCabe complexity checker as a PyLint plugin
 python-language-server[all]
 yamllint
-yapf
