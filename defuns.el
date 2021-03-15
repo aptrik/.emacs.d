@@ -2,7 +2,6 @@
 
 (provide 'defuns)
 
-(require 'cl)
 (require 's)
 
 ;;-----------------------------------------------------------------------------
@@ -104,7 +103,7 @@
     (kill-line)
     (yank)
     (open-line 1)
-    (next-line 1)
+    (forward-line 1)
     (yank)
     (move-to-column cursor-column)))
 
@@ -123,22 +122,24 @@
           (ediff-files file1 file2)
           (add-hook 'ediff-after-quit-hook-internal
                     (lambda ()
-                      (setq ediff-after-quit-hook-internal nil)
+                      (defvar ediff-after-quit-hook-internal nil)
                       (set-window-configuration wnd))))
       (error "No more than 2 files can be marked."))))
 
 (defun ediff-revision-current-buffer ()
   "Run ediff-revision on current buffer's file."
   (interactive)
-  (let ((file (or (buffer-file-name)
-                  (error "Current buffer is not visiting a file."))))
-    (if (and (buffer-modified-p)
-             (y-or-n-p (message "Buffer %s is modified. Save buffer? " (buffer-name))))
-        (save-buffer (current-buffer)))
-    (require 'ediff-init)
-    (require 'ediff-vers)
-    (funcall (intern (format "ediff-%S-internal" ediff-version-control-package))
-             "" "" nil)))
+  (if (not (buffer-file-name))
+      (error "Current buffer is not visiting a file."))
+  (if (and (buffer-modified-p)
+           (y-or-n-p (message "Buffer %s is modified. Save buffer? " (buffer-name))))
+      (save-buffer (current-buffer)))
+  (require 'ediff-init)
+  (require 'ediff-vers)
+  (eval-when-compile
+    (defvar ediff-version-control-package))
+  (funcall (intern (format "ediff-%S-internal" ediff-version-control-package))
+           "" "" nil))
 
 (defun give-me-a-scratch-buffer-now (want-new)
   "Bring up *scratch* or younger siblings if prefixed."
@@ -210,8 +211,6 @@ Bound to `\\[match-paren]'."
     (when (buffer-modified-p)
       (save-buffer))
     (let* ((orig-buffer (current-buffer))
-           (orig-point (point))
-           (orig-window-pos (window-start))
            (tmp-buffer (get-buffer-create "*2to3*"))
            (err-buffer (get-buffer-create "*2to3-error*")))
       (dolist (buf (list tmp-buffer err-buffer))
@@ -221,39 +220,6 @@ Bound to `\\[match-paren]'."
                      tmp-buffer err-buffer)
       (mapc 'kill-buffer (list tmp-buffer err-buffer))
       (revert-buffer t t t))))
-
-(defun rotate-left (l)
-  (append (cdr l) (list (car l))))
-
-(defun rotate-windows ()
-  (interactive)
-  (let ((start-positions (rotate-left (mapcar 'window-start (window-list))))
-        (buffers (rotate-left (mapcar 'window-buffer (window-list)))))
-    (mapcar* (lambda (window buffer pos)
-               (set-window-buffer window buffer)
-               (set-window-start window pos))
-             (window-list)
-             buffers
-             start-positions)))
-
-(defun split-window-into-columns (&optional num)
-  "Split the current window into `num' columns."
-  (interactive "p")
-  (setq num (if num (max 1 num) 2))
-  (split-window-into-grid num 1))
-
-(defun split-window-into-grid (m n)
-  "Split the current window into a MxN grid."
-  (interactive "nColumns: \nnRows: ")
-  (delete-other-windows)
-  (dotimes (i (1- m))
-    (split-window-horizontally)
-    (dotimes (j (1- n))
-      (split-window-vertically))
-    (other-window n))
-  (dotimes (j (1- n))
-    (split-window-vertically))
-  (balance-windows))
 
 (defun sudo-edit (&optional arg)
   (interactive "p")
@@ -278,7 +244,7 @@ Bound to `\\[match-paren]'."
   (cond
    ((or (file-readable-p (concat directory ".git"))
         (locate-dominating-file directory ".git"))
-    (magit-status (locate-dominating-file directory ".git")))
+    (magit-status-setup-buffer (locate-dominating-file directory ".git")))
    ((or (file-readable-p (concat directory ".hg"))
         (locate-dominating-file directory ".hg"))
     (let ((default-directory directory))
@@ -288,7 +254,7 @@ Bound to `\\[match-paren]'."
    (t
     (message "*** No version control system found for directory: %s" directory))))
 
-(defun xml-pretty-print-region (&optional start end)
+(defun xml-pretty-print-region ()
   "Pretty format XML in region.
 You need to have xmllint installed."
   (interactive)
@@ -405,119 +371,6 @@ current, and kill the buffer that visits the link."
 (defun transform-region-to-dashed ()
   (interactive)
   (replace-region-with 's-dashed-words))
-
-;;-----------------------------------------------------------------------------
-;;; HTML helpers.
-
-(defun html-replace-string-pairs-region (start end mylist)
-  "Replace string pairs in region."
-  (save-excursion
-    (save-restriction
-      (narrow-to-region start end)
-      (mapc
-       (lambda (arg)
-         (goto-char (point-min))
-         (let ((case-fold-search nil))
-           (while (search-forward (car arg) nil t)
-             (replace-match (cadr arg) t t))))
-       mylist))))
-
-(defun convert-to-html-entities (start end)
-  "Replace special characters with corresponding HTML entities."
-  (interactive "r")
-  (html-replace-string-pairs-region
-   start end
-   '(("å" "&aring;")
-     ("ä" "&auml;")
-     ("ö" "&ouml;")
-     ("Å" "&Aring;")
-     ("Ä" "&Auml;")
-     ("Ö" "&Ouml;")
-     ("é" "&eacute;")
-     ("É" "&Eacute;")
-     ("è" "&egrave;")
-     ("È" "&Egrave;")
-     ("ü" "&uuml;")
-     ("Ü" "&Uuml;")
-     )))
-
-(defun convert-bad-utf8 (start end)
-  "Convert badly encoded UTF-8 strings.
-Also see/use `recode-region'."
-  (interactive "r")
-  (save-excursion
-    (save-restriction
-      (narrow-to-region start end)
-      (let ((case-replace nil)
-            (chars '(("é" . "Ã©")
-                     ("É" . "Ã")
-                     ("è" . "Ã¨")
-                     ("È" . "Ã")
-                     ("ü" . "Ã¼")
-                     ("Ü" . "Ã")
-                     ("å" . "Ã¥")
-                     ("ä" . "Ã¤")
-                     ("ö" . "Ã¶")
-                     ("Å" . "Ã…")
-                     ("Ä" . "Ã")
-                     ("Ö" . "Ã–")
-                     )))
-        (mapcar (lambda (p) (beginning-of-buffer)
-                  (replace-string (cdr p) (car p) nil))
-                chars)))))
-
-;;-----------------------------------------------------------------------------
-;;; Convenience functions to set up frame properties.
-
-(defun pabe-ui-default (&optional frame)
-  (if frame
-      (select-frame frame))
-  (interactive)
-  (delete-other-windows)
-  (if (window-system)
-      (progn
-        (set-default-font "6x13")
-        (let ((height (display-pixel-height))
-              (width (display-pixel-width)))
-          (cond
-           ((and (= 1200 height) (= 3840 width)) ; 2 x 1920x1200
-            (set-frame-size (selected-frame) 210 86)
-            (set-frame-position (selected-frame) -1920 0))
-           ((= 1200 height) ; 1920x1200
-            (set-frame-size (selected-frame) 101 86)
-            (set-frame-position (selected-frame) -1 0))
-           ((= 1144 height) ; 1917x1143 (Inside 24" VNC session)
-            (set-frame-size (selected-frame) 100 84)
-            (set-frame-position (selected-frame) -1 0))
-           (t
-            (set-frame-size (selected-frame) 100 53)
-            (set-frame-position (selected-frame) -1 0)))))))
-
-(defun toggle-maximize-window-vertically ()
-  "Toggle maximize window vertically."
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
-
-(defun toggle-maximize-window ()
-  "Toggle maximize window."
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-  (toggle-maximize-window-vertically))
-
-(defun pabe-ui-demo ()
-  "For full screen demos.
-The Inconsolata font is an open source monospace font specifically
-designed for programmers. http://levien.com/type/myfonts/inconsolata.html
-
-Depends on having the inconsolata package installed on the underlying
-system.
-$ sudo apt-get install ttf-inconsolata
-"
-  (interactive)
-  (set-default-font "Inconsolata")
-  (set-face-attribute 'default nil :height 120))
 
 ;;-----------------------------------------------------------------------------
 ;;; Insert time and date stamps
@@ -692,14 +545,14 @@ Bound to `\\[this-line-to-bottom-of-window]'."
   "Scroll buffer down, but try to keep cursor on the same line in window.
 Bound to `\\[scroll-down-in-place]'."
   (interactive "p")
-  (previous-line n)
+  (forward-line (* -1 n))
   (scroll-down n))
 
 (defun scroll-up-in-place (n)
   "Scroll buffer up, but try to keep cursor on the same line in window.
 Bound to `\\[scroll-up-in-place]'."
   (interactive "p")
-  (next-line n)
+  (forward-line n)
   (scroll-up n))
 
 (defun cursor-to-top-of-window ()
@@ -777,7 +630,7 @@ Optionally replace current buffer with number N in the buffer list."
       (setq tail (cdr tail)))
     (if (bufferp buf)
         (switch-to-buffer buf)
-      (message "cannot switch buffer to " buf))))
+      (message "cannot switch buffer to %s" buf))))
 
 (defun unbury-buffer (&optional buf)
   "Select buffer BUF, or the last one in the buffer list.
@@ -862,7 +715,6 @@ many columns.  With no active region, indent only the current line."
      ;;(set-buffer-file-coding-system 'utf-8)
      (delete-trailing-whitespace)))
 
-
 ;;-----------------------------------------------------------------------------
 ;;; Modifications to find-file-at-point.
 
@@ -874,14 +726,6 @@ many columns.  With no active region, indent only the current line."
     (and line (progn
                 (goto-char (point-min))
                 (forward-line (1- line))))))
-
-(defun ffip-create-pattern-file-finder (&rest patterns)
-  "Function to create new functions that look for a specific pattern."
-  (lexical-let ((patterns patterns))
-    (lambda ()
-      (interactive)
-      (let ((ffip-patterns patterns))
-        (find-file-in-project)))))
 
 ;;-----------------------------------------------------------------------------
 
@@ -968,7 +812,8 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
                           (or (string-match "/\\.emacs.d$" d)
                               (not (string-match "/\\." d))))
                         (f-directories (substitute-in-file-name dir))))
-          (add-to-list 'result found t))))
+          (push found result))))
+          ;; (add-to-list 'result found t))))
     result))
 
 
