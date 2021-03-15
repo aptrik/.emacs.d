@@ -22,7 +22,6 @@
 (depends-on "company-box")
 (depends-on "company-c-headers")
 (depends-on "company-go")
-(depends-on "company-lsp")
 (depends-on "company-terraform")
 (depends-on "copy-as-format")
 (depends-on "cpputils-cmake")
