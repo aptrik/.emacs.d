@@ -1048,7 +1048,7 @@ _l_: Last error       _q_: Cancel
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
     (other-window 1))
-  (fullframe magit-status magit-mode-quite-window))
+  (fullframe magit-status-setup-buffer magit-mode-quite-window))
 
 
 (use-package man
