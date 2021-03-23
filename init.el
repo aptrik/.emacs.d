@@ -2,8 +2,7 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
-;; (debug-on-entry 'package-initialize)
-;; (setq warning-suppress-log-types '((package reinitialization)))
+(setq warning-suppress-log-types '((package reinitialization)))
 
 (let ((min-version "25.1"))
   (when (version< emacs-version min-version)
