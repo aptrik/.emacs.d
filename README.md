@@ -85,9 +85,9 @@ Or the bleeding edge version.
 
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-27.1.tar.xz
-    tar xfJ emacs-27.1.tar.xz
-    cd emacs-27.1
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-27.2.tar.xz
+    tar xfJ emacs-27.2.tar.xz
+    cd emacs-27.2
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
