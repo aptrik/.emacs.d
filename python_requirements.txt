@@ -1,21 +1,21 @@
 argparse
 black[d]; python_version >= '3.0'
-epc
-flake8
-flake8-bugbear; python_version >= '3.0'
-flake8-comprehensions
-flake8-import-order
-flake8-rst-docstrings
-importmagic
-isort
-jedi
-mccabe         # McCabe checker, plugin for flake8
+#epc
+#flake8
+#flake8-bugbear; python_version >= '3.0'
+#flake8-comprehensions
+#flake8-import-order
+#flake8-rst-docstrings
+#importmagic
+#isort
+#jedi
+#mccabe         # McCabe checker, plugin for flake8
 mypy; python_version >= '3.0'
-pep8-naming    # Check PEP-8 naming conventions, plugin for flake8
+#pep8-naming    # Check PEP-8 naming conventions, plugin for flake8
 pylint
 pylint-common  # pylint-common is a Pylint plugin to improve Pylint error analysis of
 pylint-mccabe  # McCabe complexity checker as a PyLint plugin
-pyls-black; python_version > '3.0'
-pyls-isort; python_version > '3.0'
-python-language-server[all]; python_version > '3.0'
+#pyls-black; python_version > '3.0'
+#pyls-isort; python_version > '3.0'
+#python-language-server[all]; python_version > '3.0'
 yamllint
