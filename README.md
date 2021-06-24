@@ -65,7 +65,7 @@ NOTE: Do not forget to run `cask install` after changing Emacs version.
 
 ### MacOS
 
-    brew cask install emacs
+    brew install --cask emacs
 
 Or the bleeding edge version.
 
