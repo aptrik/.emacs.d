@@ -988,6 +988,7 @@ _l_: Last error       _q_: Cancel
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-eldoc-render-all t
         lsp-gopls-complete-unimported t
         lsp-gopls-staticcheck t
