@@ -17,5 +17,6 @@ pylint-common  # pylint-common is a Pylint plugin to improve Pylint error analys
 pylint-mccabe  # McCabe complexity checker as a PyLint plugin
 pyls-black; python_version > '3.0'
 pyls-isort; python_version > '3.0'
+pyls-mypy; python_version > '3.0'
 python-language-server[all]; python_version > '3.0'
 yamllint

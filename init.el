@@ -38,7 +38,8 @@
 (require 'pallet)
 (pallet-mode t)
 
-(setq use-package-enable-imenu-support t)
+(setq use-package-enable-imenu-support t
+      use-package-verbose t)
 (eval-when-compile
   (require 'use-package))
 
