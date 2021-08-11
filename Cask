@@ -1,7 +1,7 @@
 (source gnu)
 (source melpa)
 (source org)
-(source nongnu "https://elpa.nongnu.org/nongnu/")
+(source "nongnu" "https://elpa.nongnu.org/nongnu/")
 
 (depends-on "ac-js2")
 (depends-on "ace-jump-mode")
