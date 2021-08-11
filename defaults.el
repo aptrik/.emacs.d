@@ -6,11 +6,6 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
-(when macosp
-  (setq delete-by-moving-to-trash t
-        trash-directory "~/.Trash/emacs")
-  (setq ns-pop-up-frames nil))
-
 (setq
  blink-cursor-blinks                    0
  focus-follows-mouse                    t
