@@ -525,6 +525,14 @@
   :commands edit-env)
 
 
+(use-package eldoc
+  :diminish eldoc-mode
+  :config
+  (setq eldoc-echo-area-use-multiline-p nil
+        eldoc-idle-delay 0.5
+        eldoc-print-after-edit nil))
+
+
 ;; (use-package evil
 ;;   :config
 ;;   (evil-mode)
@@ -942,10 +950,6 @@ _l_: Last error       _q_: Cancel
               ("C-c e r" . eval-region))
   :mode ("Cask" . emacs-lisp-mode)
   :config
-  (use-package eldoc
-    :diminish eldoc-mode
-    :init
-    (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
   (use-package elisp-slime-nav
     :diminish elisp-slime-nav-mode
     :init
