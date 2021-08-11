@@ -42,7 +42,6 @@
 (global-set-key (kbd "s-s") 'sort-lines)
 
 (global-set-key (kbd "C-c g") 'google)
-(global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c |") 'align-regexp)
 
 (global-unset-key (kbd "C-c e"))

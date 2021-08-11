@@ -23,11 +23,6 @@
   )
 
 
-(use-package anaconda-mode
-  :diminish anaconda-mode
-  )
-
-
 (use-package ansible-doc
   :config
   (add-hook 'yaml-mode-hook #'ansible-doc-mode))
@@ -322,14 +317,15 @@
   :diminish company-mode
   :defer 5
   :config
-  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
-  (setq company-idle-delay 0.5
+  (setq company-begin-commands '(self-insert-command)
+        company-echo-delay 0
+        company-idle-delay 0.5
         company-minimum-prefix-length 2
         company-selection-wrap-around t
         company-show-numbers t
         company-tooltip-align-annotations t
-        company-tooltip-flip-when-above t)
-
+        company-tooltip-flip-when-above t
+        company-tooltip-limit 20)
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-xcode company-backends))
   (add-to-list 'company-backends 'company-keywords)
@@ -661,11 +657,11 @@ _l_: Last error       _q_: Cancel
   :hook ((go-mode . lsp-deferred)
          (go-mode . setup--go-save-hook)
          (go-mode . flycheck-golangci-lint-setup))
+  :bind (:map go-mode-map
+              ("C-." . company-complete))
   :config
   (use-package go-guru)
-  (use-package flycheck-golangci-lint
-    :config
-    (setq flycheck-golangci-lint-enable-all t))
+  (use-package flycheck-golangci-lint)
 
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -674,13 +670,6 @@ _l_: Last error       _q_: Cancel
   (defun setup--go-mode ()
     (setq indent-tabs-mode t
           tab-width 4)
-    (setq lsp-eldoc-render-all t
-          lsp-gopls-complete-unimported t
-          lsp-gopls-staticcheck t)
-    (setq company-tooltip-limit 20
-          company-idle-delay .3
-          company-echo-delay 0
-          company-begin-commands '(self-insert-command))
     (set (make-local-variable 'company-backends) '(company-go))
     (company-mode 1)
     (flycheck-mode 1)
@@ -999,16 +988,23 @@ _l_: Last error       _q_: Cancel
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-eldoc-render-all t
+        lsp-gopls-complete-unimported t
+        lsp-gopls-staticcheck t
+        lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
-   '(("pyls.plugins.pydocstyle.enabled" t t)
+   '(
+     ("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t)
+     ("pyls.plugins.pydocstyle.enabled" t t)
      ("pyls.plugins.pyls_mypy.enabled" t t)
      ("pyls.plugins.pyls_mypy.live_mode" nil t)
      ("pyls.plugins.pyls_black.enabled" t t)
-     ("pyls.plugins.pyls_isort.enabled" t t))))
+     ("pyls.plugins.pyls_isort.enabled" t t)
+     )))
 
 
 (use-package lsp-treemacs
@@ -1021,7 +1017,7 @@ _l_: Last error       _q_: Cancel
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-enable t)
   (lsp-ui-flycheck-enable t)
   (lsp-ui-imenu-enable t)
   (lsp-ui-peek-enable t)
@@ -1397,6 +1393,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package python
+  :hook ((python-mode . lsp-deferred))
   :bind (:map python-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
@@ -1410,10 +1407,6 @@ _l_: Last error       _q_: Cancel
   :init
   (add-hook 'python-mode-hook 'setup--python-mode)
 
-  ;; (setenv "PYTHONPATH" (concat (if (getenv "PYTHONPATH") "$PYTHONPATH:" "")
-  ;;                              (expand-file-name "bin/lib/python" user-emacs-directory))
-  ;;         t)
-
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
     (interactive
@@ -1424,13 +1417,6 @@ _l_: Last error       _q_: Cancel
     "Run python on the file in the current buffer."
     (interactive)
     (compile (format "python \"%s\"" (buffer-file-name))))
-
-  (use-package company-anaconda)
-  (add-to-list 'company-backends 'company-anaconda)
-
-  ;; (use-package importmagic
-  ;;   :config
-  ;;   (add-hook 'python-mode-hook 'importmagic-mode))
 
   (defun flycheck-use-python-version (version)
     (interactive
@@ -1453,8 +1439,6 @@ _l_: Last error       _q_: Cancel
 
     (let ((activate (if (file-remote-p default-directory) -1 1)))
       (flycheck-mode activate)
-      ;; (anaconda-mode activate)
-      ;; (anaconda-eldoc-mode activate)
       (company-mode activate))
 
     (idle-highlight-mode 1)
