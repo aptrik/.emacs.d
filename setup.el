@@ -1328,6 +1328,10 @@ _l_: Last error       _q_: Cancel
                        " \"" (buffer-file-name) "\"")))))
 
 
+(use-package pip-requirements
+  )
+
+
 (catch 'loop
   (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
                             (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
@@ -1916,6 +1920,12 @@ This is used to set `sql-alternate-buffer-name' within
   (add-hook 'org-mode-hook #'ws-butler-mode)
   (add-hook 'prog-mode-hook #'ws-butler-mode)
   (add-hook 'text-mode-hook #'ws-butler-mode))
+
+
+(use-package xclip
+  :config
+  (progn
+    (xclip-mode 1)))
 
 
 (use-package yaml-mode
