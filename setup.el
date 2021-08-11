@@ -208,7 +208,6 @@
   (use-package company-c-headers
     :config
     (setq company-c-headers-path-system (gcc:get-include-directories)))
-  (add-to-list 'company-backends 'company-c-headers)
 
   (defconst setup--c-style
     `((c-recognize-knr-p . nil)
@@ -284,6 +283,8 @@
 
     (use-package helm-gtags)
 
+    (set (make-local-variable 'company-backends) '(company-c-headers))
+
     (local-set-key (kbd "C-.") 'company-complete)
     (local-set-key (kbd "C-c o o") 'ff-find-other-file)))
 
@@ -317,7 +318,8 @@
   :diminish company-mode
   :defer 5
   :config
-  (setq company-begin-commands '(self-insert-command)
+  (setq company-backends '((company-capf company-files company-keywords company-dabbrev-code))
+        company-begin-commands '(self-insert-command)
         company-echo-delay 0
         company-idle-delay 0.5
         company-minimum-prefix-length 2
@@ -326,9 +328,6 @@
         company-tooltip-align-annotations t
         company-tooltip-flip-when-above t
         company-tooltip-limit 20)
-  (setq company-backends (delete 'company-clang company-backends))
-  (setq company-backends (delete 'company-xcode company-backends))
-  (add-to-list 'company-backends 'company-keywords)
 
   (use-package company-box
     :hook (company-mode . company-box-mode))
@@ -880,7 +879,6 @@ _l_: Last error       _q_: Cancel
     :commands (web-beautify-js web-beautify-js-buffer))
 
   (use-package ac-js2)
-  (add-to-list 'company-backends 'ac-js2-company)
 
   (defun delete-tern-process ()
     (interactive)
@@ -893,6 +891,8 @@ _l_: Last error       _q_: Cancel
     (js2-refactor-mode 1)
     (karma-mode 1)
     ;;(js2-highlight-vars-mode 1)
+
+    (set (make-local-variable 'company-backends) '(ac-js2-company))
 
     (local-set-key (kbd "C-.") 'company-complete)
     (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp)
