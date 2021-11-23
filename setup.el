@@ -1183,7 +1183,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package org
-  :ensure org-plus-contrib
+  :ensure org-contrib
   :bind (("M-m" . org-capture)
          ("C-c a" . org-agenda))
   :mode ("\\.org\\'" . org-mode)

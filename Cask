@@ -1,6 +1,5 @@
 (source gnu)
 (source melpa)
-(source org)
 (source "nongnu" "https://elpa.nongnu.org/nongnu/")
 
 (depends-on "ac-js2")
@@ -102,7 +101,8 @@
 (depends-on "nodejs-repl")
 (depends-on "notmuch")
 (depends-on "openwith")
-(depends-on "org-plus-contrib")
+(depends-on "org")
+(depends-on "org-contrib")
 (depends-on "ox-pandoc")
 (depends-on "ox-reveal")
 (depends-on "ox-twbs")
