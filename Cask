@@ -91,7 +91,6 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "matlab-mode")
-(depends-on "minimap")
 (depends-on "minitest")
 (depends-on "move-text")
 (depends-on "multi-line")

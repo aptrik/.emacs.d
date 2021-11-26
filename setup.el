@@ -1063,12 +1063,6 @@ _l_: Last error       _q_: Cancel
   (setq markdown-command "pandoc"))
 
 
-(use-package minimap
-  :init
-  (setq minimap-active-region-background nil
-        minimap-window-location 'right))
-
-
 (use-package misc
   :bind (("M-z" . zap-up-to-char)
          ("M-Z" . zap-to-char))
