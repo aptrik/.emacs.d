@@ -56,7 +56,6 @@
 (depends-on "gradle-mode")
 (depends-on "grep-a-lot")
 (depends-on "groovy-mode")
-(depends-on "gruvbox-theme")
 (depends-on "helm")
 (depends-on "helm-gtags")
 (depends-on "helm-projectile")
