@@ -13,9 +13,9 @@
   (setq mouse-sel-mode t))
 
 
-(global-unset-key (kbd "C-x C-c"))
+;;(global-unset-key (kbd "C-x C-c"))
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
-(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+;;(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 

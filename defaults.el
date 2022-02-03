@@ -28,7 +28,7 @@
  backup-inhibited              t
  buffers-menu-max-size         nil
  completion-cycle-threshold    nil
- confirm-kill-emacs            'y-or-n-p
+ ;;confirm-kill-emacs            'y-or-n-p
  delete-active-region          nil
  echo-keystrokes               0.1
  fill-column                   72
