@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package ace-jump-mode
   :bind ("s-SPC" . ace-jump-mode))
 

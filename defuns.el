@@ -16,7 +16,7 @@
 (defvar unix-system-type
   (if (eq system-type 'darwin)
       'macos
-    (lexical-let
+    (let
         ((lsb-release (shell-command-to-string "lsb_release -ds")))
       (cond
        ((string-match "Red Hat Enterprise Linux Server release 6" lsb-release)
@@ -258,7 +258,7 @@ You need to have xmllint installed."
   (interactive)
   (save-excursion
     (save-restriction
-      (lexical-let (start end)
+      (let (start end)
         (if (use-region-p)
             (setq start (region-beginning)
                   end (region-end))
