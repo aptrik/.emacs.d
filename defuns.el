@@ -2,8 +2,6 @@
 
 (provide 'defuns)
 
-(require 's)
-
 ;;-----------------------------------------------------------------------------
 ;;; Constants for the current environment.
 
@@ -358,18 +356,22 @@ current, and kill the buffer that visits the link."
 
 (defun transform-region-to-lower-camel-case ()
   (interactive)
+  (require 's)
   (replace-region-with 's-lower-camel-case))
 
 (defun transform-region-to-upper-camel-case ()
   (interactive)
+  (require 's)
   (replace-region-with 's-upper-camel-case))
 
 (defun transform-region-to-snake-case ()
   (interactive)
+  (require 's)
   (replace-region-with 's-snake-case))
 
 (defun transform-region-to-dashed ()
   (interactive)
+  (require 's)
   (replace-region-with 's-dashed-words))
 
 ;;-----------------------------------------------------------------------------
