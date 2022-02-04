@@ -42,7 +42,7 @@
       use-package-verbose t)
 (eval-when-compile
   (require 'use-package))
-
+(setq use-package-compute-statistics t)
 (require 'bind-key)
 (require 'diminish)
 
