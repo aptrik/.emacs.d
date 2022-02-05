@@ -1085,29 +1085,17 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package multiple-cursors
-  :defer 5
-  :bind (("C-c o <SPC>" . mc/vertical-align-with-space)
-         ("C-c o a"     . mc/vertical-align)
-         ("C-c o e"     . mc/mark-more-like-this-extended)
-         ("C-c o h"     . mc/mark-all-like-this-dwim)
-         ("C-c o l"     . mc/edit-lines)
-         ("C-c o k"     . mc/mark-previous-like-this)
-         ("C-c o j"     . mc/mark-next-like-this)
-         ("C-c o r"     . mc/mc-mark)
-         ("C-c o C-a"   . mc/edit-beginnings-of-lines)
-         ("C-c o C-e"   . mc/edit-ends-of-lines)
-         ("C-c o C-s"   . mc/mark-all-in-region)
-         ("s-<mouse-1>" . mc/add-cursor-on-click)
-         ("C-|"         . mc/edit-lines)
-         ("C->"         . mc/mark-next-like-this)
+  :defer t
+  :commands (mc/mark-next-like-this)
+  :bind (("C->"         . mc/mark-next-like-this)
+         ("C-c C->"     . mc/unmark-next-like-this)
          ("C-<"         . mc/mark-previous-like-this)
-         ("C-c C-<"     . mc/mark-all-like-this)
+         ("C-c C-<"     . mc/unmark-previous-like-this)
+         ("C-c <"       . mc/mark-all-like-this)
+         ("C-|"         . mc/edit-lines)
          ("<M-S-up>"    . mc/mark-previous-like-this)
          ("<M-S-down>"  . mc/mark-next-like-this)
-         ("<s-S-up>"    . mc/mark-previous-like-this)
-         ("<s-S-down>"  . mc/mark-next-like-this)))
-
-
+         ("s-<mouse-1>" . mc/add-cursor-on-click)))
 
 
 (use-package newcomment
