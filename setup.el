@@ -733,6 +733,17 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package gud
+  :commands gud-gdb
+  ;; Continue / Pause F5.
+  ;; Step Over F10.
+  ;; Step Into F11.
+  ;; Step Out Shift+F11.
+  ;; Restart Ctrl+Shift+F5.
+  ;; Stop Shift+F5.
+  :bind (("<f5>"    . gud-cont)
+         ("<f10>"   . gud-next)
+         ("<f11>"   . gud-step)
+         ("S-<f11>" . gud-finish))
   :config
   (setq-default gdb-many-windows t
                 gdb-use-separate-io-buffer t
