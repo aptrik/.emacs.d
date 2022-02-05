@@ -23,19 +23,17 @@
 
 
 (use-package ansible-doc
-  :config
-  (add-hook 'yaml-mode-hook #'ansible-doc-mode))
-
+  :hook (yaml-mode-hook  . ansible-doc-mode))
 
 
 (use-package arc-mode
   :mode (("\\.egg\\'" . archive-mode)
          ("\\.\\(war\\|jar\\)\\'" . archive-mode))
-  :config
-  (add-hook 'archive-mode-hook 'turn-on-truncate-lines))
+  :hook (archive-mode-hook . turn-on-truncate-lines))
 
 
 (use-package autorevert
+  :defer t
   :bind ("C-c t A" . auto-revert-tail-mode)
   :diminish (auto-revert-mode . " Ⓐ")
   :config
