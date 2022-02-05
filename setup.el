@@ -46,7 +46,7 @@
 
 
 (use-package blacken
-  )
+  :commands blacken-mode)
 
 
 (use-package bookmark
@@ -56,6 +56,7 @@
 
 
 (use-package browse-kill-ring
+  :defer t
   :bind ("C-c y" . browse-kill-ring)
   :commands browse-kill-ring
   :config
@@ -63,6 +64,8 @@
 
 
 (use-package bs
+  :defer t
+  :commands bs-show
   :bind ("M-<f10>" . bs-show)
   :config
   (setq bs-default-configuration       "all"
@@ -92,15 +95,18 @@
 
 
 (use-package calc
+  :defer t
+  :commands calc
   :bind ("C-=" . calc)
   :config
   (setq calc-display-trail nil)
-  (add-hook 'calc-mode-hook
-            (lambda ()
-              (local-set-key [kp-separator] 'calcDigit-start))))
+  :hook (calc-mode-hook . (lambda ()
+                            (local-set-key [kp-separator] 'calcDigit-start))))
 
 
 (use-package calendar
+  :defer t
+  :commands calendar
   :config
   (calendar-set-date-style 'iso)
 
@@ -173,6 +179,7 @@
 
 
 (use-package cc-mode
+  :disabled t
   :mode (("\\.[ch]\\'" . c-mode)
          ("\\.\\(cc\\|hh\\)\\'" . c++-mode)
          ("\\.\\(i\\|swg\\)\\'" . c++-mode))
@@ -276,10 +283,12 @@
     (local-set-key (kbd "C-c o o") 'ff-find-other-file)))
 
 
-(use-package cmake-mode)
+(use-package cmake-mode
+  :disabled t)
 
 
 (use-package comint
+  :defer t
   :bind (:map comint-mode-map
               ("<down>" . comint-next-input)
               ("<up>" . comint-previous-input)
@@ -292,18 +301,20 @@
 
 
 (use-package command-log-mode
+  :defer t
   :init
   (setq command-log-mode-key-binding-open-log "C-c t o"))
 
 
 (use-package company
+  :defer 5
+  :diminish
+  :commands (company-mode company-indent-or-complete-common)
   :bind (("C-c .". company-complete))
   :bind (:map company-active-map
               ("SPC" . company-abort)
               ("TAB" . company-complete-common-or-cycle)
               ([tab] . company-complete-common-or-cycle))
-  :diminish company-mode
-  :defer 5
   :config
   (setq company-backends '((company-capf company-files company-keywords company-dabbrev-code))
         company-begin-commands '(self-insert-command)
@@ -315,11 +326,12 @@
         company-tooltip-align-annotations t
         company-tooltip-flip-when-above t
         company-tooltip-limit 20)
-
-  (use-package company-box
-    :hook (company-mode . company-box-mode))
-
   (global-company-mode 1))
+
+
+(use-package company-box
+  :after copmpany
+  :hook (company-mode . company-box-mode))
 
 
 (use-package copy-as-format
@@ -328,6 +340,7 @@
 
 
 (use-package cperl-mode
+  :disabled t
   :config
   (defalias 'perl-mode 'cperl-mode)
   (fset 'perldoc 'cperl-perldoc)
@@ -358,6 +371,7 @@
 
 
 (use-package css-mode
+  :defer t
   :mode (("\\.css\\'" . css-mode))
   :config
   (setq cssm-indent-function 'cssm-c-style-indenter
@@ -371,6 +385,7 @@
 
 
 (use-package compile
+  :defer t
   :bind (("C-c c" . compile)
          ("C-c C" . recompile))
   :config
@@ -385,6 +400,7 @@
 
 
 (use-package diff-mode
+  :defer t
   :bind (:map diff-mode-map
               ("w" . diff-ignore-whitespace-hunk)
               ("n" . diff-hunk-next)
@@ -401,6 +417,7 @@
 
 
 (use-package dired
+  :defer t
   :bind (:map dired-mode-map
               ("e" . ediff-dired-marked-files)
               ("M-<up>" . dired-up-directory)
@@ -456,6 +473,7 @@
 
 
 (use-package direnv
+  :defer t
   :config
   (direnv-mode))
 
@@ -469,6 +487,7 @@
 
 
 (use-package dtrt-indent
+  :defer t
   :diminish dtrt-indent-mode
   :init
   (setq dtrt-indent-verbosity 1)
@@ -477,16 +496,20 @@
 
 
 (use-package dumb-jump
+  :defer t
   :bind (("M-g o" . dumb-jump-go-other-window)
          ("M-g j" . dumb-jump-go)
          ("M-g b" . dumb-jump-back)
          ("M-g q" . dumb-jump-quick-look)
          ("M-g x" . dumb-jump-go-prefer-external)
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'helm))
+  :config
+  (setq dumb-jump-selector 'helm))
 
 
 (use-package ediff
+  :defer t
+  :commands (ediff-files ediff-buffers)
   :bind (("C-c = b" . ediff-buffers)
          ("C-c = B" . ediff-buffers3)
          ("C-c = c" . compare-windows)
@@ -512,6 +535,7 @@
 
 
 (use-package eldoc
+  :defer t
   :diminish eldoc-mode
   :config
   (setq eldoc-echo-area-use-multiline-p nil
@@ -547,6 +571,7 @@
 
 
 (use-package eyebrowse
+  :disabled t
   :config
   (eyebrowse-mode t))
 
@@ -561,6 +586,10 @@
 
 
 (use-package flycheck
+  :defer 5
+  :commands (flycheck-mode
+             flycheck-next-error
+             flycheck-previous-error)
   :bind ("C-c t f" . flycheck-mode)
   :bind (:map flycheck-mode-map ("C-c h l" . hydra-flycheck/body))
   :config
@@ -610,7 +639,8 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package framemove
-  :init
+  :defer t
+  :config
   (windmove-default-keybindings 'shift)
   ;; Cannot wrap and have framemove do its thing at the same time.
   (setq windmove-wrap-around nil
@@ -631,6 +661,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package go-mode
+  :defer t
   :hook ((go-mode . lsp-deferred)
          (go-mode . setup--go-save-hook)
          (go-mode . flycheck-golangci-lint-setup))
@@ -709,6 +740,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package helm
+  :defer t
   :config
   (helm-autoresize-mode 1))
 
@@ -716,16 +748,18 @@ _l_: Last error       _q_: Cancel
 (use-package helm-projectile
   :bind (("C-x f" . helm-projectile-find-file)
          ("C-c o p" . helm-projectile-find-file))
+  :after helm
   :config
   (helm-projectile-on))
 
 
 (use-package highlight-symbol
-  :config
-  (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
+  :commands highlight-symbol-nav-mode
+  :hook (prog-mode-hook . highlight-symbol-nav-mode))
 
 
 (use-package hl-line
+  :disabled t
   :config
   (global-hl-line-mode 1))
 
@@ -735,10 +769,12 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hydra
-  :ensure)
+  :defer t)
 
 
 (use-package ibuffer
+  :defer t
+  :commands ibuffer
   :bind (([remap list-buffers] . ibuffer))
   :config
   (setq ibuffer-formats
@@ -765,6 +801,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package ibuffer-vc
+  :after ibuffer
   :init
   (add-hook 'ibuffer-hook
             (lambda ()
@@ -782,6 +819,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package ispell
+  :defer t
   :bind (("C-c s b" . ispell-buffer)
          ("C-c s c" . ispell-comments-and-strings)
          ("C-c s d" . ispell-change-dictionary)
@@ -807,6 +845,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package js2-mode
+  :disabled t
   :mode "\\.js\\'"
   :init
   (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
@@ -873,19 +912,21 @@ _l_: Last error       _q_: Cancel
 
 (use-package json-mode
   :preface
+  :bind (:map json-mode-map
+              ("M-q" . json-mode--reformat-region))
+  :config
+  (setf json-reformat:pretty-string t
+        json-reformat:indent-width 2)
   (defun json-mode--reformat-region ()
     (interactive)
     (if (region-active-p)
         (call-interactively #'json-reformat-region)
-      (json-reformat-region (point-min) (point-max))))
-  :bind (:map json-mode-map
-              ("M-q" . json-mode--reformat-region))
-  :config
-  (setf json-reformat:pretty-string? t
-        json-reformat:indent-width 2))
+      (json-reformat-region (point-min) (point-max)))))
 
 
 (use-package keyfreq
+  :defer t
+  :commands keyfreq-mode
   :config
   (setq keyfreq-excluded-commands
         '(backward-char beginning-of-line end-of-line forward-char newline next-line previous-line self-insert-command left-char right-char))
@@ -894,6 +935,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package lisp-mode
+  :defer t
   :bind (:map emacs-lisp-mode-map
               ("C-<f9>" . ert-run-tests-interactively)
               ("M-&" . lisp-complete-symbol)
@@ -913,10 +955,12 @@ _l_: Last error       _q_: Cancel
   :mode ("Cask" . emacs-lisp-mode)
   :config
   (use-package elisp-slime-nav
+    :after lisp-mode
     :diminish elisp-slime-nav-mode
     :init
     (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
   (use-package elint
+    :after lisp-mode
     :bind ("C-c e E" . elint-current-buffer)
     :commands 'elint-initialize
     :preface
@@ -931,6 +975,7 @@ _l_: Last error       _q_: Cancel
     (add-to-list 'elint-standard-variables 'emacs-major-version)
     (add-to-list 'elint-standard-variables 'window-system))
   (use-package ert
+    :after lisp-mode
     :bind ("C-c e t" . ert-run-tests-interactively)
     :commands ert-run-tests-interactively
     :config
@@ -996,6 +1041,9 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package magit
+  :defer t
+  :bind ("C-c s" . magit-status)
+  :commands magit-status
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t
@@ -1012,13 +1060,14 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package man
+  :commands man
   :config
   (setq Man-notify-method 'pushy))
 
 
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode))
-  :config
+  :init
   (setq markdown-command "pandoc"))
 
 
@@ -1062,10 +1111,13 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package newcomment
+  :defer t
+  :commands comment-line
   :bind ("C-;" . comment-line))
 
 
 (use-package nlinum
+  :defer t
   :bind ("C-c t l" . nlinum-mode))
 
 
@@ -1074,6 +1126,9 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package nxml-mode
+  :commands nxml-mode
+  :init
+  (defalias 'xml-mode 'nxml-mode)
   :config
   (defun nxml-set-indentation (level)
     "Set indentation LEVEL in nxml-mode. Default LEVEL is 2."
@@ -1099,6 +1154,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package openwith
+  :defer t
   :config
   (setq openwith-associations
         (list
@@ -1125,7 +1181,8 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package org
-  :ensure org-contrib
+  :defer t
+  :commands org-mode
   :bind (("M-m" . org-capture)
          ("C-c a" . org-agenda))
   :mode ("\\.org\\'" . org-mode)
@@ -1209,12 +1266,14 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package paren
-  :init
+  :defer t
+  :config
   (show-paren-mode t)
   (setq show-paren-style 'parenthesis))
 
 
 (use-package pdf-tools
+  :defer t
   :mode (("\\.pdf\\'" . pdf-view-mode))
   :config
   (progn
@@ -1225,10 +1284,11 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package php-mode
-  :config
+  :disabled t
+  :init
   (setq php-extra-constants '())
-  (add-hook 'php-mode-hook 'setup--php-mode)
-
+  :hook (php-mode-hook . setup--php-mode)
+  :config
   (defun setup--php-mode ()
     "PEAR/PHP setup."
     (setq case-fold-search t)
@@ -1275,19 +1335,20 @@ _l_: Last error       _q_: Cancel
                        " \"" (buffer-file-name) "\"")))))
 
 
-(catch 'loop
-  (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
-                            (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
-    (message "Found plantuml: %s" jar-file)
-    (use-package plantuml-mode
-      :config
-      (setq plantuml-jar-path jar-file))
-    (throw 'loop nil)))
-
-
+(use-package plantuml-mode
+  :mode "\\.plantuml\\'")
+;; (catch 'loop
+;;   (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
+;;                             (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
+;;     (message "Found plantuml: %s" jar-file)
+;;     (use-package plantuml-mode
+;;       :config
+;;       (setq plantuml-jar-path jar-file))
+;;     (throw 'loop nil)))
 
 
 (use-package pipenv
+  :defer t
   :diminish pipenv-mode
   :hook (python-mode . pipenv-mode)
   :init
@@ -1295,6 +1356,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package printing
+  :defer t
   :config
   (pr-update-menus t)
   (setq lpr-command          "lpr"
@@ -1306,6 +1368,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package projectile
+  :defer t
   :commands (projectile-mode projectile-global-mode)
   :diminish projectile-mode
   :init
@@ -1328,12 +1391,12 @@ _l_: Last error       _q_: Cancel
   (defconst my-protobuf-style
     '((c-basic-offset . 4)
       (indent-tabs-mode . nil)))
-  (add-hook 'protobuf-mode-hook
-            (lambda () (c-add-style "my-style" my-protobuf-style t))))
+  :hook (protobuf-mode . (lambda () (c-add-style "my-style" my-protobuf-style t))))
 
 
 (use-package python
   :hook ((python-mode . lsp-deferred))
+  :commands setup--python-mode
   :bind (:map python-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
@@ -1344,9 +1407,8 @@ _l_: Last error       _q_: Cancel
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :init
-  (add-hook 'python-mode-hook 'setup--python-mode)
-
+  :hook (python-mode-hook . setup--python-mode)
+  :config
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
     (interactive
@@ -1395,16 +1457,19 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package rbenv
+  :defer t
   :init
   (setq rbenv-show-active-ruby-in-modeline nil))
 
 
 (use-package re-builder
+  :defer t
   :config
   (setq reb-re-syntax 'string))
 
 
 (use-package rst
+  :defer t
   :config
   (add-hook 'rst-mode-hook 'setup--rst-mode)
 
@@ -1464,19 +1529,24 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package savehist
+  :unless noninteractive
   :init
   (setq savehist-ignored-variables '(file-name-history))
+  :config
   (savehist-mode 1))
 
 
 (use-package saveplace
+  :unless noninteractive
   :init
   (setq save-place-file (expand-file-name ".places" user-emacs-directory))
   :config
-  (save-place-mode t))
+  (save-place-mode 1))
 
 
 (use-package scss-mode
+  :defer t
+  :commands scss-mode
   :mode ("\\.scss\\'" . scss-mode)
   :config
   (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
@@ -1497,7 +1567,9 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package shackle
-  ;; https://github.com/wasamasa/shackle
+  :disabled t
+  :defer 5
+  :commands shackle-mode
   :config
   (setq helm-display-function 'pop-to-buffer) ; make helm play nice
   (setq shackle-default-alignment 'below
@@ -1547,9 +1619,8 @@ _p_: Prev      _u_: Keep upper
 
 
 (use-package solarized-theme
-  :init
-  (load-theme 'solarized-dark t)
   :config
+  (load-theme 'solarized-dark :no-confirm)
   (setf frame-background-mode 'dark)
 
   (custom-set-faces
@@ -1592,11 +1663,11 @@ _p_: Prev      _u_: Keep upper
 
 
 (use-package spaceline
-  )
+  :disabled t)
 
 
 (use-package spaceline-config
-  :ensure spaceline
+  :after spaceline
   :config
   (spaceline-helm-mode 1)
   (spaceline-emacs-theme)
@@ -1606,6 +1677,7 @@ _p_: Prev      _u_: Keep upper
 
 
 (use-package speedbar
+  :disabled t
   :config
   (setq speedbar-default-position 'left
         speedbar-show-unknown-files t
@@ -1613,10 +1685,12 @@ _p_: Prev      _u_: Keep upper
 
 
 (use-package sphinx-doc
+  :defer t
   :diminish sphinx-doc-mode)
 
 
 (use-package sql
+  :defer t
   :config
   (setq plsql-indent 2)
   (add-hook 'sql-interactive-mode-hook 'setup--sql-interactive-mode)
@@ -1655,6 +1729,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package term
+  :defer t
   :config
   (defadvice ansi-term (before force-bash)
     (interactive (list "/bin/bash")))
@@ -1680,6 +1755,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package terraform-mode
+  :defer t
   :mode "\\.tf\\'"
   :config
   (use-package company-terraform)
@@ -1690,6 +1766,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package time
+  :defer t
   :config
   (setq display-time-world-time-format "%Y-%m-%d %H:%M %Z"
         display-time-world-list '(("America/Los_Angeles" "San Fransisco")
@@ -1700,16 +1777,19 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package tramp
+  :defer t
   :init
   (setq tramp-default-method 'scp))
 
 
 (use-package uniquify
+  :defer t
   :config
   (setq uniquify-buffer-name-style 'forward))
 
 
 (use-package vc
+  :defer t
   :config
   (setq vc-command-messages    t
         vc-follow-symlinks     t
@@ -1726,16 +1806,19 @@ This is used to set `sql-alternate-buffer-name' within
   (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
   (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
+  (fullframe vc-dir quit-window))
 
 
 (use-package vimrc-mode
   :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 
 
-(use-package vlf-setup)
+(use-package vlf-setup
+  :defer t)
 
 
 (use-package web-mode
+  :defer t
   :mode (("\\.html\\'" . web-mode)
          ("\\.rhtml\\'" . web-mode)
          ("\\.\\(php\\|inc\\)\\'" . web-mode))
@@ -1747,6 +1830,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package webjump
+  :defer t
   :config
   (setq webjump-sites
         '(("Google" .
@@ -1775,16 +1859,19 @@ This is used to set `sql-alternate-buffer-name' within
                      "&words=") ""]))))
 
 
-(use-package wgrep)
+(use-package wgrep
+  :defer 5)
 
 
 (use-package which-key
+  :defer 5
   :diminish which-key-mode
   :config
   (which-key-mode 1))
 
 
 (use-package ws-butler
+  :defer t
   :diminish ws-butler-mode
   :config
   (setq ws-butler-keep-whitespace-before-point nil)
@@ -1794,12 +1881,14 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package xclip
+  :defer t
   :config
   (progn
     (xclip-mode 1)))
 
 
 (use-package yaml-mode
+  :defer t
   :mode ("\\.ya?ml\\'" . yaml-mode)
   :config
   (use-package flycheck-yamllint)
@@ -1812,26 +1901,27 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package yasnippet
+  :defer t
   :bind (("C-c t y" . company-yasnippet))
   :commands (snippet-mode yas-expand yas-minor-mode)
   :diminish yas-minor-mode
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :init
   (setq yas-verbosity 0)
+  :config
   (yas-global-mode 1)
   (setq-default yas-prompt-functions
                 '(yas/ido-prompt yas/completing-prompt))
-  :config
   (load "snippet-helpers"))
 
 
 (use-package yasnippet-snippets
-  :ensure
   :after yasnippet
   :config (yasnippet-snippets-initialize))
 
 
 (use-package zeal-at-point
+  :defer t
   :bind ("C-c t z" . zeal-at-point)
   :config
   (setq zeal-at-point-mode-alist
