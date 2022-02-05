@@ -637,7 +637,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package framemove
-  :defer t
+  :defer 5
   :config
   (windmove-default-keybindings 'shift)
   ;; Cannot wrap and have framemove do its thing at the same time.
