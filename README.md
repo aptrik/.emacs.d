@@ -111,6 +111,11 @@ Or the bleeding edge version.
         libxml2-dev \
         libxpm-dev
 
+
+## Measure startup time
+
+    emacs -Q -nw --eval='(message "%s" (emacs-init-time))'
+
 ## Emacs Help
 
 * `F1 t`  Basic tutorial.

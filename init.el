@@ -4,11 +4,11 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
-(setq warning-suppress-log-types '((package reinitialization)))
-
-(let ((min-version "25.1"))
-  (when (version< emacs-version min-version)
-    (error "Emacs %s is required!" min-version)))
+(setq byte-compile-warnings '(cl-functions)
+      warning-suppress-log-types '((package reinitialization))
+      ;; Increase gc limit during startup.
+      gc-cons-threshold-orig gc-cons-threshold
+      gc-cons-threshold (* 100 gc-cons-threshold))
 
 (dolist (mode '(tool-bar-mode tooltip-mode))
   (when (fboundp mode) (funcall mode -1)))
@@ -24,7 +24,7 @@
 
 ;;
 ;; Compare with:
-;; emacs -q --eval='(message "%s" (emacs-init-time))'
+;; emacs -nw -Q --eval='(message "%s" (emacs-init-time))'
 ;;
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -42,6 +42,7 @@
 (require 'pallet)
 (pallet-mode t)
 
+;; Setup up use-package.
 (setq use-package-enable-imenu-support t
       use-package-verbose t)
 (eval-when-compile
@@ -72,3 +73,6 @@
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
+
+;; Restore gc-cons-threshold to its original value.
+(setq gc-cons-threshold gc-cons-threshold-orig)
