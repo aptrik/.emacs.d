@@ -13,16 +13,13 @@
 
 
 (use-package ahg
+  :disabled t
   :bind (:map ahg-status-mode-map
               ("<tab>" . ahg-status-diff)
               ("M-<delete>" . ahg-status-unmark-all))
   :commands ahg-status
   :config
   (add-hook 'ahg-status-mode-hook 'turn-on-truncate-lines))
-
-
-(use-package all-the-icons
-  )
 
 
 (use-package ansible-doc
@@ -46,18 +43,6 @@
   (when (eq system-type 'darwin)
     ;; File notifications aren't supported on OS X
     (setq auto-revert-use-notify nil)))
-
-
-(use-package avoid
-  :commands mouse-avoidance-mode
-  :config
-  (mouse-avoidance-mode 'none))
-
-
-(use-package beacon
-  :config
-  (beacon-mode 1)
-  (setq beacon-color "#666600"))
 
 
 (use-package blacken
@@ -534,17 +519,6 @@
         eldoc-print-after-edit nil))
 
 
-;; (use-package evil
-;;   :config
-;;   (evil-mode)
-
-
-(use-package eww
-  :config
-  (setq eww-search-prefix "https://www.google.com/search?q="
-        eww-download-directory "~/dl/"))
-
-
 (use-package exec-path-from-shell
   :init
   ;;(setq exec-path-from-shell-debug t)
@@ -633,12 +607,6 @@ _l_: Last error       _q_: Cancel
     ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
     ("q" nil)
     ("x" flycheck-disable-checker)))
-
-
-(use-package focus-autosave-mode
-  :diminish focus-autosave-mode
-  :init
-  (focus-autosave-mode -1))
 
 
 (use-package framemove
@@ -764,14 +732,6 @@ _l_: Last error       _q_: Cancel
 
 (use-package hl-tags-mode
   :commands hl-tags-mode)
-
-
-(use-package hl-todo
-  :init
-  (global-hl-todo-mode))
-
-
-(use-package html5-schema)
 
 
 (use-package hydra
@@ -1036,8 +996,6 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package magit
-  :init
-  (autoload 'if-let "subr-x")
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t
@@ -1046,7 +1004,6 @@ _l_: Last error       _q_: Cancel
    magit-restore-window-configuration t
    magit-section-initial-visibility-alist '((stashes . show) (unpushed . show) (upstream . show) (untracked . show))
    magit-status-buffer-switch-function 'switch-to-buffer)
-  (magit-auto-revert-mode 1)
   (use-package magit-blame)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
@@ -1076,8 +1033,6 @@ _l_: Last error       _q_: Cancel
          ("<C-S-down>" . move-text-down)))
 
 
-(use-package multi-line
-  :bind ("s-," . multi-line))
 
 
 (use-package multiple-cursors
@@ -1104,15 +1059,6 @@ _l_: Last error       _q_: Cancel
          ("<s-S-down>"  . mc/mark-next-like-this)))
 
 
-(use-package neotree
-  :bind ("s-q" . neotree-toggle)
-  :config
-  (setq neo-auto-indent-point t
-        neo-show-hidden-files nil
-        neo-modern-sidebar t
-        neo-smart-open t
-        neo-theme 'icons
-        neo-window-width 35))
 
 
 (use-package newcomment
@@ -1329,10 +1275,6 @@ _l_: Last error       _q_: Cancel
                        " \"" (buffer-file-name) "\"")))))
 
 
-(use-package pip-requirements
-  )
-
-
 (catch 'loop
   (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
                             (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
@@ -1343,13 +1285,6 @@ _l_: Last error       _q_: Cancel
     (throw 'loop nil)))
 
 
-(use-package popup-imenu
-  :bind (("s-i" . popup-imenu)
-         :map popup-isearch-keymap
-         ("s-i" . popup-isearch-cancel))
-  :config
-  (setq popup-imenu-position 'point
-        popup-imenu-style 'indent))
 
 
 (use-package pipenv
@@ -1582,48 +1517,8 @@ _l_: Last error       _q_: Cancel
   (shackle-mode t))
 
 
-(use-package shell
-  :init
-  (setq explicit-shell-file-name "bash"
-        shell-file-name shell-file-name
-        shell-command-switch "-c")
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
-
-
-(use-package shell-toggle
-  :bind ("s-t" . shell-toggle))
-
-
 (use-package shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
-
-
-(use-package smartparens
-  :commands (smartparens-mode
-             smartparens-strict-mode
-             show-smartparens-mode
-             sp-kill-sexp sp-backward-kill-sexp
-             sp-copy-sexp
-             sp-forward-slurp-sexp
-             sp-forward-barf-sexp
-             sp-backward-slurp-sexp
-             sp-backward-barf-sexp
-             sp-transpose-sexp
-             sp-indent-defun)
-  :config
-  (setq sp-autoskip-closing-pair 'always
-        sp-hybrid-kill-entire-symbol nil)
-  ;;(show-smartparens-global-mode 1)
-  (sp--populate-keymap
-   '(("C-<delete>" . sp-kill-sexp)
-     ("C-<backspace>" . sp-backward-kill-sexp)
-     ("C-M-w" . sp-copy-sexp)
-     ("C-)" . sp-forward-slurp-sexp)
-     ("C-}" . sp-forward-barf-sexp)
-     ("C-(" . sp-backward-slurp-sexp)
-     ("C-{" . sp-backward-barf-sexp)
-     ("C-M-t" . sp-transpose-sexp)
-     ("M-q" . sp-indent-defun))))
 
 
 (use-package smerge-mode
@@ -1649,9 +1544,6 @@ _p_: Prev      _u_: Keep upper
     ("l" smerge-keep-lower)
     ("a" smerge-keep-all)
     ("q" nil "cancel" :color blue)))
-
-
-(use-package smooth-scrolling)
 
 
 (use-package solarized-theme
@@ -1713,10 +1605,6 @@ _p_: Prev      _u_: Keep upper
   (spaceline-toggle-version-control-off))
 
 
-(use-package speed-type
-  )
-
-
 (use-package speedbar
   :config
   (setq speedbar-default-position 'left
@@ -1754,11 +1642,6 @@ This is used to set `sql-alternate-buffer-name' within
            user-emacs-directory))
     (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
     (sql-rename-buffer)))
-
-
-;; (use-package stripe-buffer
-;;   :init
-;;   (add-hook 'dired-mode-hook #'stripe-buffer-mode))
 
 
 (use-package subword
@@ -1821,12 +1704,6 @@ This is used to set `sql-alternate-buffer-name' within
   (setq tramp-default-method 'scp))
 
 
-(when (eval-when-compile (version< emacs-version "27"))
-  (use-package unicode-fonts
-    :config
-    (unicode-fonts-setup)))
-
-
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward))
@@ -1849,13 +1726,6 @@ This is used to set `sql-alternate-buffer-name' within
   (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
   (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
-  (fullframe vc-dir quit-window)
-
-  (defun setup--cvs-mode ()
-    (local-set-key [M-delete] 'cvs-mode-unmark-all-files)
-    (local-set-key [return]   'cvs-mode-find-file))
-
-  (add-hook 'cvs-mode-hook 'setup--cvs-mode))
 
 
 (use-package vimrc-mode
