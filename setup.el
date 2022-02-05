@@ -1078,10 +1078,8 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package move-text
-  :bind (("<C-S-up>" . move-text-up)
-         ("<C-S-down>" . move-text-down)))
-
-
+  :bind (("<M-up>" . move-text-up)
+         ("<M-down>" . move-text-down)))
 
 
 (use-package multiple-cursors
