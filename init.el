@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; (setq debug-on-error t)
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
@@ -17,6 +19,8 @@
       inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message nil)
+(menu-bar-mode -1)
+
 
 ;;
 ;; Compare with:
@@ -53,8 +57,13 @@
     (when (file-directory-p f)
       (add-to-list 'load-path f))))
 
+(defun load-local (file)
+  (load (expand-file-name file user-emacs-directory)))
+
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
-  (load (expand-file-name fn user-emacs-directory)))
+  (load-local fn))
+(when (eq system-type 'darwin)
+  (load-local "osx"))
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
