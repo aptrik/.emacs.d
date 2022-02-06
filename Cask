@@ -15,7 +15,6 @@
 (depends-on "company")
 (depends-on "company-box")
 (depends-on "company-c-headers")
-(depends-on "company-elisp")
 (depends-on "company-go")
 (depends-on "company-terraform")
 (depends-on "copy-as-format")

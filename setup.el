@@ -190,6 +190,12 @@
               ("SPC" . company-abort)
               ("TAB" . company-complete-common-or-cycle)
               ([tab] . company-complete-common-or-cycle))
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook))
+    (add-hook hook
+              #'(lambda ()
+                  (local-set-key (kbd "<tab>")
+                                 #'company-indent-or-complete-common))))
   :config
   (setq company-backends '((company-capf company-files company-keywords company-dabbrev-code))
         company-begin-commands '(self-insert-command)
@@ -218,10 +224,12 @@
 
 
 (use-package copy-as-format
-  :bind (("C-c t w m" . copy-as-format-markdown)
+  :bind (("C-c t w g" . copy-as-format-github)
+         ("C-c t w j" . copy-as-format-jira)
+         ("C-c t w m" . copy-as-format-markdown)
          ("C-c t w o" . copy-as-format-org-mode)
-         ("C-c t w s" . copy-as-format-slack)
-         ("C-c t w j" . copy-as-format-jira)))
+         ("C-c t w r" . copy-as-format-rst)
+         ("C-c t w s" . copy-as-format-slack)))
 
 
 (use-package cperl-mode
@@ -303,31 +311,18 @@
 
 (use-package dired
   :defer t
+  :bind ("C-c j" . dired--downloads)
   :bind (:map dired-mode-map
+              ("<tab>" . dired-next-window)
               ("e" . ediff-dired-marked-files)
               ("M-<up>" . dired-up-directory)
               ("M-<down>" . dired-find-file))
   :commands dired-jump
-  :config
-  (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
-        dired-dwim-target t
-        dired-listing-switches "-alhFG"
-        dired-ls-F-marks-symlinks t
-        dired-omit-files "^\\.[^.]"
-        dired-recursive-copies 'always
-        dired-recursive-deletes 'always
-        wdired-allow-to-change-permissions t)
-
-  (use-package dired-x)
-  (use-package dired-subtree
-    :config
-    (setq dired-subtree-line-prefix "  "))
-
-  (unbind-key "M-g" dired-mode-map)
-
+  :hook (dired-mode-hook . setup--dired-mode)
+  :hook (dired-mode-hook . dired-omit-mode)
+  :hook (dired-mode-hook . turn-on-truncate-lines)
+  :preface
   (defun setup--dired-mode ()
-    (dired-omit-mode 1)
-    (turn-on-truncate-lines)
     (set (make-variable-buffer-local 'font-lock-maximum-decoration) nil)
     (local-set-key (kbd "M-o") 'dired-omit-mode)
     (local-set-key (kbd "T") 'dired-do-touch)
@@ -339,12 +334,34 @@
     (local-set-key (kbd "M-<down>") 'dired-next-dirline)
     (local-set-key (kbd "M-S-<right>") 'dired-subtree-insert)
     (local-set-key (kbd "M-S-<left>") 'dired-subtree-remove))
-
-  (add-hook 'dired-mode-hook 'setup--dired-mode)
-
+  (defun dired--downloads ()
+    (interactive)
+    (push-window-configuration)
+    (let ((here default-directory))
+      (delete-other-windows)
+      (dired "~/dl")
+      (split-window-horizontally)
+      (dired here)))
+  (defun dired-next-window ()
+    (interactive)
+    (let ((next (car (cl-remove-if-not #'(lambda (wind)
+                                           (with-current-buffer (window-buffer wind)
+                                             (eq major-mode 'dired-mode)))
+                                       (cdr (window-list))))))
+      (when next
+        (select-window next))))
+  :config
+  (setq dired-auto-revert-buffer t ; revert Dired buffer on revisiting
+        dired-dwim-target t
+        dired-listing-switches "-alhFG"
+        dired-ls-F-marks-symlinks t
+        dired-omit-files "^\\.[^.]"
+        dired-recursive-copies 'always
+        dired-recursive-deletes 'always
+        wdired-allow-to-change-permissions t)
+  (unbind-key "M-g" dired-mode-map)
   (unless (boundp 'dired-guess-shell-alist-user)
     (setq dired-guess-shell-alist-user '()))
-
   (cond
    (linuxp
     (add-to-list 'dired-guess-shell-alist-user
@@ -355,6 +372,15 @@
                  '("\\.pdf\\'" "acroread * &" "evince * &"))
     (add-to-list 'dired-guess-shell-alist-user
                  '("\\.epub\\'" "FBReader * &" "evince * &")))))
+
+(use-package dired-x
+  :after dired)
+
+
+(use-package dired-subtree
+  :after dired
+  :config
+  (setq dired-subtree-line-prefix "  "))
 
 
 (use-package direnv
@@ -422,15 +448,45 @@
   :defer t
   :diminish eldoc-mode
   :commands eldoc-mode
+  :hook (emacs-lisp-mode . eldoc-mode)
   :config
   (setq eldoc-echo-area-use-multiline-p nil
         eldoc-idle-delay 0.5
         eldoc-print-after-edit nil))
 
 
-;;(when (memq window-system '(mac ns))
+(use-package elint
+  :commands elint-initialize
+  :bind ("C-c e E" . elint-current-buffer)
+  :preface
+  (defun elint-current-buffer ()
+    (interactive)
+    (elint-initialize)
+    (elint-current-buffer))
+  :config
+  (add-to-list 'elint-standard-variables 'current-prefix-arg)
+  (add-to-list 'elint-standard-variables 'command-line-args-left)
+  (add-to-list 'elint-standard-variables 'buffer-file-coding-system)
+  (add-to-list 'elint-standard-variables 'emacs-major-version)
+  (add-to-list 'elint-standard-variables 'window-system))
+
+
 (use-package elisp-docstring-mode
   :commands elisp-docstring-mode)
+
+
+(use-package elisp-slime-nav
+  :diminish
+  :commands (elisp-slime-nav-mode elisp-slime-nav-find-elisp-thing-at-point))
+
+
+(use-package elmacro
+  :bind (("C-c m e" . elmacro-mode)
+         ("C-x C-)" . elmacro-show-last-macro)))
+
+
+(use-package ert
+  :bind (("C-c e t" . ert-run-tests-interactively)))
 
 
 (when (display-graphic-p)
@@ -663,9 +719,8 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hl-line
-  :disabled t
-  :config
-  (global-hl-line-mode 1))
+  :commands hl-line-mode
+  :bind ("C-c t l" . hl-line-mode))
 
 
 (use-package hl-tags-mode
@@ -721,6 +776,10 @@ _l_: Last error       _q_: Cancel
   :bind ("M-RET" . iedit-mode))
 
 
+(use-package ielm
+  :defer t)
+
+
 (use-package ispell
   :defer t
   :bind (("C-c s b" . ispell-buffer)
@@ -747,69 +806,15 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package js2-mode
-  :disabled t
   :mode "\\.js\\'"
-  :init
-  (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
-  :commands (js2-print-json-path)
   :config
-  (setq-default
-   js2-global-externs
-   '("module" "require" "assert" "refute"
-     "setTimeout" "clearTimeout" "setInterval" "clearInterval"
-     "location" "__dirname" "console" "JSON")
-   js2-additional-externs
-   '("$" "unsafeWindow" "localStorage" "jQuery"
-     "setTimeout" "setInterval" "location" "console")
-   js2-strict-missing-semi-warning t
-   js2-strict-trailing-comma-warning t)
-  (setq
-   js2-basic-offset 4
-   js2-highlight-level 3
-   js2-indent-switch-body t
-   js2-skip-preprocessor-directives t
-   js2-use-font-lock-faces t)
-
-  (use-package js2-highlight-vars)
-  (use-package js2-refactor
-    :diminish js2-refactor-mode
-    :config
-    (js2r-add-keybindings-with-prefix "C-c C-m"))
-  (use-package karma)
-  (use-package nodejs-repl)
-
-  (use-package web-beautify
-    :commands (web-beautify-js web-beautify-js-buffer))
-
-  (use-package ac-js2)
-
-  (defun delete-tern-process ()
-    (interactive)
-    (delete-process "Tern"))
-
-  (defun setup--js2-mode ()
-    (subword-mode 1)
-    (flycheck-mode 1)
-    (company-mode 1)
-    (js2-refactor-mode 1)
-    (karma-mode 1)
-    ;;(js2-highlight-vars-mode 1)
-
-    (set (make-local-variable 'company-backends) '(ac-js2-company))
-
-    (local-set-key (kbd "C-.") 'company-complete)
-    (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp)
-    (local-set-key (kbd "M-q") 'web-beautify-js)
-
-    (local-unset-key (kbd "C-c e"))
-    (local-set-key (kbd "C-c e e") 'nodejs-repl-send-last-sexp)
-    (local-set-key (kbd "C-c e n") 'nodejs-repl)
-    (local-set-key (kbd "C-c e p") 'js2-print-json-path)
-    (local-set-key (kbd "C-c e q") 'nodejs-repl-quit-or-cancel)
-    (local-set-key (kbd "C-c e r") 'nodejs-repl-send-region)
-    (local-set-key (kbd "C-c e v") 'nodejs-repl-switch-to-repl))
-
-  (add-hook 'js2-mode-hook 'setup--js2-mode))
+  (add-hook 'js2-mode-hook (lambda () (setq mode-name "js2")))
+  (setf js2-skip-preprocessor-directives t)
+  (setq-default js2-additional-externs
+                '("$" "unsafeWindow" "localStorage" "jQuery"
+                  "setTimeout" "setInterval" "location" "skewer"
+                  "console" "phantom"))
+  (flycheck-mode 1))
 
 
 (use-package json-mode
@@ -844,65 +849,17 @@ _l_: Last error       _q_: Cancel
 (use-package lisp-mode
   :defer t
   :bind (:map emacs-lisp-mode-map
-              ("C-<f9>" . ert-run-tests-interactively)
-              ("M-&" . lisp-complete-symbol)
-              ("C-<delete>" . sp-kill-sexp)
-              ("C-<backspace>" . sp-backward-kill-sexp)
-              ("C-M-w" . sp-copy-sexp)
-              ("C-)" . sp-forward-slurp-sexp)
-              ("C-}" . sp-forward-barf-sexp)
-              ("C-(" . sp-backward-slurp-sexp)
-              ("C-{" . sp-backward-barf-sexp)
-              ("C-M-t" . sp-transpose-sexp)
-              ("M-q" . sp-indent-defun)
               ("C-c e E" . toggle-debug-on-error)
               ("C-c e e" . eval-last-sexp)
               ("C-c e m" . macrostep-expand)
               ("C-c e r" . eval-region))
   :mode ("Cask" . emacs-lisp-mode)
-  :config
-  (use-package elisp-slime-nav
-    :defer t
-    :after lisp-mode
-    :diminish elisp-slime-nav-mode
-    :hook (emacs-lisp-mode . turn-on-elisp-slime-nav-mode))
-  (use-package elint
-    :defer t
-    :after lisp-mode
-    :bind ("C-c e E" . elint-current-buffer)
-    :commands elint-initialize
-    :preface
-    (defun elint-current-buffer ()
-      (interactive)
-      (elint-initialize)
-      (elint-current-buffer))
-    :config
-    (add-to-list 'elint-standard-variables 'current-prefix-arg)
-    (add-to-list 'elint-standard-variables 'command-line-args-left)
-    (add-to-list 'elint-standard-variables 'buffer-file-coding-system)
-    (add-to-list 'elint-standard-variables 'emacs-major-version)
-    (add-to-list 'elint-standard-variables 'window-system))
-  (use-package ert
-    :defer t
-    :after lisp-mode
-    :bind ("C-c e t" . ert-run-tests-interactively)
-    :commands ert-run-tests-interactively
-    :config
-    (put 'ert-deftest 'lisp-indent-function 'defun)
-    (add-hook 'emacs-lisp-mode-hook
-              (lambda ()
-                (font-lock-add-keywords
-                 nil
-                 '(("(\\(\\<ert-deftest\\)\\>\\s *\\(\\sw+\\)?"
-                    (1 font-lock-keyword-face nil t)
-                    (2 font-lock-function-name-face nil t)))))))
-
+  :hook (emacs-lisp-mode-hook . setup--emacs-lisp-mode)
+  :preface
   (defun setup--emacs-lisp-mode ()
     (add-hook 'after-save-hook 'check-parens nil t)
     (company-mode 1)
-    (local-set-key (kbd "C-.") 'company-complete))
-
-  (add-hook 'emacs-lisp-mode-hook 'setup--emacs-lisp-mode))
+    (local-set-key (kbd "C-.") 'company-complete)))
 
 
 (use-package lsp-mode
@@ -950,7 +907,9 @@ _l_: Last error       _q_: Cancel
 
 (use-package magit
   :defer t
+  :bind ("C-x g" . magit-status)
   :commands magit-status
+  :hook (magit-mode . hl-line-mode)
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t
@@ -1162,8 +1121,8 @@ _l_: Last error       _q_: Cancel
 
 (use-package paren
   :config
-  (show-paren-mode t)
-  (setq show-paren-style 'parenthesis))
+  (setq show-paren-style 'parenthesis)
+  (show-paren-mode 1))
 
 
 (use-package pdf-tools
@@ -1543,7 +1502,7 @@ _p_: Prev      _u_: Keep upper
 
 
 (use-package spaceline
-  :disabled t)
+  :disabled (not (display-graphic-p)))
 
 
 (use-package spaceline-config
