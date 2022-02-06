@@ -783,6 +783,23 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 
 ;;-----------------------------------------------------------------------------
 
+(defvar saved-window-configuration nil)
+
+(defun push-window-configuration ()
+  (interactive)
+  (push (current-window-configuration) saved-window-configuration))
+
+(defun pop-window-configuration ()
+  (interactive)
+  (let ((config (pop saved-window-configuration)))
+    (if config
+        (set-window-configuration config)
+      (if (> (length (window-list)) 1)
+          (delete-window)
+        (bury-buffer)))))
+
+;;-----------------------------------------------------------------------------
+
 (defvar hotspot-directories
   (list "~" "~/lib" "~/work" "~/projects" "~/doc")
   "List of hotspot directories.")
