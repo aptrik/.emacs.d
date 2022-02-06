@@ -1,13 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(use-package ace-jump-mode
-  :bind ("s-SPC" . ace-jump-mode))
-
-
-(use-package ace-window
-  :bind ("s-o" . ace-window))
-
-
 (use-package adoc-mode
   :mode (("\\.adoc\\'" . adoc-mode)))
 
@@ -298,12 +290,6 @@
         comint-history-isearch t))
 
 
-(use-package command-log-mode
-  :defer t
-  :init
-  (setq command-log-mode-key-binding-open-log "C-c t o"))
-
-
 (use-package company
   :defer 5
   :diminish
@@ -578,9 +564,6 @@
   :bind (("M-s D" . find-dired)
          ("M-s d" . find-grep-dired)
          ("M-s n" . find-name-dired)))
-
-
-(use-package fixme)
 
 
 (use-package flycheck

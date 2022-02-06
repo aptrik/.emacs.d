@@ -3,8 +3,6 @@
 (source "nongnu" "https://elpa.nongnu.org/nongnu/")
 
 (depends-on "ac-js2")
-(depends-on "ace-jump-mode")
-(depends-on "ace-window")
 (depends-on "adoc-mode")
 (depends-on "ahg")
 (depends-on "ansible-doc")
@@ -13,7 +11,6 @@
 (depends-on "buffer-move")
 (depends-on "clang-format")
 (depends-on "cmake-mode")
-(depends-on "command-log-mode")
 (depends-on "company")
 (depends-on "company-box")
 (depends-on "company-c-headers")
