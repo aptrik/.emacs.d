@@ -97,7 +97,6 @@
 (depends-on "pallet")
 (depends-on "pdf-tools")
 (depends-on "php-mode")
-(depends-on "pipenv")
 (depends-on "plantuml-mode")
 (depends-on "projectile")
 (depends-on "protobuf-mode")

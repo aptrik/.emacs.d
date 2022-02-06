@@ -1333,14 +1333,6 @@ _l_: Last error       _q_: Cancel
 ;;     (throw 'loop nil)))
 
 
-(use-package pipenv
-  :defer t
-  :diminish pipenv-mode
-  :hook (python-mode . pipenv-mode)
-  :init
-  (setq pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
-
-
 (use-package printing
   :defer t
   :config
