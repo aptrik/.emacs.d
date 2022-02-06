@@ -209,6 +209,14 @@
   :hook (company-mode . company-box-mode))
 
 
+(use-package company-elisp
+  :after company
+  :config
+  (push 'company-elisp company-backends))
+
+(setq-local company-backend '(company-elisp))
+
+
 (use-package copy-as-format
   :bind (("C-c t w m" . copy-as-format-markdown)
          ("C-c t w o" . copy-as-format-org-mode)
@@ -421,6 +429,10 @@
 
 
 ;;(when (memq window-system '(mac ns))
+(use-package elisp-docstring-mode
+  :commands elisp-docstring-mode)
+
+
 (when (display-graphic-p)
   (use-package exec-path-from-shell
     :init
@@ -822,6 +834,11 @@ _l_: Last error       _q_: Cancel
         '(backward-char beginning-of-line end-of-line forward-char newline next-line previous-line self-insert-command left-char right-char))
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
+
+
+(use-package aggressive-indent
+  :diminish
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 
 (use-package lisp-mode

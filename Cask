@@ -4,6 +4,7 @@
 
 (depends-on "ac-js2")
 (depends-on "adoc-mode")
+(depends-on "aggressive-indent")
 (depends-on "ahg")
 (depends-on "ansible-doc")
 (depends-on "blacken")
@@ -14,6 +15,7 @@
 (depends-on "company")
 (depends-on "company-box")
 (depends-on "company-c-headers")
+(depends-on "company-elisp")
 (depends-on "company-go")
 (depends-on "company-terraform")
 (depends-on "copy-as-format")
@@ -26,6 +28,7 @@
 (depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
 (depends-on "dumb-jump")
+(depends-on "elisp-docstring-mode")
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
 (depends-on "evil")
