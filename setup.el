@@ -907,7 +907,6 @@ _l_: Last error       _q_: Cancel
 
 (use-package magit
   :defer t
-  :bind ("C-x g" . magit-status)
   :commands magit-status
   :hook (magit-mode . hl-line-mode)
   :config
