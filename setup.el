@@ -15,17 +15,16 @@
 
 
 (use-package ansible-doc
-  :hook (yaml-mode-hook  . ansible-doc-mode))
+  :hook (yaml-mode  . ansible-doc-mode))
 
 
 (use-package arc-mode
   :mode (("\\.egg\\'" . archive-mode)
          ("\\.\\(war\\|jar\\)\\'" . archive-mode))
-  :hook (archive-mode-hook . turn-on-truncate-lines))
+  :hook (archive-mode . turn-on-truncate-lines))
 
 
 (use-package autorevert
-  :defer t
   :bind ("C-c t A" . auto-revert-tail-mode)
   :diminish (auto-revert-mode . " Ⓐ")
   :config
@@ -40,13 +39,14 @@
 
 
 (use-package bookmark
-  :init
+  :defer t
+  :commands (bookmark-bmenu-list bookmark-jump bookmark-set)
+  :config
   (setq bookmark-save-flag 1
         bookmark-version-control t))
 
 
 (use-package browse-kill-ring
-  :defer t
   :bind ("C-c y" . browse-kill-ring)
   :commands browse-kill-ring
   :config
@@ -54,7 +54,6 @@
 
 
 (use-package bs
-  :defer t
   :commands bs-show
   :bind ("M-<f10>" . bs-show)
   :config
@@ -87,11 +86,12 @@
 (use-package calc
   :defer t
   :commands calc
-  :bind ("C-=" . calc)
+  :bind (:map calc-mode-map
+              ([kp-separator] . calcDigit-start))
   :config
-  (setq calc-display-trail nil)
-  :hook (calc-mode-hook . (lambda ()
-                            (local-set-key [kp-separator] 'calcDigit-start))))
+  (setq calc-display-trail nil))
+  ;; :hook (calc-mode . (lambda ()
+  ;;                      (local-set-key [kp-separator] 'calcDigit-start))))
 
 
 (use-package calendar
@@ -291,7 +291,7 @@
 
 
 (use-package company
-  :defer 5
+  :defer t
   :diminish
   :commands (company-mode company-indent-or-complete-common)
   :bind (("C-c .". company-complete))
@@ -319,7 +319,9 @@
 
 
 (use-package copy-as-format
-  :bind (("C-c t w s" . copy-as-format-slack)
+  :bind (("C-c t w m" . copy-as-format-markdown)
+         ("C-c t w o" . copy-as-format-org-mode)
+         ("C-c t w s" . copy-as-format-slack)
          ("C-c t w j" . copy-as-format-jira)))
 
 
@@ -369,7 +371,7 @@
 
 
 (use-package compile
-  :defer t
+  :no-require
   :bind (("C-c c" . compile)
          ("C-c C" . recompile))
   :config
@@ -472,11 +474,10 @@
 
 (use-package dtrt-indent
   :defer t
+  :hook (prog-mode . dtrt-indent-mode)
   :diminish dtrt-indent-mode
   :init
-  (setq dtrt-indent-verbosity 1)
-  :config
-  (add-hook 'prog-mode-hook 'dtrt-indent-mode))
+  (setq dtrt-indent-verbosity 1))
 
 
 (use-package dumb-jump
@@ -521,28 +522,29 @@
 (use-package eldoc
   :defer t
   :diminish eldoc-mode
+  :commands eldoc-mode
   :config
   (setq eldoc-echo-area-use-multiline-p nil
         eldoc-idle-delay 0.5
         eldoc-print-after-edit nil))
 
 
-(use-package exec-path-from-shell
-  :init
-  ;;(setq exec-path-from-shell-debug t)
-  (setq exec-path-from-shell-arguments '("-l" "-i")
-        exec-path-from-shell-check-startup-files nil)
-  (setq exec-path-from-shell-variables
-        '("GOPATH"
-          "LANG"
-          "MANPATH"
-          "PATH"
-          "PGPPATH"
-          "PYTHONPATH"
-          "SSH_AGENT_PID" "SSH_AUTH_SOCK"))
-  :config
-  ;;(when (memq window-system '(mac ns))
-  (when (display-graphic-p)
+;;(when (memq window-system '(mac ns))
+(when (display-graphic-p)
+  (use-package exec-path-from-shell
+    :init
+    ;;(setq exec-path-from-shell-debug t)
+    (setq exec-path-from-shell-arguments '("-l" "-i")
+          exec-path-from-shell-check-startup-files nil
+          exec-path-from-shell-variables
+          '("GOPATH"
+            "LANG"
+            "MANPATH"
+            "PATH"
+            "PGPPATH"
+            "PYTHONPATH"
+            "SSH_AGENT_PID" "SSH_AUTH_SOCK"))
+    :config
     (exec-path-from-shell-initialize)))
 
 
@@ -567,31 +569,25 @@
 
 
 (use-package flycheck
-  :defer 5
+  :defer t
   :commands (flycheck-mode
              flycheck-next-error
-             flycheck-previous-error)
+             flycheck-previous-error
+             hydra-flycheck/body)
   :bind ("C-c t f" . flycheck-mode)
   :bind (:map flycheck-mode-map ("C-c h l" . hydra-flycheck/body))
   :config
   (setq flycheck-pylint-use-symbolic-id nil)
-
   (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
-
-  (flycheck-define-checker proselint
-    "A linter for prose."
-    :command ("proselint" source-inplace)
-    :error-patterns
-    ((warning line-start (file-name) ":" line ":" column ": "
-              (id (one-or-more (not (any " "))))
-              (message) line-end))
-    :modes (text-mode markdown-mode gfm-mode))
+  ;; (flycheck-define-checker proselint
+  ;;   "A linter for prose."
+  ;;   :command ("proselint" source-inplace)
+  ;;   :error-patterns
+  ;;   ((warning line-start (file-name) ":" line ":" column ": "
+  ;;             (id (one-or-more (not (any " "))))
+  ;;             (message) line-end))
+  ;;   :modes (text-mode markdown-mode gfm-mode))
   (add-to-list 'flycheck-checkers 'proselint)
-
-  (use-package flycheck-color-mode-line
-    :config
-    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
   (defhydra hydra-flycheck
     (:pre (flycheck-list-errors)
@@ -619,8 +615,16 @@ _l_: Last error       _q_: Cancel
     ("x" flycheck-disable-checker)))
 
 
+(use-package flycheck-color-mode-line
+  :defer t
+  :after flycheck
+  :commands flycheck-color-mode-line-mode
+  :config
+  :hook (flycheck-mode . flycheck-color-mode-line-mode))
+
+
 (use-package framemove
-  :defer 5
+  :defer 10
   :config
   (windmove-default-keybindings 'shift)
   ;; Cannot wrap and have framemove do its thing at the same time.
@@ -643,14 +647,16 @@ _l_: Last error       _q_: Cancel
 
 (use-package go-mode
   :defer t
+  :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . lsp-deferred)
          (go-mode . setup--go-save-hook)
          (go-mode . flycheck-golangci-lint-setup))
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
-  (use-package go-guru)
-  (use-package flycheck-golangci-lint)
+  ;; (use-package go-guru)
+  (use-package flycheck-golangci-lint
+    :after flycheck)
 
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -674,17 +680,17 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package grep
+  :defer t
   :bind (("M-s f" . find-grep)
          ("M-s g" . grep)
          ("M-s r" . rgrep))
-  :init
+  :config
   (setq grep-files-aliases
         '(("el" . "*.el")
           ("c"  . "*.c")
           ("h"  . "*.h")
           ("cc" . "*.hh *.hpp *.cc *.cpp")
           ("hh" . "*.hh *.hpp *.cc *.cpp")))
-  :config
   (grep-apply-setting 'grep-command "egrep -nH -e ")
   (grep-apply-setting
    'grep-find-command
@@ -696,16 +702,19 @@ _l_: Last error       _q_: Cancel
   (add-to-list 'grep-find-ignored-directories "target")
   (add-to-list 'grep-find-ignored-directories "vendor")
 
-  (use-package grep-a-lot
-    :config
-    (grep-a-lot-setup-keys))
-
   (let ((find-command "find . \\( -path '*/CVS' -o -path '*/.hg' -o -path '*/.git' \\) -prune -o -type f -print0"))
     (if macosp
         (setq grep-find-command
               (concat find-command " | xargs -0 " grep-command))
       (setq grep-find-command
             (concat find-command " | xargs -0 -e " grep-command)))))
+
+
+(use-package grep-a-lot
+  :defer t
+  :after grep
+  :config
+  (grep-a-lot-setup-keys))
 
 
 (use-package groovy-mode
@@ -747,7 +756,7 @@ _l_: Last error       _q_: Cancel
 
 (use-package highlight-symbol
   :commands highlight-symbol-nav-mode
-  :hook (prog-mode-hook . highlight-symbol-nav-mode))
+  :hook (prog-mode . highlight-symbol-nav-mode))
 
 
 (use-package hl-line
@@ -793,13 +802,12 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package ibuffer-vc
+  :defer t
   :after ibuffer
-  :init
-  (add-hook 'ibuffer-hook
-            (lambda ()
-              (ibuffer-vc-set-filter-groups-by-vc-root)
-              (unless (eq ibuffer-sorting-mode 'alphabetic)
-                (ibuffer-do-sort-by-alphabetic)))))
+  :hook (ibuffer . (lambda ()
+                     (ibuffer-vc-set-filter-groups-by-vc-root)
+                     (unless (eq ibuffer-sorting-mode 'alphabetic)
+                       (ibuffer-do-sort-by-alphabetic)))))
 
 
 (use-package idle-highlight-mode
@@ -818,12 +826,11 @@ _l_: Last error       _q_: Cancel
          ("C-c s r" . ispell-region)
          ("C-c s w" . ispell-word)
          ("C-c <f11>" . cycle-ispell-languages))
-  :init
+  :config
   (setq ispell-dictionary "english"
         ispell-help-in-bufferp 'electric
         ispell-program-name (if (executable-find "aspell") "aspell" "hunspell")
         ispell-silently-savep t)
-  :config
   (let ((langs '("english" "svenska")))
     (setq lang-ring (make-ring (length langs)))
     (dolist (elem langs)
@@ -947,14 +954,15 @@ _l_: Last error       _q_: Cancel
   :mode ("Cask" . emacs-lisp-mode)
   :config
   (use-package elisp-slime-nav
+    :defer t
     :after lisp-mode
     :diminish elisp-slime-nav-mode
-    :init
-    (add-hook 'emacs-lisp-mode-hook 'turn-on-elisp-slime-nav-mode))
+    :hook (emacs-lisp-mode . turn-on-elisp-slime-nav-mode))
   (use-package elint
+    :defer t
     :after lisp-mode
     :bind ("C-c e E" . elint-current-buffer)
-    :commands 'elint-initialize
+    :commands elint-initialize
     :preface
     (defun elint-current-buffer ()
       (interactive)
@@ -967,6 +975,7 @@ _l_: Last error       _q_: Cancel
     (add-to-list 'elint-standard-variables 'emacs-major-version)
     (add-to-list 'elint-standard-variables 'window-system))
   (use-package ert
+    :defer t
     :after lisp-mode
     :bind ("C-c e t" . ert-run-tests-interactively)
     :commands ert-run-tests-interactively
@@ -1013,8 +1022,7 @@ _l_: Last error       _q_: Cancel
 
 (use-package lsp-treemacs
   :after lsp-mode
-  :commands lsp-treemacs-errors-list
-  )
+  :commands lsp-treemacs-errors-list)
 
 
 (use-package lsp-ui
@@ -1034,7 +1042,6 @@ _l_: Last error       _q_: Cancel
 
 (use-package magit
   :defer t
-  :bind ("C-c s" . magit-status)
   :commands magit-status
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
@@ -1100,10 +1107,12 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package nuke-whitespace
+  :defer t
   :bind ("C-c t n" . nuke-trailing-whitespace))
 
 
 (use-package nxml-mode
+  :defer t
   :commands nxml-mode
   :init
   (defalias 'xml-mode 'nxml-mode)
@@ -1244,7 +1253,6 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package paren
-  :defer t
   :config
   (show-paren-mode t)
   (setq show-paren-style 'parenthesis))
@@ -1265,7 +1273,7 @@ _l_: Last error       _q_: Cancel
   :disabled t
   :init
   (setq php-extra-constants '())
-  :hook (php-mode-hook . setup--php-mode)
+  :hook (php-mode . setup--php-mode)
   :config
   (defun setup--php-mode ()
     "PEAR/PHP setup."
@@ -1373,7 +1381,6 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package python
-  :hook ((python-mode . lsp-deferred))
   :commands setup--python-mode
   :bind (:map python-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
@@ -1385,7 +1392,8 @@ _l_: Last error       _q_: Cancel
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook (python-mode-hook . setup--python-mode)
+  :hook (python-mode . setup--python-mode)
+  :hook (python-mode . lsp-deferred)
   :config
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
@@ -1756,9 +1764,10 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package tramp
   :defer t
-  :init
-  (setq tramp-default-method 'scp))
-
+  :config
+  (put 'temporary-file-directory 'standard-value '("/tmp"))
+  (setq tramp-auto-save-directory "~/.cache/emacs/backups"
+        tramp-persistency-file-name "~/.emacs.d/data/tramp"))
 
 (use-package uniquify
   :defer t
@@ -1867,15 +1876,15 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package yaml-mode
   :defer t
+  :commands (yaml-mode setup--yaml-mode)
   :mode ("\\.ya?ml\\'" . yaml-mode)
+  :hook (yaml-mode . setup--yaml-mode)
   :config
   (use-package flycheck-yamllint)
 
   (defun setup--yaml-mode ()
     (add-to-list 'flycheck-disabled-checkers 'yaml-ruby t)
-    (flycheck-mode 1))
-
-  (add-hook 'yaml-mode-hook 'setup--yaml-mode))
+    (flycheck-mode 1)))
 
 
 (use-package yasnippet
