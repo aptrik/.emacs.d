@@ -44,7 +44,7 @@
 
 ;; Setup up use-package.
 (setq use-package-enable-imenu-support t
-      use-package-verbose t)
+      use-package-verbose nil)
 (eval-when-compile
   (require 'use-package))
 (setq use-package-compute-statistics t)
