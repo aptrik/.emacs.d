@@ -1434,12 +1434,6 @@ _l_: Last error       _q_: Cancel
   )
 
 
-(use-package rbenv
-  :defer t
-  :init
-  (setq rbenv-show-active-ruby-in-modeline nil))
-
-
 (use-package re-builder
   :defer t
   :config

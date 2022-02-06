@@ -106,7 +106,6 @@
 (depends-on "pyenv-mode")
 (depends-on "python")
 (depends-on "rainbow-mode")
-(depends-on "rbenv")
 (depends-on "request")
 (depends-on "restclient")
 (depends-on "robe")
