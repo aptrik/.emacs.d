@@ -64,7 +64,7 @@
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
   (load-local fn))
 (when (eq system-type 'darwin)
-  (load-local "osx"))
+  (load-local "macos"))
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

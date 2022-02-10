@@ -1,4 +1,4 @@
-;;; osx.el --- OSX related configuration -*- lexical-binding: t; -*-
+;;; macos.el --- macos related configuration -*- lexical-binding: t; -*-
 
 (setq ns-alternate-modifier 'none
       ns-command-modifier 'meta
