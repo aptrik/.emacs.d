@@ -696,7 +696,6 @@ _l_: Last error       _q_: Cancel
 (use-package helm-projectile
   :bind (("C-x f" . helm-projectile-find-file)
          ("C-c o p" . helm-projectile-find-file))
-  :after helm
   :config
   (helm-projectile-on))
 
