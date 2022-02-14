@@ -1391,29 +1391,6 @@ _l_: Last error       _q_: Cancel
         sh-indent-comment t))
 
 
-(use-package shackle
-  :disabled t
-  :defer 5
-  :commands shackle-mode
-  :config
-  (setq helm-display-function 'pop-to-buffer) ; make helm play nice
-  (setq shackle-default-alignment 'below
-        ;; shackle-default-rule '(:select t)
-        shackle-default-size 0.25)
-  (setq shackle-rules
-        '(("*Man.*"                 :same t :regexp t)
-          ("*Shell Command Output*" :noselect t :size 0.5)
-          ("*helm.*"                :select t :size 0.33 :regexp t)
-          (aHg-status-mode          :same t)
-          (compilation-mode         :noselect t)
-          (flycheck-error-list-mode :noselect t)
-          (help-mode                :select t :size 0.5)
-          (helpful-mode             :select t :size 0.5)
-          (magit-diff-mode          :noselect t)
-          ))
-  (shackle-mode t))
-
-
 (use-package shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
 
