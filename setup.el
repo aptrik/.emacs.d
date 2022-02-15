@@ -321,8 +321,8 @@
               ("M-S-<right>" . dired-subtree-insert)
               ("M-S-<left>" . dired-subtree-remove))
   :commands dired-jump
-  :hook (dired-mode . dired-omit-mode)
-  :hook (dired-mode . turn-on-truncate-lines)
+  :hook ((dired-mode . dired-omit-mode)
+         (dired-mode . turn-on-truncate-lines))
   :init
   (defun dired--downloads ()
     (interactive)
@@ -857,7 +857,8 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package lsp-pyright
-  :defer t)
+  :after lsp
+  :commands lsp-pyright)
 
 
 (use-package lsp-treemacs
@@ -1225,9 +1226,8 @@ _l_: Last error       _q_: Cancel
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook (python-mode . lsp-deferred)
-  :hook (python-mode . lsp-pyright)
-  :hook (python-mode . setup--python-mode)
+  :hook ((python-mode . lsp-deferred)
+         (python-mode . setup--python-mode))
   :config
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."

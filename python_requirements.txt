@@ -19,5 +19,5 @@ pyls-black; python_version > '3.0'
 pyls-isort; python_version > '3.0'
 pyls-mypy; python_version > '3.0'
 pyright; python_version > '3.0'
-#python-language-server[all]; python_version > '3.0'
+python-language-server[all]; python_version > '3.0'
 yamllint
