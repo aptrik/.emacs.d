@@ -42,7 +42,6 @@
 (depends-on "flycheck-yamllint")
 (depends-on "flymd")
 (depends-on "fullframe")
-(depends-on "ggtags")
 (depends-on "git-modes")
 (depends-on "go-guru")
 (depends-on "go-mode")

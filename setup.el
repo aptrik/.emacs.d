@@ -579,11 +579,6 @@ _l_: Last error       _q_: Cancel
         framemove-hook-into-windmove t))
 
 
-(use-package ggtags
-  :commands ggtags-mode
-  :diminish ggtags-mode)
-
-
 (use-package gitconfig-mode
   :mode ("/gitconfig\\'" . gitconfig-mode))
 
