@@ -299,14 +299,9 @@
               ("n" . diff-hunk-next)
               ("p" . diff-hunk-prev))
   :commands diff-mode
+  :hook (diff-mode . whitespace-mode)
   :config
-  (setq-default diff-switches "-uwd")
-
-  (defun setup--diff-mode ()
-    "diff-mode setup."
-    (whitespace-mode 1))
-
-  (add-hook 'diff-mode-hook 'setup--diff-mode))
+  (setq-default diff-switches "-uwd"))
 
 
 (use-package dired
