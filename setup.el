@@ -1404,62 +1404,64 @@ _p_: Prev      _u_: Keep upper
     ("q" nil "cancel" :color blue)))
 
 
-(use-package solarized-theme
-  :config
-  (load-theme 'solarized-dark :no-confirm)
-  (setf frame-background-mode 'dark)
+(when (display-graphic-p)
+  (use-package solarized-theme
+    :config
+    (load-theme 'solarized-dark :no-confirm)
+    (setf frame-background-mode 'dark)
 
-  (custom-set-faces
-   '(cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
-   ;; '(region ((t (:foreground "black" :background "#b5d5ff"))))
-   '(match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
-   '(highlight ((t :background "black" :underline nil)))
+    (custom-set-faces
+     '(cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
+     ;; '(region ((t (:foreground "black" :background "#b5d5ff"))))
+     '(match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
+     '(highlight ((t :background "black" :underline nil)))
 
-   ;; diff
-   '(diff-added ((t (:foreground "green4" :underline nil))))
-   '(diff-changed ((t (:foreground "blue3"))))
-   '(diff-removed ((t (:foreground "red4" :underline nil))))
-   '(diff-refine-added ((t (:background "#446644" :foreground "green"))))
-   '(diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
-   '(diff-refine-removed ((t (:background "#664444" :foreground "red"))))
+     ;; diff
+     '(diff-added ((t (:foreground "green4" :underline nil))))
+     '(diff-changed ((t (:foreground "blue3"))))
+     '(diff-removed ((t (:foreground "red4" :underline nil))))
+     '(diff-refine-added ((t (:background "#446644" :foreground "green"))))
+     '(diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
+     '(diff-refine-removed ((t (:background "#664444" :foreground "red"))))
 
-   ;; magit
-   '(magit-item-highlight ((t nil)))
+     ;; magit
+     '(magit-item-highlight ((t nil)))
 
-   ;; hl-line-mode
-   '(hl-line-face ((t (:background "gray10"))))
+     ;; hl-line-mode
+     '(hl-line-face ((t (:background "gray10"))))
 
-   ;; idle-highlight
-   '(idle-highlight ((t (:foreground "yellow" :background "black"))))
+     ;; idle-highlight
+     '(idle-highlight ((t (:foreground "yellow" :background "black"))))
 
-   ;; isearch
-   '(isearch
-     ((t (:foreground "black" :background "yellow" :bold t))))
-   '(isearch-lazy-highlight-face
-     ((t (:foreground "black" :background "yellow"))))
-   '(isearch-fail
-     ((t (:foreground "red" :background "yellow" :bold t))))
+     ;; isearch
+     '(isearch
+       ((t (:foreground "black" :background "yellow" :bold t))))
+     '(isearch-lazy-highlight-face
+       ((t (:foreground "black" :background "yellow"))))
+     '(isearch-fail
+       ((t (:foreground "red" :background "yellow" :bold t))))
 
-   ;; show-paren
-   '(show-paren-match
-     ((t (:foreground "black" :background "dark green" :bold t))))
-   '(show-paren-mismatch
-     ((t (:foreground "yellow" :background "indian red" :bold t))))
-   ))
-
-
-(use-package spaceline
-  :disabled (not (display-graphic-p)))
+     ;; show-paren
+     '(show-paren-match
+       ((t (:foreground "black" :background "dark green" :bold t))))
+     '(show-paren-mismatch
+       ((t (:foreground "yellow" :background "indian red" :bold t))))
+     ))
+  )
 
 
-(use-package spaceline-config
-  :after spaceline
-  :config
-  (spaceline-helm-mode 1)
-  (spaceline-emacs-theme)
-  (spaceline-toggle-org-clock-on)
-  (spaceline-toggle-minor-modes-off)
-  (spaceline-toggle-version-control-off))
+(when nil ;;(display-graphic-p)
+  (use-package spaceline)
+
+  (use-package spaceline-config
+    :after spaceline
+    :config
+    (spaceline-helm-mode 1)
+    (spaceline-emacs-theme)
+    (spaceline-toggle-org-clock-on)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-toggle-version-control-off))
+  )
 
 
 (use-package speedbar
