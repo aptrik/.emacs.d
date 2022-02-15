@@ -856,6 +856,10 @@ _l_: Last error       _q_: Cancel
      )))
 
 
+(use-package lsp-pyright
+  :defer t)
+
+
 (use-package lsp-treemacs
   :after lsp-mode
   :commands lsp-treemacs-errors-list)
@@ -1221,8 +1225,9 @@ _l_: Last error       _q_: Cancel
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook (python-mode . setup--python-mode)
   :hook (python-mode . lsp-deferred)
+  :hook (python-mode . lsp-pyright)
+  :hook (python-mode . setup--python-mode)
   :config
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
@@ -1265,10 +1270,10 @@ _l_: Last error       _q_: Cancel
 
     (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
     (set (make-variable-buffer-local 'indent-tabs-mode) nil))
-  :config
-  (use-package py-isort
-    :commands (py-isort-buffer))
   )
+
+(use-package py-isort
+  :commands (py-isort-buffer))
 
 
 (use-package re-builder
