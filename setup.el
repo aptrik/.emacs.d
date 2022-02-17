@@ -835,30 +835,40 @@ _l_: Last error       _q_: Cancel
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (python-mode . lsp))
   :init
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  (setq lsp-eldoc-render-all t
-        lsp-gopls-complete-unimported t
-        lsp-gopls-staticcheck t
-        lsp-keymap-prefix "C-c l")
+  :custom
+  (lsp-keymap-prefix "C-c l")
+  (lsp-eldoc-render-all t)
+  (lsp-enable-snippet nil)
+  (lsp-gopls-complete-unimported t)
+  (lsp-gopls-staticcheck t)
+  (lsp-pyls-plugins-flake8-enabled t)
   :config
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
-   ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
    '(
      ("gopls.completeUnimported" t t)
      ("gopls.staticcheck" t t)
+
+     ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
      ("pyls.plugins.pydocstyle.enabled" t t)
      ("pyls.plugins.pyls_mypy.enabled" t t)
      ("pyls.plugins.pyls_mypy.live_mode" nil t)
      ("pyls.plugins.pyls_black.enabled" t t)
      ("pyls.plugins.pyls_isort.enabled" t t)
-     )))
+     ;; Disable these as they're duplicated by flake8
+     ("pyls.plugins.pycodestyle.enabled" nil t)
+     ("pyls.plugins.mccabe.enabled" nil t)
+     ("pyls.plugins.pyflakes.enabled" nil t))
+   ))
 
 
-(use-package lsp-pyright
-  :after lsp
-  :commands lsp-pyright)
+;; (use-package lsp-pyright
+;;   :after lsp
+;;   :commands lsp-pyright)
 
 
 (use-package lsp-treemacs
@@ -870,11 +880,20 @@ _l_: Last error       _q_: Cancel
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
   :custom
+  (lsp-ui-doc-alignment 'frame)
+  (lsp-ui-doc-delay 5)
   (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature nil)
+  (lsp-ui-doc-position 'at-point)
+  (lsp-ui-doc-use-childframe t)
   (lsp-ui-flycheck-enable t)
   (lsp-ui-imenu-enable t)
   (lsp-ui-peek-enable t)
-  (lsp-ui-sideline-enable t))
+  (lsp-ui-sideline-delay 2)
+  (lsp-ui-sideline-enable t)
+  (lsp-ui-sideline-ignore-duplicates t)
+  (lsp-ui-sideline-show-hover t))
 
 
 (use-package macrostep
@@ -1226,8 +1245,7 @@ _l_: Last error       _q_: Cancel
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook ((python-mode . lsp-deferred)
-         (python-mode . setup--python-mode))
+  :hook ((python-mode . setup--python-mode))
   :config
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
