@@ -218,9 +218,12 @@
 (use-package company-elisp
   :after company
   :config
-  (push 'company-elisp company-backends))
+  (push 'company-elisp company-backends)
+  (setq-local company-backend '(company-elisp)))
 
-(setq-local company-backend '(company-elisp))
+
+(use-package company-terraform
+  :after (company terraform-mode))
 
 
 (use-package copy-as-format
@@ -840,13 +843,21 @@ _l_: Last error       _q_: Cancel
   :init
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :custom
-  (lsp-keymap-prefix "C-c l")
+  (lsp-completion-enable t)
+  (lsp-completion-provider :capf)
   (lsp-eldoc-render-all t)
   (lsp-enable-snippet nil)
   (lsp-gopls-complete-unimported t)
   (lsp-gopls-staticcheck t)
+  (lsp-headerline-breadcrumb-enable t)
+  (lsp-highlight-symbol-at-point t)
+  (lsp-idle-delay 0.6)
+  (lsp-keymap-prefix "C-c l")
+  (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
+  (use-package lsp-lens)
+  (use-package lsp-headerline)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
@@ -862,13 +873,19 @@ _l_: Last error       _q_: Cancel
      ;; Disable these as they're duplicated by flake8
      ("pyls.plugins.pycodestyle.enabled" nil t)
      ("pyls.plugins.mccabe.enabled" nil t)
-     ("pyls.plugins.pyflakes.enabled" nil t))
-   ))
-
-
-;; (use-package lsp-pyright
-;;   :after lsp
-;;   :commands lsp-pyright)
+     ("pyls.plugins.pyflakes.enabled" nil t)))
+  (when (getenv "SOURCERY_TOKEN")
+    (lsp-register-client
+     (make-lsp-client
+      :new-connection (lsp-stdio-connection '("sourcery" "lsp"))
+      :initialization-options
+      '((token . ,(getenv "SOURCERY_TOKEN"))
+        (extension_version . "emacs-lsp")
+        (editor_version . "emacs"))
+      :activation-fn (lsp-activate-on "python")
+      :server-id 'sourcery
+      :add-on? t
+      :priority 2))))
 
 
 (use-package lsp-treemacs
@@ -1569,8 +1586,6 @@ This is used to set `sql-alternate-buffer-name' within
   :defer t
   :mode "\\.tf\\'"
   :config
-  (use-package company-terraform)
-  (company-terraform-init)
   ;; (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . json-mode))
   ;; (add-to-list 'auto-mode-alist '("\\.json.tftemplate\\'" . json-mode))
   (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
