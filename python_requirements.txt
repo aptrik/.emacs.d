@@ -7,5 +7,6 @@ pylint-mccabe  # McCabe complexity checker as a PyLint plugin
 pyls-black; python_version > '3.0'
 pyls-isort; python_version > '3.0'
 pyls-mypy; python_version > '3.0'
-python-language-server[all]; python_version > '3.0'
+python-lsp-server[all]; python_version > '3.0'
+sourcery-cli; python_version > '3.0'
 yamllint
