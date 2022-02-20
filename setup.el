@@ -985,8 +985,13 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package nuke-whitespace
-  :defer t
-  :bind ("C-c t n" . nuke-trailing-whitespace))
+  :bind ("C-c t n" . nuke-trailing-whitespace)
+  :config
+  (progn
+    (remove-hook 'write-file-hooks 'nuke-trailing-whitespace)
+    (setq nuke-trailing-whitespace-always-major-modes
+          (remove 'python-mode nuke-trailing-whitespace-always-major-modes))
+    ))
 
 
 (use-package nxml-mode
