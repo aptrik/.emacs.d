@@ -55,7 +55,8 @@
 
 (use-package bs
   :commands bs-show
-  :bind ("M-<f10>" . bs-show)
+  :bind (("M-<f10>" . bs-show)
+         ("C-c <f10>" . bs-show))
   :config
   (setq bs-default-configuration       "all"
         bs-alternative-configuration   "files-and-scratch"
