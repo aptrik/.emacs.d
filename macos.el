@@ -8,7 +8,7 @@
       ns-right-command-modifier 'meta)
 
 (when (display-graphic-p)
-    (menu-bar-mode 1))
+  (menu-bar-mode 1))
 
 (setq browse-url-browser-function 'browse-url-default-macosx-browser)
 
