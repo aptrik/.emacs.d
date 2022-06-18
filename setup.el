@@ -383,10 +383,6 @@
   (direnv-mode))
 
 
-(use-package docker-images
-  :commands docker-images)
-
-
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'" . dockerfile-mode))
 
@@ -572,6 +568,10 @@ _l_: Last error       _q_: Cancel
         framemove-hook-into-windmove t))
 
 
+(use-package fullframe
+  )
+
+
 (use-package gitconfig-mode
   :mode ("/gitconfig\\'" . gitconfig-mode))
 
@@ -589,7 +589,7 @@ _l_: Last error       _q_: Cancel
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
-  ;; (use-package go-guru)
+  (use-package go-guru)
   (use-package flycheck-golangci-lint
     :after flycheck)
 
@@ -930,11 +930,14 @@ _l_: Last error       _q_: Cancel
    magit-restore-window-configuration t
    magit-section-initial-visibility-alist '((stashes . show) (unpushed . show) (upstream . show) (untracked . show))
    magit-status-buffer-switch-function 'switch-to-buffer)
-  (use-package magit-blame)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
     (other-window 1))
   (fullframe magit-status-setup-buffer magit-mode-quite-window))
+
+
+(use-package magit-blame
+  :after magit)
 
 
 (use-package man
@@ -1631,15 +1634,17 @@ This is used to set `sql-alternate-buffer-name' within
         vc-make-backup-files   nil
         vc-dired-terse-display nil
         vc-dired-recurse       nil)
-  (use-package vc-hg
-    :config
-    (setq hg-commit-allow-empty-message t
-          vc-hg-diff-switches "--text"))
-
   (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
   (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
   (fullframe vc-dir quit-window))
+
+
+;; (use-package vc-hg
+;;   :after vc
+;;   :config
+;;   (setq hg-commit-allow-empty-message t
+;;         vc-hg-diff-switches "--text"))
 
 
 (use-package vimrc-mode
