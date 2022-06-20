@@ -4,11 +4,9 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
+
 (setq byte-compile-warnings '(cl-functions)
-      warning-suppress-log-types '((package reinitialization))
-      ;; Increase gc limit during startup.
-      gc-cons-threshold-orig gc-cons-threshold
-      gc-cons-threshold (* 100 gc-cons-threshold))
+      warning-suppress-log-types '((package reinitialization)))
 
 (dolist (mode '(tool-bar-mode tooltip-mode))
   (when (fboundp mode) (funcall mode -1)))
@@ -73,6 +71,3 @@
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
-
-;; Restore gc-cons-threshold to its original value.
-(setq gc-cons-threshold gc-cons-threshold-orig)
