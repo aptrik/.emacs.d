@@ -847,7 +847,7 @@ _l_: Last error       _q_: Cancel
   (lsp-completion-enable t)
   (lsp-completion-provider :capf)
   (lsp-eldoc-render-all t)
-  (lsp-enable-snippet nil)
+  (lsp-enable-snippet t)
   (lsp-gopls-complete-unimported t)
   (lsp-gopls-staticcheck t)
   (lsp-headerline-breadcrumb-enable t)
