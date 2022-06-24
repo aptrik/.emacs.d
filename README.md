@@ -24,11 +24,15 @@ First install [Cask](http://cask.readthedocs.org/):
     Successfully installed Cask!  Now, add the cask binary to your $PATH:
     export PATH="$HOME/.cask/bin:$PATH"
 
-Upgrade `cask` and then let `cask` install all dependencies.
+Lock version of Cask (newer version does not support package and pallet)
+
+    cd ~/.cask
+    git checkout v0.8.8
+
+Let `cask` install all dependencies.
 
     cd ~/.emacs.d
-    cask upgrade-cask
-    cask install
+    cask install  # or `cask update` to get the latest versions of packages
 
 ### Compile pdf-tools
 
