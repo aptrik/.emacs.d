@@ -13,7 +13,7 @@ Fetch the source.
 
     git clone  git://github.com/aptrik/.emacs.d.git  ~/.emacs.d
 
-Make sure you have Emacs version 25.1 or higher [installed](#install-emacs).
+Make sure you have Emacs version 27.1 or higher [installed](#install-emacs).
 
 ### Install Emacs Lisp packages
 
@@ -59,62 +59,31 @@ Example `~/.emacs.d/user.el`:
 
 ## Install Emacs
 
-NOTE: Do not forget to run `cask install` after changing Emacs version.
-
-### Ubuntu
-
-    sudo apt-add-repository -y ppa:adrozdoff/emacs
-    sudo apt update && sudo apt install emacs25
-    sudo update-alternatives --config emacs
-
 ### MacOS
 
     brew install --cask emacs
 
-Or the bleeding edge version.
+or [Emacs Plus](https://github.com/d12frosted/homebrew-emacs-plus)
 
-    brew install emacs --srgb --with-cocoa --with-gnuls --use-git-head --HEAD && brew linkapps
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus --with-native-comp
+    ln -s /opt/homebrew/opt/emacs-plus@28/Emacs.app /Applications
 
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-27.2.tar.xz
-    tar xfJ emacs-27.2.tar.xz
-    cd emacs-27.2
+    curl -LO http://ftpmirror.gnu.org/emacs/emacs-28.1.tar.xz
+    tar xfJ emacs-28.1.tar.xz
+    cd emacs-28.1
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
     sudo make install
 
-#### RHEL 7 dependencies
-
-    sudo yum-builddep -y emacs
-    sudo yum install -y libX11-devel gtk2-devel gtk+-devel
-    sudo yum install -y ncurses-devel dbus-devel gpm-devel librsvg2-devel GConf2-devel
-    sudo yum install -y libtiff-devel giflib-devel libotf-devel m17n-lib-devel libXpm-devel libjpeg-devel ImageMagick-devel
-
 #### Fedora & RHEL8 dependencies
 
     sudo dnf builddep -y emacs
-    sudo dnf install -y giflib-devel gnutls-devel gpm-devel gtk2-devel gtk3-devel jansson-devel lcms2-devel libX11-devel libXpm-devel libjpeg-devel librsvg2-devel libtiff-devel libxml2-devel ncurses-devel systemd-devel
-
-#### Ubuntu/LinuxMint dependencies
-
-    sudo apt-get build-dep emacs24
-    sudo apt-get install \
-        libacl1-dev \
-        libgconf2-dev \
-        libgif-dev \
-        libgpm-dev \
-        libjpeg-dev \
-        libm17n-dev \
-        libmagickcore-dev libmagickwand-dev \
-        libotf-dev \
-        libpng-dev \
-        librsvg2-dev \
-        libtiff-dev \
-        libxml2-dev \
-        libxpm-dev
-
+    sudo dnf install -y giflib-devel gnutls-devel gpm-devel gtk2-devel gtk3-devel jansson-devel lcms2-devel libX11-devel
+    sudo dnf install -y libXpm-devel libjpeg-devel librsvg2-devel libtiff-devel libxml2-devel ncurses-devel systemd-devel
 
 ## Measure startup time
 
