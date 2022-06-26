@@ -911,6 +911,7 @@ _l_: Last error       _q_: Cancel
   (lsp-ui-sideline-delay 2)
   (lsp-ui-sideline-enable t)
   (lsp-ui-sideline-ignore-duplicates t)
+  (lsp-ui-sideline-show-code-actions t)
   (lsp-ui-sideline-show-hover t))
 
 
