@@ -1424,8 +1424,9 @@ _l_: Last error       _q_: Cancel
         sh-indent-comment t))
 
 
-(use-package shrink-whitespace
-  :bind ("M-SPC" . shrink-whitespace))
+(use-package simple
+  :ensure nil
+  :bind (("M-SPC" . cycle-spacing)))
 
 
 (use-package smerge-mode

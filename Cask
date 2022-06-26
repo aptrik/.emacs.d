@@ -112,7 +112,6 @@
 (depends-on "ruby-mode")
 (depends-on "s")
 (depends-on "scss-mode")
-(depends-on "shrink-whitespace")
 (depends-on "solarized-theme")
 (depends-on "spaceline")
 (depends-on "sphinx-doc")
