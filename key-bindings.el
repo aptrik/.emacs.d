@@ -1,8 +1,12 @@
+;; -*- lexical-binding: t; -*-
+
 (unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t)
-  (defun track-mouse (e))
-  (setq mouse-sel-mode t))
+  (use-package mouse
+    :ensure nil
+    :defer 3
+    :init
+    (context-menu-mode 1))
+  (xterm-mouse-mode t))
 
 
 ;;(global-unset-key (kbd "C-x C-c"))
