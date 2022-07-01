@@ -97,6 +97,7 @@
 (depends-on "pdf-tools")
 (depends-on "php-mode")
 (depends-on "plantuml-mode")
+(depends-on "popper")
 (depends-on "projectile")
 (depends-on "protobuf-mode")
 (depends-on "py-autopep8")

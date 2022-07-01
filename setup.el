@@ -1217,6 +1217,26 @@ _l_: Last error       _q_: Cancel
 ;;     (throw 'loop nil)))
 
 
+(use-package popper
+  :bind (("C-'" . popper-toggle-latest)
+         ("M-'" . popper-cycle)
+         ("C-M-'" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "\\*Warnings\\*"
+          "\\*xref\\*"
+          "\\*Backtrace\\*"
+          "\\*eldoc\\*"
+          "\\*compilation\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          help-mode
+          compilation-mode))
+  (popper-mode +1)
+  (popper-echo-mode +1))
+
+
 (use-package printing
   :defer t
   :config
