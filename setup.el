@@ -1215,6 +1215,7 @@ _l_: Last error       _q_: Cancel
   (setq popper-reference-buffers
         '("\\*Messages\\*"
           "\\*Warnings\\*"
+          "\\*grep\\*"
           "\\*xref\\*"
           "\\*Backtrace\\*"
           "\\*eldoc\\*"
