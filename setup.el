@@ -510,8 +510,8 @@
   :bind ("C-c t f" . flycheck-mode)
   :bind (:map flycheck-mode-map ("C-c h l" . hydra-flycheck/body))
   :config
-  (setq flycheck-pylint-use-symbolic-id nil)
-  (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
+  ;; (setq flycheck-pylint-use-symbolic-id nil)
+  ;; (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
   (defhydra hydra-flycheck
     (:pre (flycheck-list-errors)
           :post (quit-windows-on "*Flycheck errors*")
@@ -570,14 +570,14 @@ _l_: Last error       _q_: Cancel
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . lsp-deferred)
-         (go-mode . setup--go-save-hook)
-         (go-mode . flycheck-golangci-lint-setup))
+         ;; (go-mode . flycheck-golangci-lint-setup)
+         (go-mode . setup--go-save-hook))
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
-  (use-package go-guru)
-  (use-package flycheck-golangci-lint
-    :after flycheck)
+  ;; (use-package go-guru)
+  ;; (use-package flycheck-golangci-lint
+  ;;   :after flycheck)
 
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
