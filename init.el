@@ -71,3 +71,5 @@
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
+
+(set-default-font-and-frame-attributes)

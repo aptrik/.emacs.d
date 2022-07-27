@@ -800,6 +800,44 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 
 ;;-----------------------------------------------------------------------------
 
+;; Run:
+;; $ fc-cache -fv
+;; $ fc-list ":" family pixelsize | grep -i fixed
+
+(defvar preferred-fonts
+  '("Monaco 14"
+    "Fira Mono 9"
+    ;;"DejaVu Sans Mono 9"
+    ;;"-PfEd-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1"
+    ;;"Droid Sans Mono 8"
+    ;;"-Misc-Fixed-normal-normal-semicondensed-*-13-*-*-*-c-60-iso10646-1"
+    "-misc-fixed-medium-r-normal--13-120-75-75-c-80-iso10646-1"))
+
+
+(defun set-default-font-and-frame-attributes (&optional fonts)
+  (interactive)
+  (unless fonts
+    (setq fonts preferred-fonts))
+  (xlaunch
+   (catch 'success
+     (dolist (my-font fonts)
+       (condition-case nil
+           (progn
+             (set-frame-font my-font nil t)
+             (setq default-frame-alist
+                   `((background-mode . dark)
+                     (font . ,my-font)
+                     (menu-bar-lines . 1)
+                     (tool-bar-lines . 0)
+                     (vertical-scroll-bars . nil)
+                     (cursor-color . "firebrick")))
+             (message "Set default font to: %s" my-font)
+             (throw 'success my-font))
+         ('error (message "Failed to set default font: %s" my-font)
+                 nil))))))
+
+;;-----------------------------------------------------------------------------
+
 (defvar hotspot-directories
   (list "~" "~/lib" "~/work" "~/projects" "~/doc")
   "List of hotspot directories.")
