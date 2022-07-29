@@ -839,7 +839,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 ;;-----------------------------------------------------------------------------
 
 (defvar hotspot-directories
-  (list "~" "~/lib" "~/work" "~/projects" "~/doc")
+  (list "~" "~/Development" "~/work" "~/projects" "~/lib" "~/priv")
   "List of hotspot directories.")
 
 (defun hotspot-add-directories (directories)
