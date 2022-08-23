@@ -108,6 +108,7 @@
 (depends-on "rainbow-mode")
 (depends-on "request")
 (depends-on "restclient")
+(depends-on "rg")
 (depends-on "robe")
 (depends-on "ruby-end")
 (depends-on "ruby-mode")

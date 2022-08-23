@@ -602,9 +602,9 @@ _l_: Last error       _q_: Cancel
 
 (use-package grep
   :defer t
-  :bind (("M-s f" . find-grep)
-         ("M-s g" . grep)
-         ("M-s r" . rgrep))
+  :bind (("M-s g f" . find-grep)
+         ("M-s g g" . grep)
+         ("M-s g r" . rgrep))
   :config
   (setq grep-files-aliases
         '(("el" . "*.el")
@@ -1340,6 +1340,39 @@ _l_: Last error       _q_: Cancel
   :defer t
   :config
   (setq reb-re-syntax 'string))
+
+
+(use-package rg
+  :defer t
+  :if (executable-find "rg")
+  :commands (rg
+             rg-project
+             rg-literal
+             rg-dwim
+             rg-dwim-project-dir
+             rg-dwim-current-dir
+             rg-dwim-current-file)
+  :bind (("M-s r r" . rg)
+         ("M-s r a" . rg-custom-search-all))
+  :bind (:map rg-mode-map
+              ("C-c '" . wgrep-change-to-wgrep-mode)
+              ("q" . kill-buffer-and-window))
+  :config
+  ;;(add-hook 'rg-mode-hook (lambda () (interactive) (toggle-truncate-lines t)))
+  (rg-define-search rg-custom-search-all
+    :format regexp
+    :dir current
+    :files "*"))
+
+(use-package rg-menu
+  :after rg
+  :commands (rg-menu rg-enable-menu))
+
+(use-package wgrep-rg
+  :after rg
+  :commands (wgrep-rg-setup)
+  :hook
+  (rg-mode-hook . wgrep-rg-setup))
 
 
 (use-package rst
