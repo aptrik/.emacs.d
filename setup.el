@@ -1096,6 +1096,14 @@ _l_: Last error       _q_: Cancel
   ;;       org-clock-persist-query-resume nil)
   ;; (org-clock-persistence-insinuate)
 
+  (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit fixed-pitch))))
+   '(org-table ((t (:inherit fixed-pitch))))
+   '(org-tag ((t (:inherit fixed-pitch))))
+   '(org-verbatim ((t (:inherit fixed-pitch)))))
+
   (add-hook 'org-mode-hook 'setup--org-mode)
 
   (defun setup--org-mode ()
