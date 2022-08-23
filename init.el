@@ -70,6 +70,9 @@
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
-(load (expand-file-name "user" user-emacs-directory) 'noerror)
+(custom-set-faces
+ '(variable-pitch ((t (:height 180))))
+ '(fixed-pitch ((t (:height 170))))
+ '(default ((t (:height 170)))))
 
-(set-default-font-and-frame-attributes)
+(load (expand-file-name "user" user-emacs-directory) 'noerror)
