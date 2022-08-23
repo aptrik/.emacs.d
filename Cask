@@ -114,7 +114,6 @@
 (depends-on "s")
 (depends-on "scss-mode")
 (depends-on "solarized-theme")
-(depends-on "spaceline")
 (depends-on "sphinx-doc")
 (depends-on "sphinx-mode")
 (depends-on "sx")

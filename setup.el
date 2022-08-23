@@ -1508,20 +1508,6 @@ _p_: Prev      _u_: Keep upper
   )
 
 
-(when nil ;;(display-graphic-p)
-  (use-package spaceline)
-
-  (use-package spaceline-config
-    :after spaceline
-    :config
-    (spaceline-helm-mode 1)
-    (spaceline-emacs-theme)
-    (spaceline-toggle-org-clock-on)
-    (spaceline-toggle-minor-modes-off)
-    (spaceline-toggle-version-control-off))
-  )
-
-
 (use-package speedbar
   :disabled t
   :config
