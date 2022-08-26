@@ -119,6 +119,7 @@
 (depends-on "sphinx-mode")
 (depends-on "sx")
 (depends-on "terraform-mode")
+(depends-on "toml-mode")
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "vimrc-mode")

@@ -1645,6 +1645,11 @@ This is used to set `sql-alternate-buffer-name' within
                                   ("Asia/Tokyo" "Tokyo"))))
 
 
+(use-package toml-mode
+  :mode (("\\.toml\\'" . toml-mode))
+  :commands (toml-mode))
+
+
 (use-package tramp
   :defer t
   :config
