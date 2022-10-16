@@ -41,7 +41,7 @@ Let `cask` install all dependencies.
 
 ### Install python-mode dependencies
 
-    pip install -r ~/.emacs.d/python_requirements.txt
+    pip install -r ~/.emacs.d/requirements.in
 
 ### User customization
 
