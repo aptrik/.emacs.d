@@ -832,7 +832,8 @@ _l_: Last error       _q_: Cancel
   :custom
   (lsp-completion-enable t)
   (lsp-completion-provider :capf)
-  (lsp-eldoc-render-all t)
+  (lsp-eldoc-enable-hover t)
+  (lsp-eldoc-render-all nil)
   (lsp-enable-snippet t)
   (lsp-gopls-complete-unimported t)
   (lsp-gopls-staticcheck t)
@@ -885,7 +886,7 @@ _l_: Last error       _q_: Cancel
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-alignment 'frame)
-  (lsp-ui-doc-delay 5)
+  (lsp-ui-doc-delay 3)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature nil)
