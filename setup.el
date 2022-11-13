@@ -856,8 +856,8 @@ _l_: Last error       _q_: Cancel
   (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
-  (use-package lsp-lens)
-  (use-package lsp-headerline)
+  (use-package lsp-lens :ensure nil)
+  (use-package lsp-headerline :ensure nil)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
