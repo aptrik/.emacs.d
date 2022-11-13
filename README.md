@@ -17,22 +17,7 @@ Make sure you have Emacs version 27.1 or higher [installed](#install-emacs).
 
 ### Install Emacs Lisp packages
 
-First install [Cask](http://cask.readthedocs.org/):
-
-    $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
-    ...
-    Successfully installed Cask!  Now, add the cask binary to your $PATH:
-    export PATH="$HOME/.cask/bin:$PATH"
-
-Lock version of Cask (newer version does not support package and pallet)
-
-    cd ~/.cask
-    git checkout v0.8.8
-
-Let `cask` install all dependencies.
-
-    cd ~/.emacs.d
-    cask install  # or `cask update` to get the latest versions of packages
+Packages will be installed automatically. Use M-x list-packages to update.
 
 ### Compile pdf-tools
 

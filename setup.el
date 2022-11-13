@@ -35,6 +35,7 @@
 
 
 (use-package blacken
+  :after python-mode
   :commands blacken-mode)
 
 
@@ -170,6 +171,7 @@
 
 
 (use-package comint
+  :ensure nil
   :defer t
   :bind (:map comint-mode-map
               ("<down>" . comint-next-input)
@@ -217,6 +219,7 @@
 
 
 (use-package company-elisp
+  :ensure nil
   :after company
   :config
   (push 'company-elisp company-backends)
@@ -278,6 +281,7 @@
 
 
 (use-package compilation-recenter-end
+  :ensure nil
   :functions compilation-recenter-end-enable)
 
 
@@ -309,6 +313,7 @@
 
 
 (use-package dired
+  :ensure nil
   :defer t
   :bind ("C-c j" . dired--downloads)
   :bind (:map dired-mode-map
@@ -364,6 +369,7 @@
                  '("\\.epub\\'" "FBReader * &" "evince * &")))))
 
 (use-package dired-x
+  :ensure nil
   :after dired)
 
 
@@ -415,6 +421,7 @@
 
 
 (use-package edit-env
+  :ensure nil
   :commands edit-env)
 
 
@@ -547,6 +554,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package framemove
+  :ensure nil
   :config
   (windmove-default-keybindings 'shift)
   ;; Cannot wrap and have framemove do its thing at the same time.
@@ -559,10 +567,12 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package gitconfig-mode
+  :ensure nil
   :mode ("/gitconfig\\'" . gitconfig-mode))
 
 
 (use-package gitignore-mode
+  :ensure nil
   :mode ("/gitignore\\'" . gitignore-mode))
 
 
@@ -685,6 +695,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hl-tags-mode
+  :ensure nil
   :commands hl-tags-mode)
 
 
@@ -808,6 +819,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package lisp-mode
+  :ensure nil
   :defer t
   :bind (:map emacs-lisp-mode-map
               ("C-c e E" . toggle-debug-on-error)
@@ -925,6 +937,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package magit-blame
+  :ensure nil
   :after magit)
 
 
@@ -941,6 +954,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package misc
+  :ensure nil
   :bind (("M-z" . zap-up-to-char)
          ("M-Z" . zap-to-char))
   :commands zap-up-to-char)
@@ -966,6 +980,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package newcomment
+  :ensure nil
   :defer t
   :commands comment-line
   :bind ("C-;" . comment-line))
@@ -977,6 +992,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package nuke-whitespace
+  :ensure nil
   :bind ("C-c t n" . nuke-trailing-whitespace)
   :config
   (progn
@@ -987,6 +1003,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package nxml-mode
+  :ensure nil
   :defer t
   :commands nxml-mode
   :init
@@ -1366,10 +1383,12 @@ _l_: Last error       _q_: Cancel
     :files "*"))
 
 (use-package rg-menu
+  :ensure nil
   :after rg
   :commands (rg-menu rg-enable-menu))
 
 (use-package wgrep-rg
+  :ensure nil
   :after rg
   :commands (wgrep-rg-setup)
   :hook
@@ -1659,6 +1678,7 @@ This is used to set `sql-alternate-buffer-name' within
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
 
 (use-package uniquify
+  :ensure nil
   :defer t
   :config
   (setq uniquify-buffer-name-style 'forward))
@@ -1692,6 +1712,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package vlf-setup
+  :ensure nil
   :defer t)
 
 
@@ -1742,7 +1763,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package which-key
-  :defer 5
   :diminish which-key-mode
   :config
   (which-key-mode 1))

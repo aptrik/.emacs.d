@@ -31,23 +31,33 @@
                       (time-subtract after-init-time before-init-time))
                      gcs-done)))
 
-(when (eval-when-compile (version< emacs-version "27"))
-  (package-initialize))
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("elpa" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
+;; Bootstrap use-package
+(package-initialize)
+(setq package-native-compile t
+      use-package-always-ensure t
+      use-package-compute-statistics t
+      use-package-enable-imenu-support t
+      use-package-verbose t)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
 
-(require 'pallet)
-(pallet-mode t)
+(use-package bind-key)
+(use-package diminish)
 
-;; Setup up use-package.
-(setq use-package-enable-imenu-support t
-      use-package-verbose nil)
-(eval-when-compile
-  (require 'use-package))
-(setq use-package-compute-statistics t)
-(require 'bind-key)
-(require 'diminish)
+(use-package async
+  :ensure t
+  :defer t
+  :init
+  (dired-async-mode 1)
+  (async-bytecomp-package-mode 1)
+  :custom (async-bytecomp-allowed-packages '(all)))
 
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
