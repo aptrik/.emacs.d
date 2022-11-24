@@ -801,7 +801,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 ;;-----------------------------------------------------------------------------
 
 (defvar hotspot-directories
-  (list "~" "~/Development" "~/work" "~/projects" "~/lib" "~/priv")
+  (list "~/Development" "~/work" "~/projects" "~/lib" "~/priv" "~")
   "List of hotspot directories.")
 
 (defun hotspot-add-directories (directories)
@@ -825,14 +825,8 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 (defun hotspot--generate-directories ()
   (let ((result ()))
     (dolist (dir hotspot-directories)
-      (ignore-errors
-        (dolist (found (-select
-                        (lambda (d)
-                          (or (string-match "/\\.emacs.d$" d)
-                              (not (string-match "/\\." d))))
-                        (f-directories (substitute-in-file-name dir))))
-          (push found result))))
-          ;; (add-to-list 'result found t))))
+      (if (f-dir-p dir)
+          (setq result (append result (f-directories (substitute-in-file-name dir))))))
     result))
 
 
