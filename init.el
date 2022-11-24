@@ -50,6 +50,9 @@
 
 (use-package bind-key)
 (use-package diminish)
+(use-package s)
+(use-package f)
+(use-package dash)
 
 (use-package async
   :ensure t
