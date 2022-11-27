@@ -1477,6 +1477,9 @@ _l_: Last error       _q_: Cancel
   :bind (("M-SPC" . cycle-spacing)))
 
 
+(use-package smartparens)
+
+
 (use-package smerge-mode
   :bind (:map smerge-mode-map
               ("C-c h d" . hydra-smerge-mode/body))
