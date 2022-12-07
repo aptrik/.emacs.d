@@ -477,13 +477,21 @@
     (setq exec-path-from-shell-arguments '("-l" "-i")
           exec-path-from-shell-check-startup-files nil
           exec-path-from-shell-variables
-          '("GOPATH"
+          '("DISPLAY"
+	    "SSH_AGENT_PID"
+	    "SSH_ASKPASS"
+	    "SSH_AUTH_SOCK"
+	    "SSH_CONNECTION"
+	    "TMUX_PROJECT_PATH"
+	    "WINDOWID"
+	    "XAUTHORITY"
             "LANG"
             "MANPATH"
             "PATH"
             "PGPPATH"
             "PYTHONPATH"
-            "SSH_AGENT_PID" "SSH_AUTH_SOCK"))
+            "SSH_AGENT_PID"
+	    ))
     :config
     (exec-path-from-shell-initialize)))
 
