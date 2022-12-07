@@ -1515,7 +1515,8 @@ _p_: Prev      _u_: Keep upper
 
 (use-package solarized-theme
   :config
-  (load-theme 'solarized-dark :no-confirm)
+  (if window-system
+      (load-theme 'solarized-dark :no-confirm))
   (setf frame-background-mode 'dark)
 
   (custom-set-faces
