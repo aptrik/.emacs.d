@@ -593,7 +593,6 @@ _l_: Last error       _q_: Cancel
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
-  ;; (use-package go-guru)
   ;; (use-package flycheck-golangci-lint
   ;;   :after flycheck)
 
@@ -607,7 +606,6 @@ _l_: Last error       _q_: Cancel
     (set (make-local-variable 'company-backends) '(company-go))
     (company-mode 1)
     (flycheck-mode 1)
-    (go-guru-hl-identifier-mode 1)
     (subword-mode 1)
     (which-function-mode 1))
 
