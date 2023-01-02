@@ -901,23 +901,7 @@ _l_: Last error       _q_: Cancel
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-alignment 'frame)
-  (lsp-ui-doc-delay 3)
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-header t)
-  (lsp-ui-doc-include-signature nil)
-  (lsp-ui-doc-position 'at-point)
-  (lsp-ui-doc-use-childframe t)
-  (lsp-ui-flycheck-enable t)
-  (lsp-ui-imenu-enable t)
-  (lsp-ui-peek-enable t)
-  (lsp-ui-sideline-delay 2)
-  (lsp-ui-sideline-enable t)
-  (lsp-ui-sideline-ignore-duplicates t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-show-hover t))
+  :hook (lsp-mode . lsp-ui-mode))
 
 
 (use-package macrostep
