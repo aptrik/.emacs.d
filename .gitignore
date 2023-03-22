@@ -5,6 +5,7 @@
 *~
 .DS_Store
 .\#*
+/.cache/
 /.cask
 /.litable-lists.el
 /.lsp-session-v1
@@ -16,6 +17,7 @@
 /anaconda-mode
 /auto-save-list
 /custom.el
+/eclipse.jdt.ls/
 /eln-cache/
 /elpa
 /erc-log

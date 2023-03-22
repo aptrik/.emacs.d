@@ -587,8 +587,7 @@ _l_: Last error       _q_: Cancel
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
-  :hook ((go-mode . lsp-deferred)
-         ;; (go-mode . flycheck-golangci-lint-setup)
+  :hook (;; (go-mode . flycheck-golangci-lint-setup)
          (go-mode . setup--go-save-hook))
   :bind (:map go-mode-map
               ("C-." . company-complete))
@@ -843,8 +842,10 @@ _l_: Last error       _q_: Cancel
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (python-mode . lsp))
+  :hook ((go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)
+         (python-mode . lsp-deferred))
   :init
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :custom
@@ -892,6 +893,10 @@ _l_: Last error       _q_: Cancel
       :server-id 'sourcery
       :add-on? t
       :priority 2))))
+
+
+(use-package lsp-java
+  :config (add-hook 'java-mode-hook 'lsp))
 
 
 (use-package lsp-treemacs
