@@ -705,7 +705,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hydra
-  :defer t)
+  )
 
 
 (use-package ibuffer
