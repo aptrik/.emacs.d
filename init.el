@@ -54,13 +54,13 @@
 (use-package f)
 (use-package dash)
 
-(use-package async
-  :ensure t
-  :defer t
-  :init
-  (dired-async-mode 1)
-  (async-bytecomp-package-mode 1)
-  :custom (async-bytecomp-allowed-packages '(all)))
+;; (use-package async
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (dired-async-mode 1)
+;;   (async-bytecomp-package-mode 1)
+;;   :custom (async-bytecomp-allowed-packages '(all)))
 
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
