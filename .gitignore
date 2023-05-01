@@ -6,7 +6,6 @@
 .DS_Store
 .\#*
 /.cache/
-/.cask
 /.litable-lists.el
 /.lsp-session-v1
 /.mc-lists.el
