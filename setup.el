@@ -895,8 +895,8 @@ _l_: Last error       _q_: Cancel
       :priority 2))))
 
 
-(use-package lsp-java
-  :config (add-hook 'java-mode-hook 'lsp))
+;; (use-package lsp-java
+;;   :config (add-hook 'java-mode-hook 'lsp))
 
 
 (use-package lsp-treemacs
