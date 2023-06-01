@@ -4,6 +4,11 @@
   :mode (("\\.adoc\\'" . adoc-mode)))
 
 
+(use-package aggressive-indent
+  :diminish
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
+
+
 (use-package ahg
   :disabled t
   :bind (:map ahg-status-mode-map
@@ -818,9 +823,15 @@ _l_: Last error       _q_: Cancel
   (keyfreq-autosave-mode 1))
 
 
-(use-package aggressive-indent
-  :diminish
-  :hook (emacs-lisp-mode . aggressive-indent-mode))
+(use-package kubernetes
+  :commands (kubernetes-overview)
+  :config
+  (setq kubernetes-poll-frequency 3600
+        kubernetes-redraw-frequency 3600))
+
+
+(use-package k8s-mode
+  :hook (k8s-mode . yas-minor-mode))
 
 
 (use-package lisp-mode
