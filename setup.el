@@ -15,12 +15,11 @@
               ("<tab>" . ahg-status-diff)
               ("M-<delete>" . ahg-status-unmark-all))
   :commands ahg-status
-  :config
-  (add-hook 'ahg-status-mode-hook 'turn-on-truncate-lines))
+  :hook (ahg-status-mode . turn-on-truncate-lines))
 
 
 (use-package ansible-doc
-  :hook (yaml-mode  . ansible-doc-mode))
+  :hook (yaml-mode . ansible-doc-mode))
 
 
 (use-package arc-mode
@@ -104,12 +103,11 @@
 (use-package calendar
   :defer t
   :commands calendar
+  :hook ((diary-display . fancy-diary-display)
+         (today-visible-calendar . calendar-mark-today)
+         (list-diary-entries . sort-diary-entries))
   :config
   (calendar-set-date-style 'iso)
-
-  (add-hook 'diary-display-hook          'fancy-diary-display)
-  (add-hook 'today-visible-calendar-hook 'calendar-mark-today)
-  (add-hook 'list-diary-entries-hook     'sort-diary-entries t)
 
   (setq calendar-location-name           "Göteborg, SE"
         calendar-latitude                57.72 ; 57° 43' North
@@ -126,7 +124,6 @@
         mark-holidays-in-calendar        t
         mark-diary-entries-in-calendar   t
         calendar-time-display-form       '(24-hours ":" minutes)
-        diary-display-hook               'fancy-diary-display
         holidays-in-diary-buffer         t
         diary-list-include-blanks        t
         diary-file                       (expand-file-name "~/.diary")
@@ -278,11 +275,11 @@
 (use-package css-mode
   :defer t
   :mode (("\\.css\\'" . css-mode))
+  :hook (css-mode . turn-on-rainbow-mode)
   :config
   (setq cssm-indent-function 'cssm-c-style-indenter
         css-indent-level 2
-        scss-compile-at-save nil)
-  (add-hook 'css-mode-hook 'turn-on-rainbow-mode))
+        scss-compile-at-save nil))
 
 
 (use-package compilation-recenter-end
@@ -294,15 +291,15 @@
   :no-require
   :bind (("C-c c" . compile)
          ("C-c C" . recompile))
+  :hook ((compilation-mode . toggle-truncate-lines)
+         (compilation-mode . compilation-recenter-end-enable)
+         (compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
   :config
   (setq-default compilation-always-kill nil
                 compilation-ask-about-save t
                 compilation-scroll-output 'first-error
                 compilation-window-height 20
-                compile-command (concat "gmake -C " default-directory " all"))
-
-  ;;(add-hook 'compilation-mode-hook 'toggle-truncate-lines)
-  (add-hook 'compilation-mode-hook 'compilation-recenter-end-enable))
+                compile-command (concat "gmake -C " default-directory " all")))
 
 
 (use-package diff-mode
@@ -592,8 +589,10 @@ _l_: Last error       _q_: Cancel
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
-  :hook (;; (go-mode . flycheck-golangci-lint-setup)
-         (go-mode . setup--go-save-hook))
+  :hook ((go-mode . setup--go-mode)
+         (go-mode . setup--go-save-hook)
+         ;; (go-mode . flycheck-golangci-lint-setup)
+         )
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
@@ -611,9 +610,7 @@ _l_: Last error       _q_: Cancel
     (company-mode 1)
     (flycheck-mode 1)
     (subword-mode 1)
-    (which-function-mode 1))
-
-  (add-hook 'go-mode-hook 'setup--go-mode))
+    (which-function-mode 1)))
 
 
 (use-package gradle-mode
@@ -625,6 +622,7 @@ _l_: Last error       _q_: Cancel
   :bind (("M-s g f" . find-grep)
          ("M-s g g" . grep)
          ("M-s g r" . rgrep))
+  :hook (grep-mode . turn-on-truncate-lines)
   :config
   (setq grep-files-aliases
         '(("el" . "*.el")
@@ -636,8 +634,6 @@ _l_: Last error       _q_: Cancel
   (grep-apply-setting
    'grep-find-command
    '("find . -type f -print0 | xargs -P4 -0 egrep -nH -e " . 52))
-
-  (add-hook 'grep-mode-hook 'turn-on-truncate-lines)
 
   (add-to-list 'grep-find-ignored-directories "elpa")
   (add-to-list 'grep-find-ignored-directories "target")
@@ -790,7 +786,6 @@ _l_: Last error       _q_: Cancel
 (use-package js2-mode
   :mode "\\.js\\'"
   :config
-  (add-hook 'js2-mode-hook (lambda () (setq mode-name "js2")))
   (setf js2-skip-preprocessor-directives t)
   (setq-default js2-additional-externs
                 '("$" "unsafeWindow" "localStorage" "jQuery"
@@ -843,7 +838,7 @@ _l_: Last error       _q_: Cancel
               ("C-c e m" . macrostep-expand)
               ("C-c e r" . eval-region))
   :mode ("Cask" . emacs-lisp-mode)
-  :hook (emacs-lisp-mode-hook . setup--emacs-lisp-mode)
+  :hook (emacs-lisp-mode . setup--emacs-lisp-mode)
   :preface
   (defun setup--emacs-lisp-mode ()
     (add-hook 'after-save-hook 'check-parens nil t)
@@ -907,7 +902,7 @@ _l_: Last error       _q_: Cancel
 
 
 ;; (use-package lsp-java
-;;   :config (add-hook 'java-mode-hook 'lsp))
+;;   :hook (java-mode . lsp))
 
 
 (use-package lsp-treemacs
@@ -1014,6 +1009,8 @@ _l_: Last error       _q_: Cancel
   :commands nxml-mode
   :init
   (defalias 'xml-mode 'nxml-mode)
+  :hook ((sgml-mode . turn-on-hl-tags-mode)
+         (nxml-mode . turn-on-hl-tags-mode))
   :config
   (defun nxml-set-indentation (level)
     "Set indentation LEVEL in nxml-mode. Default LEVEL is 2."
@@ -1033,9 +1030,7 @@ _l_: Last error       _q_: Cancel
         nxml-slash-auto-complete-flag t
         nxml-syntax-highlight-flag t
         rng-nxml-auto-validate-flag nil)
-  (push '("<\\?xml" . nxml-mode) magic-mode-alist)
-  (add-hook 'sgml-mode-hook 'turn-on-hl-tags-mode)
-  (add-hook 'nxml-mode-hook 'turn-on-hl-tags-mode))
+  (push '("<\\?xml" . nxml-mode) magic-mode-alist))
 
 
 (use-package openwith
@@ -1074,6 +1069,7 @@ _l_: Last error       _q_: Cancel
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md reveal twbs))
+  :hook (org-mode . setup--org-mode)
   :config
   (setq
    org-agenda-files '("~/Dropbox/org/")
@@ -1127,8 +1123,6 @@ _l_: Last error       _q_: Cancel
    '(org-table ((t (:inherit fixed-pitch))))
    '(org-tag ((t (:inherit fixed-pitch))))
    '(org-verbatim ((t (:inherit fixed-pitch)))))
-
-  (add-hook 'org-mode-hook 'setup--org-mode)
 
   (defun setup--org-mode ()
     (setq org-blank-before-new-entry '((heading . t)
@@ -1360,8 +1354,8 @@ _l_: Last error       _q_: Cancel
   :bind (:map rg-mode-map
               ("C-c '" . wgrep-change-to-wgrep-mode)
               ("q" . kill-buffer-and-window))
+  ;; :hook (rg-mode . (lambda () (interactive) (toggle-truncate-lines t)))
   :config
-  ;;(add-hook 'rg-mode-hook (lambda () (interactive) (toggle-truncate-lines t)))
   (rg-define-search rg-custom-search-all
     :format regexp
     :dir current
@@ -1376,15 +1370,13 @@ _l_: Last error       _q_: Cancel
   :ensure nil
   :after rg
   :commands (wgrep-rg-setup)
-  :hook
-  (rg-mode-hook . wgrep-rg-setup))
+  :hook (rg-mode . wgrep-rg-setup))
 
 
 (use-package rst
   :defer t
+  :hook (rst-mode . setup--rst-mode)
   :config
-  (add-hook 'rst-mode-hook 'setup--rst-mode)
-
   (defun setup--rst-mode ()
     (sphinx-mode 1)))
 
@@ -1399,8 +1391,6 @@ _l_: Last error       _q_: Cancel
          ("\\.rb\\'" . ruby-mode))
   :init
   (setq ruby-deep-indent-paren nil)
-
-  (add-hook 'ruby-mode-hook 'setup--ruby-mode)
 
   (defun ruby-run ()
     "Run ruby on the file in the current buffer."
@@ -1433,6 +1423,7 @@ _l_: Last error       _q_: Cancel
     (local-set-key [f9]    'ruby-run)
     (local-set-key [C-f9]  'minitest-verify)
     (local-set-key [M-f9]  'minitest-verify-single))
+  :hook (ruby-mode . setup--ruby-mode)
   :config
   (use-package ruby-end
     :diminish ruby-end-mode)
@@ -1460,8 +1451,7 @@ _l_: Last error       _q_: Cancel
   :defer t
   :commands scss-mode
   :mode ("\\.scss\\'" . scss-mode)
-  :config
-  (add-hook 'scss-mode-hook 'turn-on-rainbow-mode))
+  :hook (scss-mode . turn-on-rainbow-mode))
 
 
 (use-package sh-script
@@ -1571,9 +1561,9 @@ _p_: Prev      _u_: Keep upper
 
 (use-package sql
   :defer t
+  :hook (sql-interactive-mode . setup--sql-interactive-mode)
   :config
   (setq plsql-indent 2)
-  (add-hook 'sql-interactive-mode-hook 'setup--sql-interactive-mode)
 
   (defun sql-make-smart-buffer-name ()
     "Return a string that can be used to rename a SQLi buffer.
@@ -1610,6 +1600,7 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package term
   :defer t
+  :hook (term-mode . setup--term)
   :config
   (defadvice ansi-term (before force-bash)
     (interactive (list "/bin/bash")))
@@ -1625,22 +1616,22 @@ This is used to set `sql-alternate-buffer-name' within
      (if string string (current-kill 0))))
 
   (defun setup--term ()
-    (goto-address-mode))
-  ;; (define-key term-raw-map (kbd "M-o") 'other-window)
-  ;; (define-key term-raw-map (kbd "M-p") 'term-send-up)
-  ;; (define-key term-raw-map (kbd "M-n") 'term-send-down)
-  ;; (define-key term-raw-map (kbd "C-y") 'setup--term-paste))
-
-  (add-hook 'term-mode-hook 'setup--term))
+    (goto-address-mode)
+    ;; (define-key term-raw-map (kbd "M-o") 'other-window)
+    ;; (define-key term-raw-map (kbd "M-p") 'term-send-up)
+    ;; (define-key term-raw-map (kbd "M-n") 'term-send-down)
+    ;; (define-key term-raw-map (kbd "C-y") 'setup--term-paste))
+    ))
 
 
 (use-package terraform-mode
   :defer t
   :mode "\\.tf\\'"
-  :config
+  :hook (terraform-mode . terraform-format-on-save-mode)
+  ;; :config
   ;; (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . json-mode))
   ;; (add-to-list 'auto-mode-alist '("\\.json.tftemplate\\'" . json-mode))
-  (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+  )
 
 
 (use-package time
@@ -1760,11 +1751,11 @@ This is used to set `sql-alternate-buffer-name' within
 (use-package ws-butler
   :defer t
   :diminish ws-butler-mode
+  :hook ((org-mode . ws-butler-mode)
+         (prog-mode . ws-butler-mode)
+         (text-mode . ws-butler-mode))
   :config
-  (setq ws-butler-keep-whitespace-before-point nil)
-  (add-hook 'org-mode-hook #'ws-butler-mode)
-  (add-hook 'prog-mode-hook #'ws-butler-mode)
-  (add-hook 'text-mode-hook #'ws-butler-mode))
+  (setq ws-butler-keep-whitespace-before-point nil))
 
 
 (use-package xclip
