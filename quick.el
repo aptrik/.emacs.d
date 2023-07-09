@@ -5,6 +5,19 @@
 ;; (setq debug-on-quit t)
 
 
+;; Bootstrap use-package
+(package-initialize)
+(setq package-native-compile t
+      use-package-always-ensure t
+      use-package-compute-statistics t
+      use-package-enable-imenu-support t
+      use-package-verbose t)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+
+
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path dir)
@@ -14,6 +27,7 @@
 
 (dolist (fn '("defuns" "defaults" "key-bindings"))
   (load (expand-file-name fn user-emacs-directory)))
+
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -33,3 +47,12 @@
                                     (if (> (frame-width) 150)
                                         (split-window-horizontally arg)
                                       (split-window-vertically arg))))
+
+
+(use-package dumb-jump
+  :init
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+  :hook (xref-backend-functions . dumb-jump-xref-activate))
+
+
+(use-package magit)
