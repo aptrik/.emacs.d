@@ -399,6 +399,13 @@
   (setq dtrt-indent-verbosity 1))
 
 
+(use-package dumb-jump
+  :init
+  (setq dumb-jump-force-searcher 'rg
+        xref-show-definitions-function #'xref-show-definitions-completing-read)
+  :hook (xref-backend-functions . dumb-jump-xref-activate))
+
+
 (use-package ediff
   :defer t
   :commands (ediff-files ediff-buffers)
