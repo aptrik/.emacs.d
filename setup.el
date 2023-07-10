@@ -642,6 +642,10 @@ _l_: Last error       _q_: Cancel
    'grep-find-command
    '("find . -type f -print0 | xargs -P4 -0 egrep -nH -e " . 52))
 
+  (add-to-list 'grep-find-ignored-directories ".direnv")
+  (add-to-list 'grep-find-ignored-directories ".git")
+  (add-to-list 'grep-find-ignored-directories ".hg")
+  (add-to-list 'grep-find-ignored-directories ".idea")
   (add-to-list 'grep-find-ignored-directories "elpa")
   (add-to-list 'grep-find-ignored-directories "target")
   (add-to-list 'grep-find-ignored-directories "vendor")
