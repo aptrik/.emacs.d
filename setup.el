@@ -1765,7 +1765,7 @@ This is used to set `sql-alternate-buffer-name' within
   :hook ((org-mode . ws-butler-mode)
          (prog-mode . ws-butler-mode)
          (text-mode . ws-butler-mode))
-  :config
+  :init
   (setq ws-butler-keep-whitespace-before-point nil))
 
 
