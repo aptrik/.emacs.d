@@ -41,9 +41,6 @@
 (defun turn-on-truncate-lines ()
   (toggle-truncate-lines 1))
 
-(defun turn-on-hl-tags-mode ()
-  (hl-tags-mode 1))
-
 ;;-----------------------------------------------------------------------------
 ;;; Change built-ins behaviours .
 

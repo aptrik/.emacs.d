@@ -82,9 +82,6 @@
  ;; hl-line-mode
  `(hl-line ((t (:background "#B4EEB4"))))
 
- ;; hl-tags-mode
- `(hl-tags-face ((t (:inherit isearch))))
-
  ;; idle-highlight
  `(idle-highlight ((t (:inherit isearch))))
 

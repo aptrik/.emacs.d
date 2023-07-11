@@ -711,11 +711,6 @@ _l_: Last error       _q_: Cancel
   :bind ("C-c t l" . hl-line-mode))
 
 
-(use-package hl-tags-mode
-  :ensure nil
-  :commands hl-tags-mode)
-
-
 (use-package hydra
   )
 
@@ -1020,8 +1015,6 @@ _l_: Last error       _q_: Cancel
   :commands nxml-mode
   :init
   (defalias 'xml-mode 'nxml-mode)
-  :hook ((sgml-mode . turn-on-hl-tags-mode)
-         (nxml-mode . turn-on-hl-tags-mode))
   :config
   (defun nxml-set-indentation (level)
     "Set indentation LEVEL in nxml-mode. Default LEVEL is 2."
