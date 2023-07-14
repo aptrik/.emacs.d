@@ -35,6 +35,12 @@
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
+(defun load-local (file)
+  (load (expand-file-name file user-emacs-directory)))
+
+(dolist (fn '("defuns" "defaults" "key-bindings"))
+  (load-local fn))
+
 ;; (load (expand-file-name "user" user-emacs-directory) 'noerror)
 
 ;;---
