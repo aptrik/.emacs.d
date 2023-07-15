@@ -8,16 +8,17 @@
 (setq byte-compile-warnings '(cl-functions)
       warning-suppress-log-types '((package reinitialization)))
 
-(dolist (mode '(tool-bar-mode tooltip-mode))
-  (when (fboundp mode) (funcall mode -1)))
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil))
-
 (setq inhibit-default-init t
       inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message nil)
-(menu-bar-mode -1)
+
+(menu-bar-mode 0)
+(set-cursor-color "red")
+(when window-system
+  (set-scroll-bar-mode nil)
+  (tool-bar-mode 0)
+  (tooltip-mode 0))
 
 
 ;;
