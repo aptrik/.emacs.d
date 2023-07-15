@@ -910,8 +910,18 @@ _l_: Last error       _q_: Cancel
       :priority 2))))
 
 
-;; (use-package lsp-java
-;;   :hook (java-mode . lsp))
+(use-package lsp-java
+  :init
+  ;; workaround https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
+  (add-to-list 'image-types 'svg)
+  :config
+  (setq lsp-java-vmargs
+        (list
+         "-noverify"
+         "-Xmx3G"
+         "-XX:+UseG1GC"
+         "-XX:+UseStringDeduplication"
+         "-Djava.awt.headless=true")))
 
 
 (use-package lsp-treemacs
