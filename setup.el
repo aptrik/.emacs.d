@@ -434,6 +434,9 @@
   :commands edit-env)
 
 
+(use-package eglot)
+
+
 (use-package eldoc
   :defer t
   :diminish eldoc-mode
