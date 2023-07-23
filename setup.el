@@ -596,6 +596,10 @@ _l_: Last error       _q_: Cancel
   :mode ("/gitignore\\'" . gitignore-mode))
 
 
+(use-package company-go
+  :defer t)
+
+
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
@@ -609,14 +613,20 @@ _l_: Last error       _q_: Cancel
   ;; (use-package flycheck-golangci-lint
   ;;   :after flycheck)
 
+  (defun setup--go-organize-imports ()
+    (call-interactively 'eglot-code-action-organize-imports))
+
   (defun setup--go-save-hook ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+    (add-hook 'before-save-hook #'eglot-format-buffer -10 t)
+    (add-hook 'before-save-hook #'setup--go-organize-imports nil t))
 
   (defun setup--go-mode ()
     (setq indent-tabs-mode t
           tab-width 4)
     (set (make-local-variable 'company-backends) '(company-go))
+    (eglot-ensure)
+    (eglot-inlay-hints-mode 1)
+    (eldoc-mode 1)
     (company-mode 1)
     (flycheck-mode 1)
     (subword-mode 1)
