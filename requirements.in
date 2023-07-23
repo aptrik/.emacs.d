@@ -1,4 +1,3 @@
-argparse
 black[d]; python_version >= '3.0'
 mypy; python_version >= '3.0'
 pylint
