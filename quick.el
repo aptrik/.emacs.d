@@ -4,6 +4,8 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
+(set-language-environment "UTF-8")
+(setq default-input-method nil)
 
 ;; Bootstrap use-package
 (package-initialize)
