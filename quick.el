@@ -7,6 +7,8 @@
 (set-language-environment "UTF-8")
 (setq default-input-method nil)
 
+(setq load-prefer-newer noninteractive)
+
 ;; Bootstrap use-package
 (package-initialize)
 (setq package-native-compile t
