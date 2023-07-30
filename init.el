@@ -49,6 +49,7 @@
       use-package-always-ensure t
       use-package-compute-statistics t
       use-package-enable-imenu-support t
+      use-package-expand-minimally t
       use-package-verbose t)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

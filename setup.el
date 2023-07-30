@@ -216,7 +216,7 @@
 
 
 (use-package company-box
-  :after copmpany
+  :after company
   :hook (company-mode . company-box-mode))
 
 
