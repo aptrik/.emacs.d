@@ -1274,8 +1274,7 @@ _l_: Last error       _q_: Cancel
     (sphinx-doc-mode 1)
 
     (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
-    (set (make-variable-buffer-local 'indent-tabs-mode) nil))
-  )
+    (set (make-variable-buffer-local 'indent-tabs-mode) nil)))
 
 (use-package py-isort
   :commands (py-isort-buffer))
@@ -1297,8 +1296,8 @@ _l_: Last error       _q_: Cancel
              rg-dwim-project-dir
              rg-dwim-current-dir
              rg-dwim-current-file)
-  :bind (("M-s r r" . rg)
-         ("M-s r a" . rg-custom-search-all))
+  :bind (("M-s r r" . rg-custom-search-all)
+         ("M-s r a" . rg))
   :bind (:map rg-mode-map
               ("C-c '" . wgrep-change-to-wgrep-mode)
               ("q" . kill-buffer-and-window))
