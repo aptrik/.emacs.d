@@ -35,7 +35,13 @@
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("elpa" . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("gnu" . "http://elpa.gnu.org/packages/"))
+      package-archive-priorities
+      '(("melpa" . 10)
+        ("elpa" . 5)
+        ("nongnu" . 0)
+        ("gnu" . 0)))
 
 ;; Bootstrap use-package
 (package-initialize)
