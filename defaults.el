@@ -78,7 +78,7 @@
 (global-font-lock-mode 1)
 (line-number-mode 1)
 (transient-mark-mode 1)
-(which-func-mode 1)
+(which-function-mode 1)
 (winner-mode 1)
 
 (setq cua-enable-cua-keys   nil ; only for rectangles
