@@ -292,7 +292,7 @@
   :no-require
   :bind (("C-c c" . compile)
          ("C-c C" . recompile))
-  :hook ((compilation-mode . toggle-truncate-lines)
+  :hook (;;(compilation-mode . toggle-truncate-lines)
          (compilation-mode . compilation-recenter-end-enable)
          (compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
   :config
