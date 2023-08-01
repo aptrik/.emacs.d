@@ -1353,12 +1353,10 @@
 
 
 (use-package savehist
-  :defer t
   :unless noninteractive
   :init
   (setq savehist-ignored-variables '(file-name-history))
-  :config
-  (savehist-mode 1))
+  (savehist-mode))
 
 
 (use-package saveplace

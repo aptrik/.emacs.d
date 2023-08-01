@@ -39,18 +39,14 @@
         ("nongnu" . 0)
         ("gnu" . 0)))
 
-(package-initialize)
 
 ;; Bootstrap use-package
-(setq use-package-always-ensure t
+(setq package-native-compile t
+      use-package-always-ensure t
       use-package-compute-statistics t
       use-package-enable-imenu-support t
       use-package-expand-minimally t
       use-package-verbose t)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile (require 'use-package))
 
 (use-package bind-key)
 (use-package diminish)
