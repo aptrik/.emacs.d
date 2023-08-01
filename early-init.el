@@ -2,9 +2,6 @@
 
 ;; (setq package-enable-at-startup nil)
 
-(set-language-environment "UTF-8")
-(setq default-input-method nil)
-
 (setq gc-cons-threshold most-positive-fixnum
       load-prefer-newer noninteractive)
 

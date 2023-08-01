@@ -1,3 +1,8 @@
+;; defaults.el -*- lexical-binding: t -*-
+
+(set-language-environment "UTF-8")
+(setq default-input-method nil)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq
@@ -121,3 +126,5 @@
     (pixel-scroll-precision-mode 1))
 
 (provide 'defaults)
+
+;;; defaults.el ends here
