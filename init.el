@@ -4,9 +4,6 @@
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
-(setq byte-compile-warnings '(cl-functions)
-      warning-suppress-log-types '((package reinitialization)))
-
 (setq inhibit-default-init t
       inhibit-splash-screen t
       inhibit-startup-message t
