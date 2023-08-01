@@ -29,9 +29,10 @@
 
 
 (use-package autorevert
+  :defer t
   :bind ("C-c t A" . auto-revert-tail-mode)
   :diminish (auto-revert-mode . " Ⓐ")
-  :config
+  :init
   (setq auto-revert-verbose nil)
   (when (eq system-type 'darwin)
     ;; File notifications aren't supported on OS X
@@ -442,7 +443,7 @@
   :diminish eldoc-mode
   :commands eldoc-mode
   :hook (emacs-lisp-mode . eldoc-mode)
-  :config
+  :init
   (setq eldoc-echo-area-use-multiline-p nil
         eldoc-idle-delay 0.5
         eldoc-print-after-edit nil))
@@ -484,6 +485,7 @@
 
 (when (display-graphic-p)
   (use-package exec-path-from-shell
+    :defer t
     :init
     ;;(setq exec-path-from-shell-debug t)
     (setq exec-path-from-shell-arguments '("-l" "-i")
@@ -574,6 +576,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package framemove
+  :defer 5
   :ensure nil
   :config
   (windmove-default-keybindings 'shift)
@@ -583,7 +586,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package fullframe
-  )
+  :defer t)
 
 
 (use-package gitconfig-mode
@@ -725,7 +728,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hydra
-  )
+  :defer t)
 
 
 (use-package ibuffer
@@ -1221,6 +1224,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package pyvenv
+  :defer t
   :init
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 
@@ -1384,6 +1388,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package savehist
+  :defer t
   :unless noninteractive
   :init
   (setq savehist-ignored-variables '(file-name-history))
@@ -1392,6 +1397,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package saveplace
+  :defer 5
   :unless noninteractive
   :init
   (setq save-place-file (expand-file-name ".places" user-emacs-directory))
@@ -1425,10 +1431,12 @@ _l_: Last error       _q_: Cancel
   :bind (("M-SPC" . cycle-spacing)))
 
 
-(use-package smartparens)
+(use-package smartparens
+  :defer t)
 
 
 (use-package smerge-mode
+  :defer t
   :bind (:map smerge-mode-map
               ("C-c h d" . hydra-smerge-mode/body))
   :init
@@ -1691,10 +1699,11 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package wgrep
-  :defer 5)
+  :defer t)
 
 
 (use-package which-key
+  :defer t
   :diminish which-key-mode
   :config
   (which-key-mode 1))
