@@ -541,11 +541,12 @@
   :config
   ;; (setq flycheck-pylint-use-symbolic-id nil)
   ;; (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
-  (defhydra hydra-flycheck
-    (:pre (flycheck-list-errors)
-          :post (quit-windows-on "*Flycheck errors*")
-          :hint nil)
-    "
+  (eval-and-compile
+    (defhydra hydra-flycheck
+      (:pre (flycheck-list-errors)
+            :post (quit-windows-on "*Flycheck errors*")
+            :hint nil)
+      "
 ^Actions^             ^Helpers^
 ---^^--------------------^^-----------------
 _j_: Next error       _d_: Display error
@@ -555,16 +556,16 @@ _k_: Previous error   _e_: Explain error
 _h_: First error      _x_: Disable checker
 _l_: Last error       _q_: Cancel
 "
-    ("c" flycheck-buffer)
-    ("d" flycheck-display-error-at-point)
-    ("e" flycheck-explain-error-at-point)
-    ("f" flycheck-error-list-set-filter)
-    ("h" flycheck-first-error)
-    ("j" flycheck-next-error)
-    ("k" flycheck-previous-error)
-    ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
-    ("q" nil)
-    ("x" flycheck-disable-checker)))
+      ("c" flycheck-buffer)
+      ("d" flycheck-display-error-at-point)
+      ("e" flycheck-explain-error-at-point)
+      ("f" flycheck-error-list-set-filter)
+      ("h" flycheck-first-error)
+      ("j" flycheck-next-error)
+      ("k" flycheck-previous-error)
+      ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
+      ("q" nil)
+      ("x" flycheck-disable-checker))))
 
 
 (use-package flycheck-color-mode-line
@@ -728,8 +729,7 @@ _l_: Last error       _q_: Cancel
 
 
 (use-package hydra
-  :defer t
-  :commands (defhydra))
+  :defer t)
 
 
 (use-package ibuffer
@@ -1441,9 +1441,10 @@ _l_: Last error       _q_: Cancel
   :init
   (setq smerge-command-prefix "\C-cv")
   :config
-  (defhydra hydra-smerge-mode
-    (:color pink :hint nil :post (smerge-auto-leave))
-    "
+  (eval-and-compile
+    (defhydra hydra-smerge-mode
+      (:color pink :hint nil :post (smerge-auto-leave))
+      "
    ^Motions^      ^Actions^
 ---^^-------------^^-------
 _n_: Next      _b_: Keep base
@@ -1451,13 +1452,13 @@ _p_: Prev      _u_: Keep upper
 ^^             _l_: Keep lower
 ^^             _a_: Keep all
 "
-    ("n" smerge-next)
-    ("p" smerge-prev)
-    ("b" smerge-keep-base)
-    ("u" smerge-keep-upper)
-    ("l" smerge-keep-lower)
-    ("a" smerge-keep-all)
-    ("q" nil "cancel" :color blue)))
+      ("n" smerge-next)
+      ("p" smerge-prev)
+      ("b" smerge-keep-base)
+      ("u" smerge-keep-upper)
+      ("l" smerge-keep-lower)
+      ("a" smerge-keep-all)
+      ("q" nil "cancel" :color blue))))
 
 
 (use-package solarized-theme
