@@ -1,15 +1,45 @@
-;; -*- lexical-binding: t -*-
+;; quick.el -*- lexical-binding: t -*-
 
 ;; (setq debug-on-error t)
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
 
-(setq load-prefer-newer noninteractive)
+(setq gc-cons-threshold most-positive-fixnum
+      load-prefer-newer noninteractive
+      package-enable-at-startup t
+      package-native-compile t)
+
+(setq byte-compile-warnings '(cl-functions)
+      warning-suppress-log-types '((package reinitialization)))
+
+(setq inhibit-default-init t
+      inhibit-splash-screen t
+      inhibit-startup-message t
+      initial-scratch-message nil)
+
+(menu-bar-mode 0)
+(set-cursor-color "red")
+(when window-system
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1))
+
+;;
+;; Compare with:
+;; emacs -nw -Q --eval='(message "%s" (emacs-init-time))'
+;;
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "+++ Emacs ready in %.1f seconds (%d garbage collections)"
+                     (float-time
+                      (time-subtract after-init-time before-init-time))
+                     gcs-done)))
+
+;;(package-initialize)
 
 ;; Bootstrap use-package
-(package-initialize)
 (setq package-native-compile t
-      use-package-always-ensure t
+      use-package-always-ensure nil
       use-package-compute-statistics t
       use-package-enable-imenu-support t
       use-package-verbose t)
@@ -17,7 +47,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
-
 
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
@@ -28,7 +57,8 @@
 
 (dolist (fn '("defuns" "defaults" "key-bindings"))
   (load (expand-file-name fn user-emacs-directory)))
-
+(when (eq system-type 'darwin)
+  (load (expand-file-name "macos" user-emacs-directory)))
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -36,17 +66,7 @@
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
-(defun load-local (file)
-  (load (expand-file-name file user-emacs-directory)))
-
-(dolist (fn '("defuns" "defaults" "key-bindings"))
-  (load-local fn))
-
-;; (load (expand-file-name "user" user-emacs-directory) 'noerror)
-
-;;---
-
-(show-paren-mode t)
+(load (expand-file-name "user" user-emacs-directory) 'noerror)
 
 (setq-default ediff-ignore-similar-regions t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain
@@ -65,3 +85,6 @@
 
 (use-package magit
   :defer t)
+
+(provide 'quick)
+;;; quick.el ends here

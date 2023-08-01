@@ -1,9 +1,8 @@
-;; -*- lexical-binding: t -*-
+;; init.el -*- lexical-binding: t -*-
 
 ;; (setq debug-on-error t)
 ;; (setq debug-on-signal t)
 ;; (setq debug-on-quit t)
-
 
 (setq byte-compile-warnings '(cl-functions)
       warning-suppress-log-types '((package reinitialization)))
@@ -16,9 +15,9 @@
 (menu-bar-mode 0)
 (set-cursor-color "red")
 (when window-system
-  (set-scroll-bar-mode nil)
-  (tool-bar-mode 0)
-  (tooltip-mode 0))
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1))
 
 
 ;;
@@ -43,10 +42,10 @@
         ("nongnu" . 0)
         ("gnu" . 0)))
 
+;; (package-initialize)
+
 ;; Bootstrap use-package
-(package-initialize)
-(setq package-native-compile t
-      use-package-always-ensure t
+(setq use-package-always-ensure t
       use-package-compute-statistics t
       use-package-enable-imenu-support t
       use-package-expand-minimally t
@@ -62,14 +61,6 @@
 (use-package f)
 (use-package dash)
 
-;; (use-package async
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (dired-async-mode 1)
-;;   (async-bytecomp-package-mode 1)
-;;   :custom (async-bytecomp-allowed-packages '(all)))
-
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path dir)
@@ -77,13 +68,10 @@
     (when (file-directory-p f)
       (add-to-list 'load-path f))))
 
-(defun load-local (file)
-  (load (expand-file-name file user-emacs-directory)))
-
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
-  (load-local fn))
+  (load (expand-file-name fn user-emacs-directory)))
 (when (eq system-type 'darwin)
-  (load-local "macos"))
+  (load (expand-file-name "macos" user-emacs-directory)))
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -97,3 +85,5 @@
  '(default ((t (:height 150)))))
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
+
+;;; init.el ends here
