@@ -42,7 +42,7 @@
         ("nongnu" . 0)
         ("gnu" . 0)))
 
-;; (package-initialize)
+(package-initialize)
 
 ;; Bootstrap use-package
 (setq use-package-always-ensure t

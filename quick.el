@@ -35,7 +35,7 @@
                       (time-subtract after-init-time before-init-time))
                      gcs-done)))
 
-;;(package-initialize)
+(package-initialize)
 
 ;; Bootstrap use-package
 (setq package-native-compile t
