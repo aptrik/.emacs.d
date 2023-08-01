@@ -1405,9 +1405,8 @@
 
 
 (use-package solarized-theme
+  :ensure t
   :config
-  (if window-system
-      (load-theme 'solarized-dark :no-confirm))
   (setf frame-background-mode 'dark)
 
   (custom-set-faces
@@ -1445,8 +1444,9 @@
    '(show-paren-match
      ((t (:foreground "black" :background "dark green" :bold t))))
    '(show-paren-mismatch
-     ((t (:foreground "yellow" :background "indian red" :bold t))))
-   ))
+     ((t (:foreground "yellow" :background "indian red" :bold t)))))
+
+  (load-theme 'solarized-dark :no-confirm))
 
 
 (use-package speedbar
