@@ -196,13 +196,13 @@
               ("SPC" . company-abort)
               ("TAB" . company-complete-common-or-cycle)
               ([tab] . company-complete-common-or-cycle))
+  :hook (after-init . global-company-mode)
   :init
   (dolist (hook '(emacs-lisp-mode-hook))
     (add-hook hook
               #'(lambda ()
                   (local-set-key (kbd "<tab>")
                                  #'company-indent-or-complete-common))))
-  :config
   (setq company-backends '((company-capf company-files company-keywords company-dabbrev-code))
         company-begin-commands '(self-insert-command)
         company-echo-delay 0
@@ -212,8 +212,7 @@
         company-show-numbers t
         company-tooltip-align-annotations t
         company-tooltip-flip-when-above t
-        company-tooltip-limit 20)
-  (global-company-mode 1))
+        company-tooltip-limit 20))
 
 
 (use-package company-box
