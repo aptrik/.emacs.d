@@ -69,6 +69,7 @@
  sentence-end-double-space       nil ; make M-[ae] work
  tab-always-indent               'complete
  truncate-partial-width-windows  nil
+ window-resize-pixelwise         t
  yank-excluded-properties        t) ; do not paste any properties
 
 (xlaunch
