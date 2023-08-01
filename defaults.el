@@ -117,4 +117,7 @@
 (put 'scroll-left 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+(if (boundp 'pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode 1))
+
 (provide 'defaults)
