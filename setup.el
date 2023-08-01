@@ -534,38 +534,8 @@
   :defer t
   :commands (flycheck-mode
              flycheck-next-error
-             flycheck-previous-error
-             hydra-flycheck/body)
-  :bind ("C-c t f" . flycheck-mode)
-  :bind (:map flycheck-mode-map ("C-c h l" . hydra-flycheck/body))
-  :config
-  ;; (setq flycheck-pylint-use-symbolic-id nil)
-  ;; (flycheck-add-next-checker 'python-flake8 '(t . python-pylint))
-  (eval-and-compile
-    (defhydra hydra-flycheck
-      (:pre (flycheck-list-errors)
-            :post (quit-windows-on "*Flycheck errors*")
-            :hint nil)
-      "
-^Actions^             ^Helpers^
----^^--------------------^^-----------------
-_j_: Next error       _d_: Display error
-_k_: Previous error   _e_: Explain error
-^^                    _c_: Check buffer
-^^                    _f_: Filter
-_h_: First error      _x_: Disable checker
-_l_: Last error       _q_: Cancel
-"
-      ("c" flycheck-buffer)
-      ("d" flycheck-display-error-at-point)
-      ("e" flycheck-explain-error-at-point)
-      ("f" flycheck-error-list-set-filter)
-      ("h" flycheck-first-error)
-      ("j" flycheck-next-error)
-      ("k" flycheck-previous-error)
-      ("l" (progn (goto-char (point-max)) (flycheck-previous-error)))
-      ("q" nil)
-      ("x" flycheck-disable-checker))))
+             flycheck-previous-error)
+  :bind ("C-c t f" . flycheck-mode))
 
 
 (use-package flycheck-color-mode-line
@@ -726,10 +696,6 @@ _l_: Last error       _q_: Cancel
 (use-package hl-line
   :commands hl-line-mode
   :bind ("C-c t l" . hl-line-mode))
-
-
-(use-package hydra
-  :defer t)
 
 
 (use-package ibuffer
@@ -1436,29 +1402,8 @@ _l_: Last error       _q_: Cancel
 
 (use-package smerge-mode
   :defer t
-  :bind (:map smerge-mode-map
-              ("C-c h d" . hydra-smerge-mode/body))
   :init
-  (setq smerge-command-prefix "\C-cv")
-  :config
-  (eval-and-compile
-    (defhydra hydra-smerge-mode
-      (:color pink :hint nil :post (smerge-auto-leave))
-      "
-   ^Motions^      ^Actions^
----^^-------------^^-------
-_n_: Next      _b_: Keep base
-_p_: Prev      _u_: Keep upper
-^^             _l_: Keep lower
-^^             _a_: Keep all
-"
-      ("n" smerge-next)
-      ("p" smerge-prev)
-      ("b" smerge-keep-base)
-      ("u" smerge-keep-upper)
-      ("l" smerge-keep-lower)
-      ("a" smerge-keep-all)
-      ("q" nil "cancel" :color blue))))
+  (setq smerge-command-prefix "\C-cv"))
 
 
 (use-package solarized-theme
