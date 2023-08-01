@@ -1305,17 +1305,15 @@ _l_: Last error       _q_: Cancel
              rg-dwim-project-dir
              rg-dwim-current-dir
              rg-dwim-current-file)
-  :bind (("M-s r r" . rg-custom-search-all)
-         ("M-s r a" . rg))
+  :bind (
+         ("M-s r r" . rg-dwim)
+         ("M-s r p" . rg-dwim-project-dir)
+         ("M-s r d" . rg-dwim-current-dir)
+         ("M-s r c" . rg-dwim-current-file)
+         )
   :bind (:map rg-mode-map
               ("C-c '" . wgrep-change-to-wgrep-mode)
-              ("q" . kill-buffer-and-window))
-  ;; :hook (rg-mode . (lambda () (interactive) (toggle-truncate-lines t)))
-  :config
-  (rg-define-search rg-custom-search-all
-    :format regexp
-    :dir current
-    :files "*"))
+              ("q" . kill-buffer-and-window)))
 
 (use-package rg-menu
   :ensure nil
