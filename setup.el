@@ -1220,6 +1220,11 @@ _l_: Last error       _q_: Cancel
   :hook (protobuf-mode . (lambda () (c-add-style "my-style" my-protobuf-style t))))
 
 
+(use-package pyvenv
+  :init
+  (setenv "WORKON_HOME" "~/.pyenv/versions"))
+
+
 (use-package python
   :commands setup--python-mode
   :bind (:map python-mode-map
