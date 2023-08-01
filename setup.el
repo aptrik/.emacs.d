@@ -434,7 +434,8 @@
   :commands edit-env)
 
 
-(use-package eglot)
+(use-package eglot
+  :defer t)
 
 
 (use-package eldoc
