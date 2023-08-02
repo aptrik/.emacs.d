@@ -27,7 +27,8 @@
                       (time-subtract after-init-time before-init-time))
                      gcs-done)))
 
-(setq package-archives
+(setq package-native-compile t
+      package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("elpa" . "https://elpa.gnu.org/packages/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
@@ -40,13 +41,13 @@
 
 
 ;; Bootstrap use-package
-(setq package-native-compile t
-      use-package-always-ensure t
+(setq use-package-always-ensure t
       use-package-compute-statistics t
       use-package-enable-imenu-support t
       use-package-expand-minimally t
       use-package-verbose t)
 
+(require 'use-package)
 (use-package bind-key)
 (use-package diminish)
 (use-package s)
