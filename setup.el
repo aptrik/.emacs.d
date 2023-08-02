@@ -862,6 +862,13 @@
   (setq Man-notify-method 'pushy))
 
 
+(use-package marginalia
+  :ensure t
+  :after vertico
+  :init
+  (marginalia-mode))
+
+
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode))
   :init
@@ -1582,6 +1589,17 @@ This is used to set `sql-alternate-buffer-name' within
 ;;   :config
 ;;   (setq hg-commit-allow-empty-message t
 ;;         vc-hg-diff-switches "--text"))
+
+
+(use-package vertico
+  :ensure t
+  :custom
+  (vertico-cycle t)
+  (read-buffer-completion-ignore-case t)
+  (read-file-name-completion-ignore-case t)
+  (completion-styles '(basic substring partial-completion flex))
+  :init
+  (vertico-mode))
 
 
 (use-package vimrc-mode
