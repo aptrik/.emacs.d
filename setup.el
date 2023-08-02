@@ -317,7 +317,6 @@
 (use-package dired
   :ensure nil
   :defer t
-  :after exec-path-from-shell
   :bind ("C-c j" . dired--downloads)
   :bind (:map dired-mode-map
               ("<tab>" . dired-next-window)
@@ -480,31 +479,30 @@
   :bind (("C-c e t" . ert-run-tests-interactively)))
 
 
-(when (display-graphic-p)
-  (use-package exec-path-from-shell
-    :defer t
-    :init
-    ;;(setq exec-path-from-shell-debug t)
-    (setq exec-path-from-shell-arguments '("-l" "-i")
-          exec-path-from-shell-check-startup-files nil
-          exec-path-from-shell-variables
-          '("DISPLAY"
-	    "SSH_AGENT_PID"
-	    "SSH_ASKPASS"
-	    "SSH_AUTH_SOCK"
-	    "SSH_CONNECTION"
-	    "TMUX_PROJECT_PATH"
-	    "WINDOWID"
-	    "XAUTHORITY"
-            "LANG"
-            "MANPATH"
-            "PATH"
-            "PGPPATH"
-            "PYTHONPATH"
-            "SSH_AGENT_PID"
-	    ))
-    :config
-    (exec-path-from-shell-initialize)))
+(use-package exec-path-from-shell
+  :if (and (display-graphic-p) (not (executable-find "rg")))
+  :init
+  ;;(setq exec-path-from-shell-debug t)
+  (setq exec-path-from-shell-arguments '("-l" "-i")
+        exec-path-from-shell-check-startup-files nil
+        exec-path-from-shell-variables
+        '("DISPLAY"
+          "SSH_AGENT_PID"
+          "SSH_ASKPASS"
+          "SSH_AUTH_SOCK"
+          "SSH_CONNECTION"
+          "TMUX_PROJECT_PATH"
+          "WINDOWID"
+          "XAUTHORITY"
+          "LANG"
+          "MANPATH"
+          "PATH"
+          "PGPPATH"
+          "PYTHONPATH"
+          "SSH_AGENT_PID"
+          ))
+  :config
+  (exec-path-from-shell-initialize))
 
 
 (use-package expand-region
