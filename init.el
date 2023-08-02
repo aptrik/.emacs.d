@@ -66,12 +66,6 @@
 (when (eq system-type 'darwin)
   (load (expand-file-name "macos" user-emacs-directory)))
 
-;; Set customization file.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file 'noerror)
-
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-
 (custom-set-faces
  '(variable-pitch ((t (:height 170))))
  '(fixed-pitch ((t (:height 150))))
