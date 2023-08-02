@@ -987,7 +987,7 @@
   :mode ("\\.org\\'" . org-mode)
   :init
   (setq org-replace-disputed-keys t
-        org-export-backends '(ascii html md reveal twbs))
+        org-export-backends '(ascii html md reveal))
   :hook (org-mode . setup--org-mode)
   :config
   (setq
@@ -1069,6 +1069,10 @@
 
     (local-set-key [M-up]   'outline-previous-visible-heading)
     (local-set-key [M-down] 'outline-next-visible-heading)))
+
+
+(use-package ox-reveal
+  :defer t)
 
 
 (use-package paren
