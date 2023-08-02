@@ -542,7 +542,6 @@
 
 
 (use-package framemove
-  :defer 5
   :ensure nil
   :config
   (windmove-default-keybindings 'shift)
