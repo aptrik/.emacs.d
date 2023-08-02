@@ -40,13 +40,11 @@
         ("gnu" . 0)))
 
 (when (eval-when-compile (version< emacs-version "29"))
-  ;;(require 'package)
   (package-initialize)
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package)
     (eval-when-compile (require 'use-package))))
-
 
 ;; Bootstrap use-package
 (setq use-package-always-ensure t
@@ -78,6 +76,10 @@
  '(variable-pitch ((t (:height 170))))
  '(fixed-pitch ((t (:height 150))))
  '(default ((t (:height 150)))))
+
+;; Set customization file.
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
 
 (load (expand-file-name "user" user-emacs-directory) 'noerror)
 
