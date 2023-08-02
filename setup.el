@@ -1411,46 +1411,48 @@
 
 (use-package solarized-theme
   :ensure t
+  :custom-face
+  (variable-pitch ((t (:height 170))))
+  (fixed-pitch ((t (:height 150))))
+  (default ((t (:height 150))))
+
+  (cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
+  ;; (region ((t (:foreground "black" :background "#b5d5ff"))))
+  (match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
+  (highlight ((t :background "black" :underline nil)))
+
+  ;; diff
+  (diff-added ((t (:foreground "green4" :underline nil))))
+  (diff-changed ((t (:foreground "blue3"))))
+  (diff-removed ((t (:foreground "red4" :underline nil))))
+  (diff-refine-added ((t (:background "#446644" :foreground "green"))))
+  (diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
+  (diff-refine-removed ((t (:background "#664444" :foreground "red"))))
+
+  ;; magit
+  (magit-item-highlight ((t nil)))
+
+  ;; hl-line-mode
+  (hl-line-face ((t (:background "gray10"))))
+
+  ;; idle-highlight
+  (idle-highlight ((t (:foreground "yellow" :background "black"))))
+
+  ;; isearch
+  (isearch
+   ((t (:foreground "black" :background "yellow" :bold t))))
+  (isearch-lazy-highlight-face
+   ((t (:foreground "black" :background "yellow"))))
+  (isearch-fail
+   ((t (:foreground "red" :background "yellow" :bold t))))
+
+  ;; show-paren
+  (show-paren-match
+   ((t (:foreground "black" :background "dark green" :bold t))))
+  (show-paren-mismatch
+   ((t (:foreground "yellow" :background "indian red" :bold t))))
   :config
   (setf frame-background-mode 'dark)
-
-  (custom-set-faces
-   '(cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
-   ;; '(region ((t (:foreground "black" :background "#b5d5ff"))))
-   '(match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
-   '(highlight ((t :background "black" :underline nil)))
-
-   ;; diff
-   '(diff-added ((t (:foreground "green4" :underline nil))))
-   '(diff-changed ((t (:foreground "blue3"))))
-   '(diff-removed ((t (:foreground "red4" :underline nil))))
-   '(diff-refine-added ((t (:background "#446644" :foreground "green"))))
-   '(diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
-   '(diff-refine-removed ((t (:background "#664444" :foreground "red"))))
-
-   ;; magit
-   '(magit-item-highlight ((t nil)))
-
-   ;; hl-line-mode
-   '(hl-line-face ((t (:background "gray10"))))
-
-   ;; idle-highlight
-   '(idle-highlight ((t (:foreground "yellow" :background "black"))))
-
-   ;; isearch
-   '(isearch
-     ((t (:foreground "black" :background "yellow" :bold t))))
-   '(isearch-lazy-highlight-face
-     ((t (:foreground "black" :background "yellow"))))
-   '(isearch-fail
-     ((t (:foreground "red" :background "yellow" :bold t))))
-
-   ;; show-paren
-   '(show-paren-match
-     ((t (:foreground "black" :background "dark green" :bold t))))
-   '(show-paren-mismatch
-     ((t (:foreground "yellow" :background "indian red" :bold t)))))
-
   (load-theme 'solarized-dark :no-confirm))
 
 
