@@ -317,6 +317,7 @@
 (use-package dired
   :ensure nil
   :defer t
+  :after exec-path-from-shell
   :bind ("C-c j" . dired--downloads)
   :bind (:map dired-mode-map
               ("<tab>" . dired-next-window)
