@@ -3,5 +3,10 @@ mypy; python_version >= '3.0'
 pylint
 pylint-common  # pylint-common is a Pylint plugin to improve Pylint error analysis of
 pylint-mccabe  # McCabe complexity checker as a PyLint plugin
+pyls-black; python_version > '3.0'
+pyls-isort; python_version > '3.0'
+pyls-mypy; python_version > '3.0'
+pyright
+python-lsp-server[all]; python_version > '3.0'
 sourcery-cli; python_version > '3.0'
 yamllint

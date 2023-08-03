@@ -228,6 +228,10 @@
   (setq-local company-backend '(company-elisp)))
 
 
+(use-package company-go
+  :defer t)
+
+
 (use-package company-terraform
   :after (company terraform-mode))
 
@@ -581,19 +585,14 @@
   ;; (use-package flycheck-golangci-lint
   ;;   :after flycheck)
 
-  (defun setup--go-organize-imports ()
-    (call-interactively 'eglot-code-action-organize-imports))
-
   (defun setup--go-save-hook ()
-    (add-hook 'before-save-hook #'eglot-format-buffer -10 t)
-    (add-hook 'before-save-hook #'setup--go-organize-imports nil t))
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
   (defun setup--go-mode ()
     (setq indent-tabs-mode t
           tab-width 4)
     (set (make-local-variable 'company-backends) '(company-go))
-    (eglot-ensure)
-    (eglot-inlay-hints-mode 1)
     (eldoc-mode 1)
     (company-mode 1)
     (flycheck-mode 1)
@@ -827,6 +826,86 @@
     (add-hook 'after-save-hook 'check-parens nil t)
     (company-mode 1)
     (local-set-key (kbd "C-.") 'company-complete)))
+
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook ((go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)
+         (python-mode . lsp-deferred))
+  :init
+  (setq read-process-output-max (* 1024 1024))
+  :custom
+  (lsp-completion-enable t)
+  (lsp-completion-provider :capf)
+  (lsp-eldoc-enable-hover t)
+  (lsp-eldoc-render-all nil)
+  (lsp-enable-snippet t)
+  (lsp-gopls-complete-unimported t)
+  (lsp-gopls-staticcheck t)
+  (lsp-headerline-breadcrumb-enable t)
+  (lsp-highlight-symbol-at-point t)
+  (lsp-idle-delay 0.6)
+  (lsp-keymap-prefix "C-c l")
+  (lsp-prefer-capf t)
+  (lsp-pyls-plugins-flake8-enabled t)
+  :config
+  (use-package lsp-lens :ensure nil)
+  (use-package lsp-headerline :ensure nil)
+  (lsp-enable-which-key-integration t)
+  (lsp-register-custom-settings
+   '(
+     ("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t)
+
+     ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
+     ("pyls.plugins.pydocstyle.enabled" t t)
+     ("pyls.plugins.pyls_mypy.enabled" t t)
+     ("pyls.plugins.pyls_mypy.live_mode" nil t)
+     ("pyls.plugins.pyls_black.enabled" t t)
+     ("pyls.plugins.pyls_isort.enabled" t t)
+     ;; Disable these as they're duplicated by flake8
+     ("pyls.plugins.pycodestyle.enabled" nil t)
+     ("pyls.plugins.mccabe.enabled" nil t)
+     ("pyls.plugins.pyflakes.enabled" nil t)))
+  (when (getenv "SOURCERY_TOKEN")
+    (lsp-register-client
+     (make-lsp-client
+      :new-connection (lsp-stdio-connection '("sourcery" "lsp"))
+      :initialization-options
+      '((token . ,(getenv "SOURCERY_TOKEN"))
+        (extension_version . "emacs-lsp")
+        (editor_version . "emacs"))
+      :activation-fn (lsp-activate-on "python")
+      :server-id 'sourcery
+      :add-on? t
+      :priority 2))))
+
+
+(use-package lsp-java
+  :defer t
+  :init
+  ;; workaround https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
+  (add-to-list 'image-types 'svg)
+  :config
+  (setq lsp-java-vmargs
+        (list
+         "-noverify"
+         "-Xmx3G"
+         "-XX:+UseG1GC"
+         "-XX:+UseStringDeduplication"
+         "-Djava.awt.headless=true")))
+
+
+(use-package lsp-treemacs
+  :after lsp-mode
+  :commands lsp-treemacs-errors-list)
+
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode))
 
 
 (use-package macrostep
