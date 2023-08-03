@@ -1689,6 +1689,12 @@ This is used to set `sql-alternate-buffer-name' within
 
 (use-package vertico
   :ensure t
+  :bind (:map vertico-map
+              ("<tab>" . vertico-insert)
+              ("<down>" . vertico-next)
+              ("<up>" . vertico-previous)
+              ("C-M-<down>" . vertico-next-group)
+              ("C-M-<up>" . vertico-previous-group))
   :custom
   (vertico-cycle t)
   (read-buffer-completion-ignore-case t)
