@@ -560,6 +560,15 @@
   :defer t)
 
 
+(use-package git-gutter
+  :defer t
+  :diminish git-gutter-mode
+  :bind (("C-c C-n" . git-gutter:next-hunk)
+         ("C-c C-p" . git-gutter:previous-hunk))
+  :config
+  (global-git-gutter-mode +1))
+
+
 (use-package gitconfig-mode
   :ensure nil
   :mode ("/gitconfig\\'" . gitconfig-mode))
