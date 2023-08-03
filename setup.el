@@ -216,7 +216,9 @@
 
 
 (use-package company-box
+  :defer t
   :after company
+  :diminish company-box-mode
   :hook (company-mode . company-box-mode))
 
 
