@@ -554,6 +554,11 @@
   :hook (flycheck-mode . flycheck-color-mode-line-mode))
 
 
+(use-package flycheck-yamllint
+  :defer t
+  :after flycheck)
+
+
 (use-package framemove
   :ensure nil
   :config
@@ -1794,13 +1799,7 @@ This is used to set `sql-alternate-buffer-name' within
   :defer t
   :commands (yaml-mode setup--yaml-mode)
   :mode ("\\.ya?ml\\'" . yaml-mode)
-  :hook (yaml-mode . setup--yaml-mode)
-  :config
-  (use-package flycheck-yamllint)
-
-  (defun setup--yaml-mode ()
-    (add-to-list 'flycheck-disabled-checkers 'yaml-ruby t)
-    (flycheck-mode 1)))
+  :hook (yaml-mode . flycheck-mode))
 
 
 (use-package yasnippet
