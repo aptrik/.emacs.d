@@ -18,6 +18,11 @@
   :hook (ahg-status-mode . turn-on-truncate-lines))
 
 
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
+
 (use-package all-the-icons-completion
   :after (marginalia all-the-icons)
   :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
