@@ -1369,6 +1369,10 @@
   :commands (py-isort-buffer))
 
 
+(use-package rainbow-mode
+  :defer t)
+
+
 (use-package re-builder
   :defer t
   :config
