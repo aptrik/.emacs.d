@@ -5,6 +5,7 @@
 
 
 (use-package aggressive-indent
+  :disabled
   :diminish
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
