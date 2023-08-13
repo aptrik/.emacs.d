@@ -20,15 +20,23 @@
 
 
 (use-package all-the-icons
-  :ensure t
   :if (display-graphic-p))
 
 
 (use-package all-the-icons-completion
+  :if (display-graphic-p)
   :after (marginalia all-the-icons)
   :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
   :init
   (all-the-icons-completion-mode))
+
+
+(use-package all-the-icons-dired
+  :disabled
+  :if (display-graphic-p)
+  :hook (dired-mode . all-the-icons-dired-mode)
+  :custom
+  (all-the-icons-dired-monochrome nil))
 
 
 (use-package ansible-doc
