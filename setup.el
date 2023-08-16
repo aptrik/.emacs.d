@@ -894,9 +894,11 @@
   (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
+  (setq lsp-go-use-gofumpt t)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
+     ("gopls.gofumpt" t)
      ("gopls.completeUnimported" t t)
      ("gopls.staticcheck" t t)
 
