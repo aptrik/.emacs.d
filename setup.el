@@ -865,6 +865,12 @@
     (local-set-key (kbd "C-.") 'company-complete)))
 
 
+(use-package lsp-headerline
+  :ensure nil
+  :defer t
+  :after lsp-mode)
+
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook ((go-mode . lsp-deferred)
@@ -888,8 +894,6 @@
   (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
-  (use-package lsp-lens :ensure nil)
-  (use-package lsp-headerline :ensure nil)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
@@ -908,6 +912,11 @@
      ("pyls.plugins.pyflakes.enabled" nil t)))
   )
 
+
+(use-package lsp-lens
+  :ensure nil
+  :defer t
+  :after lsp-mode)
 
 
 (use-package lsp-java
