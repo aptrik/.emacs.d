@@ -906,18 +906,8 @@
      ("pyls.plugins.pycodestyle.enabled" nil t)
      ("pyls.plugins.mccabe.enabled" nil t)
      ("pyls.plugins.pyflakes.enabled" nil t)))
-  (when (getenv "SOURCERY_TOKEN")
-    (lsp-register-client
-     (make-lsp-client
-      :new-connection (lsp-stdio-connection '("sourcery" "lsp"))
-      :initialization-options
-      '((token . ,(getenv "SOURCERY_TOKEN"))
-        (extension_version . "emacs-lsp")
-        (editor_version . "emacs"))
-      :activation-fn (lsp-activate-on "python")
-      :server-id 'sourcery
-      :add-on? t
-      :priority 2))))
+  )
+
 
 
 (use-package lsp-java
