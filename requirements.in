@@ -8,5 +8,4 @@ pyls-isort; python_version > '3.0'
 pyls-mypy; python_version > '3.0'
 pyright
 python-lsp-server[all]; python_version > '3.0'
-sourcery-cli; python_version > '3.0'
 yamllint
