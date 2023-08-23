@@ -557,7 +557,13 @@
   :commands (flycheck-mode
              flycheck-next-error
              flycheck-previous-error)
-  :bind ("C-c t f" . flycheck-mode))
+  :bind ("C-c t f" . flycheck-mode)
+  :config
+  (defvar-local flycheck-local-checkers nil)
+  (defun +flycheck-checker-get(fn checker property)
+    (or (alist-get property (alist-get checker flycheck-local-checkers))
+        (funcall fn checker property)))
+  (advice-add 'flycheck-checker-get :around '+flycheck-checker-get))
 
 
 (use-package flycheck-color-mode-line
@@ -566,6 +572,12 @@
   :commands flycheck-color-mode-line-mode
   :config
   :hook (flycheck-mode . flycheck-color-mode-line-mode))
+
+
+(use-package flycheck-golangci-lint
+  :commands flycheck-golangci-lint-setup
+  :config
+  (setq flycheck-golangci-lint-fast t))
 
 
 (use-package flycheck-yamllint
@@ -614,14 +626,12 @@
   :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . setup--go-mode)
          (go-mode . setup--go-save-hook)
-         ;; (go-mode . flycheck-golangci-lint-setup)
-         )
+         (go-mode . (lambda()
+                      (flycheck-golangci-lint-setup)
+                      (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
   :bind (:map go-mode-map
               ("C-." . company-complete))
   :config
-  ;; (use-package flycheck-golangci-lint
-  ;;   :after flycheck)
-
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
@@ -894,7 +904,8 @@
   (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
-  (setq lsp-go-use-gofumpt t)
+  (setq lsp-go-use-gofumpt t
+        lsp-prefer-flymake nil)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
