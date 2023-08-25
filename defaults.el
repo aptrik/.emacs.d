@@ -72,7 +72,7 @@
  window-resize-pixelwise         t
  yank-excluded-properties        t) ; do not paste any properties
 
-(xlaunch
+(when (display-graphic-p)
  (setq frame-title-format '("" user-login-name "@" system-name)))
 
 ;;; Turn on some minor modes.

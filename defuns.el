@@ -63,10 +63,6 @@
 ;;-----------------------------------------------------------------------------
 ;;; Miscellaneous routines
 
-(defmacro xlaunch (&rest x)
-  (list 'if (display-graphic-p)
-        (cons 'progn x)))
-
 (defun buffer-file-name-body ()
   "Buffer file name stripped of directory and extension."
   (if (buffer-file-name)
