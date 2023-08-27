@@ -1584,7 +1584,6 @@
   (show-paren-mismatch
    ((t (:foreground "yellow" :background "indian red" :bold t))))
   :config
-  (setf frame-background-mode 'dark)
   (load-theme 'solarized-dark :no-confirm))
 
 
