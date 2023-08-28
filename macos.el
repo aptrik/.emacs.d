@@ -8,7 +8,9 @@
       ns-right-command-modifier 'meta)
 
 (when (display-graphic-p)
-  (menu-bar-mode 1))
+  (menu-bar-mode 1)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
 (setq browse-url-browser-function 'browse-url-default-macosx-browser)
 
