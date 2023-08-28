@@ -49,6 +49,7 @@
  default-major-mode              'indented-text-mode
  delete-by-moving-to-trash       nil ; Disable trash can support.
  eval-expression-print-level     nil
+ frame-inhibit-implied-resize    t
  frame-resize-pixelwise          t
  garbage-collection-messages     nil
  history-delete-duplicates       t
