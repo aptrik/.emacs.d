@@ -1335,6 +1335,7 @@
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
               ("C-." . company-complete)
+              ("C-c B" . blacken-buffer)
               ("C-c I" . python-isort-buffer)
               ("C-c 2 3" . python-2to3-current-buffer)
               ("<f9>" . py-run)
