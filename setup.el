@@ -1335,7 +1335,7 @@
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
               ("C-." . company-complete)
-              ("C-c I" . py-isort-buffer)
+              ("C-c I" . python-isort-buffer)
               ("C-c 2 3" . python-2to3-current-buffer)
               ("<f9>" . py-run)
               ("<S-f9>" . pdb)
@@ -1385,8 +1385,9 @@
     (set (make-variable-buffer-local 'outline-regexp) "def\\|class ")
     (set (make-variable-buffer-local 'indent-tabs-mode) nil)))
 
-(use-package py-isort
-  :commands (py-isort-buffer))
+
+(use-package python-isort
+  :after python)
 
 
 (use-package rainbow-mode
