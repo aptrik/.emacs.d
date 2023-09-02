@@ -1126,7 +1126,6 @@
   :hook (org-mode . setup--org-mode)
   :config
   (setq
-   org-agenda-files '("~/Dropbox/org/")
    org-agenda-span 14
    org-agenda-start-on-weekday nil
    org-clock-history-length 20
