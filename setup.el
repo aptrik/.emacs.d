@@ -1417,12 +1417,8 @@
              rg-dwim-project-dir
              rg-dwim-current-dir
              rg-dwim-current-file)
-  :bind (
-         ("M-s r r" . rg-dwim)
-         ("M-s r p" . rg-dwim-project-dir)
-         ("M-s r d" . rg-dwim-current-dir)
-         ("M-s r c" . rg-dwim-current-file)
-         )
+  :bind (("M-s r r" . rg)
+         ("M-s r p" . rg-project))
   :bind (:map rg-mode-map
               ("C-c '" . wgrep-change-to-wgrep-mode)
               ("q" . kill-buffer-and-window)))
