@@ -19,26 +19,6 @@
   :hook (ahg-status-mode . turn-on-truncate-lines))
 
 
-(use-package all-the-icons
-  :if (display-graphic-p))
-
-
-(use-package all-the-icons-completion
-  :if (display-graphic-p)
-  :after (marginalia all-the-icons)
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :init
-  (all-the-icons-completion-mode))
-
-
-(use-package all-the-icons-dired
-  :disabled
-  :if (display-graphic-p)
-  :hook (dired-mode . all-the-icons-dired-mode)
-  :custom
-  (all-the-icons-dired-monochrome nil))
-
-
 (use-package ansible-doc
   :hook (yaml-mode . ansible-doc-mode))
 
@@ -997,13 +977,6 @@
   (setq Man-notify-method 'pushy))
 
 
-(use-package marginalia
-  :ensure t
-  :after vertico
-  :init
-  (marginalia-mode))
-
-
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode))
   :init
@@ -1730,23 +1703,6 @@ This is used to set `sql-alternate-buffer-name' within
 ;;   :config
 ;;   (setq hg-commit-allow-empty-message t
 ;;         vc-hg-diff-switches "--text"))
-
-
-(use-package vertico
-  :ensure t
-  :bind (:map vertico-map
-              ("<tab>" . vertico-insert)
-              ("<down>" . vertico-next)
-              ("<up>" . vertico-previous)
-              ("C-M-<down>" . vertico-next-group)
-              ("C-M-<up>" . vertico-previous-group))
-  :custom
-  (vertico-cycle t)
-  (read-buffer-completion-ignore-case t)
-  (read-file-name-completion-ignore-case t)
-  (completion-styles '(basic substring partial-completion flex))
-  :init
-  (vertico-mode))
 
 
 (use-package vimrc-mode
