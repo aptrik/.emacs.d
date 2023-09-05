@@ -1801,7 +1801,8 @@ This is used to set `sql-alternate-buffer-name' within
             "www.ietf.org/ID.html"
             ,(concat "search.ietf.org/cgi-bin/htsearch?restrict="
                      (webjump-url-encode "http://www.ietf.org/internet-drafts/")
-                     "&words=") ""]))))
+                     "&words=")
+            ""]))))
 
 
 (use-package wgrep
@@ -1809,7 +1810,6 @@ This is used to set `sql-alternate-buffer-name' within
 
 
 (use-package which-key
-  :defer t
   :diminish which-key-mode
   :config
   (which-key-mode 1))
