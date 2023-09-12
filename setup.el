@@ -487,7 +487,7 @@
 
 
 (use-package exec-path-from-shell
-  :if (and (display-graphic-p) (not (executable-find "rg")))
+  :if (display-graphic-p)
   :init
   ;;(setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-arguments '("-l" "-i")
