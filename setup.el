@@ -722,6 +722,7 @@
 
 (use-package hl-line
   :commands hl-line-mode
+  :hook (((prog-mode text-mode) . hl-line-mode))
   :bind ("C-c t l" . hl-line-mode))
 
 
