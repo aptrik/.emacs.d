@@ -1519,6 +1519,9 @@
 
 (use-package solarized-theme
   :ensure t
+  :if (display-graphic-p)
+  :config
+  (load-theme 'solarized-dark :no-confirm)
   :custom-face
   (variable-pitch ((t (:height 170))))
   (fixed-pitch ((t (:height 150))))
@@ -1558,9 +1561,7 @@
   (show-paren-match
    ((t (:foreground "black" :background "dark green" :bold t))))
   (show-paren-mismatch
-   ((t (:foreground "yellow" :background "indian red" :bold t))))
-  :config
-  (load-theme 'solarized-dark :no-confirm))
+   ((t (:foreground "yellow" :background "indian red" :bold t)))))
 
 
 (use-package speedbar
