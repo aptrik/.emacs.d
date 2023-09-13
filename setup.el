@@ -1474,7 +1474,6 @@
 
 
 (use-package saveplace
-  :defer 5
   :unless noninteractive
   :init
   (setq save-place-file (expand-file-name ".places" user-emacs-directory))
