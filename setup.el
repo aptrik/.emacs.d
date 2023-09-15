@@ -951,6 +951,7 @@
 
 (use-package magit
   :defer t
+  :bind (("C-x v SPC" . magit-status))
   :commands magit-status
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
