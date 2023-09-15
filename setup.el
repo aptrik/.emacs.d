@@ -952,7 +952,6 @@
 (use-package magit
   :defer t
   :commands magit-status
-  :hook (magit-mode . hl-line-mode)
   :config
   (setq ;; magit-completing-read-function 'ivy-completing-read
    magit-diff-refine-hunk t
