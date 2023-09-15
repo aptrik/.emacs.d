@@ -1193,11 +1193,10 @@
   :defer t
   :mode (("\\.pdf\\'" . pdf-view-mode))
   :config
-  (progn
-    (setq-default pdf-view-display-size 'fit-width)
-    (setq pdf-annot-activate-created-annotations t
-          pdf-view-resize-factor 1.10)
-    (pdf-tools-install)))
+  (setq-default pdf-view-display-size 'fit-width)
+  (setq pdf-annot-activate-created-annotations t
+        pdf-view-resize-factor 1.10)
+  (pdf-tools-install))
 
 
 (use-package php-mode
