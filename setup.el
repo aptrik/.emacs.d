@@ -1275,6 +1275,11 @@
         ps-landscape-mode     t))
 
 
+(use-package prog-mode
+  :ensure nil
+  :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))))
+
+
 (use-package projectile
   :defer t
   :commands (projectile-mode projectile-global-mode)
