@@ -709,7 +709,7 @@
 
 
 (use-package helm-projectile
-  :bind (("C-x f" . helm-projectile-find-file)
+  :bind (("M-s M-s" . helm-projectile-find-file)
          ("C-c o p" . helm-projectile-find-file))
   :config
   (helm-projectile-on))
