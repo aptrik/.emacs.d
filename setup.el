@@ -874,7 +874,7 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook ((go-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
+         ;; (java-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration)
          (python-mode . lsp-deferred))
   :init
