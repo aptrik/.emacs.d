@@ -579,7 +579,6 @@
 
 
 (use-package git-gutter
-  :disabled t
   :diminish git-gutter-mode
   :hook (prog-mode . git-gutter-mode)
   :bind (("C-c C-n" . git-gutter:next-hunk)
@@ -589,7 +588,6 @@
 
 
 (use-package git-gutter-fringe
-  :disabled t
   :config
   (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
