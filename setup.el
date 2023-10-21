@@ -999,16 +999,13 @@
 (use-package multiple-cursors
   :defer t
   :commands (mc/mark-next-like-this)
-  :bind (("C->"         . mc/mark-next-like-this)
-         ("C-c C->"     . mc/unmark-next-like-this)
-         ("C-<"         . mc/mark-previous-like-this)
-         ("C-c C-<"     . mc/unmark-previous-like-this)
-         ("C-c <"       . mc/mark-all-like-this)
-         ("C-|"         . mc/edit-lines)
-         ("<M-S-up>"    . mc/mark-previous-like-this)
-         ("<M-S-down>"  . mc/mark-next-like-this)
-         ("s-<mouse-1>" . mc/add-cursor-on-click)))
-
+  :bind (("C-c <" . mc/mark-all-like-this)
+         ("C-|" . mc/edit-lines)
+         ("<M-S-up>" . mc/mark-previous-like-this)
+         ("<M-S-down>" . mc/mark-next-like-this)
+         ("<M-S-C-up>" . mc/unmark-next-like-this)
+         ("<M-S-C-down>" . mc/unmark-previous-like-this)
+         ("S-<mouse-1>" . mc/add-cursor-on-click)))
 
 (use-package newcomment
   :ensure nil
