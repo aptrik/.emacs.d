@@ -1307,6 +1307,17 @@
   :hook (protobuf-mode . (lambda () (c-add-style "my-style" my-protobuf-style t))))
 
 
+(use-package pulse
+  :defer t
+  :init (defun pulse-line (&rest _)
+          (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(other-window
+                     windmove-do-window-select
+                     mouse-set-point
+                     mouse-select-window))
+    (advice-add command :after #'pulse-line)))
+
+
 (use-package pyvenv
   :defer t
   :init
