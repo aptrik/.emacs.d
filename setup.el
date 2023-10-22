@@ -871,12 +871,10 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook ((go-mode . lsp-deferred)
-         ;; (java-mode . lsp-deferred)
-         (lsp-mode . lsp-enable-which-key-integration)
-         (python-mode . lsp-deferred))
+  :bind ((:map lsp-mode-map
+               ("M-<return>" . lsp-execute-code-action)))
   :init
-  (setq read-process-output-max (* 1024 1024))
+  (setq read-process-output-max (* 3 1024 1024))
   :custom
   (lsp-completion-enable t)
   (lsp-completion-provider :capf)
@@ -914,15 +912,11 @@
   )
 
 
-(use-package lsp-lens
-  :ensure nil
-  :defer t
-  :after lsp-mode)
-
-
 (use-package lsp-java
   :defer t
   :init
+  (require 'lsp-java-boot)
+  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
   ;; workaround https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
   (add-to-list 'image-types 'svg)
   :config
@@ -935,6 +929,31 @@
          "-Djava.awt.headless=true")))
 
 
+(use-package lsp-languages
+  :no-require t
+  :ensure nil
+  :hook ((go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
+         (js-mode . lsp-deferred)
+         (javascript-mode . lsp-deferred)
+         (web-mode . lsp-deferred)))
+
+
+(use-package lsp-lens
+  :ensure nil
+  :defer t
+  :after lsp-mode)
+
+
+(use-package lsp-pyright
+  :after lsp-mode
+  :init
+  (push 'pyright compilation-error-regexp-alist)
+  (push '(pyright "^\\ \\ \\([a-zA-Z0-9/\\._-]+\\):\\([0-9]+\\):\\([0-9]+\\).*$" 1 2 3) compilation-error-regexp-alist-alist)
+  (setq python-shell-enable-font-lock nil))
+
+
 (use-package lsp-treemacs
   :after lsp-mode
   :commands lsp-treemacs-errors-list)
@@ -942,7 +961,10 @@
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :hook (lsp-mode . lsp-ui-mode))
+  :hook (lsp-mode . lsp-ui-mode)
+  :init
+  (setq lsp-ui-sideline-show-code-actions t
+        lsp-ui-sideline-show-diagnostics t))
 
 
 (use-package macrostep
