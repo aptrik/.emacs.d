@@ -929,15 +929,15 @@
          "-Djava.awt.headless=true")))
 
 
-(use-package lsp-languages
-  :no-require t
-  :ensure nil
-  :hook ((go-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
-         (python-mode . lsp-deferred)
-         (js-mode . lsp-deferred)
-         (javascript-mode . lsp-deferred)
-         (web-mode . lsp-deferred)))
+;; (use-package lsp-languages
+;;   :no-require t
+;;   :ensure nil
+;;   :hook ((go-mode . lsp-deferred)
+;;          (java-mode . lsp-deferred)
+;;          (python-mode . lsp-deferred)
+;;          (js-mode . lsp-deferred)
+;;          (javascript-mode . lsp-deferred)
+;;          (web-mode . lsp-deferred)))
 
 
 (use-package lsp-lens
