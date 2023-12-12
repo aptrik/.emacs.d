@@ -97,7 +97,8 @@
 
 
 ;;; File hooks.
-(add-hook 'find-file-hook 'find-file--follow-symlink)
+(if (fboundp 'find-file--follow-symlink)
+    (add-hook 'find-file-hook 'find-file--follow-symlink))
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
