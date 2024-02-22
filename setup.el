@@ -1,26 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(use-package adoc-mode
-  :mode (("\\.adoc\\'" . adoc-mode)))
-
-
 (use-package aggressive-indent
   :disabled
   :diminish
   :hook (emacs-lisp-mode . aggressive-indent-mode))
-
-
-(use-package ahg
-  :disabled t
-  :bind (:map ahg-status-mode-map
-              ("<tab>" . ahg-status-diff)
-              ("M-<delete>" . ahg-status-unmark-all))
-  :commands ahg-status
-  :hook (ahg-status-mode . turn-on-truncate-lines))
-
-
-(use-package ansible-doc
-  :hook (yaml-mode . ansible-doc-mode))
 
 
 (use-package arc-mode
@@ -51,13 +34,6 @@
   :config
   (setq bookmark-save-flag 1
         bookmark-version-control t))
-
-
-(use-package browse-kill-ring
-  :bind ("C-c y" . browse-kill-ring)
-  :commands browse-kill-ring
-  :config
-  (setq browse-kill-ring-quit-action 'save-and-restore))
 
 
 (use-package bs
@@ -174,20 +150,6 @@
          holiday-swedish-holidays)))
 
 
-(use-package comint
-  :ensure nil
-  :defer t
-  :bind (:map comint-mode-map
-              ("<down>" . comint-next-input)
-              ("<up>" . comint-previous-input)
-              ("C-n" . comint-next-input)
-              ("C-p" . comint-previous-input)
-              ("C-r" . comint-history-isearch-backward))
-  :config
-  (setf comint-prompt-read-only t
-        comint-history-isearch t))
-
-
 (use-package company
   :defer t
   :diminish
@@ -246,47 +208,6 @@
          ("C-c t w o" . copy-as-format-org-mode)
          ("C-c t w r" . copy-as-format-rst)
          ("C-c t w s" . copy-as-format-slack)))
-
-
-(use-package cperl-mode
-  :disabled t
-  :config
-  (defalias 'perl-mode 'cperl-mode)
-  (fset 'perldoc 'cperl-perldoc)
-  (setq interpreter-mode-alist
-        (append '(("perl"     . perl-mode)
-                  ("perl5"    . perl-mode)
-                  ("miniperl" . perl-mode))
-                interpreter-mode-alist))
-
-  (setq perl-indent-level                2
-        perl-continued-statement-offset  2
-        perl-continued-brace-offset      0
-        perl-brace-offset                0
-        perl-brace-imaginary-offset      0
-        perl-label-offset               -2)
-
-  (setq cperl-indent-level                2
-        cperl-continued-statement-offset  2
-        cperl-continued-brace-offset      0
-        cperl-brace-offset                0
-        cperl-brace-imaginary-offset      0
-        cperl-label-offset               -2
-        cperl-electric-keywords           t
-        cperl-electric-parens             nil
-        cperl-merge-trailing-else         nil
-        cperl-under-as-char               t
-        cperl-invalid-face                nil))
-
-
-(use-package css-mode
-  :defer t
-  :mode (("\\.css\\'" . css-mode))
-  :hook (css-mode . turn-on-rainbow-mode)
-  :config
-  (setq cssm-indent-function 'cssm-c-style-indenter
-        css-indent-level 2
-        scss-compile-at-save nil))
 
 
 (use-package compilation-recenter-end
@@ -377,15 +298,10 @@
     (add-to-list 'dired-guess-shell-alist-user
                  '("\\.epub\\'" "FBReader * &" "evince * &")))))
 
+
 (use-package dired-x
   :ensure nil
   :after dired)
-
-
-(use-package dired-subtree
-  :after dired
-  :config
-  (setq dired-subtree-line-prefix "  "))
 
 
 (use-package direnv
@@ -404,13 +320,6 @@
   :diminish dtrt-indent-mode
   :init
   (setq dtrt-indent-verbosity 1))
-
-
-(use-package dumb-jump
-  :init
-  (setq dumb-jump-force-searcher 'rg
-        xref-show-definitions-function #'xref-show-definitions-completing-read)
-  :hook (xref-backend-functions . dumb-jump-xref-activate))
 
 
 (use-package ediff
@@ -477,15 +386,6 @@
   :commands (elisp-slime-nav-mode elisp-slime-nav-find-elisp-thing-at-point))
 
 
-(use-package elmacro
-  :bind (("C-c m e" . elmacro-mode)
-         ("C-x C-)" . elmacro-show-last-macro)))
-
-
-(use-package ert
-  :bind (("C-c e t" . ert-run-tests-interactively)))
-
-
 (use-package exec-path-from-shell
   :if (display-graphic-p)
   :init
@@ -518,12 +418,6 @@
          ("<M-S-left>" . er/contract-region)
          ("<M-S-right>" . er/expand-region)
          ))
-
-
-(use-package eyebrowse
-  :disabled t
-  :config
-  (eyebrowse-mode t))
 
 
 (use-package find-dired
@@ -576,22 +470,6 @@
 
 (use-package fullframe
   :defer t)
-
-
-(use-package git-gutter
-  :diminish git-gutter-mode
-  :hook (prog-mode . git-gutter-mode)
-  :bind (("C-c C-n" . git-gutter:next-hunk)
-         ("C-c C-p" . git-gutter:previous-hunk))
-  :config
-  (setq git-gutter:update-interval 0.5))
-
-
-(use-package git-gutter-fringe
-  :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 
 (use-package gitconfig-mode
@@ -682,24 +560,6 @@
 (use-package groovy-mode
   :mode (("\\.grovvy\\'" . groovy-mode)
          ("\\.gradle\\'" . groovy-mode)))
-
-
-;; (use-package gud
-;;   :commands gud-gdb
-;;   ;; Continue / Pause F5.
-;;   ;; Step Over F10.
-;;   ;; Step Into F11.
-;;   ;; Step Out Shift+F11.
-;;   ;; Restart Ctrl+Shift+F5.
-;;   ;; Stop Shift+F5.
-;;   :bind (("<f5>"    . gud-cont)
-;;          ("<f10>"   . gud-next)
-;;          ("<f11>"   . gud-step)
-;;          ("S-<f11>" . gud-finish))
-;;   :config
-;;   (setq-default gdb-many-windows t
-;;                 gdb-use-separate-io-buffer t
-;;                 gud-tooltip-mode t))
 
 
 (use-package helm
@@ -794,17 +654,6 @@
       (ispell-change-dictionary lang))))
 
 
-(use-package js2-mode
-  :mode "\\.js\\'"
-  :config
-  (setf js2-skip-preprocessor-directives t)
-  (setq-default js2-additional-externs
-                '("$" "unsafeWindow" "localStorage" "jQuery"
-                  "setTimeout" "setInterval" "location" "skewer"
-                  "console" "phantom"))
-  (flycheck-mode 1))
-
-
 (use-package json-mode
   :preface
   :bind (:map json-mode-map
@@ -817,16 +666,6 @@
     (if (region-active-p)
         (call-interactively #'json-reformat-region)
       (json-reformat-region (point-min) (point-max)))))
-
-
-(use-package keyfreq
-  :defer t
-  :commands keyfreq-mode
-  :config
-  (setq keyfreq-excluded-commands
-        '(backward-char beginning-of-line end-of-line forward-char newline next-line previous-line self-insert-command left-char right-char))
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
 
 
 (use-package kubernetes
@@ -907,6 +746,7 @@
 
 
 (use-package lsp-java
+  :disabled
   :defer t
   :init
   (require 'lsp-java-boot)
@@ -941,6 +781,7 @@
 
 
 (use-package lsp-pyright
+  :disabled
   :after lsp-mode
   :init
   (push 'pyright compilation-error-regexp-alist)
@@ -959,10 +800,6 @@
   :init
   (setq lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics t))
-
-
-(use-package macrostep
-  :bind ("C-c e m" . macrostep-expand))
 
 
 (use-package magit
@@ -1023,16 +860,12 @@
          ("<M-S-C-down>" . mc/unmark-previous-like-this)
          ("S-<mouse-1>" . mc/add-cursor-on-click)))
 
+
 (use-package newcomment
   :ensure nil
   :defer t
   :commands comment-line
   :bind ("C-;" . comment-line))
-
-
-(use-package nlinum
-  :defer t
-  :bind ("C-c t l" . nlinum-mode))
 
 
 (use-package nuke-whitespace
@@ -1072,33 +905,6 @@
         nxml-syntax-highlight-flag t
         rng-nxml-auto-validate-flag nil)
   (push '("<\\?xml" . nxml-mode) magic-mode-alist))
-
-
-(use-package openwith
-  :defer t
-  :config
-  (setq openwith-associations
-        (list
-         (list (openwith-make-extension-regexp
-                '("mpg" "mpeg" "mp3" "mp4"
-                  "avi" "wmv" "wav" "mov" "flv"
-                  "ogm" "ogg" "mkv"))
-               (if macosp "open" "mplayer")
-               '(file))
-         (list (openwith-make-extension-regexp
-                '("xbm" "pbm" "pgm" "ppm" "pnm"
-                  "png" "gif" "bmp" "tif" "jpeg" "jpg"))
-               (if macosp "open" "eog")
-               '(file))
-         ;; (list (openwith-make-extension-regexp
-         ;;        '("pdf")) ; "ps" "ps.gz" "dvi"))
-         ;;       (if macosp "open" "evince")
-         ;;       '(file))
-         (list (openwith-make-extension-regexp
-                '("epub"))
-               (if macosp "open" "FBReader")
-               '(file))))
-  (openwith-mode 1))
 
 
 (use-package org
@@ -1192,100 +998,10 @@
     (local-set-key [M-down] 'outline-next-visible-heading)))
 
 
-(use-package ox-reveal
-  :defer t)
-
-
 (use-package paren
   :config
   (setq show-paren-style 'parenthesis)
   (show-paren-mode 1))
-
-
-(use-package pdf-tools
-  :defer t
-  :mode (("\\.pdf\\'" . pdf-view-mode))
-  :config
-  (setq-default pdf-view-display-size 'fit-width)
-  (setq pdf-annot-activate-created-annotations t
-        pdf-view-resize-factor 1.10)
-  (pdf-tools-install))
-
-
-(use-package php-mode
-  :disabled t
-  :init
-  (setq php-extra-constants '())
-  :hook (php-mode . setup--php-mode)
-  :config
-  (defun setup--php-mode ()
-    "PEAR/PHP setup."
-    (setq case-fold-search t)
-    (setq indent-tabs-mode nil)
-    (setq fill-column 78)
-
-    (subword-mode 1)
-
-    (setq c-electric-flag nil)
-    (setq c-basic-offset 4)
-
-    (c-set-offset 'arglist-intro '+)
-    (c-set-offset 'arglist-close '0)
-    (c-set-offset 'case-label 2)
-
-    (setq php-warned-bad-indent t)
-
-    (local-set-key [C-f7] 'php-lint)
-    (local-set-key [f7] 'phpcs))
-
-  (defun php-lint ()
-    "Performs a PHP lint check on the current file."
-    (interactive)
-    (let ((compilation-error-regexp-alist '(php))
-          (compilation-error-regexp-alist-alist ()))
-      (pushnew '(php "\\(syntax error.*\\) in \\(.*\\) on line \\([0-9]+\\)$" 2 3 nil nil 1)
-               compilation-error-regexp-alist-alist)
-      (compile (concat "php -l -f \"" (buffer-file-name) "\""))))
-
-  (defun phpcs ()
-    "Performs a PHP code sniffer check on the current file."
-    (interactive)
-    (let ((compilation-error-regexp-alist '(php))
-          (compilation-error-regexp-alist-alist ()))
-      (pushnew '(php "\"\\([^\"]+\\)\",\\([0-9]+\\),\\([0-9]+\\),\\(warning\\|error\\),\\(.*\\)" 1 2 3 (5 . 6) 4)
-               ;; (pushnew '(php "\"\\([^\"]+\\)\",\\([0-9]+\\),\\([0-9]+\\),\\(\\(warning\\)\\|\\(error\\)\\),\\(.*\\)" 1 2 3 (5 . 6) 4)
-               compilation-error-regexp-alist-alist)
-      ;; See:
-      ;; * http://pear.php.net/manual/en/standards.php
-      ;; * http://pear.php.net/manual/en/package.php.php-codesniffer.annotated-ruleset.php
-      (compile (concat "phpcs"
-                       " --standard=Zend"
-                       " --report=csv"
-                       " \"" (buffer-file-name) "\"")))))
-
-
-(use-package plantuml-mode
-  :mode "\\.plantuml\\'")
-;; (catch 'loop
-;;   (dolist (jar-file (append (file-expand-wildcards "/usr/share/java/plantuml*.jar")
-;;                             (file-expand-wildcards "/usr/local/Cellar/plantuml/*/libexec/plantuml.jar")))
-;;     (message "Found plantuml: %s" jar-file)
-;;     (use-package plantuml-mode
-;;       :config
-;;       (setq plantuml-jar-path jar-file))
-;;     (throw 'loop nil)))
-
-
-(use-package printing
-  :defer t
-  :config
-  (pr-update-menus t)
-  (setq lpr-command          "lpr"
-        lpr-headers-switches "-h"
-        ps-paper-type         'a4
-        ps-print-color-p      nil
-        ps-number-of-columns  2
-        ps-landscape-mode     t))
 
 
 (use-package prog-mode
@@ -1399,16 +1115,6 @@
   :after python)
 
 
-(use-package rainbow-mode
-  :defer t)
-
-
-(use-package re-builder
-  :defer t
-  :config
-  (setq reb-re-syntax 'string))
-
-
 (use-package rg
   :defer t
   :if (executable-find "rg")
@@ -1425,10 +1131,12 @@
               ("C-c '" . wgrep-change-to-wgrep-mode)
               ("q" . kill-buffer-and-window)))
 
+
 (use-package rg-menu
   :ensure nil
   :after rg
   :commands (rg-menu rg-enable-menu))
+
 
 (use-package wgrep-rg
   :ensure nil
@@ -1445,56 +1153,6 @@
     (sphinx-mode 1)))
 
 
-(use-package ruby-mode
-  :mode (("Gemfile\\'" . ruby-mode)
-         ("Rakefile\\'" . ruby-mode)
-         ("Guardfile" . ruby-mode)
-         ("Vagrantfile\\'" . ruby-mode)
-         ("\\.watchr\\'" . ruby-mode)
-         ("\\.rake\\'" . ruby-mode)
-         ("\\.rb\\'" . ruby-mode))
-  :init
-  (setq ruby-deep-indent-paren nil)
-
-  (defun ruby-run ()
-    "Run ruby on the file in the current buffer."
-    (interactive)
-    (compile (concat "ruby " (buffer-file-name))))
-
-  (defun setup--ruby-mode ()
-    (which-function-mode 1)
-    (subword-mode 1)
-    (company-mode 1)
-    (robe-mode 1)
-    (inf-ruby-minor-mode 1)
-    (inf-ruby-switch-setup)
-
-    (minitest-mode 1)
-
-    (make-variable-buffer-local 'compilation-error-regexp-alist)
-    (setq compilation-error-regexp-alist
-          (append compilation-error-regexp-alist
-                  (list (list
-                         (concat
-                          "\\(.*?\\)\\([0-9A-Za-z_./\:-]+\\.rb\\)"
-                          ":\\([0-9]+\\)") 2 3))))
-
-    (make-variable-buffer-local 'compile-command)
-    (setq compile-command (concat "ruby " (buffer-file-name) " "))
-
-    (local-set-key (kbd "C-.") 'company-complete)
-
-    (local-set-key [f9]    'ruby-run)
-    (local-set-key [C-f9]  'minitest-verify)
-    (local-set-key [M-f9]  'minitest-verify-single))
-  :hook (ruby-mode . setup--ruby-mode)
-  :config
-  (use-package ruby-end
-    :diminish ruby-end-mode)
-  (use-package robe
-    :diminish robe-mode))
-
-
 (use-package savehist
   :unless noninteractive
   :init
@@ -1508,13 +1166,6 @@
   (setq save-place-file (expand-file-name ".places" user-emacs-directory))
   :config
   (save-place-mode 1))
-
-
-(use-package scss-mode
-  :defer t
-  :commands scss-mode
-  :mode ("\\.scss\\'" . scss-mode)
-  :hook (scss-mode . turn-on-rainbow-mode))
 
 
 (use-package sh-script
@@ -1593,46 +1244,9 @@
    ((t (:foreground "yellow" :background "indian red" :bold t)))))
 
 
-(use-package speedbar
-  :disabled t
-  :config
-  (setq speedbar-default-position 'left
-        speedbar-show-unknown-files t
-        speedbar-update-flag t))
-
-
 (use-package sphinx-doc
   :defer t
   :diminish sphinx-doc-mode)
-
-
-(use-package sql
-  :defer t
-  :hook (sql-interactive-mode . setup--sql-interactive-mode)
-  :config
-  (setq plsql-indent 2)
-
-  (defun sql-make-smart-buffer-name ()
-    "Return a string that can be used to rename a SQLi buffer.
-
-This is used to set `sql-alternate-buffer-name' within
-`sql-interactive-mode'."
-    (or (and (boundp 'sql-name) sql-name)
-        (concat (if (not (string= "" sql-server))
-                    (concat
-                     (or (and (string-match "[0-9.]+" sql-server) sql-server)
-                         (car (split-string sql-server "\\.")))
-                     "/"))
-                sql-database)))
-  (defun setup--sql-interactive-mode ()
-    (turn-on-truncate-lines)
-    (make-variable-buffer-local 'sql-input-ring-file-name)
-    (setq sql-input-ring-file-name
-          (expand-file-name
-           (concat "history-" (symbol-name sql-product) ".sql")
-           user-emacs-directory))
-    (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
-    (sql-rename-buffer)))
 
 
 (use-package subword
@@ -1643,32 +1257,6 @@ This is used to set `sql-alternate-buffer-name' within
               ("<C-right>"     . subword-forward)
               ("<C-backspace>" . subword-backward-kill))
   :diminish subword-mode)
-
-
-(use-package term
-  :defer t
-  :hook (term-mode . setup--term)
-  :config
-  (defadvice ansi-term (before force-bash)
-    (interactive (list "/bin/bash")))
-  (defadvice term (before force-bash)
-    (interactive (list "/bin/bash")))
-  (ad-activate 'ansi-term)
-  (ad-activate 'term)
-
-  (defun setup--term-paste (&optional string)
-    (interactive)
-    (process-send-string
-     (get-buffer-process (current-buffer))
-     (if string string (current-kill 0))))
-
-  (defun setup--term ()
-    (goto-address-mode)
-    ;; (define-key term-raw-map (kbd "M-o") 'other-window)
-    ;; (define-key term-raw-map (kbd "M-p") 'term-send-up)
-    ;; (define-key term-raw-map (kbd "M-n") 'term-send-down)
-    ;; (define-key term-raw-map (kbd "C-y") 'setup--term-paste))
-    ))
 
 
 (use-package terraform-mode
@@ -1704,6 +1292,7 @@ This is used to set `sql-alternate-buffer-name' within
   (setq tramp-auto-save-directory "~/.cache/emacs/backups"
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
 
+
 (use-package uniquify
   :ensure nil
   :defer t
@@ -1725,13 +1314,6 @@ This is used to set `sql-alternate-buffer-name' within
   (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
 
   (fullframe vc-dir quit-window))
-
-
-;; (use-package vc-hg
-;;   :after vc
-;;   :config
-;;   (setq hg-commit-allow-empty-message t
-;;         vc-hg-diff-switches "--text"))
 
 
 (use-package vimrc-mode
@@ -1838,18 +1420,6 @@ This is used to set `sql-alternate-buffer-name' within
 (use-package yasnippet-snippets
   :after yasnippet
   :config (yasnippet-snippets-initialize))
-
-
-(use-package zeal-at-point
-  :defer t
-  :bind ("C-c t z" . zeal-at-point)
-  :config
-  (setq zeal-at-point-mode-alist
-        (delete
-         (assoc 'python-mode zeal-at-point-mode-alist)
-         zeal-at-point-mode-alist))
-  (add-to-list 'zeal-at-point-mode-alist
-               '(python-mode . "python")))
 
 
 (provide 'setup)
