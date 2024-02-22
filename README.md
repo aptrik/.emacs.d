@@ -6,14 +6,14 @@ Emacs.
 ## Installation
 
 **Note:** The code is designed to be installed in the
-[standard](http://www.emacswiki.org/emacs/DotEmacsDotD) Emacs user
+[standard](https://www.emacswiki.org/emacs/DotEmacsDotD) Emacs user
 directory.
 
 Fetch the source.
 
     git clone  git://github.com/aptrik/.emacs.d.git  ~/.emacs.d
 
-Make sure you have Emacs version 27.1 or higher [installed](#install-emacs).
+Make sure you have Emacs version 29.1 or higher [installed](#install-emacs).
 
 ### Install Emacs Lisp packages
 
@@ -48,17 +48,11 @@ Example `~/.emacs.d/user.el`:
 
     brew install --cask emacs
 
-or [Emacs Plus](https://github.com/d12frosted/homebrew-emacs-plus)
-
-    brew tap d12frosted/emacs-plus
-    brew install emacs-plus --with-native-comp
-    ln -s /opt/homebrew/opt/emacs-plus@28/Emacs.app /Applications
-
 ### Build from source
 
-    curl -LO http://ftpmirror.gnu.org/emacs/emacs-28.1.tar.xz
-    tar xfJ emacs-28.1.tar.xz
-    cd emacs-28.1
+    curl -LO https://ftpmirror.gnu.org/emacs/emacs-29.2.tar.xz
+    tar xfJ emacs-29.2.tar.xz
+    cd emacs-29.2
     ./configure --prefix=/usr/local --without-toolkit-scroll-bars
     make
     ./src/emacs -q
@@ -72,7 +66,7 @@ or [Emacs Plus](https://github.com/d12frosted/homebrew-emacs-plus)
 
 ## Measure startup time
 
-    emacs -Q -nw --eval='(message "%s" (emacs-init-time))'
+    emacs -nw --eval='(message "%s" (emacs-init-time))'
 
 ## Emacs Help
 
