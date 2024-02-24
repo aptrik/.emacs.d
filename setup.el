@@ -1006,7 +1006,9 @@
 
 (use-package prog-mode
   :ensure nil
-  :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))))
+  :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))
+         (prog-mode . (lambda () (electric-indent-local-mode -1)))
+         (prog-mode . (lambda () (electric-pair-local-mode -1)))))
 
 
 (use-package projectile

@@ -67,6 +67,8 @@
     (when (file-directory-p f)
       (add-to-list 'load-path f))))
 
+;; (require 'emacs-load-time)
+
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
   (load (expand-file-name fn user-emacs-directory)))
 (when (eq system-type 'darwin)

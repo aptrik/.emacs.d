@@ -76,7 +76,7 @@
 (when (display-graphic-p)
  (setq frame-title-format '("" user-login-name "@" system-name)))
 
-;;; Turn on some minor modes.
+;;; Turn on some global minor modes.
 (auto-compression-mode 1)
 (blink-cursor-mode 1)
 (column-number-mode 1)
