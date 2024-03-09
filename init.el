@@ -20,12 +20,12 @@
 ;; Compare with:
 ;; emacs -nw -Q --eval='(message "%s" (emacs-init-time))'
 ;;
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "+++ Emacs ready in %.1f seconds (%d garbage collections)"
-                     (float-time
-                      (time-subtract after-init-time before-init-time))
-                     gcs-done)))
+;; (add-hook 'emacs-startup-hook
+;;           (lambda ()
+;;             (message "+++ Emacs ready in %.1f seconds (%d garbage collections)"
+;;                      (float-time
+;;                       (time-subtract after-init-time before-init-time))
+;;                      gcs-done)))
 
 (setq package-native-compile t
       package-archives
@@ -70,9 +70,9 @@
 ;; (require 'emacs-load-time)
 
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
-  (load (expand-file-name fn user-emacs-directory)))
+  (load (expand-file-name fn user-emacs-directory) nil 'nomessage))
 (when (eq system-type 'darwin)
-  (load (expand-file-name "macos" user-emacs-directory)))
+  (load (expand-file-name "macos" user-emacs-directory) nil 'nomessage))
 
 (custom-set-faces
  '(variable-pitch ((t (:height 170))))
@@ -81,8 +81,8 @@
 
 ;; Set customization file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file 'noerror)
+(load custom-file 'noerror 'nomessage)
 
-(load (expand-file-name "user" user-emacs-directory) 'noerror)
+(load (expand-file-name "user" user-emacs-directory) 'noerror 'nomessage)
 
 ;;; init.el ends here
