@@ -532,47 +532,6 @@
   :mode ("\\.gradle\\'" . gradle-mode))
 
 
-(use-package grep
-  :defer t
-  :bind (("M-s g f" . find-grep)
-         ("M-s g g" . grep)
-         ("M-s g r" . rgrep))
-  :hook (grep-mode . turn-on-truncate-lines)
-  :config
-  (setq grep-files-aliases
-        '(("el" . "*.el")
-          ("c"  . "*.c")
-          ("h"  . "*.h")
-          ("cc" . "*.hh *.hpp *.cc *.cpp")
-          ("hh" . "*.hh *.hpp *.cc *.cpp")))
-  (grep-apply-setting 'grep-command "egrep -nH -e ")
-  (grep-apply-setting
-   'grep-find-command
-   '("find . -type f -print0 | xargs -P4 -0 egrep -nH -e " . 52))
-
-  (add-to-list 'grep-find-ignored-directories ".direnv")
-  (add-to-list 'grep-find-ignored-directories ".git")
-  (add-to-list 'grep-find-ignored-directories ".hg")
-  (add-to-list 'grep-find-ignored-directories ".idea")
-  (add-to-list 'grep-find-ignored-directories "elpa")
-  (add-to-list 'grep-find-ignored-directories "target")
-  (add-to-list 'grep-find-ignored-directories "vendor")
-
-  (let ((find-command "find . \\( -path '*/CVS' -o -path '*/.hg' -o -path '*/.git' \\) -prune -o -type f -print0"))
-    (if macosp
-        (setq grep-find-command
-              (concat find-command " | xargs -0 " grep-command))
-      (setq grep-find-command
-            (concat find-command " | xargs -0 -e " grep-command)))))
-
-
-(use-package grep-a-lot
-  :defer t
-  :after grep
-  :config
-  (grep-a-lot-setup-keys))
-
-
 (use-package groovy-mode
   :mode (("\\.grovvy\\'" . groovy-mode)
          ("\\.gradle\\'" . groovy-mode)))
@@ -1092,36 +1051,6 @@
 
 (use-package python-isort
   :after python)
-
-
-(use-package rg
-  :defer t
-  :if (executable-find "rg")
-  :commands (rg
-             rg-project
-             rg-literal
-             rg-dwim
-             rg-dwim-project-dir
-             rg-dwim-current-dir
-             rg-dwim-current-file)
-  :bind (("M-s r r" . rg)
-         ("M-s r p" . rg-project))
-  :bind (:map rg-mode-map
-              ("C-c '" . wgrep-change-to-wgrep-mode)
-              ("q" . kill-buffer-and-window)))
-
-
-(use-package rg-menu
-  :ensure nil
-  :after rg
-  :commands (rg-menu rg-enable-menu))
-
-
-(use-package wgrep-rg
-  :ensure nil
-  :after rg
-  :commands (wgrep-rg-setup)
-  :hook (rg-mode . wgrep-rg-setup))
 
 
 (use-package rst
