@@ -1,5 +1,74 @@
 ;; -*- lexical-binding: t -*-
 
+;;-----------------------------------------------------------------------------
+;;; Completion
+
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-cycle t)
+  :bind (("C-." . completion-at-point)
+         ("C-c ." . completion-at-point))
+  :bind (:map corfu-map
+              ("M-SPC"      . corfu-insert-separator)
+              ("TAB"        . corfu-next)
+              ([tab]        . corfu-next)
+              ("S-TAB"      . corfu-previous)
+              ([backtab]    . corfu-previous)
+              ("S-<return>" . corfu-insert)
+              ("RET"        . nil))
+
+  :init
+  (global-corfu-mode)
+  (corfu-history-mode)
+  (corfu-popupinfo-mode))
+
+
+(use-package consult
+  :ensure t
+  :after vertico
+  :bind (("C-x b"   . consult-buffer)
+         ("M-g g"   . consult-goto-line)
+         ;; ("M-g f"   . consult-flymake)
+         ("M-g i"   . consult-imenu)
+         ("M-s l"   . consult-line)
+         ("M-s g"   . consult-ripgrep)
+         ("M-s M-s" . consult-outline)))
+
+
+(use-package marginalia
+  :ensure t
+  :after vertico
+  :init
+  (marginalia-mode))
+
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless flex)))
+
+
+(use-package vertico
+  :ensure t
+  :bind (:map vertico-map
+              ("<tab>" . vertico-insert)
+              ("<down>" . vertico-next)
+              ("<up>" . vertico-previous)
+              ("C-M-<down>" . vertico-next-group)
+              ("C-M-<up>" . vertico-previous-group))
+  :custom
+  (vertico-cycle t)
+  (read-buffer-completion-ignore-case t)
+  (read-file-name-completion-ignore-case t)
+  (completion-styles '(basic substring partial-completion flex))
+  :init
+  (vertico-mode))
+
+
+;;-----------------------------------------------------------------------------
+;;; Follow symbolic links when opening files.
+
 (use-package aggressive-indent
   :disabled
   :diminish
