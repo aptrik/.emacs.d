@@ -3,6 +3,41 @@
 ;;-----------------------------------------------------------------------------
 ;;; Completion
 
+(use-package consult
+  :ensure t
+  :after vertico
+  :bind (("C-x b"   . consult-buffer)
+         ("M-g g"   . consult-goto-line)
+         ;; ("M-g f"   . consult-flymake)
+         ("M-g i"   . consult-imenu)
+         ("M-s l"   . consult-line)
+         ("M-s g"   . consult-ripgrep)
+         ("M-s M-s" . consult-outline))
+  :init
+  (defvar consult--source-hotspot-directories
+    `(:name "Hotspot directories"
+      :narrow ?\h
+      :face   consult-file
+      :items  ,#'hotspot--generate-directories
+      :action ,(lambda (d) (find-file d)))
+    "Hotspot candidates source for `consult-buffer'.")
+  (setq consult-buffer-sources
+  '(consult--source-hidden-buffer
+    consult--source-modified-buffer
+    consult--source-buffer
+    consult--source-recent-file
+    consult--source-file-register
+    ;; consult--source-bookmark
+    consult--source-project-buffer-hidden
+    consult--source-project-recent-file-hidden
+    consult--source-hotspot-directories)))
+
+
+(use-package consult-project-extra
+  :ensure t
+  :bind (("C-c f p" . consult-project-extra-find)))
+
+
 (use-package corfu
   :ensure t
   :custom
@@ -22,18 +57,6 @@
   (global-corfu-mode)
   (corfu-history-mode)
   (corfu-popupinfo-mode))
-
-
-(use-package consult
-  :ensure t
-  :after vertico
-  :bind (("C-x b"   . consult-buffer)
-         ("M-g g"   . consult-goto-line)
-         ;; ("M-g f"   . consult-flymake)
-         ("M-g i"   . consult-imenu)
-         ("M-s l"   . consult-line)
-         ("M-s g"   . consult-ripgrep)
-         ("M-s M-s" . consult-outline)))
 
 
 (use-package marginalia
