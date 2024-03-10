@@ -1,5 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
+
+(use-package emacs
+  :init
+  (setq completion-cycle-threshold 3
+        tab-always-indent t))
+
+
 ;;-----------------------------------------------------------------------------
 ;;; Completion
 
@@ -425,12 +432,6 @@
 (use-package elisp-slime-nav
   :diminish
   :commands (elisp-slime-nav-mode elisp-slime-nav-find-elisp-thing-at-point))
-
-
-(use-package emacs
-  :init
-  (setq completion-cycle-threshold 3
-        tab-always-indent t))
 
 
 (use-package exec-path-from-shell
