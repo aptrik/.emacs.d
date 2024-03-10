@@ -847,7 +847,7 @@
   :mode ("\\.org\\'" . org-mode)
   :init
   (setq org-replace-disputed-keys t
-        org-export-backends '(ascii html md reveal))
+        org-export-backends '(ascii html md))
   :hook (org-mode . setup--org-mode)
   :config
   (setq
