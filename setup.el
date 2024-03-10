@@ -1066,7 +1066,6 @@
 (use-package savehist
   :unless noninteractive
   :init
-  (setq savehist-ignored-variables '(file-name-history))
   (savehist-mode))
 
 
