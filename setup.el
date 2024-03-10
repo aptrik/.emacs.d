@@ -201,15 +201,6 @@
   :after (company terraform-mode))
 
 
-(use-package copy-as-format
-  :bind (("C-c t w g" . copy-as-format-github)
-         ("C-c t w j" . copy-as-format-jira)
-         ("C-c t w m" . copy-as-format-markdown)
-         ("C-c t w o" . copy-as-format-org-mode)
-         ("C-c t w r" . copy-as-format-rst)
-         ("C-c t w s" . copy-as-format-slack)))
-
-
 (use-package compilation-recenter-end
   :ensure nil
   :functions compilation-recenter-end-enable)
@@ -228,6 +219,15 @@
                 compilation-scroll-output 'first-error
                 compilation-window-height 20
                 compile-command (concat "gmake -C " default-directory " all")))
+
+
+(use-package copy-as-format
+  :bind (("C-c t w g" . copy-as-format-github)
+         ("C-c t w j" . copy-as-format-jira)
+         ("C-c t w m" . copy-as-format-markdown)
+         ("C-c t w o" . copy-as-format-org-mode)
+         ("C-c t w r" . copy-as-format-rst)
+         ("C-c t w s" . copy-as-format-slack)))
 
 
 (use-package diff-mode
