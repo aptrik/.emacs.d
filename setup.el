@@ -386,6 +386,12 @@
   :commands (elisp-slime-nav-mode elisp-slime-nav-find-elisp-thing-at-point))
 
 
+(use-package emacs
+  :init
+  (setq completion-cycle-threshold 3
+        tab-always-indent t))
+
+
 (use-package exec-path-from-shell
   :if (display-graphic-p)
   :init
