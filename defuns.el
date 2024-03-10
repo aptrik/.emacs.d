@@ -803,17 +803,17 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
     (if (file-directory-p dir)
         (add-to-list 'hotspot-directories dir t))))
 
-(defun hotspots ()
-  "Open a hotspot."
-  (interactive)
-  (require 'helm-bookmark)
-  (helm
-   :sources
-   `(((name . "Directory Hotspots")
-      (candidates . ,(hotspot--generate-directories))
-      (action . (("Open" . (lambda (d) (find-file d)))
-                 ("Version control" . (lambda (d) (vc-examine d))))))
-     helm-source-bookmarks)))
+;; (defun hotspots ()
+;;   "Open a hotspot."
+;;   (interactive)
+;;   (require 'helm-bookmark)
+;;   (helm
+;;    :sources
+;;    `(((name . "Directory Hotspots")
+;;       (candidates . ,(hotspot--generate-directories))
+;;       (action . (("Open" . (lambda (d) (find-file d)))
+;;                  ("Version control" . (lambda (d) (vc-examine d))))))
+;;      helm-source-bookmarks)))
 
 (defun hotspot--generate-directories ()
   (let ((result ()))

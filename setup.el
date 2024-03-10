@@ -509,12 +509,6 @@
          ("\\.gradle\\'" . groovy-mode)))
 
 
-(use-package helm
-  :defer t
-  :config
-  (helm-autoresize-mode 1))
-
-
 (use-package highlight-symbol
   :commands highlight-symbol-nav-mode
   :hook (prog-mode . highlight-symbol-nav-mode))
