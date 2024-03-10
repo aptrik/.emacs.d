@@ -574,13 +574,6 @@
   (helm-autoresize-mode 1))
 
 
-(use-package helm-projectile
-  :bind (("M-s M-s" . helm-projectile-find-file)
-         ("C-c o p" . helm-projectile-find-file))
-  :config
-  (helm-projectile-on))
-
-
 (use-package highlight-symbol
   :commands highlight-symbol-nav-mode
   :hook (prog-mode . highlight-symbol-nav-mode))
@@ -1015,24 +1008,6 @@
   :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))
          (prog-mode . (lambda () (electric-indent-local-mode -1)))
          (prog-mode . (lambda () (electric-pair-local-mode -1)))))
-
-
-(use-package projectile
-  :defer t
-  :commands (projectile-mode projectile-global-mode)
-  :diminish projectile-mode
-  :init
-  (setq projectile-completion-system 'helm
-        projectile-create-missing-test-files t
-        projectile-enable-caching t
-        projectile-ignored-project-function #'file-remote-p
-        projectile-indexing-method 'native
-        projectile-require-project-root t
-        projectile-track-known-projects-automatically t)
-  :config
-  (add-to-list 'projectile-globally-ignored-directories "target")
-  (add-to-list 'projectile-globally-ignored-files ".DS_Store")
-  (projectile-global-mode 1))
 
 
 (use-package protobuf-mode
