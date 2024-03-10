@@ -150,57 +150,6 @@
          holiday-swedish-holidays)))
 
 
-(use-package company
-  :defer t
-  :diminish
-  :commands (company-mode company-indent-or-complete-common)
-  :bind (("C-c .". company-complete))
-  :bind (:map company-active-map
-              ("SPC" . company-abort)
-              ("TAB" . company-complete-common-or-cycle)
-              ([tab] . company-complete-common-or-cycle))
-  :hook (after-init . global-company-mode)
-  :init
-  (dolist (hook '(emacs-lisp-mode-hook))
-    (add-hook hook
-              #'(lambda ()
-                  (local-set-key (kbd "<tab>")
-                                 #'company-indent-or-complete-common))))
-  (setq company-backends '((company-capf company-files company-keywords company-dabbrev-code))
-        company-begin-commands '(self-insert-command)
-        company-echo-delay 0
-        company-idle-delay 0.5
-        company-minimum-prefix-length 2
-        company-selection-wrap-around t
-        company-show-numbers t
-        company-tooltip-align-annotations t
-        company-tooltip-flip-when-above t
-        company-tooltip-limit 20))
-
-
-(use-package company-box
-  :defer t
-  :after company
-  :diminish company-box-mode
-  :hook (company-mode . company-box-mode))
-
-
-(use-package company-elisp
-  :ensure nil
-  :after company
-  :config
-  (push 'company-elisp company-backends)
-  (setq-local company-backend '(company-elisp)))
-
-
-(use-package company-go
-  :defer t)
-
-
-(use-package company-terraform
-  :after (company terraform-mode))
-
-
 (use-package compilation-recenter-end
   :ensure nil
   :functions compilation-recenter-end-enable)
@@ -488,10 +437,6 @@
   :mode ("/gitignore\\'" . gitignore-mode))
 
 
-(use-package company-go
-  :defer t)
-
-
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
@@ -500,8 +445,6 @@
          (go-mode . (lambda()
                       (flycheck-golangci-lint-setup)
                       (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
-  :bind (:map go-mode-map
-              ("C-." . company-complete))
   :config
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -510,9 +453,7 @@
   (defun setup--go-mode ()
     (setq indent-tabs-mode t
           tab-width 4)
-    (set (make-local-variable 'company-backends) '(company-go))
     (eldoc-mode 1)
-    (company-mode 1)
     (flycheck-mode 1)
     (subword-mode 1)
     (which-function-mode 1)))
@@ -690,9 +631,7 @@
   :hook (emacs-lisp-mode . setup--emacs-lisp-mode)
   :preface
   (defun setup--emacs-lisp-mode ()
-    (add-hook 'after-save-hook 'check-parens nil t)
-    (company-mode 1)
-    (local-set-key (kbd "C-.") 'company-complete)))
+    (add-hook 'after-save-hook 'check-parens nil t)))
 
 
 (use-package lsp-headerline
@@ -1041,7 +980,6 @@
   :bind (:map python-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
-              ("C-." . company-complete)
               ("C-c B" . blacken-buffer)
               ("C-c I" . python-isort-buffer)
               ("C-c 2 3" . python-2to3-current-buffer)
@@ -1080,11 +1018,6 @@
 
     (subword-mode 1)
     (which-function-mode 1)
-
-    (let ((activate (if (file-remote-p default-directory) -1 1)))
-      (flycheck-mode activate)
-      (company-mode activate))
-
     (idle-highlight-mode 1)
 
     (require 'sphinx-doc)
@@ -1387,7 +1320,6 @@
 
 (use-package yasnippet
   :defer t
-  :bind (("C-c t y" . company-yasnippet))
   :commands (snippet-mode yas-expand yas-minor-mode)
   :diminish yas-minor-mode
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
