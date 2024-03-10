@@ -52,9 +52,6 @@
 (global-set-key (kbd "C-c t s")  'transform-region-to-snake-case)
 (global-set-key (kbd "C-c t W")  'whitespace-mode)
 
-(global-unset-key (kbd "C-c o"))
-(global-set-key (kbd "C-c o o") 'find-file-at-point)
-
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-x C-q") 'read-only-mode)

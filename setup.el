@@ -67,7 +67,7 @@
 
 
 ;;-----------------------------------------------------------------------------
-;;; Follow symbolic links when opening files.
+;;; Configuration in alphabetical order
 
 (use-package aggressive-indent
   :disabled
@@ -442,6 +442,11 @@
          ("<M-S-left>" . er/contract-region)
          ("<M-S-right>" . er/expand-region)
          ))
+
+
+(use-package ffap
+  :ensure nil
+  :bind ("C-c f f" . find-file-at-point))
 
 
 (use-package find-dired
