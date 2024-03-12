@@ -21,11 +21,11 @@
          ("M-s g"   . consult-ripgrep)
          ("M-s M-s" . consult-outline))
   :init
-  (defvar consult--source-hotspot-directories
+  (defvar consult--source-hotspots
     `(:name "Hotspot directories"
       :narrow ?\h
       :face   consult-file
-      :items  ,#'hotspot--generate-directories
+      :items  ,#'hotspot-generate-directories
       :action ,(lambda (d) (find-file d)))
     "Hotspot candidates source for `consult-buffer'.")
   (setq consult-buffer-sources
@@ -37,7 +37,7 @@
     ;; consult--source-bookmark
     consult--source-project-buffer-hidden
     consult--source-project-recent-file-hidden
-    consult--source-hotspot-directories)))
+    consult--source-hotspots)))
 
 
 (use-package consult-project-extra
@@ -59,7 +59,6 @@
               ([backtab]    . corfu-previous)
               ("S-<return>" . corfu-insert)
               ("RET"        . nil))
-
   :init
   (global-corfu-mode)
   (corfu-history-mode)

@@ -793,23 +793,19 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
 
 ;;-----------------------------------------------------------------------------
 
-(defvar hotspot-directories
-  (list "~/Development" "~/work" "~/projects" "~/lib" "~/priv")
+(defvar hotspot-sources
+  (list "~/Development" "~/work")
   "List of hotspot directories.")
 
-(defun hotspot-add-directories (directories)
-  "Add directories to hotspots."
-  (dolist (dir directories)
-    (if (file-directory-p dir)
-        (add-to-list 'hotspot-directories dir t))))
-
-(defun hotspot--generate-directories ()
+(defun hotspot-generate-directories ()
   (let ((result ()))
-    (dolist (dir hotspot-directories)
-      (if (f-dir-p dir)
-          (setq result (append result (f-directories (substitute-in-file-name dir))))))
+    (dolist (dir hotspot-sources)
+      (let ((d (substitute-in-file-name dir)))
+        (if (file-directory-p d)
+            (setq result
+                  (append result
+                          (f-directories dir))))))
     result))
-
 
 ;;-----------------------------------------------------------------------------
 ;;; Helpers to access remote systems.
