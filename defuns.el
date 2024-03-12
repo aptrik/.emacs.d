@@ -804,7 +804,7 @@ See http://en.wikipedia.org/wiki/Universally_unique_identifier"
         (if (file-directory-p d)
             (setq result
                   (append result
-                          (f-directories dir))))))
+                          (f-directories d))))))
     result))
 
 ;;-----------------------------------------------------------------------------
