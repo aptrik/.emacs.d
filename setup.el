@@ -1312,15 +1312,7 @@
 ;;-----------------------------------------------------------------------------
 ;;; Themes
 
-(use-package doom-themes
-  ;; https://github.com/doomemacs/themes
-  :ensure t
-  :config
-  (load-theme 'doom-tokyo-night t))
-
-
 (use-package solarized-theme
-  :disabled
   :ensure t
   ;;:if (display-graphic-p)
   :config
