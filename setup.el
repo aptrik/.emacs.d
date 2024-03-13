@@ -1,7 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
+;;-----------------------------------------------------------------------------
+;;; General settings
 
 (use-package emacs
+  ;; :hook ((prog-mode . electric-pair-local-mode))
   :init
   (setq completion-cycle-threshold 3
         tab-always-indent t))
