@@ -1321,6 +1321,8 @@
   :config
   (load-theme 'solarized-selenized-dark :no-confirm)
   :custom-face
+  (default ((t (:background "#002b36")))) ;; same as iTerm/Profiles/Color/Background
+
   ;; (variable-pitch ((t (:height 170))))
   ;; (fixed-pitch ((t (:height 150))))
   ;; (default ((t (:height 150))))
