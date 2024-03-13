@@ -1314,13 +1314,13 @@
 
 (use-package solarized-theme
   :ensure t
-  ;;:if (display-graphic-p)
+  ;; :if (display-graphic-p)
   :config
-  (load-theme 'solarized-dark :no-confirm)
+  (load-theme 'solarized-selenized-dark :no-confirm)
   :custom-face
-  (variable-pitch ((t (:height 170))))
-  (fixed-pitch ((t (:height 150))))
-  (default ((t (:height 150))))
+  ;; (variable-pitch ((t (:height 170))))
+  ;; (fixed-pitch ((t (:height 150))))
+  ;; (default ((t (:height 150))))
 
   (cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
   ;; (region ((t (:foreground "black" :background "#b5d5ff"))))
@@ -1328,12 +1328,12 @@
   (highlight ((t :background "black" :underline nil)))
 
   ;; diff
-  (diff-added ((t (:foreground "green4" :underline nil))))
-  (diff-changed ((t (:foreground "blue3"))))
-  (diff-removed ((t (:foreground "red4" :underline nil))))
-  (diff-refine-added ((t (:background "#446644" :foreground "green"))))
-  (diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
-  (diff-refine-removed ((t (:background "#664444" :foreground "red"))))
+  ;; (diff-added ((t (:foreground "green4" :underline nil))))
+  ;; (diff-changed ((t (:foreground "blue3"))))
+  ;; (diff-removed ((t (:foreground "red4" :underline nil))))
+  ;; (diff-refine-added ((t (:background "#446644" :foreground "green"))))
+  ;; (diff-refine-changed ((t (:background "#ddddff" :foreground "blue"))))
+  ;; (diff-refine-removed ((t (:background "#664444" :foreground "red"))))
 
   ;; magit
   (magit-item-highlight ((t nil)))
@@ -1354,7 +1354,7 @@
 
   ;; show-paren
   (show-paren-match
-   ((t (:foreground "black" :background "dark green" :bold t))))
+   ((t (:foreground "black" :background "green" :bold t))))
   (show-paren-mismatch
    ((t (:foreground "yellow" :background "indian red" :bold t)))))
 
