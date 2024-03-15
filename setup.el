@@ -742,8 +742,6 @@
   :init
   (require 'lsp-java-boot)
   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
-  ;; workaround https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
-  (add-to-list 'image-types 'svg)
   :config
   (setq lsp-java-vmargs
         (list
@@ -764,7 +762,8 @@
          ;;(web-mode . lsp-deferred)
          )
   ;; Workaround for "Invalid Image type: 'gif'"
-  ;; https://github.com/emacs-lsp/lsp-mode/issues/4054
+  ;; - https://github.com/emacs-lsp/lsp-mode/issues/4054
+  ;; - https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
   :init
   (add-to-list 'image-types 'gif)
   (add-to-list 'image-types 'svg))
