@@ -754,15 +754,20 @@
          "-Djava.awt.headless=true")))
 
 
-;; (use-package lsp-languages
-;;   :no-require t
-;;   :ensure nil
-;;   :hook ((go-mode . lsp-deferred)
-;;          (java-mode . lsp-deferred)
-;;          (python-mode . lsp-deferred)
-;;          (js-mode . lsp-deferred)
-;;          (javascript-mode . lsp-deferred)
-;;          (web-mode . lsp-deferred)))
+(use-package lsp-languages
+  :no-require t
+  :ensure nil
+  :hook ((go-mode . lsp-deferred)
+         ;;(java-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
+         ;;(xml-mode . lsp-deferred)
+         ;;(web-mode . lsp-deferred)
+         )
+  ;; Workaround for "Invalid Image type: 'gif'"
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/4054
+  :init
+  (add-to-list 'image-types 'gif)
+  (add-to-list 'image-types 'svg))
 
 
 (use-package lsp-lens
