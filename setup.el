@@ -1163,12 +1163,13 @@
 (use-package time
   :defer t
   :config
-  (setq display-time-world-time-format "%Y-%m-%d %H:%M %Z"
-        display-time-world-list '(("America/Los_Angeles" "San Fransisco")
-                                  ("America/New_York" "New York")
-                                  ("Europe/London" "London")
-                                  ("Europe/Stockholm" "Stockholm")
-                                  ("Asia/Tokyo" "Tokyo"))))
+  (setq world-clock-time-format "%Y-%m-%d %H:%M %Z"
+        world-clock-list
+        '(("America/Seattle" "Seattle")
+          ("America/New_York" "New York")
+          ("Europe/Stockholm" "Stockholm")
+          ("Asia/Singapore" "Singapore")
+          ("Asia/Tokyo" "Tokyo"))))
 
 
 (use-package toml-mode
