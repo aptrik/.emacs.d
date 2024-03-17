@@ -4,7 +4,6 @@
 ;;; General settings
 
 (use-package emacs
-  ;; :hook ((prog-mode . electric-pair-local-mode))
   :init
   (setq completion-cycle-threshold 3
         tab-always-indent t))
@@ -356,6 +355,7 @@
 
 (use-package direnv
   :defer t
+  :hook ((python-mode . direnv-mode))
   :config
   (direnv-mode))
 
@@ -753,7 +753,6 @@
 
 
 (use-package lsp-languages
-  :no-require t
   :ensure nil
   :hook ((go-mode . lsp-deferred)
          ;;(java-mode . lsp-deferred)
@@ -773,15 +772,6 @@
   :ensure nil
   :defer t
   :after lsp-mode)
-
-
-(use-package lsp-pyright
-  :disabled
-  :after lsp-mode
-  :init
-  (push 'pyright compilation-error-regexp-alist)
-  (push '(pyright "^\\ \\ \\([a-zA-Z0-9/\\._-]+\\):\\([0-9]+\\):\\([0-9]+\\).*$" 1 2 3) compilation-error-regexp-alist-alist)
-  (setq python-shell-enable-font-lock nil))
 
 
 (use-package lsp-treemacs
