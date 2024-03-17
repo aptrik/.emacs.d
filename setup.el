@@ -732,17 +732,16 @@
      ;; Disable these as they're duplicated by flake8
      ("pyls.plugins.pycodestyle.enabled" nil t)
      ("pyls.plugins.mccabe.enabled" nil t)
-     ("pyls.plugins.pyflakes.enabled" nil t)))
-  )
+     ("pyls.plugins.pyflakes.enabled" nil t))
+   ))
 
 
 (use-package lsp-java
-  :disabled
+  :ensure t
   :defer t
-  :init
+  :config
   (require 'lsp-java-boot)
   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
-  :config
   (setq lsp-java-vmargs
         (list
          "-noverify"
@@ -755,7 +754,7 @@
 (use-package lsp-languages
   :ensure nil
   :hook ((go-mode . lsp-deferred)
-         ;;(java-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
          (python-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
