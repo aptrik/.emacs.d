@@ -1234,9 +1234,9 @@
           ("Urban Dictionary" .
            [simple-query "www.urbandictionary.com"
                          "http://www.urbandictionary.com/define.php?term=" ""])
-          ("Python 2" .
-           [simple-query "http://docs.python.org/2.7"
-                         "http://docs.python.org/release/2.7/search.html?q=" ""])
+          ("Python" .
+           [simple-query "http://docs.python.org/3.12.0"
+                         "http://docs.python.org/release/3.12.0/search.html?q=" ""])
           ("Google Maps" .
            [simple-query "maps.google.com"
                          "http://maps.google.com/maps?q=" ""])
