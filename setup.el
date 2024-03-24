@@ -770,11 +770,15 @@
 
 
 (use-package lsp-ui
+  :ensure t
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
   :init
   (setq lsp-ui-sideline-show-code-actions nil
-        lsp-ui-sideline-show-diagnostics t))
+        lsp-ui-sideline-show-diagnostics t
+        lsp-ui-doc-delay 1.5
+        lsp-ui-doc-position 'bottom
+	lsp-ui-doc-max-width 100))
 
 
 (use-package magit
