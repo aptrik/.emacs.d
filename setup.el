@@ -765,13 +765,17 @@
 
 
 (use-package lsp-treemacs
-  :after lsp-mode
-  :commands lsp-treemacs-errors-list)
+  :ensure t
+  :after (lsp-mode treemacs)
+  :commands lsp-treemacs-errors-list
+  :bind (:map lsp-mode-map
+         ("M-9" . lsp-treemacs-errors-list)))
 
 
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
+  :after (lsp-mode)
   :hook (lsp-mode . lsp-ui-mode)
   :init
   (setq lsp-ui-sideline-show-code-actions nil
@@ -1177,6 +1181,12 @@
   (put 'temporary-file-directory 'standard-value '("/tmp"))
   (setq tramp-auto-save-directory "~/.cache/emacs/backups"
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
+
+
+(use-package treemacs
+  :ensure t
+  :commands (treemacs)
+  :after (lsp-mode))
 
 
 (use-package treesit-auto
