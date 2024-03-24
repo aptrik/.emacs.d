@@ -539,11 +539,11 @@
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
-  :hook ((go-mode . setup--go-mode)
-         (go-mode . setup--go-save-hook)
-         (go-mode . (lambda()
-                      (flycheck-golangci-lint-setup)
-                      (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
+  :hook ((go-ts-mode . setup--go-mode)
+         (go-ts-mode . setup--go-save-hook)
+         (go-ts-mode . (lambda()
+                         (flycheck-golangci-lint-setup)
+                         (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
   :config
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -744,7 +744,7 @@
 
 (use-package lsp-languages
   :ensure nil
-  :hook ((go-mode . lsp-deferred)
+  :hook ((go-ts-mode . lsp-deferred)
          (java-mode . lsp-deferred)
          (python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
