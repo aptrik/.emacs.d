@@ -354,7 +354,7 @@
 
 (use-package direnv
   :defer t
-  :hook ((python-mode . direnv-mode))
+  :hook ((python-base-mode . direnv-mode))
   :config
   (direnv-mode))
 
@@ -713,26 +713,18 @@
   (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
-  (setq lsp-go-use-gofumpt t
-        lsp-prefer-flymake nil)
   (lsp-enable-which-key-integration t)
   (lsp-register-custom-settings
    '(
      ("gopls.gofumpt" t)
      ("gopls.completeUnimported" t t)
      ("gopls.staticcheck" t t)
-
-     ;; https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
-     ("pyls.plugins.pydocstyle.enabled" t t)
-     ("pyls.plugins.pyls_mypy.enabled" t t)
-     ("pyls.plugins.pyls_mypy.live_mode" nil t)
-     ("pyls.plugins.pyls_black.enabled" t t)
-     ("pyls.plugins.pyls_isort.enabled" t t)
-     ;; Disable these as they're duplicated by flake8
-     ("pyls.plugins.pycodestyle.enabled" nil t)
-     ("pyls.plugins.mccabe.enabled" nil t)
-     ("pyls.plugins.pyflakes.enabled" nil t))
+     ("pylsp.plugins.rope_autoimport.enabled" t t)
+     ("pylsp.plugins.rope_autoimport.completions.enabled" t t)
    ))
+  (setq lsp-prefer-flymake nil
+        lsp-go-use-gofumpt t
+        lsp-pylsp-plugins-black-enabled t))
 
 
 (use-package lsp-java
@@ -754,7 +746,7 @@
   :ensure nil
   :hook ((go-mode . lsp-deferred)
          (java-mode . lsp-deferred)
-         (python-mode . lsp-deferred)
+         (python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
          )
@@ -781,7 +773,7 @@
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
   :init
-  (setq lsp-ui-sideline-show-code-actions t
+  (setq lsp-ui-sideline-show-code-actions nil
         lsp-ui-sideline-show-diagnostics t))
 
 
@@ -1032,8 +1024,14 @@
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook ((python-mode . setup--python-mode))
+  :hook ((python-base-mode . setup--python-mode)
+         ;; (python-base-mode . setup--python-save-hook)
+         )
   :config
+  (defun setup--python-save-hook ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
   (defadvice pdb (before gud-query-cmdline activate)
     "Provide a better default command line when called interactively."
     (interactive
