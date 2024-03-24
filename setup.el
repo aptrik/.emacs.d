@@ -92,7 +92,6 @@
   (vertico-cycle t)
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
-  (completion-styles '(basic substring partial-completion flex))
   :init
   (vertico-mode))
 
