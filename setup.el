@@ -123,7 +123,7 @@
 
 
 (use-package blacken
-  :after python-mode
+  :after python-ts-mode
   :commands blacken-mode)
 
 
@@ -1014,7 +1014,7 @@
 
 (use-package python
   :commands setup--python-mode
-  :bind (:map python-mode-map
+  :bind (:map python-ts-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
               ("C-c B" . blacken-buffer)
@@ -1173,6 +1173,33 @@
   (put 'temporary-file-directory 'standard-value '("/tmp"))
   (setq tramp-auto-save-directory "~/.cache/emacs/backups"
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
+
+
+(use-package treesit-auto
+  ;; Execute once
+  ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+  :ensure t
+  :config
+  (setq treesit-auto-install 'prompt
+        treesit-language-source-alist
+        '(
+          (bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (go "https://github.com/tree-sitter/tree-sitter-go")
+          (java "https://github.com/tree-sitter/tree-sitter-java")
+          (json "https://github.com/tree-sitter/tree-sitter-json")
+          (python "https://github.com/tree-sitter/tree-sitter-python")
+          (toml "https://github.com/tree-sitter/tree-sitter-toml")
+          (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  (setq major-mode-remap-alist
+        '((bash-mode . bash-ts-mode)
+          (go-mode . go-ts-mode)
+          (java-mode . java-ts-mode)
+          (json-mode . json-ts-mode)
+          (python-mode . python-ts-mode)
+          (toml-mode . toml-ts-mode)
+          (yaml-mode . yaml-ts-mode)))
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 
 (use-package uniquify
