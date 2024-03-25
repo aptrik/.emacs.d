@@ -123,7 +123,7 @@
 
 
 (use-package blacken
-  :after python-ts-mode
+  :after python-mode
   :commands blacken-mode)
 
 
@@ -539,11 +539,11 @@
 (use-package go-mode
   :defer t
   :commands (go-mode setup--go-mode setup--go-save-hook)
-  :hook ((go-ts-mode . setup--go-mode)
-         (go-ts-mode . setup--go-save-hook)
-         (go-ts-mode . (lambda()
-                         (flycheck-golangci-lint-setup)
-                         (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
+  :hook ((go-mode . setup--go-mode)
+         (go-mode . setup--go-save-hook)
+         (go-mode . (lambda()
+                      (flycheck-golangci-lint-setup)
+                      (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
   :config
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -728,6 +728,7 @@
 
 
 (use-package lsp-java
+  :disabled
   :ensure t
   :defer t
   :config
@@ -744,8 +745,8 @@
 
 (use-package lsp-languages
   :ensure nil
-  :hook ((go-ts-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
+  :hook ((go-mode . lsp-deferred)
+         ;;(java-mode . lsp-deferred)
          (python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
@@ -1022,7 +1023,7 @@
 
 (use-package python
   :commands setup--python-mode
-  :bind (:map python-ts-mode-map
+  :bind (:map python-mode-map
               ("C-c C-z" . python-shell-switch-to-shell)
               ("C-c z" . run-python)
               ("C-c B" . blacken-buffer)
@@ -1190,6 +1191,7 @@
 
 
 (use-package treesit-auto
+  :disabled
   ;; Execute once
   ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
   :ensure t
