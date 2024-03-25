@@ -905,7 +905,12 @@
    org-agenda-span 14
    org-agenda-start-on-weekday nil
    org-clock-history-length 20
+   org-clock-idle-time nil
    org-clock-in-resume t
+   org-clock-persist 'history
+   org-clock-persist-query-resume nil
+   org-clock-rounding-minutes 5
+   org-duration-format 'h:mm
    org-habit-show-all-today nil
    org-habit-show-habits-only-for-today t
    org-hide-leading-stars nil
@@ -921,15 +926,12 @@
    org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
    org-treat-insert-todo-heading-as-state-change t
    org-use-speed-commands nil)
-
   (setq org-agenda-prefix-format
         '((agenda  . " %i %-12:c%?-12t% s")
           (todo  . " %i %-12:c")
           (tags  . " %i %-12:c")
           (search . " %i %-12:c")))
-
   (add-to-list 'org-modules 'org-habit t)
-
   (setq org-agenda-custom-commands
         '(("h" "Daily habits"
            ((agenda ""))
@@ -939,11 +941,8 @@
             (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
           ))
 
+  (org-clock-persistence-insinuate)
   (fullframe org-agenda quit-window)
-
-  ;; (setq org-clock-persist t
-  ;;       org-clock-persist-query-resume nil)
-  ;; (org-clock-persistence-insinuate)
 
   (custom-theme-set-faces
    'user
