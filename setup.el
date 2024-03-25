@@ -904,6 +904,7 @@
   (setq
    org-agenda-span 14
    org-agenda-start-on-weekday nil
+   org-ascii-indented-line-width nil
    org-clock-history-length 20
    org-clock-idle-time nil
    org-clock-in-resume t
