@@ -1365,7 +1365,7 @@
   (cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
   ;; (region ((t (:foreground "black" :background "#b5d5ff"))))
   (match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
-  (highlight ((t :background "black" :underline nil)))
+  ;; (highlight ((t :background "black" :underline nil)))
 
   ;; diff
   ;; (diff-added ((t (:foreground "green4" :underline nil))))
