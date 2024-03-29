@@ -93,7 +93,8 @@
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   :init
-  (vertico-mode))
+  (vertico-mode)
+  (vertico-mouse-mode 1))
 
 
 ;;-----------------------------------------------------------------------------
