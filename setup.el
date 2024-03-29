@@ -1363,7 +1363,7 @@
   ;; (default ((t (:height 150))))
 
   (cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
-  ;; (region ((t (:foreground "black" :background "#b5d5ff"))))
+  (region ((t (:foreground "black" :background "#b3d8ff"))))
   (match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
   ;; (highlight ((t :background "black" :underline nil)))
 
