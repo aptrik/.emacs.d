@@ -13,9 +13,12 @@
 (define-key minibuffer-local-map [C-up]   'previous-complete-history-element)
 (define-key minibuffer-local-map [C-down] 'next-complete-history-element)
 
+(global-set-key (kbd "s-SPC") " ")
 (global-set-key (kbd "s-(") "{")
 (global-set-key (kbd "s-)") "}")
 (global-set-key (kbd "s-/") "\\")
+(global-set-key (kbd "s-2") "@")
+(global-set-key (kbd "s-4") "$")
 (global-set-key (kbd "s-7") "|")
 (global-set-key (kbd "s-8") "[")
 (global-set-key (kbd "s-9") "]")

@@ -1,10 +1,10 @@
 ;;; macos.el --- macos related configuration -*- lexical-binding: t; -*-
 
-(setq ns-alternate-modifier 'none
+(setq ns-alternate-modifier 'super
       ns-command-modifier 'meta
       ns-control-modifier 'control
       ns-function-modifier 'none
-      ns-right-alternate-modifier 'super
+      ns-right-alternate-modifier 'none
       ns-right-command-modifier 'meta)
 
 (when (display-graphic-p)
