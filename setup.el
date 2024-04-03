@@ -1264,37 +1264,6 @@
         web-mode-disable-auto-pairing nil))
 
 
-(use-package webjump
-  :defer t
-  :config
-  (setq webjump-sites
-        '(("Google" .
-           [simple-query "www.google.com" "www.google.com/search?q=" ""])
-          ("IMDB" .
-           [simple-query "www.imdb.com" "www.imdb.com/Find?select=All&for=" ""])
-          ("Wikipedia" .
-           [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
-          ("Urban Dictionary" .
-           [simple-query "www.urbandictionary.com"
-                         "http://www.urbandictionary.com/define.php?term=" ""])
-          ("Python" .
-           [simple-query "http://docs.python.org/3.12.0"
-                         "http://docs.python.org/release/3.12.0/search.html?q=" ""])
-          ("Google Maps" .
-           [simple-query "maps.google.com"
-                         "http://maps.google.com/maps?q=" ""])
-          ("Open Street Map" .
-           [simple-query "openstreetmap.org"
-                         "http://nominatim.openstreetmap.org/search?q=" "&polygon=1"])
-          ("Internet Drafts" .
-           [simple-query
-            "www.ietf.org/ID.html"
-            ,(concat "search.ietf.org/cgi-bin/htsearch?restrict="
-                     (webjump-url-encode "http://www.ietf.org/internet-drafts/")
-                     "&words=")
-            ""]))))
-
-
 (use-package wgrep
   :defer t)
 

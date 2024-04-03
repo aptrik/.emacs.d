@@ -30,7 +30,11 @@
 (global-set-key (kbd "s-S") 'sort-fields)
 (global-set-key (kbd "s-s") 'sort-lines)
 
-(global-set-key (kbd "C-c g") 'google)
+(global-unset-key (kbd "C-c w"))
+(global-set-key (kbd "C-c w g") 'google-search)
+(global-set-key (kbd "C-c w m") 'mvnrepository-search)
+(global-set-key (kbd "C-c w p") 'pythondoc-search)
+
 (global-set-key (kbd "C-c |") 'align-regexp)
 
 (global-unset-key (kbd "C-c e"))

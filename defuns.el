@@ -325,17 +325,23 @@ current, and kill the buffer that visits the link."
       (browse-url (concat url-begin (url-hexify-string text))))
     (deactivate-mark)))
 
-(defun google ()
+(defun google-search ()
   "Do a Google search on the active region or prompt for a string."
   (interactive)
   (web-search "Google search: "
               "http://www.google.com/search?ie=utf-8&oe=utf-8&q="))
 
-(defun imdb ()
-  "Do an IMDB search on the active region or prompt for a string."
+(defun mvnrepository-search ()
+  "Search MvnRepository for artifact."
   (interactive)
-  (web-search "IMDB search: "
-              "http://www.imdb.com/Tsearch?"))
+  (web-search "Maven artifact: "
+              "https://mvnrepository.com/search?q="))
+
+(defun pythondoc-search ()
+  "Search Python documentation."
+  (interactive)
+  (web-search "Python search: "
+              "https://docs.python.org/release/3.12.0/search.html?q="))
 
 ;;-----------------------------------------------------------------------------
 ;;; Helpers for camel and snake case transformations.
