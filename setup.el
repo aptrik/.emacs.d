@@ -270,15 +270,6 @@
                 compile-command (concat "gmake -C " default-directory " all")))
 
 
-(use-package copy-as-format
-  :bind (("C-c t w g" . copy-as-format-github)
-         ("C-c t w j" . copy-as-format-jira)
-         ("C-c t w m" . copy-as-format-markdown)
-         ("C-c t w o" . copy-as-format-org-mode)
-         ("C-c t w r" . copy-as-format-rst)
-         ("C-c t w s" . copy-as-format-slack)))
-
-
 (use-package diff-mode
   :defer t
   :bind (:map diff-mode-map
