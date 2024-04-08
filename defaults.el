@@ -80,9 +80,9 @@
 (blink-cursor-mode 1)
 (column-number-mode 1)
 
-(setq cua-enable-cua-keys   nil ; only for rectangles
-      cua-delete-selection  nil)
-(cua-mode 1)
+;; (setq cua-enable-cua-keys   nil ; only for rectangles
+;;       cua-delete-selection  nil)
+;; (cua-mode 1)
 
 
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)

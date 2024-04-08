@@ -92,8 +92,6 @@
 (global-set-key "\M-[1;5C" 'forward-word)
 (global-set-key "\M-[1;5D" 'backward-word)
 
-(global-set-key [C-return]  'newline-and-indent)
-
 (unless macosp
   (global-set-key [M-delete]  'kill-word))
 
