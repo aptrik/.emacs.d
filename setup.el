@@ -614,10 +614,6 @@
   :bind ("C-c t i" . idle-highlight-mode))
 
 
-(use-package iedit
-  :bind ("M-RET" . iedit-mode))
-
-
 (use-package ielm
   :defer t)
 
