@@ -771,7 +771,11 @@
         lsp-ui-sideline-show-diagnostics t
         lsp-ui-doc-delay 1.5
         lsp-ui-doc-position 'bottom
-	lsp-ui-doc-max-width 100))
+        lsp-ui-doc-max-width 100))
+
+
+(use-package lua-mode
+  :ensure t)
 
 
 (use-package magit
