@@ -75,10 +75,12 @@
 (when (display-graphic-p)
  (setq frame-title-format '("" user-login-name "@" system-name)))
 
-;;; Turn on some global minor modes.
+;;; Turn on/off some global minor modes.
 (auto-compression-mode 1)
 (blink-cursor-mode 1)
 (column-number-mode 1)
+(transient-mark-mode -1)
+(winner-mode 1)
 
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
