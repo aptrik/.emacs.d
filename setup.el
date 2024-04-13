@@ -1323,10 +1323,10 @@
   ;; (fixed-pitch ((t (:height 150))))
   ;; (default ((t (:height 150))))
 
-  (cursor ((t (:foreground "white" :background "firebrick" :inverse-video t))))
-  (region ((t (:foreground "black" :background "#ecd300"))))
-  (match ((t (:background "#FFFF66" :foreground "black" :weight bold))))
-  ;; (highlight ((t :background "black" :underline nil)))
+  (cursor    ((t (:foreground "white" :background "#dc322f" :inverse-video t))))
+  (region    ((t (:foreground "black" :background "#b3c34d"))))
+  (match     ((t (:foreground "black" :background "#e1af4b" :weight bold))))
+  (highlight ((t (                    :background "#294f6e" :weight bold :highlight nil))))
 
   ;; diff
   ;; (diff-added ((t (:foreground "green4" :underline nil))))
@@ -1343,7 +1343,7 @@
   (hl-line-face ((t (:background "gray10"))))
 
   ;; idle-highlight
-  (idle-highlight ((t (:foreground "yellow" :background "black"))))
+  (idle-highlight ((t (:foreground "yellow3" :background "black"))))
 
   ;; isearch
   (isearch
