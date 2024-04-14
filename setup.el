@@ -886,8 +886,6 @@
 (use-package org
   :defer t
   :commands org-mode
-  :bind (("M-m" . org-capture)
-         ("C-c a" . org-agenda))
   :mode ("\\.org\\'" . org-mode)
   :init
   (setq org-replace-disputed-keys t
@@ -895,15 +893,7 @@
   :hook (org-mode . setup--org-mode)
   :config
   (setq
-   org-agenda-span 14
-   org-agenda-start-on-weekday nil
    org-ascii-indented-line-width nil
-   org-clock-history-length 20
-   org-clock-idle-time nil
-   org-clock-in-resume t
-   org-clock-persist 'history
-   org-clock-persist-query-resume nil
-   org-clock-rounding-minutes 5
    org-duration-format 'h:mm
    org-habit-show-all-today nil
    org-habit-show-habits-only-for-today t
@@ -911,7 +901,9 @@
    org-level-color-stars-only t
    org-log-done 'time
    org-log-into-drawer t
+   org-modules '(org-habit)
    org-odd-levels-only nil
+   org-pretty-entities t
    org-reverse-note-order t
    org-src-fontify-natively t
    org-src-preserve-indentation t
@@ -921,23 +913,6 @@
    org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
    org-treat-insert-todo-heading-as-state-change t
    org-use-speed-commands nil)
-  (setq org-agenda-prefix-format
-        '((agenda  . " %i %-12:c%?-12t% s")
-          (todo  . " %i %-12:c")
-          (tags  . " %i %-12:c")
-          (search . " %i %-12:c")))
-  (add-to-list 'org-modules 'org-habit t)
-  (setq org-agenda-custom-commands
-        '(("h" "Daily habits"
-           ((agenda ""))
-           ((org-agenda-show-log t)
-            (org-agenda-ndays 7)
-            (org-agenda-log-mode-items '(state))
-            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
-          ))
-
-  (org-clock-persistence-insinuate)
-  (fullframe org-agenda quit-window)
 
   (custom-theme-set-faces
    'user
@@ -973,6 +948,55 @@
 
     (local-set-key [M-up]   'outline-previous-visible-heading)
     (local-set-key [M-down] 'outline-next-visible-heading)))
+
+
+(use-package org-agenda
+  :ensure nil
+  :after org
+  :bind (("C-c a" . org-agenda))
+  :custom
+  (org-agenda-span 14)
+  (org-agenda-start-on-weekday nil)
+  (org-agenda-prefix-format
+   '((agenda  . " %i %-12:c%?-12t% s")
+     (todo  . " %i %-12:c")
+     (tags  . " %i %-12:c")
+     (search . " %i %-12:c")))
+  (org-agenda-custom-commands
+   '(("h" "Daily habits"
+      ((agenda ""))
+      ((org-agenda-show-log t)
+       (org-agenda-ndays 7)
+       (org-agenda-log-mode-items '(state))
+       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
+     ))
+  :config
+  (fullframe org-agenda quit-window))
+
+
+(use-package org-capture
+  :ensure nil
+  :after org
+  :bind (("M-m" . org-capture)))
+
+
+(use-package org-clock
+  :ensure nil
+  :after org
+  :custom
+  (org-clock-history-length 20)
+  (org-clock-idle-time nil)
+  (org-clock-in-resume t)
+  (org-clock-persist 'history)
+  (org-clock-persist-query-resume nil)
+  (org-clock-rounding-minutes 5)
+  :config
+  (org-clock-persistence-insinuate))
+
+
+(use-package org-habit
+  :ensure nil
+  :after org)
 
 
 (use-package paren
