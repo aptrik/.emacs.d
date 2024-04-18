@@ -456,9 +456,10 @@
 (use-package expand-region
   :bind (("C-+" . er/expand-region)
          ("C-?" . er/contract-region)
-         ("<M-S-left>" . er/contract-region)
+         ("C-c +" . er/expand-region)
+         ("C-c ?" . er/contract-region)
          ("<M-S-right>" . er/expand-region)
-         ))
+         ("<M-S-left>" . er/contract-region)))
 
 
 (use-package ffap
