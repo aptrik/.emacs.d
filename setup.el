@@ -891,69 +891,43 @@
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md))
-  :hook (org-mode . setup--org-mode)
+  :custom
+  (org-adapt-indentation nil)
+  (org-ascii-indented-line-width nil)
+  (org-duration-format 'h:mm)
+  (org-hide-leading-stars nil)
+  (org-level-color-stars-only t)
+  (org-log-into-drawer t)
+  (org-modules '(org-habit))
+  (org-pretty-entities t)
+  (org-reverse-note-order t)
+  (org-src-fontify-natively t)
+  (org-src-preserve-indentation t)
+  (org-src-window-setup 'current-window)
+  (org-time-stamp-rounding-minutes '(0 5))
+  :custom-face
+  (org-block ((t (:inherit fixed-pitch))))
+  (org-code ((t (:inherit fixed-pitch))))
+  (org-table ((t (:inherit fixed-pitch))))
+  (org-tag ((t (:inherit fixed-pitch))))
+  (org-verbatim ((t (:inherit fixed-pitch))))
   :config
-  (setq
-   org-ascii-indented-line-width nil
-   org-duration-format 'h:mm
-   org-habit-show-all-today nil
-   org-habit-show-habits-only-for-today t
-   org-hide-leading-stars nil
-   org-level-color-stars-only t
-   org-log-done 'time
-   org-log-into-drawer t
-   org-modules '(org-habit)
-   org-odd-levels-only nil
-   org-pretty-entities t
-   org-reverse-note-order t
-   org-src-fontify-natively t
-   org-src-preserve-indentation t
-   org-src-window-setup 'current-window
-   org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
-   org-time-stamp-rounding-minutes '(0 5)
-   org-todo-keywords '((sequence "TODO(t!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c@)"))
-   org-treat-insert-todo-heading-as-state-change t
-   org-use-speed-commands nil)
-
-  (custom-theme-set-faces
-   'user
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit fixed-pitch))))
-   '(org-table ((t (:inherit fixed-pitch))))
-   '(org-tag ((t (:inherit fixed-pitch))))
-   '(org-verbatim ((t (:inherit fixed-pitch)))))
-
-  (defun setup--org-mode ()
-    (setq org-blank-before-new-entry '((heading . t)
-                                       (plain-list-item . nil)))
-
-    (require 'ox-latex)
-
-    ;; Set program to use when opening PDF files.
-    (if macosp
-        (add-to-list 'org-file-apps '("\\.pdf\\'" . "open %s"))
-      (add-to-list 'org-file-apps '("\\.pdf\\'" . "evince %s")))
-
-    ;; Enable languages for in-buffer evaluation.
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       (python . t)
-       (ruby . t)
-       (shell . t)))
-
-    (define-key org-read-date-minibuffer-local-map (kbd "S-<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "S-<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "S-<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "S-<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
-
-    (local-set-key [M-up]   'outline-previous-visible-heading)
-    (local-set-key [M-down] 'outline-next-visible-heading)))
+  ;; Enable languages for in-buffer evaluation.
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (ruby . t)
+     (shell . t)))
+  ;; Set program to use when opening PDF files.
+  (if macosp
+      (add-to-list 'org-file-apps '("\\.pdf\\'" . "open %s"))
+    (add-to-list 'org-file-apps '("\\.pdf\\'" . "evince %s"))))
 
 
 (use-package org-agenda
   :ensure nil
-  :after org
+  :defer t
   :bind (("C-c a" . org-agenda))
   :custom
   (org-agenda-span 14)
@@ -969,15 +943,14 @@
       ((org-agenda-show-log t)
        (org-agenda-ndays 7)
        (org-agenda-log-mode-items '(state))
-       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
-     ))
+       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))))
   :config
   (fullframe org-agenda quit-window))
 
 
 (use-package org-capture
   :ensure nil
-  :after org
+  :defer t
   :bind (("M-m" . org-capture)))
 
 
@@ -993,11 +966,6 @@
   (org-clock-rounding-minutes 5)
   :config
   (org-clock-persistence-insinuate))
-
-
-(use-package org-habit
-  :ensure nil
-  :after org)
 
 
 (use-package paren
