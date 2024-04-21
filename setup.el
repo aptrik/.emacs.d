@@ -23,13 +23,6 @@
          ("M-s g"   . consult-ripgrep)
          ("M-s M-s" . consult-outline))
   :init
-  (defvar consult--source-hotspots
-    `(:name "Hotspot directories"
-      :narrow ?\h
-      :face   consult-file
-      :items  ,#'hotspot-generate-directories
-      :action ,(lambda (d) (find-file d)))
-    "Hotspot candidates source for `consult-buffer'.")
   (setq consult-buffer-sources
   '(consult--source-hidden-buffer
     consult--source-modified-buffer
@@ -38,8 +31,33 @@
     consult--source-file-register
     ;; consult--source-bookmark
     consult--source-project-buffer-hidden
-    consult--source-project-recent-file-hidden
-    consult--source-hotspots)))
+    consult--source-project-recent-file-hidden)))
+
+
+(use-package consult-dir
+  :ensure t
+  :bind (("C-x C-d" . consult-dir)
+         ;;:map minibuffer-local-completion-map
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file))
+  :init
+  (defvar consult-dir--source-hotspots
+    `(:name "Hotspots"
+      :narrow ?\h
+      :category file
+      :face consult-file
+      :history file-name-history
+      :items ,#'hotspot-generate-directories
+      :action ,(lambda (d) (find-file d)))
+    "Hotspot candidates source for `consult-dir--pick'.")
+  (setq consult-dir-sources
+        '(consult-dir--source-default
+          consult-dir--source-hotspots
+          consult-dir--source-project
+          consult-dir--source-recentf
+          consult-dir--source-bookmark
+          consult-dir--source-tramp-local)))
 
 
 (use-package consult-project-extra
