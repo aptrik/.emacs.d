@@ -1188,6 +1188,13 @@
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
 
 
+(use-package transpose-frame
+  ;; https://github.com/emacsorphanage/transpose-frame
+  :ensure nil
+  :bind (("C-c x t" . transpose-frame)
+         ("C-c x r" . rotate-frame)))
+
+
 (use-package treemacs
   :ensure t
   :commands (treemacs)
