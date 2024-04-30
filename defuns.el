@@ -335,7 +335,7 @@ current, and kill the buffer that visits the link."
   "Search MvnRepository for artifact."
   (interactive)
   (web-search "Maven artifact: "
-              "https://mvnrepository.com/search?q="))
+              "https://mvnrepository.com/search?q=a:"))
 
 (defun pythondoc-search ()
   "Search Python documentation."
