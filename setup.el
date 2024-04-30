@@ -909,6 +909,7 @@
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md))
+  :bind (("C-c l" . org-store-link))
   :custom
   (org-adapt-indentation nil)
   (org-ascii-indented-line-width nil)
