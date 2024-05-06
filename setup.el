@@ -36,10 +36,10 @@
 
 (use-package consult-dir
   :ensure t
-  :bind (("C-x C-d" . consult-dir)
+  :bind (("C-c <f12>" . consult-dir)
          ;;:map minibuffer-local-completion-map
          :map vertico-map
-         ("C-x C-d" . consult-dir)
+         ("C-c <f12>" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file))
   :init
   (defvar consult-dir--source-hotspots
