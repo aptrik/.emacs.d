@@ -537,13 +537,12 @@
   :defer t)
 
 
-(use-package gitconfig-mode
-  :ensure nil
-  :mode ("/gitconfig\\'" . gitconfig-mode))
-
-
-(use-package gitignore-mode
-  :ensure nil
+(use-package git-modes
+  ;; https://github.com/magit/git-modes
+  :ensure t
+  :defer t
+  :config
+  :mode ("/gitconfig\\'" . gitconfig-mode)
   :mode ("/gitignore\\'" . gitignore-mode))
 
 
