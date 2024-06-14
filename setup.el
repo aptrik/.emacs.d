@@ -1342,7 +1342,7 @@
   ;; (default ((t (:height 150))))
 
   (cursor    ((t (:foreground "white" :background "#dc322f" :inverse-video t))))
-  (region    ((t (:foreground "black" :background "#abd3ac"))))
+  (region    ((t (:foreground "black" :background "#e1af4b"))))
   (match     ((t (:foreground "black" :background "#e1af4b" :weight bold))))
   (highlight ((t (                    :background "#294f6e" :weight bold :highlight nil))))
 
