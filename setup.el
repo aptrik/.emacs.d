@@ -551,10 +551,7 @@
   :ensure t
   :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . setup--go-mode)
-         (go-mode . setup--go-save-hook)
-         (go-mode . (lambda()
-                      (flycheck-golangci-lint-setup)
-                      (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
+         (go-mode . setup--go-save-hook))
   :config
   (defun setup--go-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -566,7 +563,10 @@
     (eldoc-mode 1)
     (flycheck-mode 1)
     (subword-mode 1)
-    (which-function-mode 1)))
+    (which-function-mode 1)
+
+    (flycheck-golangci-lint-setup)
+    (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint))))))))
 
 
 (use-package gradle-mode
