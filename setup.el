@@ -707,7 +707,7 @@
   (setq read-process-output-max (* 3 1024 1024))
   :custom
   (lsp-completion-enable t)
-  (lsp-completion-provider :capf)
+  (lsp-completion-provider :corfu)
   (lsp-eldoc-enable-hover t)
   (lsp-eldoc-render-all nil)
   (lsp-enable-snippet t)
@@ -717,7 +717,6 @@
   (lsp-highlight-symbol-at-point t)
   (lsp-idle-delay 0.6)
   (lsp-keymap-prefix "C-c l")
-  (lsp-prefer-capf t)
   (lsp-pyls-plugins-flake8-enabled t)
   :config
   (lsp-enable-which-key-integration t)
