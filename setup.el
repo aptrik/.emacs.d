@@ -1104,7 +1104,7 @@
 (use-package saveplace
   :unless noninteractive
   :init
-  (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+  (setq save-place-forget-unreadable-files nil)
   :config
   (save-place-mode 1))
 
