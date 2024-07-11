@@ -1009,14 +1009,28 @@
 
 
 (use-package pulse
-  :defer t
-  :init (defun pulse-line (&rest _)
-          (pulse-momentary-highlight-one-line (point)))
-  (dolist (command '(other-window
-                     windmove-do-window-select
+  :config
+  :init
+  (defun pulse--highlight-line (&rest _)
+    (pulse-momentary-highlight-one-line (point)))
+  (defun pulse--highlight-region (&rest _)
+    (if mark-active
+        (pulse-momentary-highlight-region (region-beginning) (region-end))
+      (pulse-momentary-highlight-region (mark) (point))))
+  (dolist (command '(mouse-select-window
                      mouse-set-point
-                     mouse-select-window))
-    (advice-add command :after #'pulse-line)))
+                     move-to-window-line-top-bottom
+                     other-window
+                     recenter-top-bottom
+                     scroll-down-command
+                     scroll-up-command
+                     windmove-do-window-select
+                     windmove-down
+                     windmove-left
+                     windmove-right
+                     windmove-up))
+    (advice-add command :after #'pulse--highlight-line))
+  (advice-add #'kill-ring-save :before #'pulse--highlight-region))
 
 
 (use-package pyvenv
