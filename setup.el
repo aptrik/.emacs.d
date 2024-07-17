@@ -369,6 +369,11 @@
   (direnv-mode))
 
 
+(use-package docker
+  :ensure t
+  :defer)
+
+
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'" . dockerfile-mode))
 
