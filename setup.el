@@ -178,13 +178,6 @@
                              "\\)\\*")))
 
 
-(use-package buffer-move
-  :bind (("<C-M-S-up>"    . buf-move-up)
-         ("<C-M-S-down>"  . buf-move-down)
-         ("<C-M-S-left>"  . buf-move-left)
-         ("<C-M-S-right>" . buf-move-right)))
-
-
 (use-package calc
   :defer t
   :commands calc
@@ -855,8 +848,8 @@
          ("C-|" . mc/edit-lines)
          ("<M-S-up>" . mc/mark-previous-like-this)
          ("<M-S-down>" . mc/mark-next-like-this)
-         ("<M-S-C-up>" . mc/unmark-next-like-this)
-         ("<M-S-C-down>" . mc/unmark-previous-like-this)
+         ("<C-M-S-up>" . mc/unmark-next-like-this)
+         ("<C-M-S-down>" . mc/unmark-previous-like-this)
          ("S-<mouse-1>" . mc/add-cursor-on-click)))
 
 
