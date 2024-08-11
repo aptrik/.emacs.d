@@ -906,7 +906,13 @@
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md))
-  ;:bind (("C-c l" . org-store-link))
+  (defun org--insert-header ()
+    "Insert an org header at top of file."
+    (interactive)
+    (goto-char (point-min))
+    (insert "-*- mode:org; coding:utf-8; ispell-local-dictionary:\"british\" -*-\n\n"))
+  :bind (("C-c o h" . org--insert-header)
+         ("C-c o l" . org-store-link))
   :custom
   (org-adapt-indentation nil)
   (org-ascii-indented-line-width nil)
@@ -944,7 +950,7 @@
 (use-package org-agenda
   :ensure nil
   :defer t
-  :bind (("C-c a" . org-agenda))
+  :bind (("C-c o a" . org-agenda))
   :custom
   (org-agenda-span 14)
   (org-agenda-start-on-weekday nil)
@@ -967,7 +973,7 @@
 (use-package org-capture
   :ensure nil
   :defer t
-  :bind (("M-m" . org-capture)))
+  :bind (("C-c o c" . org-capture)))
 
 
 (use-package org-clock

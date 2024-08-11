@@ -148,12 +148,6 @@
   (interactive "FPath: ")
   (insert (expand-file-name file)))
 
-(defun insert-org-header ()
-  "Insert an org header at top of file."
-  (interactive)
-  (goto-char (point-min))
-  (insert "-*- mode:org; coding:utf-8; ispell-local-dictionary:\"british\" -*-\n\n"))
-
 (defun join-line-or-lines-in-region ()
   "Join this line or the lines in the selected region."
   (interactive)
