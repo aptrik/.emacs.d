@@ -754,6 +754,7 @@
          (python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
+         (zig-mode . lsp-deferred)
          )
   ;; Workaround for "Invalid Image type: 'gif'"
   ;; - https://github.com/emacs-lsp/lsp-mode/issues/4054
@@ -1314,6 +1315,12 @@
 (use-package yasnippet-snippets
   :after yasnippet
   :config (yasnippet-snippets-initialize))
+
+
+(use-package zig-mode
+  :ensure t
+  :defer t
+  )
 
 
 ;;-----------------------------------------------------------------------------
