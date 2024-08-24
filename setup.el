@@ -20,7 +20,7 @@
          ;; ("M-g f"   . consult-flymake)
          ("M-g i"   . consult-imenu)
          ("M-s l"   . consult-line)
-         ("M-s g"   . consult-ripgrep)
+         ("M-s r"   . consult-ripgrep)
          ("M-s M-s" . consult-outline))
   :init
   (setq consult-buffer-sources
@@ -574,6 +574,12 @@
 (use-package groovy-mode
   :mode (("\\.grovvy\\'" . groovy-mode)
          ("\\.gradle\\'" . groovy-mode)))
+
+
+(use-package grep
+  :ensure nil
+  :defer t
+  :bind (("M-s g" . grep-find)))
 
 
 (use-package highlight-symbol
