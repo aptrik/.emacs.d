@@ -37,9 +37,9 @@
 (use-package consult-dir
   :ensure t
   :bind (("C-c <f12>" . consult-dir)
-         ;;:map minibuffer-local-completion-map
          :map vertico-map
          ("C-c <f12>" . consult-dir)
+         ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file))
   :init
   (defvar consult-dir--source-hotspots
@@ -48,8 +48,7 @@
       :category file
       :face consult-file
       :history file-name-history
-      :items ,#'hotspot-generate-directories
-      :action ,(lambda (d) (find-file d)))
+      :items ,#'hotspot-generate-directories)
     "Hotspot candidates source for `consult-dir--pick'.")
   (setq consult-dir-sources
         '(consult-dir--source-default
