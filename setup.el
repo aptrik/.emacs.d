@@ -1309,6 +1309,8 @@
   :commands (snippet-mode yas-expand yas-minor-mode)
   :diminish yas-minor-mode
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :bind (("C-c y i" . yas-insert-snippet)
+         ("C-c y e" . yas-expand))
   :init
   (setq yas-verbosity 0)
   :config
