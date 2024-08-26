@@ -36,11 +36,9 @@
 
 (use-package consult-dir
   :ensure t
-  :bind (("C-c <f12>" . consult-dir)
+  :bind (("C-c C-d" . consult-dir)
          :map vertico-map
-         ("C-c <f12>" . consult-dir)
-         ("C-x C-d" . consult-dir)
-         ("C-x C-j" . consult-dir-jump-file))
+         ("C-c C-d" . consult-dir))
   :init
   (defvar consult-dir--source-hotspots
     `(:name "Hotspots"
@@ -50,13 +48,15 @@
       :history file-name-history
       :items ,#'hotspot-generate-directories)
     "Hotspot candidates source for `consult-dir--pick'.")
-  (setq consult-dir-sources
-        '(consult-dir--source-default
-          consult-dir--source-hotspots
-          consult-dir--source-project
-          consult-dir--source-recentf
-          consult-dir--source-bookmark
-          consult-dir--source-tramp-local)))
+  :custom
+  (consult-dir-shadow-filenames t)
+  (consult-dir-sources
+   '(consult-dir--source-default
+     consult-dir--source-hotspots
+     consult-dir--source-project
+     consult-dir--source-recentf
+     consult-dir--source-bookmark
+     consult-dir--source-tramp-local)))
 
 
 (use-package consult-project-extra
