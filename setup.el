@@ -804,14 +804,14 @@
   :defer t
   :bind (("C-x v SPC" . magit-status))
   :commands magit-status
+  :custom
+  (magit-diff-refine-hunk t)
+  (magit-section-initial-visibility-alist
+   '((stashes . show)
+     (unpushed . show)
+     (upstream . show)
+     (untracked . show)))
   :config
-  (setq ;; magit-completing-read-function 'ivy-completing-read
-   magit-diff-refine-hunk t
-   magit-push-always-verify nil
-   magit-repository-directories '("~/.emacs.d")
-   magit-restore-window-configuration t
-   magit-section-initial-visibility-alist '((stashes . show) (unpushed . show) (upstream . show) (untracked . show))
-   magit-status-buffer-switch-function 'switch-to-buffer)
   (defadvice magit-diff-working-tree (after magit-diff-focus activate)
     "After execution, select the magit-diff buffer in the current window."
     (other-window 1))
