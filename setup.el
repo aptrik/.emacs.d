@@ -1006,7 +1006,8 @@
   :ensure nil
   :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))
          (prog-mode . (lambda () (electric-indent-local-mode -1)))
-         (prog-mode . (lambda () (electric-pair-local-mode -1)))))
+         (prog-mode . (lambda () (electric-pair-local-mode -1))))
+  :bind (("C-c t e" . electric-indent-mode)))
 
 
 (use-package protobuf-mode
