@@ -84,6 +84,13 @@
   (corfu-popupinfo-mode))
 
 
+(use-package corfu-terminal
+  :ensure t
+  :unless (display-graphic-p)
+  :config
+  (corfu-terminal-mode +1))
+
+
 (use-package marginalia
   :ensure t
   :after vertico
