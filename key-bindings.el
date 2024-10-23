@@ -67,7 +67,6 @@
 (global-set-key (kbd "M-C")  'comment-region)
 (global-set-key (kbd "M-F")  'auto-fill-mode)
 (global-set-key (kbd "M-I")  'indent-region)
-(global-set-key (kbd "M-T")  'toggle-truncate-lines)
 (global-set-key (kbd "M-U")  'uncomment-region)
 (global-set-key (kbd "M-o")  'duplicate-line)
 

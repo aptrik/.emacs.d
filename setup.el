@@ -1157,7 +1157,9 @@
 
 (use-package simple
   :ensure nil
-  :bind (("M-SPC" . cycle-spacing)))
+  :bind (("M-SPC" . cycle-spacing)
+         ("M-T" . toggle-truncate-lines)
+         ("C-c t t" . toggle-truncate-lines)))
 
 
 (use-package smartparens
