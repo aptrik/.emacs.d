@@ -368,9 +368,16 @@
   (direnv-mode))
 
 
+(use-package display-line-numbers
+  :ensure nil
+  :defer t
+  :bind (("C-c t l" . display-line-numbers-mode)
+         ("C-c t L" . global-display-line-numbers-mode)))
+
+
 (use-package docker
   :ensure t
-  :defer)
+  :defer t)
 
 
 (use-package dockerfile-mode
