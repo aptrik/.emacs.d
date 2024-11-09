@@ -895,6 +895,7 @@
   :ensure nil
   :defer t
   :commands nxml-mode
+  :bind (:map nxml-mode-map("C-c t r" . nxml-reformat))
   :init
   (defalias 'xml-mode 'nxml-mode)
   :config
@@ -906,10 +907,25 @@
           (progn
             (setq level (if (= level 1) default-level level))
             (message "NXML indentation is %s." level)
+            (make-local-variable 'nxml-child-indent)
+            (make-local-variable 'nxml-attribute-indent)
             (setq nxml-child-indent level
                   nxml-attribute-indent level)))))
+  (defun nxml-reformat (level)
+    "Reformat current buffer.
+Default indentation LEVEL is 2."
+    (interactive "p")
+    (if (derived-mode-p 'nxml-mode)
+        (save-excursion
+          (save-restriction
+            (widen)
+            (nuke-trailing-whitespace)
+            (untabify (point-min) (point-max))
+            (nxml-set-indentation level)
+            (indent-region (point-min) (point-max))))))
 
-  (nxml-set-indentation 2)
+  (setq nxml-child-indent 2
+        nxml-attribute-indent 2)
 
   (setq nxml-auto-insert-xml-declaration-flag nil
         nxml-bind-meta-tab-to-complete-flag t
