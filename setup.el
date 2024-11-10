@@ -895,7 +895,8 @@
   :ensure nil
   :defer t
   :commands nxml-mode
-  :bind (:map nxml-mode-map("C-c t r" . nxml-reformat))
+  :bind (:map nxml-mode-map
+              ("C-c r" . nxml-reformat-buffer))
   :init
   (defalias 'xml-mode 'nxml-mode)
   :config
@@ -911,7 +912,7 @@
             (make-local-variable 'nxml-attribute-indent)
             (setq nxml-child-indent level
                   nxml-attribute-indent level)))))
-  (defun nxml-reformat (level)
+  (defun nxml-reformat-buffer (level)
     "Reformat current buffer.
 Default indentation LEVEL is 2."
     (interactive "p")
