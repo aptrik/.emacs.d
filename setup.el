@@ -398,6 +398,7 @@
   :bind (("C-c = b" . ediff-buffers)
          ("C-c = B" . ediff-buffers3)
          ("C-c = c" . compare-windows)
+         ("C-c = d" . ediff-directories)
          ("C-c = =" . ediff-files)
          ("C-c = f" . ediff-files)
          ("C-c = F" . ediff-files3)
