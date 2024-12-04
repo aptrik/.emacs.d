@@ -943,7 +943,7 @@ Default indentation LEVEL is 2."
   :mode ("\\.org\\'" . org-mode)
   :init
   (setq org-replace-disputed-keys t
-        org-export-backends '(ascii html md))
+        org-export-backends '(ascii html md pandoc))
   (defun org--insert-header ()
     "Insert an org header at top of file."
     (interactive)
@@ -1026,6 +1026,11 @@ Default indentation LEVEL is 2."
   (org-clock-rounding-minutes 5)
   :config
   (org-clock-persistence-insinuate))
+
+
+(use-package ox-pandoc
+  :ensure t
+  :after org)
 
 
 (use-package paren
