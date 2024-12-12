@@ -410,10 +410,12 @@
   :config
   (setq-default ediff-ignore-similar-regions t)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
-        ediff-split-window-function (lambda (&optional arg)
-                                      (if (> (frame-width) 150)
-                                          (split-window-horizontally arg)
-                                        (split-window-vertically arg)))))
+        ediff-split-window-function 'split-window-horizontally
+        ;; ediff-split-window-function (lambda (&optional arg)
+        ;;                               (if (> (frame-width) 150)
+        ;;                                   (split-window-horizontally arg)
+        ;;                                 (split-window-vertically arg)))
+  ))
 
 
 (use-package edit-env
