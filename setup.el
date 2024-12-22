@@ -81,7 +81,7 @@
   :init
   (global-corfu-mode)
   (corfu-history-mode)
-  (corfu-popupinfo-mode))
+  (corfu-popupinfo-mode +1))
 
 
 (use-package corfu-terminal
