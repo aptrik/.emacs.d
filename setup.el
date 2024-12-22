@@ -721,8 +721,8 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :bind ((:map lsp-mode-map
-               ("M-<return>" . lsp-execute-code-action)))
+  :bind (:map lsp-mode-map
+              ("M-<RET>" . lsp-execute-code-action))
   :init
   (setq read-process-output-max (* 3 1024 1024))
   :custom
