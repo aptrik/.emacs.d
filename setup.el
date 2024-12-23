@@ -744,6 +744,7 @@
   (lsp-headerline-breadcrumb-enable t)
   (lsp-highlight-symbol-at-point t)
   (lsp-idle-delay 0.6)
+  (lsp-keep-workspace-alive nil)
   (lsp-keymap-prefix "C-c l")
   (lsp-pyls-plugins-flake8-enabled t)
   :config
