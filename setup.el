@@ -287,6 +287,14 @@
                 compile-command (concat "gmake -C " default-directory " all")))
 
 
+(use-package consult-lsp
+  :ensure t
+  :after lsp-mode
+  :config
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols)
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+
+
 (use-package diff-mode
   :defer t
   :bind (:map diff-mode-map
@@ -748,6 +756,9 @@
      ("pylsp.plugins.rope_autoimport.enabled" t t)
      ("pylsp.plugins.rope_autoimport.completions.enabled" t t)
    ))
+  (define-key lsp-mode-map
+              [remap lsp-treemacs-errors-list]
+              #'consult-lsp-diagnostics)
   (setq lsp-prefer-flymake nil
         lsp-go-use-gofumpt t
         lsp-pylsp-plugins-black-enabled t))
