@@ -1393,7 +1393,7 @@ Default indentation LEVEL is 2."
   :config
   (load-theme 'solarized-selenized-dark :no-confirm)
   :custom-face
-  (default ((t (:background "#002b36")))) ;; same as iTerm/Profiles/Color/Background
+  (default ((t (:background "#0d2a34")))) ;; same as iTerm/Profiles/Color/Background
 
   ;; (variable-pitch ((t (:height 170))))
   ;; (fixed-pitch ((t (:height 150))))
