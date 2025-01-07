@@ -695,6 +695,11 @@
       (json-reformat-region (point-min) (point-max)))))
 
 
+(use-package json-reformat
+  :ensure t
+  :after json-mode)
+
+
 (use-package kubernetes
   :commands (kubernetes-overview)
   :config
