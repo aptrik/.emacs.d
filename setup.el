@@ -64,6 +64,22 @@
   :bind (("C-c f p" . consult-project-extra-find)))
 
 
+(use-package copilot
+  ;; https://github.com/copilot-emacs/copilot.el
+  :ensure t
+  :defer t
+  :bind (:map copilot-completion-map
+              ("<tab>" . copilot-accept-completion)
+              ("TAB" . copilot-accept-completion))
+  :bind (:map prog-mode-map
+              ("C-c c a" . copilot-accept-completion)
+              ("c-c c c" . copilot-complete)
+              ("C-c c d" . copilot-discard-completion)
+              ("C-c c n" . copilot-next-completion)
+              ("C-c c p" . copilot-previous-completion)
+              ("C-c c r" . copilot-reject-completion)))
+
+
 (use-package corfu
   :ensure t
   :custom
@@ -274,8 +290,8 @@
 
 (use-package compile
   :no-require
-  :bind (("C-c c" . compile)
-         ("C-c C" . recompile))
+  ;; :bind (("C-c c" . compile)
+  ;;        ("C-c C" . recompile))
   :hook (;;(compilation-mode . toggle-truncate-lines)
          (compilation-mode . compilation-recenter-end-enable)
          (compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
