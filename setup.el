@@ -73,7 +73,7 @@
               ("TAB" . copilot-accept-completion))
   :bind (:map prog-mode-map
               ("C-c c a" . copilot-accept-completion)
-              ("c-c c c" . copilot-complete)
+              ("C-c c c" . copilot-complete)
               ("C-c c d" . copilot-discard-completion)
               ("C-c c n" . copilot-next-completion)
               ("C-c c p" . copilot-previous-completion)
