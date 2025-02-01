@@ -64,22 +64,6 @@
   :bind (("C-c f p" . consult-project-extra-find)))
 
 
-(use-package copilot
-  ;; https://github.com/copilot-emacs/copilot.el
-  :ensure t
-  :defer t
-  :bind (:map copilot-completion-map
-              ("<tab>" . copilot-accept-completion)
-              ("TAB" . copilot-accept-completion))
-  :bind (:map prog-mode-map
-              ("C-c c a" . copilot-accept-completion)
-              ("C-c c c" . copilot-complete)
-              ("C-c c d" . copilot-discard-completion)
-              ("C-c c n" . copilot-next-completion)
-              ("C-c c p" . copilot-previous-completion)
-              ("C-c c r" . copilot-reject-completion)))
-
-
 (use-package corfu
   :ensure t
   :custom
@@ -309,6 +293,22 @@
   :config
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols)
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+
+
+(use-package copilot
+  ;; https://github.com/copilot-emacs/copilot.el
+  :ensure t
+  :defer t
+  :bind (:map copilot-completion-map
+              ("<tab>" . copilot-accept-completion)
+              ("TAB" . copilot-accept-completion))
+  :bind (:map prog-mode-map
+              ("C-c c a" . copilot-accept-completion)
+              ("C-c c c" . copilot-complete)
+              ("C-c c d" . copilot-discard-completion)
+              ("C-c c n" . copilot-next-completion)
+              ("C-c c p" . copilot-previous-completion)
+              ("C-c c r" . copilot-reject-completion)))
 
 
 (use-package diff-mode
