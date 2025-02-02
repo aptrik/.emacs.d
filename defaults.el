@@ -36,7 +36,7 @@
  indicate-empty-lines          t
  make-backup-files             nil
  mark-even-if-inactive         t
- require-final-newline         nil
+ mode-require-final-newline    nil
  standard-indent               4
  tab-width                     8
  trim-versions-without-asking  t
