@@ -6,7 +6,7 @@
 (use-package emacs
   :init
   (setq completion-cycle-threshold 3
-        tab-always-indent t))
+        tab-always-indent 'complete))
 
 
 ;;-----------------------------------------------------------------------------
@@ -70,14 +70,6 @@
   (corfu-cycle t)
   :bind (("C-." . completion-at-point)
          ("C-c ." . completion-at-point))
-  :bind (:map corfu-map
-              ("M-SPC"      . corfu-insert-separator)
-              ("TAB"        . corfu-next)
-              ([tab]        . corfu-next)
-              ("S-TAB"      . corfu-previous)
-              ([backtab]    . corfu-previous)
-              ("S-<return>" . corfu-insert)
-              ("RET"        . nil))
   :init
   (global-corfu-mode)
   (corfu-history-mode)
