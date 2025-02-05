@@ -443,11 +443,7 @@
   :defer t
   :diminish eldoc-mode
   :commands eldoc-mode
-  :hook (emacs-lisp-mode . eldoc-mode)
-  :init
-  (setq eldoc-echo-area-use-multiline-p nil
-        eldoc-idle-delay 0.5
-        eldoc-print-after-edit nil))
+  :hook (emacs-lisp-mode . eldoc-mode))
 
 
 (use-package elint
