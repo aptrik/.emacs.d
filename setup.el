@@ -4,9 +4,10 @@
 ;;; General settings
 
 (use-package emacs
-  :init
-  (setq completion-cycle-threshold 3
-        tab-always-indent 'complete))
+  :custom
+  (completion-cycle-threshold 3)
+  (tab-always-indent 'complete)
+  (read-extended-command-predicate #'command-completion-default-include-p))
 
 
 ;;-----------------------------------------------------------------------------
