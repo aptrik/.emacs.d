@@ -44,21 +44,16 @@
 ;;-----------------------------------------------------------------------------
 ;;; Change built-ins behaviours .
 
-(defadvice kill-ring-save (before slick-copy activate compile)
-  "When called interactively with no active region, copy a single line instead."
+(defun kill-region--current-region-or-current-line (&rest r)
+  "Current region or region around current line if no region active."
   (interactive
    (if mark-active
        (list (region-beginning) (region-end))
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
-(defadvice kill-region (before slick-cut activate compile)
-  "When called interactively with no active region, kill a single line instead."
-  (interactive
-   (if mark-active
-       (list (region-beginning) (region-end))
-     (list (line-beginning-position)
-           (line-beginning-position 2)))))
+(advice-add 'kill-region :before #'kill-region--current-region-or-current-line)
+;; (advice-remove 'kill-region #'kill-region--current-region-or-current-line)
 
 ;;-----------------------------------------------------------------------------
 ;;; Miscellaneous routines
@@ -709,18 +704,6 @@ many columns.  With no active region, indent only the current line."
      ;;(set-buffer-file-coding-system 'utf-8-unix t)
      ;;(set-buffer-file-coding-system 'utf-8)
      (delete-trailing-whitespace)))
-
-;;-----------------------------------------------------------------------------
-;;; Modifications to find-file-at-point.
-
-(defadvice find-file-at-point
-  (around goto-line compile activate)
-  (let ((line (and (looking-at ".*:\\([0-9]+\\)")
-                   (string-to-number (match-string 1)))))
-    ad-do-it
-    (and line (progn
-                (goto-char (point-min))
-                (forward-line (1- line))))))
 
 ;;-----------------------------------------------------------------------------
 

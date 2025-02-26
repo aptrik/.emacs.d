@@ -860,9 +860,6 @@
      (upstream . show)
      (untracked . show)))
   :config
-  (defadvice magit-diff-working-tree (after magit-diff-focus activate)
-    "After execution, select the magit-diff buffer in the current window."
-    (other-window 1))
   (fullframe magit-status-setup-buffer magit-mode-quite-window))
 
 
@@ -1139,12 +1136,6 @@ Default indentation LEVEL is 2."
   (defun setup--python-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-  (defadvice pdb (before gud-query-cmdline activate)
-    "Provide a better default command line when called interactively."
-    (interactive
-     (list (gud-query-cmdline 'pdb
-                              (file-name-nondirectory buffer-file-name)))))
 
   (defun py-run ()
     "Run python on the file in the current buffer."
