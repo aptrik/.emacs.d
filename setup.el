@@ -412,7 +412,8 @@
 
 (use-package dtrt-indent
   :defer t
-  :hook (prog-mode . dtrt-indent-mode)
+  :hook ((nxml-mode . dtrt-indent-mode)
+         (prog-mode . dtrt-indent-mode))
   :diminish dtrt-indent-mode
   :init
   (setq dtrt-indent-verbosity 1))
