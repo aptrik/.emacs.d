@@ -854,6 +854,7 @@
   :bind (("C-x v SPC" . magit-status))
   :commands magit-status
   :custom
+  (magit-delete-by-moving-to-trash nil)
   (magit-diff-refine-hunk t)
   (magit-section-initial-visibility-alist
    '((stashes . show)
