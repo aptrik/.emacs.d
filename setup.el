@@ -777,9 +777,7 @@
      ("pylsp.plugins.rope_autoimport.enabled" t t)
      ("pylsp.plugins.rope_autoimport.completions.enabled" t t)
    ))
-  (define-key lsp-mode-map
-              [remap lsp-treemacs-errors-list]
-              #'consult-lsp-diagnostics)
+  (define-key lsp-mode-map [remap lsp-treemacs-errors-list] #'consult-lsp-diagnostics)
   (setq lsp-prefer-flymake nil
         lsp-go-use-gofumpt t
         lsp-pylsp-plugins-black-enabled t))
@@ -804,12 +802,12 @@
 (use-package lsp-languages
   :ensure nil
   :hook ((go-mode . lsp-deferred)
+         (helm-mode . lsp-deferred) ;; https://github.com/mrjosh/helm-ls
          ;;(java-mode . lsp-deferred)
          (python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
-         (zig-mode . lsp-deferred)
-         )
+         (zig-mode . lsp-deferred))
   ;; Workaround for "Invalid Image type: 'gif'"
   ;; - https://github.com/emacs-lsp/lsp-mode/issues/4054
   ;; - https://github.com/Alexander-Miller/treemacs/issues/1017#issuecomment-1515602288
@@ -1366,7 +1364,10 @@ Default indentation LEVEL is 2."
   :defer t
   :commands (yaml-mode setup--yaml-mode)
   :mode ("\\.ya?ml\\'" . yaml-mode)
-  :hook (yaml-mode . flycheck-mode))
+  :hook (yaml-mode . flycheck-mode)
+  :config
+  (define-derived-mode helm-mode yaml-mode "helm"
+    "Major mode for editing kubernetes helm templates"))
 
 
 (use-package yasnippet
@@ -1392,8 +1393,7 @@ Default indentation LEVEL is 2."
 
 (use-package zig-mode
   :ensure t
-  :defer t
-  )
+  :defer t)
 
 
 ;;-----------------------------------------------------------------------------
