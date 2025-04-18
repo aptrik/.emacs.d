@@ -23,6 +23,7 @@
 (global-set-key (kbd "s-8") "[")
 (global-set-key (kbd "s-9") "]")
 
+(global-set-key (kbd "C-j") #'join-line-or-lines-in-region)
 (global-set-key (kbd "C-S-j") (lambda ()
                                 (interactive)
                                 (let ((current-prefix-arg 1))
