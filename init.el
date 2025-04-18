@@ -6,6 +6,7 @@
 
 (setq inhibit-default-init t
       inhibit-splash-screen t
+      inhibit-startup-buffer-menu t
       inhibit-startup-message t
       initial-scratch-message nil)
 
