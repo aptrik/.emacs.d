@@ -420,7 +420,6 @@
 
 
 (use-package ediff
-  :defer t
   :commands (ediff-files ediff-buffers)
   :bind (("C-c = b" . ediff-buffers)
          ("C-c = B" . ediff-buffers3)
