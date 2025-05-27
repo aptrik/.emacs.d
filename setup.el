@@ -1361,9 +1361,8 @@ Default indentation LEVEL is 2."
 
 (use-package yaml-mode
   :defer t
-  :commands (yaml-mode setup--yaml-mode)
   :mode ("\\.ya?ml\\'" . yaml-mode)
-  :hook (yaml-mode . flycheck-mode)
+  ;;:hook (yaml-mode . flycheck-mode)
   :config
   (define-derived-mode helm-mode yaml-mode "helm"
     "Major mode for editing kubernetes helm templates"))
