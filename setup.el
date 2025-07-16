@@ -582,6 +582,10 @@
   :mode ("/gitignore\\'" . gitignore-mode))
 
 
+(use-package glsl-mode
+  :ensure t)
+
+
 (use-package go-mode
   :defer t
   :ensure t
