@@ -807,7 +807,7 @@
   :hook ((go-mode . lsp-deferred)
          (helm-mode . lsp-deferred) ;; https://github.com/mrjosh/helm-ls
          ;;(java-mode . lsp-deferred)
-         (python-base-mode . lsp-deferred)
+         ;;(python-base-mode . lsp-deferred)
          ;;(xml-mode . lsp-deferred)
          ;;(web-mode . lsp-deferred)
          (zig-mode . lsp-deferred))
