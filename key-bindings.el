@@ -78,11 +78,12 @@
 (global-set-key (kbd "C-3")  'split-window-right)
 (global-set-key (kbd "C-7")  'comment-or-uncomment-current-line-or-region)
 
-(global-set-key (kbd "C-c 0") (lambda ()
-                                (interactive)
-                                (find-file
-                                 (expand-file-name "setup.el"
-                                                   user-emacs-directory))))
+(let ((key "C-c 0"))
+  (global-set-key (kbd key) `(lambda ()
+                               (interactive)
+                               (find-file
+                                (expand-file-name "setup.el" user-emacs-directory))))
+  (which-key-add-key-based-replacements key "Open setup.el"))
 
 (global-set-key [C-M-up]    'backward-paragraph)
 (global-set-key [C-M-down]  'forward-paragraph)
