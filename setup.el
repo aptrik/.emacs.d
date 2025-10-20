@@ -1116,9 +1116,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package pyvenv
-  :defer t
-  :init
-  (setenv "WORKON_HOME" "~/.pyenv/versions"))
+  :defer t)
 
 
 (use-package python
