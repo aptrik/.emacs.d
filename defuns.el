@@ -32,12 +32,6 @@
 ;;-----------------------------------------------------------------------------
 ;;; Turn simple modes on or off.
 
-(defun turn-off-hl-line-mode ()
-  (hl-line-mode 0))
-
-(defun turn-on-rainbow-mode ()
-  (rainbow-mode 1))
-
 (defun turn-on-truncate-lines ()
   (toggle-truncate-lines 1))
 

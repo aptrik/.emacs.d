@@ -1175,6 +1175,11 @@ Default indentation LEVEL is 2."
   :after python)
 
 
+(use-package rainbow-mode
+  :ensure t
+  :defer t)
+
+
 (use-package restclient
   :ensure t
   :defer t)
