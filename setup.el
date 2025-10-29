@@ -1155,6 +1155,22 @@ Default indentation LEVEL is 2."
      flycheck-python-pycompile-executable version
      flycheck-python-pylint-executable version))
 
+  (defun ruff-check ()
+    (interactive)
+    (let ((current-file (buffer-file-name)))
+      (if current-file
+          (async-shell-command
+           (format "ruff check --select ALL %s" (shell-quote-argument current-file))))))
+
+  (defun ruff-fix ()
+    (interactive)
+    (let ((current-file (buffer-file-name)))
+      (if current-file
+          (progn
+            (shell-command
+             (format "ruff check --select ALL --fix %s" (shell-quote-argument current-file)))
+            (revert-buffer t t t)))))
+
   (defun setup--python-mode ()
     ;;(setq py-python-command-args '( "-colors" "Linux"))
 
