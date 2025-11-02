@@ -30,7 +30,6 @@
     consult--source-buffer
     consult--source-recent-file
     consult--source-file-register
-    ;; consult--source-bookmark
     consult--source-project-buffer-hidden
     consult--source-project-recent-file-hidden)))
 
@@ -1194,6 +1193,12 @@ Default indentation LEVEL is 2."
 (use-package rainbow-mode
   :ensure t
   :defer t)
+
+
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 500)
+  (recentf-mode 1))
 
 
 (use-package restclient
