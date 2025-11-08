@@ -1072,6 +1072,14 @@ Default indentation LEVEL is 2."
   (show-paren-mode 1))
 
 
+(use-package pdf-tools
+  ;; (pdf-tools-install)
+  :ensure t
+  :defer t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.pdf" . pdf-view-mode)))
+
+
 (use-package prog-mode
   :ensure nil
   :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))
