@@ -1214,6 +1214,14 @@ Default indentation LEVEL is 2."
   :defer t)
 
 
+(use-package rg
+  :ensure t
+  :custom
+  (rg-keymap-prefix "\C-c\C-s")
+  :config
+  (rg-enable-default-bindings))
+
+
 (use-package rst
   :defer t
   :hook (rst-mode . setup--rst-mode)
