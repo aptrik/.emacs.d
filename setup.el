@@ -798,7 +798,6 @@
 
 
 (use-package lsp-java
-  :disabled
   :ensure t
   :defer t
   :hook ((java-mode . lsp-java-boot-lens-mode))
