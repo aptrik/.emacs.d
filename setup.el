@@ -456,6 +456,15 @@
   :hook (emacs-lisp-mode . eldoc-mode))
 
 
+(use-package eldoc-box
+  :ensure t
+  :after eldoc
+  :bind
+  (("C-c h" . eldoc-box-help-at-point))
+  :config
+  (setq eldoc-box-only-multi-line t))
+
+
 (use-package elint
   :commands elint-initialize
   :bind ("C-c e E" . elint-current-buffer)
