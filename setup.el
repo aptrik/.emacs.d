@@ -801,9 +801,9 @@
   :disabled
   :ensure t
   :defer t
+  :hook ((java-mode . lsp-java-boot-lens-mode))
   :config
   (require 'lsp-java-boot)
-  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
   (setq lsp-java-vmargs
         (list
          "-noverify"
@@ -833,7 +833,8 @@
 (use-package lsp-lens
   :ensure nil
   :defer t
-  :after lsp-mode)
+  :after lsp-mode
+  :hook ((lsp-mode . lsp-lens-mode)))
 
 
 (use-package lsp-treemacs
