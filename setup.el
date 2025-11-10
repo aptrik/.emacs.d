@@ -1138,9 +1138,8 @@ Default indentation LEVEL is 2."
               ("<S-f9>" . pdb)
               ("<C-f9>" . compile)
               ("<M-f9>" . recompile))
-  :hook ((python-base-mode . setup--python-mode))
-         ;; (python-base-mode . setup--python-save-hook)
-         ;; (python-base-mode . ruff-format-on-save-mode))
+  :hook ((python-base-mode . setup--python-mode)
+         (python-base-mode . setup--python-save-hook))
   :config
   (defun setup--python-save-hook ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
