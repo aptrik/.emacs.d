@@ -765,6 +765,8 @@
               ("M-<RET>" . lsp-execute-code-action))
   :init
   (setq read-process-output-max (* 3 1024 1024))
+  :config
+  (setq lsp-disabled-clients '(semgrep-ls))
   :custom
   (lsp-completion-enable t)
   (lsp-completion-provider :corfu)
