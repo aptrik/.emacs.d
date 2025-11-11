@@ -709,6 +709,11 @@
       (ispell-change-dictionary lang))))
 
 
+(use-package java-mode
+  :ensure nil
+  :defer t)
+
+
 (use-package json-mode
   :preface
   :bind (:map json-mode-map
@@ -1228,6 +1233,9 @@ Default indentation LEVEL is 2."
 (use-package rg
   :ensure t
   :defer t
+  :init
+  (require 'bind-key)
+  (bind-key* "C-c C-s" 'rg-menu)
   :custom
   (rg-keymap-prefix "\C-c\C-s")
   :config
