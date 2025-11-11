@@ -592,7 +592,8 @@
 
 
 (use-package glsl-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 
 (use-package go-mode
@@ -1226,6 +1227,7 @@ Default indentation LEVEL is 2."
 
 (use-package rg
   :ensure t
+  :defer t
   :custom
   (rg-keymap-prefix "\C-c\C-s")
   :config
