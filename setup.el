@@ -1221,7 +1221,8 @@ Default indentation LEVEL is 2."
 
 (use-package recentf
   :config
-  (setq recentf-max-saved-items 500)
+  (setq recentf-auto-cleanup 'never  ;; cleanup manually by calling recentf-cleanup
+        recentf-max-saved-items 1000)
   (recentf-mode 1))
 
 
