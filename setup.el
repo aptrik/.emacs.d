@@ -14,7 +14,6 @@
 ;;; Completion
 
 (use-package consult
-  :ensure t
   :after vertico
   :bind (("C-x b"   . consult-buffer)
          ("M-g g"   . consult-goto-line)
@@ -35,7 +34,6 @@
 
 
 (use-package consult-dir
-  :ensure t
   :bind (("C-c C-d" . consult-dir)
          :map vertico-map
          ("C-c C-d" . consult-dir))
@@ -60,12 +58,10 @@
 
 
 (use-package consult-project-extra
-  :ensure t
   :bind (("C-c f p" . consult-project-extra-find)))
 
 
 (use-package corfu
-  :ensure t
   :custom
   (corfu-cycle t)
   :bind (("C-." . completion-at-point)
@@ -77,27 +73,23 @@
 
 
 (use-package corfu-terminal
-  :ensure t
   :unless (display-graphic-p)
   :config
   (corfu-terminal-mode +1))
 
 
 (use-package marginalia
-  :ensure t
   :after vertico
   :init
   (marginalia-mode))
 
 
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless flex)))
 
 
 (use-package vertico
-  :ensure t
   :bind (:map vertico-map
               ("<tab>" . vertico-insert)
               ("<down>" . vertico-next)
@@ -280,7 +272,6 @@
 
 
 (use-package consult-lsp
-  :ensure t
   :after lsp-mode
   :config
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols)
@@ -289,7 +280,6 @@
 
 (use-package copilot
   ;; https://github.com/copilot-emacs/copilot.el
-  :ensure t
   :defer t
   :bind (:map copilot-completion-map
               ("<tab>" . copilot-accept-completion)
@@ -401,7 +391,6 @@
 
 
 (use-package docker
-  :ensure t
   :defer t)
 
 
@@ -457,7 +446,6 @@
 
 
 (use-package eldoc-box
-  :ensure t
   :after eldoc
   :bind
   (("C-c h" . eldoc-box-help-at-point))
@@ -584,7 +572,6 @@
 
 (use-package git-modes
   ;; https://github.com/magit/git-modes
-  :ensure t
   :defer t
   :config
   :mode ("/gitconfig\\'" . gitconfig-mode)
@@ -592,13 +579,11 @@
 
 
 (use-package glsl-mode
-  :ensure t
   :defer t)
 
 
 (use-package go-mode
   :defer t
-  :ensure t
   :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . setup--go-mode)
          (go-mode . setup--go-save-hook))
@@ -729,7 +714,6 @@
 
 
 (use-package json-reformat
-  :ensure t
   :after json-mode)
 
 
@@ -804,7 +788,6 @@
 
 
 (use-package lsp-java
-  :ensure t
   :defer t
   :hook ((java-mode . lsp-java-boot-lens-mode))
   :config
@@ -843,7 +826,6 @@
 
 
 (use-package lsp-treemacs
-  :ensure t
   :after (lsp-mode treemacs)
   :commands lsp-treemacs-errors-list
   :bind (:map lsp-mode-map
@@ -851,7 +833,6 @@
 
 
 (use-package lsp-ui
-  :ensure t
   :commands lsp-ui-mode
   :after (lsp-mode)
   :hook (lsp-mode . lsp-ui-mode)
@@ -864,7 +845,7 @@
 
 
 (use-package lua-mode
-  :ensure t)
+  :defer t)
 
 
 (use-package magit
@@ -1079,7 +1060,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package ox-pandoc
-  :ensure t
   :after org)
 
 
@@ -1091,7 +1071,6 @@ Default indentation LEVEL is 2."
 
 (use-package pdf-tools
   ;; (pdf-tools-install)
-  :ensure t
   :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.pdf" . pdf-view-mode)))
@@ -1215,7 +1194,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package rainbow-mode
-  :ensure t
   :defer t)
 
 
@@ -1227,12 +1205,10 @@ Default indentation LEVEL is 2."
 
 
 (use-package restclient
-  :ensure t
   :defer t)
 
 
 (use-package rg
-  :ensure t
   :defer t
   :init
   (require 'bind-key)
@@ -1252,7 +1228,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package ruff-format
-  :ensure t
   :after python-mode)
 
 
@@ -1359,7 +1334,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package treemacs
-  :ensure t
   :commands (treemacs)
   :after (lsp-mode))
 
@@ -1466,7 +1440,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package zig-mode
-  :ensure t
   :defer t)
 
 
@@ -1474,7 +1447,6 @@ Default indentation LEVEL is 2."
 ;;; Themes
 
 (use-package solarized-theme
-  :ensure t
   ;; :if (display-graphic-p)
   :config
   (load-theme 'solarized-selenized-dark :no-confirm)
