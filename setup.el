@@ -251,6 +251,10 @@
          holiday-swedish-holidays)))
 
 
+(use-package clipetty
+  :hook (after-init . global-clipetty-mode))
+
+
 (use-package compilation-recenter-end
   :ensure nil
   :functions compilation-recenter-end-enable)
