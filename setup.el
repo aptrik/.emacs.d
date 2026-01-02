@@ -539,7 +539,30 @@
   (defun +flycheck-checker-get(fn checker property)
     (or (alist-get property (alist-get checker flycheck-local-checkers))
         (funcall fn checker property)))
-  (advice-add 'flycheck-checker-get :around '+flycheck-checker-get))
+  (advice-add 'flycheck-checker-get :around '+flycheck-checker-get)
+
+  (flycheck-define-checker python-ruff
+    "Check with Ruff."
+    :command ("ruff"
+              "check"
+              "--output-format=concise"
+              "--select=ALL"
+              "--ignore=D"
+              (eval (when buffer-file-name
+                      (concat "--stdin-filename=" buffer-file-name)))
+              "-")
+    :standard-input t
+    :error-filter (lambda (errors)
+                    (let ((errors (flycheck-sanitize-errors errors)))
+                      (seq-map #'flycheck-flake8-fix-error-level errors)))
+    :error-patterns
+    ((warning line-start
+              (file-name) ":" line ":" (optional column ":") " "
+              (id (one-or-more (any alpha)) (one-or-more digit)) " "
+              (message (one-or-more not-newline))
+              line-end))
+    :modes python-mode)
+  )
 
 
 (use-package flycheck-color-mode-line
@@ -1185,6 +1208,9 @@ Default indentation LEVEL is 2."
     (subword-mode 1)
     (which-function-mode 1)
     (idle-highlight-mode 1)
+
+    ;; (setq-local flycheck-checkers '(python-ruff))
+    ;; (flycheck-mode 1)
 
     (require 'sphinx-doc)
     (sphinx-doc-mode 1)
