@@ -1166,7 +1166,7 @@ Default indentation LEVEL is 2."
     (let ((current-file (buffer-file-name)))
       (if current-file
           (async-shell-command
-           (format "ruff check --select ALL %s" (shell-quote-argument current-file))))))
+           (format "ruff check --select=ALL --ignore=D %s" (shell-quote-argument current-file))))))
 
   (defun ruff-fix ()
     (interactive)
