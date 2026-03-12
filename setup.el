@@ -744,13 +744,6 @@
   :after json-mode)
 
 
-(use-package kubernetes
-  :commands (kubernetes-overview)
-  :config
-  (setq kubernetes-poll-frequency 3600
-        kubernetes-redraw-frequency 3600))
-
-
 (use-package k8s-mode
   :hook (k8s-mode . yas-minor-mode))
 
