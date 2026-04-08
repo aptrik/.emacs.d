@@ -6,14 +6,18 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq
+ bidi-inhibit-bpa                       t
  blink-cursor-blinks                    0
  focus-follows-mouse                    t
+ highlight-nonselected-windows          nil
  interprogram-cut-function              'gui-select-text
  interprogram-paste-function            'gui-selection-value
+ kill-do-not-save-duplicates            t
  mouse-autoselect-window                nil
  mouse-drag-copy-region                 t
  mouse-yank-at-point                    t
  read-file-name-completion-ignore-case  nil
+ redisplay-skip-fontification-on-input  t
  save-interprogram-paste-before-kill    t
  select-active-regions                  nil
  suggest-key-bindings                   nil)
@@ -23,27 +27,30 @@
  select-enable-primary t)
 
 (setq-default
- auto-save-default             nil
- backup-inhibited              t
- buffers-menu-max-size         nil
- completion-cycle-threshold    nil
- ;;confirm-kill-emacs            'y-or-n-p
- delete-active-region          nil
- echo-keystrokes               0.1
- fill-column                   72
- indent-tabs-mode              nil
- indicate-buffer-boundaries    'left
- indicate-empty-lines          t
- make-backup-files             nil
- mark-even-if-inactive         t
- mode-require-final-newline    nil
- standard-indent               4
- tab-width                     8
- trim-versions-without-asking  t
- truncate-lines                t
- version-control               nil
- visible-bell                  t
- x-stretch-cursor              t)
+ auto-save-default               nil
+ backup-inhibited                t
+ bidi-display-reordering         'left-to-right
+ bidi-paragraph-direction        'left-to-right
+ buffers-menu-max-size           nil
+ completion-cycle-threshold      nil
+ ;;confirm-kill-emacs              'y-or-n-p
+ cursor-in-non-selected-windows  t
+ delete-active-region            nil
+ echo-keystrokes                 0.1
+ fill-column                     72
+ indent-tabs-mode                nil
+ indicate-buffer-boundaries      'left
+ indicate-empty-lines            t
+ make-backup-files               nil
+ mark-even-if-inactive           t
+ mode-require-final-newline      nil
+ standard-indent                 4
+ tab-width                       8
+ trim-versions-without-asking    t
+ truncate-lines                  t
+ version-control                 nil
+ visible-bell                    t
+ x-stretch-cursor                t)
 
 (setq
  default-major-mode              'indented-text-mode

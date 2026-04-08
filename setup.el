@@ -774,7 +774,7 @@
   :bind (:map lsp-mode-map
               ("M-<RET>" . lsp-execute-code-action))
   :init
-  (setq read-process-output-max (* 3 1024 1024))
+  (setq read-process-output-max (* 4 1024 1024))
   :config
   (setq lsp-disabled-clients '(semgrep-ls))
   :custom
