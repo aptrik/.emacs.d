@@ -427,7 +427,8 @@
          ("C-c = l" . ediff-regions-linewise)
          ("C-c = w" . ediff-regions-wordwise))
   :config
-  (setq-default ediff-ignore-similar-regions t)
+  (setq-default ediff-highlight-all-diffs nil
+                ediff-ignore-similar-regions t)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
         ediff-split-window-function 'split-window-horizontally
         ;; ediff-split-window-function (lambda (&optional arg)
