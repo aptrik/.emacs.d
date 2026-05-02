@@ -306,6 +306,16 @@
   (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
 
 
+(use-package diff-hl
+  :hook (dired-mode . diff-hl-dired-mode)
+  :config
+  (setq diff-hl-dired-ignored-backends '(RCS))
+  (global-diff-hl-mode 1)
+  (diff-hl-flydiff-mode 1))
+  ;; (unless (display-graphic-p)
+  ;;   (diff-hl-margin-mode 1)))
+
+
 (use-package diff-mode
   :defer t
   :bind (:map diff-mode-map
