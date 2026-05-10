@@ -307,7 +307,9 @@
 
 
 (use-package diff-hl
-  :hook (dired-mode . diff-hl-dired-mode)
+  :disabled
+  :hook ((dired-mode . diff-hl-dired-mode)
+         (prog-mode . diff-hl-flydiff-mode))
   :config
   (setq diff-hl-dired-ignored-backends '(RCS))
   (global-diff-hl-mode 1)
