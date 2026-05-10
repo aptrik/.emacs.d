@@ -1007,6 +1007,9 @@ Default indentation LEVEL is 2."
   :defer t
   :commands org-mode
   :mode ("\\.org\\'" . org-mode)
+  ;; :hook ((org-mode . (lambda ()
+  ;;                      (variable-pitch-mode -1)
+  ;;                      (setq-local face-remapping-alist '((default fixed-pitch))))))
   :init
   (setq org-replace-disputed-keys t
         org-export-backends '(ascii html md pandoc))
@@ -1031,12 +1034,12 @@ Default indentation LEVEL is 2."
   (org-src-preserve-indentation t)
   (org-src-window-setup 'current-window)
   (org-time-stamp-rounding-minutes '(0 5))
-  :custom-face
-  (org-block ((t (:inherit fixed-pitch))))
-  (org-code ((t (:inherit fixed-pitch))))
-  (org-table ((t (:inherit fixed-pitch))))
-  (org-tag ((t (:inherit fixed-pitch))))
-  (org-verbatim ((t (:inherit fixed-pitch))))
+  ;; :custom-face
+  ;; (org-block ((t (:inherit fixed-pitch))))
+  ;; (org-code ((t (:inherit fixed-pitch))))
+  ;; (org-table ((t (:inherit fixed-pitch))))
+  ;; (org-tag ((t (:inherit fixed-pitch))))
+  ;; (org-verbatim ((t (:inherit fixed-pitch))))
   :config
   ;; Enable languages for in-buffer evaluation.
   (org-babel-do-load-languages
