@@ -1043,7 +1043,6 @@ Default indentation LEVEL is 2."
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
-     (ruby . t)
      (shell . t)))
   ;; Set program to use when opening PDF files.
   (if macosp
