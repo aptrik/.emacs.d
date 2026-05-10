@@ -4,6 +4,7 @@
       ns-command-modifier 'meta
       ns-control-modifier 'control
       ns-function-modifier 'none
+      ns-option-modifier nil
       ns-right-alternate-modifier 'none
       ns-right-command-modifier 'meta)
 
