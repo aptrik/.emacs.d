@@ -765,6 +765,11 @@
   :hook (k8s-mode . yas-minor-mode))
 
 
+(use-package kkp
+  :config
+  (global-kkp-mode +1))
+
+
 (use-package lisp-mode
   :ensure nil
   :defer t
@@ -1446,8 +1451,7 @@ Default indentation LEVEL is 2."
 (use-package xclip
   :defer t
   :config
-  (progn
-    (xclip-mode 1)))
+  (xclip-mode 1))
 
 
 (use-package yaml-mode
