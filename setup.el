@@ -285,16 +285,17 @@
 (use-package copilot
   ;; https://github.com/copilot-emacs/copilot.el
   :defer t
-  :bind (:map copilot-completion-map
-              ("<tab>" . copilot-accept-completion)
-              ("TAB" . copilot-accept-completion))
-  :bind (:map prog-mode-map
-              ("C-c c a" . copilot-accept-completion)
-              ("C-c c c" . copilot-complete)
-              ("C-c c d" . copilot-discard-completion)
-              ("C-c c n" . copilot-next-completion)
-              ("C-c c p" . copilot-previous-completion)
-              ("C-c c r" . copilot-reject-completion)))
+  :bind (("C-c M-C" . copilot-mode)
+         :map copilot-completion-map
+         ("<tab>" . copilot-accept-completion)
+         ("TAB" . copilot-accept-completion)
+         :map prog-mode-map
+         ("C-c c a" . copilot-accept-completion)
+         ("C-c c c" . copilot-complete)
+         ("C-c c d" . copilot-discard-completion)
+         ("C-c c n" . copilot-next-completion)
+         ("C-c c p" . copilot-previous-completion)
+         ("C-c c r" . copilot-reject-completion)))
 
 
 (use-package dabbrev
