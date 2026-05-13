@@ -58,7 +58,7 @@
 
 
 (use-package consult-project-extra
-  :bind (("C-c f p" . consult-project-extra-find)))
+  :bind ("C-c f p" . consult-project-extra-find))
 
 
 (use-package corfu
@@ -277,9 +277,9 @@
 
 (use-package consult-lsp
   :after lsp-mode
-  :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols)
-  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+  :bind (:map lsp-mode-map
+              ([remap xref-find-apropos] . consult-lsp-symbols)
+              ([remap xref-find-apropos] . consult-lsp-symbols)))
 
 
 (use-package copilot
@@ -464,8 +464,7 @@
 
 (use-package eldoc-box
   :after eldoc
-  :bind
-  (("C-c h" . eldoc-box-help-at-point))
+  :bind ("C-c h" . eldoc-box-help-at-point)
   :config
   (setq eldoc-box-only-multi-line t))
 
@@ -532,7 +531,7 @@
 
 (use-package ffap
   :ensure nil
-  :bind ("C-c f f" . find-file-at-point))
+  :bind (("C-c f f" . find-file-at-point)))
 
 
 (use-package find-dired
@@ -656,7 +655,7 @@
 (use-package grep
   :ensure nil
   :defer t
-  :bind (("M-s g" . grep-find)))
+  :bind ("M-s g" . grep-find))
 
 
 (use-package highlight-symbol
@@ -667,7 +666,7 @@
 (use-package ibuffer
   :defer t
   :commands ibuffer
-  :bind (([remap list-buffers] . ibuffer))
+  :bind ([remap list-buffers] . ibuffer)
   :config
   (setq ibuffer-formats
         '((mark modified read-only vc-status-mini " "
@@ -789,7 +788,8 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :bind (:map lsp-mode-map
-              ("M-<RET>" . lsp-execute-code-action))
+              ("M-<RET>" . lsp-execute-code-action)
+              ([remap lsp-treemacs-errors-list] . consult-lsp-diagnostics))
   :init
   (setq read-process-output-max (* 4 1024 1024))
   :config
@@ -818,7 +818,6 @@
      ("pylsp.plugins.rope_autoimport.enabled" t t)
      ("pylsp.plugins.rope_autoimport.completions.enabled" t t)
    ))
-  (define-key lsp-mode-map [remap lsp-treemacs-errors-list] #'consult-lsp-diagnostics)
   (setq lsp-prefer-flymake nil
         lsp-go-use-gofumpt t
         lsp-pylsp-plugins-black-enabled t))
@@ -887,7 +886,7 @@
 
 (use-package magit
   :defer t
-  :bind (("C-x v SPC" . magit-status))
+  :bind ("C-x v SPC" . magit-status)
   :commands magit-status
   :custom
   (magit-delete-by-moving-to-trash nil)
@@ -1058,7 +1057,7 @@ Default indentation LEVEL is 2."
 (use-package org-agenda
   :ensure nil
   :defer t
-  :bind (("C-c o a" . org-agenda))
+  :bind ("C-c o a" . org-agenda)
   :custom
   (org-agenda-span 14)
   (org-agenda-start-on-weekday nil)
@@ -1081,7 +1080,7 @@ Default indentation LEVEL is 2."
 (use-package org-capture
   :ensure nil
   :defer t
-  :bind (("C-c o c" . org-capture)))
+  :bind ("C-c o c" . org-capture))
 
 
 (use-package org-clock
@@ -1120,7 +1119,7 @@ Default indentation LEVEL is 2."
   :hook ((prog-mode . (lambda () (setq-local show-trailing-whitespace t)))
          (prog-mode . (lambda () (electric-indent-local-mode -1)))
          (prog-mode . (lambda () (electric-pair-local-mode -1))))
-  :bind (("C-c t e" . electric-indent-mode)))
+  :bind ("C-c t e" . electric-indent-mode))
 
 
 (use-package protobuf-mode
@@ -1388,7 +1387,9 @@ Default indentation LEVEL is 2."
 
 
 (use-package vc
-  :defer t
+  :bind (:map vc-prefix-map
+              ("e" . ediff-revision-current-buffer)
+              ("R" . vc-resolve-conflicts))
   :config
   (setq vc-command-messages    t
         vc-follow-symlinks     t
@@ -1397,9 +1398,6 @@ Default indentation LEVEL is 2."
         vc-make-backup-files   nil
         vc-dired-terse-display nil
         vc-dired-recurse       nil)
-  (define-key vc-prefix-map "e" 'ediff-revision-current-buffer)
-  (define-key vc-prefix-map "R" 'vc-resolve-conflicts)
-
   (fullframe vc-dir quit-window))
 
 
