@@ -810,7 +810,7 @@
   (setq lsp-disabled-clients '(semgrep-ls))
   :custom
   (lsp-completion-enable t)
-  (lsp-completion-provider :corfu)
+  (lsp-completion-provider :none)
   (lsp-eldoc-enable-hover t)
   (lsp-eldoc-render-all nil)
   (lsp-enable-snippet t)
