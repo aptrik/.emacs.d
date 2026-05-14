@@ -13,6 +13,14 @@
 ;;-----------------------------------------------------------------------------
 ;;; Completion
 
+(use-package completion-preview
+  :ensure nil
+  :custom
+  (completion-preview-exact-match-only t)
+  :init
+  (global-completion-preview-mode 1))
+
+
 (use-package consult
   :after vertico
   :bind (("C-x b"   . consult-buffer)
@@ -62,10 +70,10 @@
 
 
 (use-package corfu
-  :custom
-  (corfu-cycle t)
   :bind (("C-." . completion-at-point)
          ("C-c ." . completion-at-point))
+  :custom
+  (corfu-cycle t)
   :init
   (global-corfu-mode)
   (corfu-history-mode)
