@@ -28,12 +28,12 @@
 ;;                       (time-subtract after-init-time before-init-time))
 ;;                      gcs-done)))
 
-(setq package-native-compile t
-      package-archives
+(setq package-native-compile t)
+(setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("elpa" . "https://elpa.gnu.org/packages/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-        ("gnu" . "http://elpa.gnu.org/packages/"))
+        ("gnu" . "https://elpa.gnu.org/packages/"))
       package-archive-priorities
       '(("melpa" . 10)
         ("elpa" . 5)
