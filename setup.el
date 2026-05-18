@@ -1381,6 +1381,13 @@ Default indentation LEVEL is 2."
         tramp-persistency-file-name "~/.emacs.d/data/tramp"))
 
 
+(use-package transient
+  :after magit
+  :custom
+  (transient-levels . '((magit-commit (magit-commit:--date . 1)
+                                      (magit:--gpg-sign . 1)))))
+
+
 (use-package transpose-frame
   ;; https://github.com/emacsorphanage/transpose-frame
   :ensure nil
