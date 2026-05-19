@@ -1382,10 +1382,9 @@ Default indentation LEVEL is 2."
 
 
 (use-package transient
-  :after magit
-  :custom
-  (transient-levels . '((magit-commit (magit-commit:--date . 1)
-                                      (magit:--gpg-sign . 1)))))
+  :init
+  (setq transient-levels '((magit-commit (magit:--gpg-sign . 1)
+                                         (magit-commit:--date . 1)))))
 
 
 (use-package transpose-frame
