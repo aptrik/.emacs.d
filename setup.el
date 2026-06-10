@@ -769,6 +769,11 @@
   :after json-mode)
 
 
+(use-package jwt
+  :ensure t
+  :defer t)
+
+
 (use-package k8s-mode
   :hook (k8s-mode . yas-minor-mode))
 
