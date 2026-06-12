@@ -17,7 +17,6 @@
  mouse-drag-copy-region                 t
  mouse-yank-at-point                    t
  read-file-name-completion-ignore-case  nil
- redisplay-skip-fontification-on-input  t
  save-interprogram-paste-before-kill    t
  select-active-regions                  nil
  suggest-key-bindings                   nil)
