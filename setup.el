@@ -623,8 +623,11 @@
 
 
 (use-package framemove
+  :bind (("S-<left>"  . windmove-left)
+         ("S-<right>" . windmove-right)
+         ("S-<up>"    . windmove-up)
+         ("S-<down>"  . windmove-down))
   :config
-  (windmove-default-keybindings 'shift)
   ;; Cannot wrap and have framemove do its thing at the same time.
   (setq windmove-wrap-around nil
         framemove-hook-into-windmove t))
