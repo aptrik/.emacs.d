@@ -28,38 +28,37 @@
 ;;                       (time-subtract after-init-time before-init-time))
 ;;                      gcs-done)))
 
-(setq package-native-compile t)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("elpa" . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-        ("gnu" . "https://elpa.gnu.org/packages/"))
-      package-archive-priorities
-      '(("melpa" . 10)
-        ("elpa" . 5)
-        ("nongnu" . 0)
-        ("gnu" . 0)))
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(when (eval-when-compile (version< emacs-version "29"))
-  (package-initialize)
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package)
-    (eval-when-compile (require 'use-package))))
+(setq straight-vc-git-default-clone-depth 1)
+(straight-use-package 'use-package)
 
-;; Bootstrap use-package
-(setq use-package-always-ensure t
-      use-package-compute-statistics t
+(setq use-package-compute-statistics t
       use-package-enable-imenu-support t
       use-package-expand-minimally t
       use-package-verbose t)
 
 (require 'use-package)
-(use-package bind-key)
-(use-package diminish)
-(use-package s)
-(use-package f)
-(use-package dash)
+(use-package bind-key :straight t)
+(use-package diminish :straight t)
+(use-package s :straight t)
+(use-package f :straight t)
+(use-package dash :straight t)
 
 ;; Prepare load-path.
 (let ((dir (expand-file-name "lisp" user-emacs-directory)))

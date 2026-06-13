@@ -1,7 +1,8 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
 
 (setq gc-cons-threshold most-positive-fixnum
-      load-prefer-newer noninteractive)
+      load-prefer-newer noninteractive
+      package-enable-at-startup nil)
 
 (add-hook 'emacs-startup-hook
           (lambda ()

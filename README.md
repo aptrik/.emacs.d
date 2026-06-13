@@ -15,9 +15,56 @@ Fetch the source.
 
 Make sure you have Emacs version 29.1 or higher [installed](#install-emacs).
 
-### Install Emacs Lisp packages
+### Package Management
 
-Packages will be installed automatically. Use M-x list-packages to update.
+Packages are managed by [straight.el](https://github.com/radian-software/straight.el)
+with a version lockfile at `straight/versions/default.el`. This ensures reproducible
+installs across machines.
+
+On first launch, straight.el clones all packages from git (takes a few minutes).
+Subsequent startups are fast since packages are cached locally.
+
+#### Installing a new package
+
+1. Add a `use-package` declaration in `setup.el`:
+   ```elisp
+   (use-package some-package
+     :config
+     ...)
+   ```
+2. Restart Emacs (or eval the declaration) — straight.el clones the package automatically.
+3. Freeze the new state:
+   ```
+   M-x straight-freeze-versions
+   ```
+4. Commit both `setup.el` and `straight/versions/default.el`.
+
+#### Locking packages (reproducible install)
+
+The lockfile `straight/versions/default.el` pins every package to an exact git commit.
+
+- On a fresh clone, start Emacs — straight reads the lockfile and checks out pinned commits.
+- To regenerate the lockfile after any change: `M-x straight-freeze-versions`
+- To restore packages to their locked versions: `M-x straight-thaw-versions`
+
+#### Upgrading packages
+
+    M-x straight-pull-all          ; fetch latest commits for all packages
+
+Then test your config. If everything works:
+
+    M-x straight-freeze-versions   ; update the lockfile
+
+Commit the updated lockfile. To upgrade a single package instead:
+
+    M-x straight-pull-package      ; prompts for package name
+    M-x straight-freeze-versions
+
+#### Rolling back a bad upgrade
+
+    git checkout straight/versions/default.el
+
+Restart Emacs — packages revert to the previously committed versions.
 
 ### Compile pdf-tools
 
