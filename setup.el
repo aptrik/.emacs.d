@@ -572,43 +572,41 @@
              flycheck-previous-error)
   :bind ("C-c t f" . flycheck-mode)
   :config
+  (require 'flycheck-color-mode-line)
+  (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
+
   (defvar-local flycheck-local-checkers nil)
   (defun +flycheck-checker-get(fn checker property)
     (or (alist-get property (alist-get checker flycheck-local-checkers))
         (funcall fn checker property)))
   (advice-add 'flycheck-checker-get :around '+flycheck-checker-get)
 
-  (flycheck-define-checker python-ruff
-    "Check with Ruff."
-    :command ("ruff"
-              "check"
-              "--output-format=concise"
-              "--select=ALL"
-              "--ignore=D"
-              (eval (when buffer-file-name
-                      (concat "--stdin-filename=" buffer-file-name)))
-              "-")
-    :standard-input t
-    :error-filter (lambda (errors)
-                    (let ((errors (flycheck-sanitize-errors errors)))
-                      (seq-map #'flycheck-flake8-fix-error-level errors)))
-    :error-patterns
-    ((warning line-start
-              (file-name) ":" line ":" (optional column ":") " "
-              (id (one-or-more (any alpha)) (one-or-more digit)) " "
-              (message (one-or-more not-newline))
-              line-end))
-    :modes python-mode)
-  )
+  (eval '(flycheck-define-checker python-ruff
+           "Check with Ruff."
+           :command ("ruff"
+                     "check"
+                     "--output-format=concise"
+                     "--select=ALL"
+                     "--ignore=D"
+                     (eval (when buffer-file-name
+                             (concat "--stdin-filename=" buffer-file-name)))
+                     "-")
+           :standard-input t
+           :error-filter (lambda (errors)
+                           (let ((errors (flycheck-sanitize-errors errors)))
+                             (seq-map #'flycheck-flake8-fix-error-level errors)))
+           :error-patterns
+           ((warning line-start
+                     (file-name) ":" line ":" (optional column ":") " "
+                     (id (one-or-more (any alpha)) (one-or-more digit)) " "
+                     (message (one-or-more not-newline))
+                     line-end))
+           :modes python-mode)))
 
 
 (use-package flycheck-color-mode-line
-  :straight t
-  :defer t
-  :after flycheck
-  :commands flycheck-color-mode-line-mode
-  :config
-  :hook (flycheck-mode . flycheck-color-mode-line-mode))
+  :straight (:build (:not autoloads))
+  :after flycheck)
 
 
 (use-package flycheck-golangci-lint
