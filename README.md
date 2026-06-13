@@ -60,6 +60,25 @@ Commit the updated lockfile. To upgrade a single package instead:
     M-x straight-pull-package      ; prompts for package name
     M-x straight-freeze-versions
 
+#### Upgrading a tag-pinned package
+
+Some packages (e.g. org) are pinned to a release tag in `setup.el`:
+
+```elisp
+:straight (:tag "release_9.8.5")
+```
+
+To upgrade to a new release:
+
+1. Update the `:tag` value in `setup.el`
+2. In Emacs:
+   ```
+   M-x straight-pull-package      ; fetches new tags from remote
+   M-x straight-normalize-package ; checks out the new tag
+   M-x straight-freeze-versions   ; updates the lockfile
+   ```
+3. Commit `setup.el` and `straight/versions/default.el`
+
 #### Rolling back a bad upgrade
 
     git checkout straight/versions/default.el
@@ -68,7 +87,6 @@ Restart Emacs — packages revert to the previously committed versions.
 
 ### Compile pdf-tools
 
-    (setenv "PKG_CONFIG_PATH" (concat (shell-command-to-string "printf %s \"$(brew --prefix libffi)\"") "/lib/pkgconfig/"))
     (pdf-tools-install)
 
 ### Install python-mode dependencies
