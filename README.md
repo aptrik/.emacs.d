@@ -85,6 +85,12 @@ To upgrade to a new release:
 
 Restart Emacs — packages revert to the previously committed versions.
 
+#### Cleaning up unused repos
+
+    M-x straight-remove-unused-repos
+
+Removes cloned repos that are no longer referenced by your config.
+
 ### Compile pdf-tools
 
     (pdf-tools-install)
