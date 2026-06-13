@@ -80,7 +80,6 @@
  ("nongnu" . "67c49cfdf5a5a9f28792c500c8eb0017cfe74a3a")
  ("nongnu-elpa" . "3253fbf43762ee4310b414aa45473898b814762f")
  ("orderless" . "09c90d93efce4fdac52edfe8b22591b773f3e607")
- ("org" . "f19e41db3992df97749ec9f1fe8963128a6f32a2")
  ("ox-pandoc" . "1caeb56a4be26597319e7288edbc2cabada151b4")
  ("pdf-tools" . "365f88238f46f9b1425685562105881800f10386")
  ("pfuture" . "19b53aebbc0f2da31de6326c495038901bffb73c")

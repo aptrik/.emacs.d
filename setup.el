@@ -1058,7 +1058,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package org
-  :straight (:tag "release_9.8.5")
   :defer t
   :commands org-mode
   :mode ("\\.org\\'" . org-mode)
