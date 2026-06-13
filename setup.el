@@ -663,6 +663,9 @@
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
+  (when (executable-find "golangci-lint")
+    (flycheck-golangci-lint-setup))
+
   (defun setup--go-mode ()
     (setq indent-tabs-mode t
           tab-width 4)
@@ -671,8 +674,8 @@
     (subword-mode 1)
     (which-function-mode 1)
 
-    (flycheck-golangci-lint-setup)
-    (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint))))))))
+    (when (flycheck-registered-checker-p 'golangci-lint)
+      (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))))
 
 
 (use-package gradle-mode
