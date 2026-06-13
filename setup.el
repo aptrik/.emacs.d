@@ -1427,7 +1427,8 @@ Default indentation LEVEL is 2."
 
 (use-package transient
   :straight t
-  :init
+  :defer t
+  :config
   (setq transient-levels '((magit-commit (magit:--gpg-sign . 1)
                                          (magit-commit:--date . 1)))))
 
