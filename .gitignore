@@ -44,7 +44,4 @@
 \#*
 /.last-package-update-day
 /straight/*
-/straight/repos/*
-!/straight/repos/
-!/straight/repos/straight.el/
 !/straight/versions/
