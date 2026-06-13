@@ -1495,7 +1495,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package ws-butler
-  :straight (:host github :repo "lewang/ws-butler")
+  :straight (:host github :repo "lewang/ws-butler" :branch "master")
   :defer t
   :diminish ws-butler-mode
   :hook ((org-mode . ws-butler-mode)

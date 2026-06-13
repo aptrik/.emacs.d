@@ -46,6 +46,7 @@
   (load bootstrap-file nil 'nomessage))
 
 (setq straight-vc-git-default-clone-depth 1)
+(straight-register-package '(org :type built-in))
 (straight-use-package 'use-package)
 
 (setq use-package-compute-statistics t
