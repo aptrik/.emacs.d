@@ -1173,16 +1173,6 @@ Default indentation LEVEL is 2."
   :bind ("C-c t e" . electric-indent-mode))
 
 
-(use-package protobuf-mode
-  :straight t
-  :mode ("\\.proto\\'" . protobuf-mode)
-  :init
-  (defconst my-protobuf-style
-    '((c-basic-offset . 4)
-      (indent-tabs-mode . nil)))
-  :hook (protobuf-mode . (lambda () (c-add-style "my-style" my-protobuf-style t))))
-
-
 (use-package pulse
   :config
   :init
@@ -1505,7 +1495,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package ws-butler
-  :straight t
+  :straight (:host github :repo "lewang/ws-butler")
   :defer t
   :diminish ws-butler-mode
   :hook ((org-mode . ws-butler-mode)
