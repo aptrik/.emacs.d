@@ -265,7 +265,15 @@
          holiday-other-holidays
          holiday-christian-holidays
          holiday-solar-holidays
-         holiday-swedish-holidays)))
+         holiday-swedish-holidays))
+
+  (copy-face 'font-lock-constant-face 'calendar-iso-week-face)
+  (setq calendar-intermonth-text
+        '(propertize
+          (format "w%2d"
+                  (car (calendar-iso-from-absolute
+                        (calendar-absolute-from-gregorian (list month day year)))))
+          'font-lock-face 'calendar-iso-week-face)))
 
 
 (use-package clipetty
