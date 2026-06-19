@@ -278,7 +278,9 @@
 
 (use-package clipetty
   :straight t
-  :hook (after-init . global-clipetty-mode))
+  :defer 0.5
+  :config
+  (global-clipetty-mode))
 
 
 (use-package compilation-recenter-end
@@ -528,6 +530,7 @@
 (use-package exec-path-from-shell
   :straight t
   :if (display-graphic-p)
+  :defer t
   :init
   ;;(setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-arguments '("-l" "-i")
@@ -548,8 +551,7 @@
           "PYTHONPATH"
           "SSH_AGENT_PID"
           ))
-  :config
-  (exec-path-from-shell-initialize))
+  (add-hook 'emacs-startup-hook #'exec-path-from-shell-initialize))
 
 
 (use-package expand-region
@@ -821,6 +823,7 @@
 
 (use-package kkp
   :straight t
+  :defer 0.5
   :config
   (global-kkp-mode +1))
 
@@ -1161,6 +1164,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package paren
+  :defer 0.5
   :config
   (setq show-paren-style 'parenthesis)
   (show-paren-mode 1))
@@ -1306,9 +1310,7 @@ Default indentation LEVEL is 2."
 (use-package rg
   :straight t
   :defer t
-  :init
-  (require 'bind-key)
-  (bind-key* "C-c C-s" 'rg-menu)
+  :bind* ("C-c C-s" . rg-menu)
   :custom
   (rg-keymap-prefix "\C-c\C-s")
   :config
@@ -1497,6 +1499,7 @@ Default indentation LEVEL is 2."
 
 (use-package which-key
   :straight t
+  :defer 0.5
   :diminish which-key-mode
   :config
   (which-key-mode 1))

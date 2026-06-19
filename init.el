@@ -10,6 +10,13 @@
       inhibit-startup-message t
       initial-scratch-message nil)
 
+(defvar my--init-start (current-time))
+(add-hook 'window-setup-hook
+          (lambda ()
+            (message "*** Total startup: %.2fs (init: %s)"
+                     (float-time (time-subtract (current-time) my--init-start))
+                     (emacs-init-time))))
+
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (set-cursor-color "red")
@@ -29,6 +36,7 @@
 ;;                      gcs-done)))
 
 ;; Bootstrap straight.el
+(setq straight-check-for-modifications '(check-on-save find-when-checking))
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name

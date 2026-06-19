@@ -24,6 +24,16 @@ installs across machines.
 On first launch, straight.el clones all packages from git (takes a few minutes).
 Subsequent startups are fast since packages are cached locally.
 
+#### Startup performance on slow filesystems
+
+`straight-check-for-modifications` is set to `'(check-on-save find-when-checking)`
+in `init.el`. This prevents straight.el from running `find` across all package repos
+on every startup — critical when `~/.emacs.d` lives on slow or networked storage.
+
+The tradeoff: if you modify package files outside of Emacs (e.g. `git pull` in a
+repo under `straight/repos/`), Emacs won't detect the change automatically. Run
+`M-x straight-check-all` to force a full scan when needed.
+
 #### Installing a new package
 
 1. Add a `use-package` declaration in `setup.el`:
