@@ -28,7 +28,6 @@
          ;; ("M-g f"   . consult-flymake)
          ("M-g i"   . consult-imenu)
          ("M-s l"   . consult-line)
-         ("M-s r"   . consult-ripgrep)
          ("M-s M-s" . consult-outline))
   :init
   (setq consult-buffer-sources
@@ -701,7 +700,9 @@
 
 (use-package grep
   :defer t
-  :bind ("M-s g" . grep-find))
+  :bind ("M-s g" . rgrep)
+  :custom
+  (grep-find-ignored-directories '(".git" ".hg" "target")))
 
 
 (use-package highlight-symbol
@@ -1310,11 +1311,14 @@ Default indentation LEVEL is 2."
 (use-package rg
   :straight t
   :defer t
-  :bind* ("C-c C-s" . rg-menu)
+  :bind* (("C-c C-s" . rg-menu)
+          ("M-s p" . rg-project)
+          ("M-s r" . rg-dwim))
   :custom
   (rg-keymap-prefix "\C-c\C-s")
-  :config
-  (rg-enable-default-bindings))
+  :init
+  (rg-enable-default-bindings)
+  (rg-enable-menu))
 
 
 (use-package rst
