@@ -1426,10 +1426,18 @@ Default indentation LEVEL is 2."
 
 (use-package tramp
   :defer t
+  :custom
+  (tramp-default-method "rsync")
+  ;; Tell TRAMP to use your native ~/.ssh/config ControlMaster setups
+  (tramp-use-connection-share nil)
   :config
   (put 'temporary-file-directory 'standard-value '("/tmp"))
   (setq tramp-auto-save-directory "~/.cache/emacs/backups"
-        tramp-persistency-file-name "~/.emacs.d/data/tramp"))
+        tramp-persistency-file-name "~/.emacs.d/data/tramp")
+  (let ((rsync-method (assoc "rsync" tramp-methods)))
+    (when rsync-method
+      (setf (cadr (assoc 'tramp-copy-args rsync-method))
+            '(("-t") ("-p") ("--protect-args"))))))
 
 
 (use-package transient
