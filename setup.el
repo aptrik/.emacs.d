@@ -1159,6 +1159,22 @@ Default indentation LEVEL is 2."
   (org-clock-persistence-insinuate))
 
 
+(use-package org-mindmap
+  :vc (:url "https://github.com/krvkir/org-mindmap.git" :rev :newest)
+  :after org
+  :bind
+  (:map org-mindmap-mode-map
+        ("C-c m c" . org-mindmap-insert-child)
+        ("C-c m s" . org-mindmap-insert-sibling)
+        ("C-c m d" . org-mindmap-delete-node)
+        ("C-c m v" . org-mindmap-switch-layout)
+        ("C-c m p" . org-mindmap-switch-compaction)
+        ("C-c m m" . org-mindmap-list-to-mindmap)
+        ("C-c m l" . org-mindmap-to-list))
+  :config
+  (add-hook 'org-mode-hook #'org-mindmap-mode))
+
+
 (use-package ox-pandoc
   :straight t
   :after org)
