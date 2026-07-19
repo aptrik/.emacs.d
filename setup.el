@@ -1529,6 +1529,8 @@ Default indentation LEVEL is 2."
   :straight t
   :defer 0.5
   :diminish which-key-mode
+  :custom
+  (which-key-idle-delay 0.5)
   :config
   (which-key-mode 1))
 
