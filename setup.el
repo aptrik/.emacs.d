@@ -14,10 +14,15 @@
 ;;; Completion
 
 (use-package completion-preview
+  :defer 1
+  :bind (:map completion-preview-active-mode-map
+              ("M-n" . completion-preview-next-candidate)
+              ("M-p" . completion-preview-prev-candidate))
   :custom
-  (completion-preview-exact-match-only t)
-  :init
-  (global-completion-preview-mode 1))
+  (completion-preview-exact-match-only nil)
+  (completion-preview-idle-delay 0.2)
+  :config
+  (global-completion-preview-mode +1))
 
 
 (use-package consult
