@@ -585,7 +585,11 @@
              flycheck-next-error
              flycheck-previous-error)
   :bind ("C-c t f" . flycheck-mode)
+  :custom
+  (flycheck-annotate-background t)
   :config
+  (global-flycheck-annotate-mode 1)
+
   (require 'flycheck-color-mode-line)
   (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
 
