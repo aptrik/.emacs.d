@@ -673,6 +673,14 @@
 (use-package go-mode
   :straight t
   :defer t
+  :bind (:map go-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown))
   :commands (go-mode setup--go-mode setup--go-save-hook)
   :hook ((go-mode . setup--go-mode)
          (go-mode . setup--go-save-hook))
@@ -946,12 +954,18 @@
   :commands lsp-ui-mode
   :after (lsp-mode)
   :hook (lsp-mode . lsp-ui-mode)
-  :init
-  (setq lsp-ui-sideline-show-code-actions nil
-        lsp-ui-sideline-show-diagnostics t
-        lsp-ui-doc-delay 1.5
-        lsp-ui-doc-position 'bottom
-        lsp-ui-doc-max-width 100))
+  :custom
+  (lsp-ui-doc-delay 1.5)
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-max-width 100)
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-show-with-cursor nil)
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-delay 1.0)
+  (lsp-ui-sideline-ignore-duplicate t)
+  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-sideline-show-hover t))
 
 
 (use-package lua-mode
