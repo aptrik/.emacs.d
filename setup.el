@@ -87,11 +87,11 @@
   (corfu-popupinfo-mode +1))
 
 
-(use-package corfu-terminal
-  :straight t
-  :unless (display-graphic-p)
-  :config
-  (corfu-terminal-mode +1))
+;; (use-package corfu-terminal
+;;   :straight t
+;;   :unless (display-graphic-p)
+;;   :config
+;;   (corfu-terminal-mode +1))
 
 
 (use-package marginalia

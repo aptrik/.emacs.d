@@ -1,4 +1,4 @@
-;;; compilation-recenter-end.el --- compilation-mode window recentre
+;;; compilation-recenter-end.el --- compilation-mode window recentre  -*- lexical-binding: t; -*-
 
 ;; Copyright 2006, 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015 Kevin Ryde
 

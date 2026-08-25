@@ -1,4 +1,4 @@
-;;; sql-completion.el --- Completion in *SQL* for mysql
+;;; sql-completion.el --- Completion in *SQL* for mysql  -*- lexical-binding: t; -*-
 
 ;; Copyright 2006 Ye Wenbin
 ;;
