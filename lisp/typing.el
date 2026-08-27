@@ -1,4 +1,4 @@
-;;; typing.el --- The Typing Of Emacs
+;;; typing.el --- The Typing Of Emacs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C)  2000, 2001  Alex Schroeder <alex@gnu.org>
 ;; Zombie mode and Q&A game (c) 2011 Sacha Chua <sacha@sachachua.com>

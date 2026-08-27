@@ -1,4 +1,4 @@
-;;; Code:
+;;; Code:  -*- lexical-binding: t; -*-
 
 (defgroup cpplint nil
   "Minor mode for running cpplint."

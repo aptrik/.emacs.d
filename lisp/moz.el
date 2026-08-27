@@ -1,4 +1,4 @@
-;;; moz.el --- Lets current buffer interact with inferior mozilla.
+;;; moz.el --- Lets current buffer interact with inferior mozilla.  -*- lexical-binding: t; -*-
 
 ;; URL: http://github.com/bard/mozrepl/raw/master/chrome/content/moz.el
 

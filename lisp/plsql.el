@@ -1,4 +1,4 @@
-;;; plsql.el --- Programming support for PL/SQL code
+;;; plsql.el --- Programming support for PL/SQL code  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2001, 2002 by Free Software Foundation, Inc.
 

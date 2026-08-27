@@ -1,4 +1,4 @@
-;;; javascript
+;;; javascript  -*- lexical-binding: t; -*-
 
 (defun js-method-p ()
   (save-excursion

@@ -1,4 +1,4 @@
-;;; mysql.el --- mysql front-end
+;;; mysql.el --- mysql front-end  -*- lexical-binding: t; -*-
 
 ;; Copyright 2006 Ye Wenbin
 ;;

@@ -1,4 +1,4 @@
-;;; emacs-load-time.el --- Leave a trace of loaded packages (with timing)
+;;; emacs-load-time.el --- Leave a trace of loaded packages (with timing)  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2013-2014 Fabrice Niessen
 

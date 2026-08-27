@@ -1,4 +1,4 @@
-;;; idl-font-lock.el --- Font Lock configuration for CORBA IDL files
+;;; idl-font-lock.el --- Font Lock configuration for CORBA IDL files  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 1998, 1999 The University of Utah and
 ;;   the Computer Systems Laboratory at the University of Utah (CSL).

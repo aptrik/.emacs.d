@@ -1,4 +1,4 @@
-; h4x0r.el 0.13
+; h4x0r.el 0.13  -*- lexical-binding: t; -*-
 ; Time-stamp: <2003-10-31 13:10:02 SeboldCR>
 
 ; by Charles Sebold <csebold@livingtorah.org>

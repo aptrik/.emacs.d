@@ -1,4 +1,4 @@
-;;; nuke-whitespace.el --- strip trailing whitespace from buffers
+;;; nuke-whitespace.el --- strip trailing whitespace from buffers  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 1995, 1996, 1997, 2000 Noah S. Friedman
 

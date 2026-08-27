@@ -1,4 +1,4 @@
-;;; shell-toggle.el --- Toggle to and from the *shell* buffer
+;;; shell-toggle.el --- Toggle to and from the *shell* buffer  -*- lexical-binding: t; -*-
 ;;; Version 1.2 - 98-11-19
 ;;; Copyright (C) 1997, 1998 Mikael Sjödin (mic@docs.uu.se)
 ;;;

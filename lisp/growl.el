@@ -1,4 +1,4 @@
-;;; growl.el --- Emacs interface to Growl via growlnotify
+;;; growl.el --- Emacs interface to Growl via growlnotify  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2005  Edward O'Connor
 
