@@ -534,7 +534,7 @@
 (use-package exec-path-from-shell
   :straight t
   :if (display-graphic-p)
-  :defer t
+  :demand t
   :init
   ;;(setq exec-path-from-shell-debug t)
   (setq exec-path-from-shell-arguments '("-l" "-i")
@@ -555,7 +555,8 @@
           "PYTHONPATH"
           "SSH_AGENT_PID"
           ))
-  (add-hook 'emacs-startup-hook #'exec-path-from-shell-initialize))
+  :config
+  (exec-path-from-shell-initialize))
 
 
 (use-package expand-region
