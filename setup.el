@@ -1487,13 +1487,6 @@ Default indentation LEVEL is 2."
                                          (magit-commit:--date . 1)))))
 
 
-(use-package transpose-frame
-  ;; https://github.com/emacsorphanage/transpose-frame
-
-  :bind (("C-c x t" . transpose-frame)
-         ("C-c x r" . rotate-frame)))
-
-
 (use-package treemacs
   :straight t
   :commands (treemacs)
