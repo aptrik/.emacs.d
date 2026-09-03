@@ -1185,7 +1185,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package org-mindmap
-  :vc (:url "https://github.com/krvkir/org-mindmap.git" :rev :newest)
+  :straight (:host github :repo "krvkir/org-mindmap")
   :after org
   :bind
   (:map org-mindmap-mode-map
