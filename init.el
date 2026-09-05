@@ -69,15 +69,6 @@
 (use-package f :straight t)
 (use-package dash :straight t)
 
-;; Prepare load-path.
-(let ((dir (expand-file-name "lisp" user-emacs-directory)))
-  (add-to-list 'load-path dir)
-  (dolist (f (directory-files dir t "\\w+"))
-    (when (file-directory-p f)
-      (add-to-list 'load-path f))))
-
-;; (require 'emacs-load-time)
-
 (dolist (fn '("defuns" "defaults" "key-bindings" "setup"))
   (load (expand-file-name fn user-emacs-directory) nil 'nomessage))
 (when (eq system-type 'darwin)

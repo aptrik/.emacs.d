@@ -288,16 +288,11 @@
   (global-clipetty-mode))
 
 
-(use-package compilation-recenter-end
-  :functions compilation-recenter-end-enable)
-
-
 (use-package compile
   :no-require
   ;; :bind (("C-c c" . compile)
   ;;        ("C-c C" . recompile))
   :hook (;;(compilation-mode . toggle-truncate-lines)
-         (compilation-mode . compilation-recenter-end-enable)
          (compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
   :config
   (setq-default compilation-always-kill nil
@@ -486,10 +481,6 @@
   ))
 
 
-(use-package edit-env
-  :commands edit-env)
-
-
 (use-package eldoc
   :defer t
   :diminish eldoc-mode
@@ -643,6 +634,7 @@
 
 
 (use-package framemove
+  :straight t
   :bind (("S-<left>"  . windmove-left)
          ("S-<right>" . windmove-right)
          ("S-<up>"    . windmove-up)
@@ -1040,16 +1032,6 @@
   :bind ("C-;" . comment-line))
 
 
-(use-package nuke-whitespace
-  :bind ("C-c t n" . nuke-trailing-whitespace)
-  :config
-  (progn
-    (remove-hook 'write-file-hooks 'nuke-trailing-whitespace)
-    (setq nuke-trailing-whitespace-always-major-modes
-          (remove 'python-mode nuke-trailing-whitespace-always-major-modes))
-    ))
-
-
 (use-package nxml-mode
   :defer t
   :commands nxml-mode
@@ -1078,7 +1060,7 @@ Default indentation LEVEL is 2."
         (save-excursion
           (save-restriction
             (widen)
-            (nuke-trailing-whitespace)
+            (delete-trailing-whitespace)
             (untabify (point-min) (point-max))
             (nxml-set-indentation level)
             (indent-region (point-min) (point-max))))))
@@ -1406,6 +1388,7 @@ Default indentation LEVEL is 2."
 (use-package simple
   :bind (("M-SPC" . cycle-spacing)
          ("M-T" . toggle-truncate-lines)
+         ("C-c t n" . delete-trailing-whitespace)
          ("C-c t t" . toggle-truncate-lines)))
 
 
