@@ -43,5 +43,4 @@
 /workspace/
 \#*
 /.last-package-update-day
-/straight/*
-!/straight/versions/
+/elpaca/

@@ -26,7 +26,7 @@
 
 
 (use-package consult
-  :straight t
+  :ensure t
   :after vertico
   :bind (("C-x b"   . consult-buffer)
          ("M-g g"   . consult-goto-line)
@@ -46,7 +46,7 @@
 
 
 (use-package consult-dir
-  :straight t
+  :ensure t
   :bind (("C-c C-d" . consult-dir)
          :map vertico-map
          ("C-c C-d" . consult-dir))
@@ -71,12 +71,12 @@
 
 
 (use-package consult-project-extra
-  :straight t
+  :ensure t
   :bind ("C-c f p" . consult-project-extra-find))
 
 
 (use-package corfu
-  :straight t
+  :ensure t
   :bind (("C-." . completion-at-point)
          ("C-c ." . completion-at-point))
   :custom
@@ -88,7 +88,7 @@
 
 
 (use-package corfu-terminal
-  :straight t
+  :ensure t
   :disabled (>= emacs-major-version 31)
   :unless (display-graphic-p)
   :config
@@ -96,20 +96,20 @@
 
 
 (use-package marginalia
-  :straight t
+  :ensure t
   :after vertico
   :init
   (marginalia-mode))
 
 
 (use-package orderless
-  :straight t
+  :ensure t
   :custom
   (completion-styles '(orderless flex)))
 
 
 (use-package vertico
-  :straight t
+  :ensure t
   :bind (:map vertico-map
               ("<tab>" . vertico-insert)
               ("<down>" . vertico-next)
@@ -129,8 +129,8 @@
 ;;; Configuration in alphabetical order
 
 (use-package aggressive-indent
-  :straight t
-  :disabled
+  :ensure t
+  :if nil
   :diminish
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
@@ -153,7 +153,7 @@
 
 
 (use-package blacken
-  :straight t
+  :ensure t
   :after python-mode
   :commands blacken-mode)
 
@@ -282,7 +282,7 @@
 
 
 (use-package clipetty
-  :straight t
+  :ensure t
   :defer 0.5
   :config
   (global-clipetty-mode))
@@ -303,15 +303,14 @@
 
 
 (use-package consult-lsp
-  :straight t
+  :ensure t
   :after lsp-mode
   :bind (:map lsp-mode-map
-              ([remap xref-find-apropos] . consult-lsp-symbols)
               ([remap xref-find-apropos] . consult-lsp-symbols)))
 
 
 (use-package copilot
-  :straight t
+  :ensure t
   ;; https://github.com/copilot-emacs/copilot.el
   :defer t
   :bind (("C-c M-C" . copilot-mode)
@@ -336,8 +335,8 @@
 
 
 (use-package diff-hl
-  :straight t
-  :disabled
+  :ensure t
+  :if nil
   :hook ((dired-mode . diff-hl-dired-mode)
          (prog-mode . diff-hl-flydiff-mode))
   :config
@@ -421,7 +420,7 @@
 
 
 (use-package direnv
-  :straight t
+  :ensure t
   :defer t
   :hook ((python-base-mode . direnv-mode))
   :config
@@ -435,17 +434,17 @@
 
 
 (use-package docker
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package dockerfile-mode
-  :straight t
+  :ensure t
   :mode ("Dockerfile\\'" . dockerfile-mode))
 
 
 (use-package dtrt-indent
-  :straight t
+  :ensure t
   :defer t
   :hook ((nxml-mode . dtrt-indent-mode)
          (prog-mode . dtrt-indent-mode)
@@ -489,7 +488,7 @@
 
 
 (use-package eldoc-box
-  :straight t
+  :ensure t
   :after eldoc
   :bind ("C-c h" . eldoc-box-help-at-point)
   :config
@@ -513,18 +512,18 @@
 
 
 (use-package elisp-docstring-mode
-  :straight t
+  :ensure t
   :commands elisp-docstring-mode)
 
 
 (use-package elisp-slime-nav
-  :straight t
+  :ensure t
   :diminish
   :commands (elisp-slime-nav-mode elisp-slime-nav-find-elisp-thing-at-point))
 
 
 (use-package exec-path-from-shell
-  :straight t
+  :ensure t
   :if (display-graphic-p)
   :demand t
   :init
@@ -552,7 +551,7 @@
 
 
 (use-package expand-region
-  :straight t
+  :ensure t
   :bind (("C-+" . er/expand-region)
          ("C-?" . er/contract-region)
          ("C-c +" . er/expand-region)
@@ -572,7 +571,7 @@
 
 
 (use-package flycheck
-  :straight t
+  :ensure t
   :defer t
   :commands (flycheck-mode
              flycheck-next-error
@@ -616,25 +615,25 @@
 
 
 (use-package flycheck-color-mode-line
-  :straight (:build (:not autoloads))
+  :ensure (:build (:not autoloads))
   :after flycheck)
 
 
 (use-package flycheck-golangci-lint
-  :straight t
+  :ensure t
   :commands flycheck-golangci-lint-setup
   :config
   (setq flycheck-golangci-lint-fast t))
 
 
 (use-package flycheck-yamllint
-  :straight t
+  :ensure t
   :defer t
   :after flycheck)
 
 
 (use-package framemove
-  :straight t
+  :ensure (:host github :repo "emacsmirror/framemove")
   :bind (("S-<left>"  . windmove-left)
          ("S-<right>" . windmove-right)
          ("S-<up>"    . windmove-up)
@@ -646,12 +645,12 @@
 
 
 (use-package fullframe
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package git-modes
-  :straight t
+  :ensure t
   ;; https://github.com/magit/git-modes
   :defer t
   :config
@@ -660,12 +659,12 @@
 
 
 (use-package glsl-mode
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package go-mode
-  :straight t
+  :ensure t
   :defer t
   :bind (:map go-mode-map
               ("M-j" . lsp-ui-imenu)
@@ -699,12 +698,12 @@
 
 
 (use-package gradle-mode
-  :straight t
+  :ensure t
   :mode ("\\.gradle\\'" . gradle-mode))
 
 
 (use-package groovy-mode
-  :straight t
+  :ensure t
   :mode (("\\.grovvy\\'" . groovy-mode)
          ("\\.gradle\\'" . groovy-mode)))
 
@@ -717,7 +716,7 @@
 
 
 (use-package highlight-symbol
-  :straight t
+  :ensure t
   :commands highlight-symbol-nav-mode
   :hook (prog-mode . highlight-symbol-nav-mode))
 
@@ -751,7 +750,7 @@
 
 
 (use-package ibuffer-vc
-  :straight t
+  :ensure t
   :defer t
   :after ibuffer
   :hook (ibuffer . (lambda ()
@@ -761,7 +760,7 @@
 
 
 (use-package idle-highlight-mode
-  :straight t
+  :ensure t
   :bind ("C-c t i" . idle-highlight-mode))
 
 
@@ -799,12 +798,12 @@
 
 
 (use-package jinja2-mode
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package json-mode
-  :straight t
+  :ensure t
   :preface
   :bind (:map json-mode-map
               ("M-q" . json-mode--reformat-region))
@@ -819,22 +818,22 @@
 
 
 (use-package json-reformat
-  :straight t
+  :ensure t
   :after json-mode)
 
 
 (use-package jwt
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package k8s-mode
-  :straight t
+  :ensure t
   :hook (k8s-mode . yas-minor-mode))
 
 
 (use-package kkp
-  :straight t
+  :ensure t
   :defer 0.5
   :config
   (global-kkp-mode +1))
@@ -860,7 +859,7 @@
 
 
 (use-package lsp-mode
-  :straight t
+  :ensure t
   :commands (lsp lsp-deferred)
   :bind (:map lsp-mode-map
               ("M-<RET>" . lsp-execute-code-action)
@@ -899,7 +898,7 @@
 
 
 (use-package lsp-java
-  :straight t
+  :ensure t
   :defer t
   :hook ((java-mode . lsp-java-boot-lens-mode))
   :config
@@ -936,7 +935,7 @@
 
 
 (use-package lsp-treemacs
-  :straight t
+  :ensure t
   :after (lsp-mode treemacs)
   :commands lsp-treemacs-errors-list
   :bind (:map lsp-mode-map
@@ -944,7 +943,7 @@
 
 
 (use-package lsp-ui
-  :straight t
+  :ensure t
   :commands lsp-ui-mode
   :after (lsp-mode)
   :hook (lsp-mode . lsp-ui-mode)
@@ -963,12 +962,12 @@
 
 
 (use-package lua-mode
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package magit
-  :straight t
+  :ensure t
   :defer t
   :bind ("C-x v SPC" . magit-status)
   :commands magit-status
@@ -995,7 +994,7 @@
 
 
 (use-package markdown-mode
-  :straight t
+  :ensure t
   :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-command "pandoc"))
@@ -1008,13 +1007,13 @@
 
 
 (use-package move-text
-  :straight t
+  :ensure t
   :bind (("<M-up>" . move-text-up)
          ("<M-down>" . move-text-down)))
 
 
 (use-package multiple-cursors
-  :straight t
+  :ensure t
   :defer t
   :commands (mc/mark-next-like-this)
   :bind (("C-c <" . mc/mark-all-like-this)
@@ -1167,7 +1166,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package org-mindmap
-  :straight (:host github :repo "krvkir/org-mindmap")
+  :ensure (:host github :repo "krvkir/org-mindmap")
   :after org
   :bind
   (:map org-mindmap-mode-map
@@ -1183,7 +1182,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package ox-pandoc
-  :straight t
+  :ensure t
   :after org)
 
 
@@ -1195,7 +1194,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package pdf-tools
-  :straight t
+  :ensure t
   ;; (pdf-tools-install)
   :defer t
   :config
@@ -1235,7 +1234,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package pyvenv
-  :straight t
+  :ensure t
   :defer t)
 
 
@@ -1310,29 +1309,31 @@ Default indentation LEVEL is 2."
 
 
 (use-package python-isort
-  :straight t
+  :ensure t
   :after python)
 
 
 (use-package rainbow-mode
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package recentf
   :config
-  (setq recentf-auto-cleanup 'never  ;; cleanup manually by calling recentf-cleanup
+  (setq recentf-auto-cleanup 'never
         recentf-max-saved-items 1000)
+  (add-to-list 'recentf-exclude
+               (expand-file-name "elpaca/" user-emacs-directory))
   (recentf-mode 1))
 
 
 (use-package restclient
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package rg
-  :straight t
+  :ensure t
   :defer t
   :bind* (("C-c C-s" . rg-menu)
           ("M-s p" . rg-project)
@@ -1353,7 +1354,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package ruff-format
-  :straight t
+  :ensure t
   :after python-mode)
 
 
@@ -1393,7 +1394,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package smartparens
-  :straight t
+  :ensure t
   :defer t)
 
 
@@ -1404,7 +1405,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package sphinx-doc
-  :straight t
+  :ensure t
   :defer t
   :diminish sphinx-doc-mode)
 
@@ -1420,7 +1421,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package terraform-mode
-  :straight t
+  :ensure t
   :defer t
   :mode "\\.tf\\'"
   :hook (terraform-mode . terraform-format-on-save-mode)
@@ -1443,7 +1444,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package toml-mode
-  :straight t
+  :ensure t
   :mode (("\\.toml\\'" . toml-mode))
   :commands (toml-mode))
 
@@ -1465,7 +1466,6 @@ Default indentation LEVEL is 2."
 
 
 (use-package transient
-  :straight t
   :defer t
   :config
   (setq transient-levels '((magit-commit (magit:--gpg-sign . 1)
@@ -1473,7 +1473,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package treemacs
-  :straight t
+  :ensure t
   :commands (treemacs)
   :after (lsp-mode))
 
@@ -1500,16 +1500,17 @@ Default indentation LEVEL is 2."
 
 
 (use-package vimrc-mode
-  :straight t
+  :ensure t
   :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 
 
 (use-package vlf-setup
+  :ensure (vlf)
   :defer t)
 
 
 (use-package web-mode
-  :straight t
+  :ensure t
   :defer t
   :mode (("\\.html\\'" . web-mode)
          ("\\.rhtml\\'" . web-mode)
@@ -1522,12 +1523,11 @@ Default indentation LEVEL is 2."
 
 
 (use-package wgrep
-  :straight t
+  :ensure t
   :defer t)
 
 
 (use-package which-key
-  :straight t
   :defer 0.5
   :diminish which-key-mode
   :custom
@@ -1537,7 +1537,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package ws-butler
-  :straight (:host github :repo "lewang/ws-butler" :branch "master")
+  :ensure (:host github :repo "lewang/ws-butler" :branch "master")
   :defer t
   :diminish ws-butler-mode
   :hook ((org-mode . ws-butler-mode)
@@ -1548,14 +1548,14 @@ Default indentation LEVEL is 2."
 
 
 (use-package xclip
-  :straight t
+  :ensure t
   :defer t
   :config
   (xclip-mode 1))
 
 
 (use-package yaml-mode
-  :straight t
+  :ensure t
   :defer t
   :mode ("\\.ya?ml\\'" . yaml-mode)
   ;;:hook (yaml-mode . flycheck-mode)
@@ -1565,7 +1565,7 @@ Default indentation LEVEL is 2."
 
 
 (use-package yasnippet
-  :straight t
+  :ensure t
   :defer t
   :commands (snippet-mode yas-expand yas-minor-mode)
   :diminish yas-minor-mode
@@ -1582,13 +1582,13 @@ Default indentation LEVEL is 2."
 
 
 (use-package yasnippet-snippets
-  :straight t
+  :ensure t
   :after yasnippet
   :config (yasnippet-snippets-initialize))
 
 
 (use-package zig-mode
-  :straight t
+  :ensure t
   :defer t)
 
 
@@ -1596,7 +1596,7 @@ Default indentation LEVEL is 2."
 ;;; Themes
 
 (use-package solarized-theme
-  :straight t
+  :ensure t
   ;; :if (display-graphic-p)
   :demand t
   :config
