@@ -127,7 +127,9 @@ Example `~/.emacs.d/user.el`:
 
 ### MacOS
 
-    brew install --cask emacs
+    brew tap d12frosted/emacs-plus
+    brew trust d12frosted/emacs-plus
+    brew install --cask emacs-plus-app
 
 ### Build from source
 
