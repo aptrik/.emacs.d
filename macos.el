@@ -1,6 +1,7 @@
 ;;; macos.el --- macos related configuration -*- lexical-binding: t; -*-
 
 (setq ns-alternate-modifier 'super
+      ns-click-through nil
       ns-command-modifier 'meta
       ns-control-modifier 'control
       ns-function-modifier 'none
