@@ -969,7 +969,9 @@
 (use-package magit
   :ensure t
   :defer t
-  :bind ("C-x v SPC" . magit-status)
+  :bind (("C-x v SPC" . magit-status)
+         :map magit-status-mode-map
+         ("Z" . magit-toggle-slow-sections))
   :commands magit-status
   :custom
   (magit-delete-by-moving-to-trash nil)
@@ -980,6 +982,39 @@
      (upstream . show)
      (untracked . show)))
   :config
+  (defvar magit-slow-sections
+    '(magit-insert-tags-header
+      magit-insert-unpushed-to-upstream-or-recent
+      magit-insert-unpulled-from-upstream)
+    "Magit sections to skip in slow repos (NFS).")
+
+  (defun magit--slow-sections-enabled-p ()
+    (memq 'magit-insert-tags-header magit-status-headers-hook))
+
+  (defun magit--set-slow-sections (enable)
+    (if enable
+        (progn
+          (kill-local-variable 'magit-status-headers-hook)
+          (kill-local-variable 'magit-status-sections-hook))
+      (setq-local magit-status-headers-hook
+                  (seq-difference magit-status-headers-hook magit-slow-sections))
+      (setq-local magit-status-sections-hook
+                  (seq-difference magit-status-sections-hook magit-slow-sections))))
+
+  (defun magit--disable-slow-sections-when-on-nfs ()
+    "Remove slow magit sections for repos on NFS."
+    (when (string-prefix-p "/carm/" default-directory)
+      (magit--set-slow-sections nil)))
+  (add-hook 'magit-status-mode-hook #'magit--disable-slow-sections-when-on-nfs)
+
+  (defun magit-toggle-slow-sections ()
+    "Toggle slow sections in the current magit-status buffer and refresh."
+    (interactive)
+    (let ((enable (not (magit--slow-sections-enabled-p))))
+      (magit--set-slow-sections enable)
+      (message "Slow sections %s" (if enable "enabled" "disabled"))
+      (magit-refresh)))
+
   (fullframe magit-status-setup-buffer magit-mode-quite-window))
 
 
