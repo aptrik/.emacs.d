@@ -17,89 +17,76 @@ Make sure you have Emacs version 29.1 or higher [installed](#install-emacs).
 
 ### Package Management
 
-Packages are managed by [straight.el](https://github.com/radian-software/straight.el)
-with a version lockfile at `straight/versions/default.el`. This ensures reproducible
+Packages are managed by [elpaca](https://github.com/progfolio/elpaca)
+with a version lockfile at `elpaca-lock.el`. This ensures reproducible
 installs across machines.
 
-On first launch, straight.el clones all packages from git (takes a few minutes).
-Subsequent startups are fast since packages are cached locally.
-
-#### Startup performance on slow filesystems
-
-`straight-check-for-modifications` is set to `'(check-on-save find-when-checking)`
-in `init.el`. This prevents straight.el from running `find` across all package repos
-on every startup — critical when `~/.emacs.d` lives on slow or networked storage.
-
-The tradeoff: if you modify package files outside of Emacs (e.g. `git pull` in a
-repo under `straight/repos/`), Emacs won't detect the change automatically. Run
-`M-x straight-check-all` to force a full scan when needed.
+On first launch, elpaca bootstraps itself and clones all packages (takes a
+few minutes). Subsequent startups are fast since packages are built and
+cached under `elpaca/builds/`.
 
 #### Installing a new package
 
-1. Add a `use-package` declaration in `setup.el`:
+1. Add a `use-package` declaration with `:ensure t` in `setup.el`:
    ```elisp
    (use-package some-package
+     :ensure t
      :config
      ...)
    ```
-2. Restart Emacs (or eval the declaration) — straight.el clones the package automatically.
-3. Freeze the new state:
+   For packages that need a custom recipe (non-MELPA source, specific repo, etc.)
+   use the `:elpaca` keyword instead:
+   ```elisp
+   (use-package some-package
+     :elpaca (:host github :repo "owner/repo")
+     :config
+     ...)
    ```
-   M-x straight-freeze-versions
+2. Restart Emacs (or eval the declaration) — elpaca clones and builds the package automatically.
+3. Lock the new state:
    ```
-4. Commit both `setup.el` and `straight/versions/default.el`.
+   M-x elpaca-lock
+   ```
+4. Commit both `setup.el` and `elpaca-lock.el`.
 
 #### Locking packages (reproducible install)
 
-The lockfile `straight/versions/default.el` pins every package to an exact git commit.
+The lockfile `elpaca-lock.el` pins every package to an exact git commit.
 
-- On a fresh clone, start Emacs — straight reads the lockfile and checks out pinned commits.
-- To regenerate the lockfile after any change: `M-x straight-freeze-versions`
-- To restore packages to their locked versions: `M-x straight-thaw-versions`
+- On a fresh clone, start Emacs — elpaca reads the lockfile and checks out pinned commits.
+- To regenerate the lockfile after any change: `M-x elpaca-lock`
+- To restore packages to their locked versions: `M-x elpaca-unlock`
 
 #### Upgrading packages
 
-    M-x straight-pull-all          ; fetch latest commits for all packages
+    M-x elpaca-merge-all           ; fetch and merge latest commits for all packages
 
-Then test your config. If everything works:
+Then rebuild and test your config:
 
-    M-x straight-freeze-versions   ; update the lockfile
+    M-x elpaca-rebuild-all         ; rebuild all packages after merging
+
+If everything works:
+
+    M-x elpaca-lock                ; update the lockfile
 
 Commit the updated lockfile. To upgrade a single package instead:
 
-    M-x straight-pull-package      ; prompts for package name
-    M-x straight-freeze-versions
-
-#### Upgrading a tag-pinned package
-
-Some packages (e.g. org) are pinned to a release tag in `setup.el`:
-
-```elisp
-:straight (:tag "release_9.8.5")
-```
-
-To upgrade to a new release:
-
-1. Update the `:tag` value in `setup.el`
-2. In Emacs:
-   ```
-   M-x straight-pull-package      ; fetches new tags from remote
-   M-x straight-normalize-package ; checks out the new tag
-   M-x straight-freeze-versions   ; updates the lockfile
-   ```
-3. Commit `setup.el` and `straight/versions/default.el`
+    M-x elpaca-merge               ; prompts for package name
+    M-x elpaca-rebuild             ; rebuild that package
+    M-x elpaca-lock
 
 #### Rolling back a bad upgrade
 
-    git checkout straight/versions/default.el
+    git checkout elpaca-lock.el
 
 Restart Emacs — packages revert to the previously committed versions.
 
-#### Cleaning up unused repos
+#### Browsing installed packages
 
-    M-x straight-remove-unused-repos
+    M-x elpaca-manager
 
-Removes cloned repos that are no longer referenced by your config.
+Opens a buffer listing all installed packages with their status, allowing
+you to browse, rebuild, or delete individual packages interactively.
 
 ### Compile pdf-tools
 
