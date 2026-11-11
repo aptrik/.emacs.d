@@ -359,6 +359,10 @@
   (setq-default diff-switches "-uwd"))
 
 
+(use-package diff-review
+  :ensure (:host github :repo "xiaoxinghu/diff-review" :type git :inherit nil))
+
+
 (use-package dired
   :defer t
   :bind ("C-c j" . dired--downloads)
